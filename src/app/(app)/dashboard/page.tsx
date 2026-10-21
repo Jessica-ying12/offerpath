@@ -73,9 +73,12 @@ export default async function DashboardPage() {
         }
         actions={
           <>
-            <Link href="/interview" className={buttonClass("secondary", "md")}>
-              <MessagesSquare className="h-4 w-4" />
-              模拟面试
+            <Link href="/review" className={buttonClass("secondary", "md")}>
+            周期复习
+            {stats.openMistakes + data.mastery.due > 0 ? <span className="font-mono text-[10px] text-amber">{data.mastery.due > 0 ? data.mastery.due : ""}</span> : null}
+            </Link>
+            <Link href="/bank" className={buttonClass("secondary", "md")}>
+              题库
             </Link>
             <Link href={data.continueHref} className={buttonClass("primary", "md")}>
               继续学习
@@ -277,7 +280,7 @@ export default async function DashboardPage() {
               </div>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3 border-t border-white/[0.06] pt-4">
-              <Stat label="已完成微课" value={`${data.completedAtoms}/${data.totalAtoms}`} />
+              <Stat label="已完成知识点" value={`${data.completedAtoms}/${data.totalAtoms}`} />
               <Stat label="连续训练" value={`${stats.streakDays} 天`} tone={stats.streakDays > 1 ? "lime" : "default"} />
             </div>
             <div className="mt-4 flex gap-2">
@@ -292,8 +295,8 @@ export default async function DashboardPage() {
 
           <Panel className="grid grid-cols-2 gap-y-5 p-5">
             <Stat label="练习正确率" value={`${stats.accuracy}%`} tone={stats.accuracy >= 60 ? "lime" : "default"} hint={`${stats.quizAttempts} 次练习`} />
-            <Stat label="待复习错题" value={stats.openMistakes} tone={stats.openMistakes > 0 ? "amber" : "default"} hint="答对即解决" />
-            <Stat label="完成面试" value={stats.interviewsCompleted} hint="含追问与复盘" />
+            <Stat label="到期复习" value={data.mastery.due} tone={data.mastery.due > 0 ? "amber" : "default"} hint="周期复习" />
+            <Stat label="已掌握" value={data.mastery.mastered} tone={data.mastery.mastered > 0 ? "lime" : "default"} hint="三次复习" />
             <Stat label="训练天数" value={stats.streakDays} hint="按活动记录计算" />
             <div className="col-span-2 flex items-center gap-2 border-t border-white/[0.06] pt-3 text-[10px] text-muted/50">
               <History className="h-3 w-3" />

@@ -25,6 +25,7 @@ import {
   listPlanCards,
 } from "./plans";
 import { getReviewPageData, getTrackPageData } from "./learning";
+import { getMasteryOverview, getMasteryProgressSummary } from "./mastery";
 
 function computeStreak(days: string[], now = new Date()): number {
   if (days.length === 0) return 0;
@@ -63,6 +64,7 @@ export function getDashboardData(user: User, db: Db = getDb()) {
   const completed = getCompletedAtomIds(db, user.id, track.id);
   const chapterCompletion = getChapterCompletion(db, user.id, track.id);
   const stats = baseStats(user.id, db);
+  const mastery = getMasteryOverview(user.id, db);
   const review = getReviewPageData(user.id, db);
   const recentActivities = listActivities(db, user.id, 8);
   const interviews = getInterviewList(user.id, db).slice(0, 3);
@@ -80,16 +82,24 @@ export function getDashboardData(user: User, db: Db = getDb()) {
     href: string;
     minutes?: number;
   }> = [];
+  if (mastery.due > 0) {
+    todayFocus.push({
+      title: "完成到期复习",
+      subtitle: `${mastery.due} 个章节等待间隔复习`,
+      href: "/review",
+      minutes: 12,
+    });
+  }
   if (sprintView) {
     for (const task of sprintView.progress.tasks.values()) {
       if (task.done) continue;
+      if (todayFocus.length >= 3) break;
       todayFocus.push({
         title: task.task.title,
         subtitle: `${sprintView.title} · ${task.meta}`,
         href: task.href,
         minutes: task.task.minutes,
       });
-      if (todayFocus.length >= 3) break;
     }
   }
   if (todayFocus.length === 0) {
@@ -120,6 +130,7 @@ export function getDashboardData(user: User, db: Db = getDb()) {
     track,
     level,
     stats,
+    mastery,
     review,
     recentActivities,
     interviews,
@@ -138,6 +149,7 @@ export function getDashboardData(user: User, db: Db = getDb()) {
 export function getRecordsData(user: User, db: Db = getDb()) {
   const activities = listActivities(db, user.id, 150);
   const stats = baseStats(user.id, db);
+  const mastery = getMasteryOverview(user.id, db);
   const review = getReviewPageData(user.id, db);
   const interviews = getInterviewList(user.id, db);
   const sprintCards = listPlanCards(user.id, "sprint", db);

@@ -113,7 +113,7 @@ export default async function SprintPage() {
               {[
                 ["抽取技能", "用方向技能词典扫描简历与 JD 中的技术词与项目线索。"],
                 ["算缺口", "优先补 JD 要求但简历无证据的技能，再补等级相关基础。"],
-                ["排任务", "把相关章节的微课、练习、代码题、面试按你的天数分配。"],
+                ["排任务", "把相关章节的知识点、练习、代码题、面试按你的天数分配。"],
               ].map(([title, copy], index) => (
                 <li key={title} className="flex gap-2.5">
                   <span className="mt-0.5 font-mono text-[9px] text-lime/60">0{index + 1}</span>

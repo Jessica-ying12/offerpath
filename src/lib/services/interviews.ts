@@ -61,10 +61,12 @@ export function createInterviewForUser(
     throw new AppError("基于 JD 面试需要先填写岗位 JD（至少 20 字）");
   }
 
+  const bank = getInterviewBank(track.id);
+  if (!bank) throw new AppError("该课程暂未开放模拟面试，请选择移动端、全栈或 Java 后端", 422);
   const now = new Date().toISOString();
   const plan = buildInterviewPlan({
     track,
-    bank: getInterviewBank(track.id),
+    bank,
     level: input.level,
     mode: input.mode,
     resumeText,

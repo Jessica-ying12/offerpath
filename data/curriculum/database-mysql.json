@@ -1,0 +1,1112 @@
+{
+  "id": "database-mysql",
+  "name": "MySQL 数据库",
+  "shortName": "MySQL",
+  "direction": "database",
+  "roles": [
+    "数据库开发",
+    "后端开发（数据方向）",
+    "DBA 入门"
+  ],
+  "tagline": "从建模与索引，到事务、锁、复制与分库分表，按真实查询建立数据库能力。",
+  "description": "数据库专项路线：业务建模、主键/类型、B+ 树索引、执行计划、JOIN/窗口函数、事务与 MVCC、复制与高可用、在线迁移。1 章/级别，共 3 章，每章 6 道练习与 1 道 SQL 参考实现题。",
+  "landingPoints": [
+    "建模与索引",
+    "事务 / MVCC / 锁",
+    "复制与分库分表"
+  ],
+  "levels": [
+    {
+      "id": "junior",
+      "name": "初级",
+      "summary": "能设计约束清晰、索引合理的表结构，读懂基础执行计划。",
+      "focus": [
+        "实体建模",
+        "索引",
+        "EXPLAIN"
+      ]
+    },
+    {
+      "id": "middle",
+      "name": "中级",
+      "summary": "能写正确的集合查询，解释事务隔离、锁与慢查询。",
+      "focus": [
+        "JOIN/窗口",
+        "事务/MVCC",
+        "慢查询"
+      ]
+    },
+    {
+      "id": "senior",
+      "name": "高级",
+      "summary": "能设计复制/高可用/分片与在线迁移，明确失败与回滚。",
+      "focus": [
+        "复制延迟",
+        "备份恢复",
+        "分片迁移"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "sql-database",
+      "name": "SQL 与数据库",
+      "aliases": [
+        "sql",
+        "数据库",
+        "索引",
+        "事务",
+        "join"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "database-design",
+      "name": "数据库设计",
+      "aliases": [
+        "建模",
+        "范式",
+        "主键",
+        "唯一约束",
+        "分库分表"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "aliases": [
+        "mysql",
+        "innodb",
+        "b+树",
+        "binlog"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "mysql-performance",
+      "name": "MySQL 性能",
+      "aliases": [
+        "执行计划",
+        "explain",
+        "慢查询",
+        "联合索引",
+        "索引优化"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "transactions",
+      "name": "事务与并发控制",
+      "aliases": [
+        "事务",
+        "隔离级别",
+        "mvcc",
+        "锁",
+        "回滚"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "high-availability",
+      "name": "高可用",
+      "aliases": [
+        "主从复制",
+        "高可用",
+        "备份恢复",
+        "读写分离",
+        "rpo",
+        "rto"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "distributed-systems",
+      "name": "分布式系统",
+      "aliases": [
+        "分布式",
+        "一致性",
+        "分片",
+        "补偿"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "observability",
+      "name": "可观测性",
+      "aliases": [
+        "监控",
+        "指标",
+        "trace",
+        "日志"
+      ],
+      "category": "backend"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "db-j1-model",
+      "trackId": "database-mysql",
+      "level": "junior",
+      "order": 1,
+      "title": "数据库建模与索引",
+      "summary": "从业务约束画出表结构，用主键、唯一约束和索引支撑真实查询。",
+      "atomIds": [
+        "db-j1-model-a1",
+        "db-j1-model-a2",
+        "db-j1-model-a3"
+      ],
+      "questionIds": [
+        "q-db-j1-model-1",
+        "q-db-j1-model-2",
+        "q-db-j1-model-3",
+        "q-db-j1-model-4",
+        "q-db-j1-model-5",
+        "q-db-j1-model-6"
+      ],
+      "codeChallengeIds": [
+        "code-db-j1-model"
+      ],
+      "references": [
+        {
+          "title": "MySQL 8.4 Reference Manual",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "MySQL Data Types",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/data-types.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "roadmap.sh SQL",
+          "url": "https://roadmap.sh/sql",
+          "publisher": "roadmap.sh"
+        }
+      ]
+    },
+    {
+      "id": "db-j2-query",
+      "trackId": "database-mysql",
+      "level": "middle",
+      "order": 1,
+      "title": "查询、事务与锁",
+      "summary": "JOIN、窗口函数、事务隔离与锁共同决定结果正确性和并发行为。",
+      "atomIds": [
+        "db-j2-query-a1",
+        "db-j2-query-a2",
+        "db-j2-query-a3"
+      ],
+      "questionIds": [
+        "q-db-j2-query-1",
+        "q-db-j2-query-2",
+        "q-db-j2-query-3",
+        "q-db-j2-query-4",
+        "q-db-j2-query-5",
+        "q-db-j2-query-6"
+      ],
+      "codeChallengeIds": [
+        "code-db-j2-query"
+      ],
+      "references": [
+        {
+          "title": "MySQL Transaction Isolation Levels",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "MySQL Window Functions",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/window-function-descriptions.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "PostgreSQL Documentation",
+          "url": "https://www.postgresql.org/docs/current/",
+          "publisher": "PostgreSQL"
+        }
+      ]
+    },
+    {
+      "id": "db-j3-scale",
+      "trackId": "database-mysql",
+      "level": "senior",
+      "order": 1,
+      "title": "复制、高可用与分库分表",
+      "summary": "数据库规模化不是“加从库”一条路；复制、备份、DDL 与分片都需要失败模型。",
+      "atomIds": [
+        "db-j3-scale-a1",
+        "db-j3-scale-a2",
+        "db-j3-scale-a3"
+      ],
+      "questionIds": [
+        "q-db-j3-scale-1",
+        "q-db-j3-scale-2",
+        "q-db-j3-scale-3",
+        "q-db-j3-scale-4",
+        "q-db-j3-scale-5",
+        "q-db-j3-scale-6"
+      ],
+      "codeChallengeIds": [
+        "code-db-j3-scale"
+      ],
+      "references": [
+        {
+          "title": "MySQL Replication",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/replication.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "MySQL InnoDB Backup",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/innodb-backup.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "Google SRE Workbook",
+          "url": "https://sre.google/workbook/table-of-contents/",
+          "publisher": "Google"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "title": "业务建模与规范化",
+      "summary": "先识别实体与关系，再决定范式；约束写进数据库，不把一致性全交给应用。",
+      "minutes": 7,
+      "objective": "能把订单、用户、商品关系拆成合理表结构，并说明范式与反范式的取舍。",
+      "explanation": "建模从实体、属性和关系开始：用户与订单一对多，订单与商品多对多通常需要订单项连接表。规范化减少冗余和更新异常；当查询频繁需要跨表聚合时，可以有控制地反范式复制快照字段。复制字段必须明确写入时机、更新策略与对账方式，否则会把性能问题换成数据不一致。",
+      "teachingSteps": [
+        {
+          "title": "先列实体和关系",
+          "detail": "圈出用户、订单、订单项、商品，标注一对多/多对多。"
+        },
+        {
+          "title": "再定约束",
+          "detail": "主键、唯一键、非空、外键、检查约束先于代码。"
+        },
+        {
+          "title": "最后评估冗余",
+          "detail": "只为稳定高频查询复制字段，并设计同步与对账。"
+        }
+      ],
+      "keyPoints": [
+        "多对多关系需要连接表，不要在订单表里用逗号拼接商品 ID。",
+        "规范化优先；反范式是为读性能服务的显式取舍，不是默认做法。",
+        "唯一约束和事务是并发一致性的底座，应用层校验不能替代。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "实体关系落表",
+        "code": "users(id PK, email UNIQUE, nickname, created_at)\norders(id PK, user_id FK, order_no UNIQUE, status, total_cents, created_at)\nproducts(id PK, sku UNIQUE, name, price_cents, stock)\norder_items(id PK, order_id FK, sku_id FK, quantity, unit_price_cents)\n\n-- 订单项保存成交单价快照，避免商品改价影响历史订单"
+      },
+      "pitfalls": [
+        "把多值字段塞进一个 JSON/逗号字符串，后续查询与约束都很困难。",
+        "为了“查询方便”复制大量字段，却没有同步与对账机制。"
+      ],
+      "interviewTip": "先画实体关系与约束，再讲规范化收益，最后说明订单项保存价格快照这类有控制的冗余。",
+      "skills": [
+        "database-design",
+        "sql-database"
+      ],
+      "id": "db-j1-model-a1",
+      "chapterId": "db-j1-model"
+    },
+    {
+      "title": "主键、唯一约束与数据类型",
+      "summary": "主键要稳定、唯一、无业务含义；类型选择影响索引大小、精度与未来迁移。",
+      "minutes": 6,
+      "objective": "能为业务选择合适主键、金额/时间/枚举类型，并解释业务唯一键的独立约束。",
+      "explanation": "主键标识一行，应稳定且尽量短；业务唯一键（订单号、邮箱）用唯一约束表达，不应直接拿可变业务字段当主键。金额用整数分或 DECIMAL，不使用浮点；时间明确时区并选 DATETIME/TIMESTAMP 的语义；状态用受控枚举/短字符串，配合检查约束。类型越宽，索引越大，越容易隐藏脏数据。",
+      "teachingSteps": [
+        {
+          "title": "先选行身份",
+          "detail": "自增/雪花 ID 作为主键，业务编号单独唯一约束。"
+        },
+        {
+          "title": "再定精确类型",
+          "detail": "金额整数分或 DECIMAL；时间统一 UTC；枚举受控。"
+        },
+        {
+          "title": "最后考虑增长",
+          "detail": "主键宽度、随机性、分片与迁移成本。"
+        }
+      ],
+      "keyPoints": [
+        "主键稳定无业务含义；可变的邮箱/手机号用唯一约束，不占用主键。",
+        "金额避免 FLOAT/DOUBLE；使用整数分或 DECIMAL 并统一币种。",
+        "时间字段要统一存储时区与精度，展示层再本地化。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "更稳的字段类型",
+        "code": "CREATE TABLE wallet_ledger (\n  id BIGINT PRIMARY KEY,\n  user_id BIGINT NOT NULL,\n  amount_cents BIGINT NOT NULL,\n  currency CHAR(3) NOT NULL,\n  type ENUM('TOPUP','PAY','REFUND') NOT NULL,\n  created_at DATETIME(3) NOT NULL,\n  UNIQUE KEY uk_request (user_id, request_id)\n);\n\n-- 不用 FLOAT 存金额；不用字符串随意状态值而不校验"
+      },
+      "pitfalls": [
+        "用邮箱做主键，用户换邮箱时牵连所有关联表与缓存。",
+        "用 FLOAT 存金额导致四舍五入对不上账。"
+      ],
+      "interviewTip": "从主键的稳定性、金额精度与时区三点回答，再补业务唯一键与类型宽度的索引成本。",
+      "skills": [
+        "database-design",
+        "sql-database"
+      ],
+      "id": "db-j1-model-a2",
+      "chapterId": "db-j1-model"
+    },
+    {
+      "title": "索引设计与执行计划",
+      "summary": "索引按查询模式设计；EXPLAIN 是验证，不是装饰。",
+      "minutes": 8,
+      "objective": "能设计联合索引、判断最左前缀与回表，并读懂 EXPLAIN 的关键列。",
+      "explanation": "B+ 树索引按键有序，联合索引从最左列开始生效。等值过滤列通常放前，范围/排序列靠后；在列上套函数、隐式类型转换会让索引失效。二级索引查询可能需要回表，覆盖索引可减少随机 IO。索引增加写入与存储成本，应按高频查询与数据分布设计，并用 EXPLAIN 的 type/key/rows/Extra 验证。",
+      "teachingSteps": [
+        {
+          "title": "从高频查询列开始",
+          "detail": "等值列在前，范围/排序列在后，避免跳过最左列。"
+        },
+        {
+          "title": "看访问路径",
+          "detail": "区分 ALL、index、range、ref，关注扫描行数与临时表。"
+        },
+        {
+          "title": "权衡覆盖与写入",
+          "detail": "高频读用覆盖索引，写多表控制索引数量。"
+        }
+      ],
+      "keyPoints": [
+        "联合索引遵循最左前缀；只查后续列通常无法高效命中。",
+        "索引列上套函数/隐式类型转换容易失效，改用等值/范围改写。",
+        "覆盖索引减少回表，但增加索引体积与写入成本。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "索引与执行计划",
+        "code": "CREATE INDEX idx_orders_user_created\n  ON orders (user_id, created_at DESC);\n\nEXPLAIN ANALYZE\nSELECT id, status, total_cents\nFROM orders\nWHERE user_id = 42\nORDER BY created_at DESC\nLIMIT 20;\n\n-- 关注 type、key、rows、Extra；避免对 created_at 套函数"
+      },
+      "pitfalls": [
+        "给低选择性字段单独建索引，优化器仍不会使用。",
+        "线上直接加索引不评估锁/IO 与执行窗口；大表应考虑在线 DDL 方案。"
+      ],
+      "interviewTip": "从查询模式反推联合索引，再讲最左前缀、回表与覆盖，最后用 EXPLAIN 和写入成本验证。",
+      "skills": [
+        "database-design",
+        "mysql-performance",
+        "sql-database"
+      ],
+      "id": "db-j1-model-a3",
+      "chapterId": "db-j1-model"
+    },
+    {
+      "title": "JOIN、子查询与窗口函数",
+      "summary": "先明确结果语义，再选择 JOIN、聚合或窗口函数；不要用 N+1 查询替代集合思维。",
+      "minutes": 8,
+      "objective": "能写出保留左表、去重、每用户最新一单等查询，并解释性能代价。",
+      "explanation": "JOIN 按关系组合行；LEFT JOIN 保留左表，右表过滤放 ON。子查询可用于存在性/标量值，但相关子查询在大表上可能重复执行。窗口函数在不折叠行的前提下做分组排名与取最新，适合“每个用户最近一单”。深分页用游标而非大 OFFSET。",
+      "teachingSteps": [
+        {
+          "title": "用自然语言写清结果",
+          "detail": "要哪些实体、缺失时保留谁、重复如何处理。"
+        },
+        {
+          "title": "选择集合操作",
+          "detail": "JOIN、EXISTS、聚合、窗口函数分别解决不同问题。"
+        },
+        {
+          "title": "检查行数与索引",
+          "detail": "用 EXPLAIN 看扫描与临时表，避免 N+1 与深分页。"
+        }
+      ],
+      "keyPoints": [
+        "LEFT JOIN 右表条件放 ON，否则会过滤掉未匹配左表行。",
+        "每用户最新一单可用 ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) 取 rn=1。",
+        "相关子查询可能按外层行重复执行；先看执行计划与数据量。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "每个用户最近一笔已支付订单",
+        "code": "WITH ranked AS (\n  SELECT o.*,\n         ROW_NUMBER() OVER (\n           PARTITION BY o.user_id\n           ORDER BY o.created_at DESC, o.id DESC\n         ) AS rn\n  FROM orders o\n  WHERE o.status = 'PAID'\n)\nSELECT user_id, id, total_cents, created_at\nFROM ranked\nWHERE rn = 1;"
+      },
+      "pitfalls": [
+        "用 N+1 查询在应用层循环取每个用户的最新订单。",
+        "窗口函数排序键不唯一（如只按 created_at），同时间订单顺序不稳定。"
+      ],
+      "interviewTip": "先讲结果语义，再比较 JOIN/窗口的适用场景，最后补唯一排序键与 N+1 的代价。",
+      "skills": [
+        "sql-database",
+        "mysql-performance"
+      ],
+      "id": "db-j2-query-a1",
+      "chapterId": "db-j2-query"
+    },
+    {
+      "title": "事务、隔离级别与 MVCC",
+      "summary": "事务边界与隔离级别决定并发读写能看到什么；锁与 MVCC 是不同机制。",
+      "minutes": 8,
+      "objective": "能解释脏读/不可重复读/幻读，选择隔离级别并说明长事务与锁等待风险。",
+      "explanation": "InnoDB 默认 REPEATABLE READ，通过 MVCC 提供一致性读，普通 SELECT 读快照，不加锁；当前读（SELECT ... FOR UPDATE）与写操作会加锁。隔离级别越高，并发冲突与锁等待通常越多。长事务会持有旧快照与锁、阻塞 purge，应用应缩短事务、固定锁顺序并设置超时。",
+      "teachingSteps": [
+        {
+          "title": "先定义业务不变量",
+          "detail": "哪些行必须原子更新，允许多大程度的读写不一致。"
+        },
+        {
+          "title": "再选隔离与读方式",
+          "detail": "普通读/当前读、锁的范围与等待时间。"
+        },
+        {
+          "title": "最后治理长事务",
+          "detail": "缩短临界区、固定锁顺序、监控锁等待与回滚。"
+        }
+      ],
+      "keyPoints": [
+        "快照读与当前读不同；SELECT ... FOR UPDATE 会加锁，而不是读快照。",
+        "隔离级别提升减少部分异常，但增加锁等待与并发成本，要按业务选择。",
+        "长事务占用旧版本与锁，阻塞清理；外部调用不要放事务内。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "条件更新防止并发覆盖",
+        "code": "START TRANSACTION;\n\nUPDATE accounts\nSET balance_cents = balance_cents - 100\nWHERE id = 42 AND balance_cents >= 100;\n\n-- 影响行数为 0：余额不足或并发冲突，回滚/重试\nUPDATE accounts\nSET balance_cents = balance_cents + 100\nWHERE id = 7;\n\nCOMMIT;"
+      },
+      "pitfalls": [
+        "先查余额再无条件更新，两个事务并发时都通过检查。",
+        "在事务中调用慢速远程服务，长时间占用锁与连接。"
+      ],
+      "interviewTip": "先讲事务与隔离异常，再区分快照读/当前读，最后用条件更新和短事务说明生产写法。",
+      "skills": [
+        "transactions",
+        "sql-database",
+        "mysql"
+      ],
+      "id": "db-j2-query-a2",
+      "chapterId": "db-j2-query"
+    },
+    {
+      "title": "慢查询分析与分页优化",
+      "summary": "慢查询从证据开始：慢日志、EXPLAIN、数据分布与索引，而不是盲目加缓存。",
+      "minutes": 8,
+      "objective": "能定位全表扫描、回表、临时表/排序与深分页，并给出可验证的优化。",
+      "explanation": "先开启慢查询日志并用 EXPLAIN ANALYZE 看实际行数、循环与耗时；再检查索引是否命中、是否回表、是否产生临时表/filesort。深分页可用游标分页；聚合大表可预计算/汇总表，但要接受最终一致与维护成本。优化前后固定数据量和查询，比较扫描行数、P95 与资源，而不是只看一次耗时。",
+      "teachingSteps": [
+        {
+          "title": "先获取真实计划",
+          "detail": "慢日志、EXPLAIN ANALYZE、参数与数据量。"
+        },
+        {
+          "title": "再判断瓶颈类型",
+          "detail": "扫描、回表、排序、临时表、锁等待或网络。"
+        },
+        {
+          "title": "最后做单变量优化",
+          "detail": "索引/改写/分页/汇总，一次改一个并复测。"
+        }
+      ],
+      "keyPoints": [
+        "优化以执行计划与真实数据为依据，避免只看 SQL 文本猜原因。",
+        "深分页用游标/延迟关联，减少扫描并保证稳定排序。",
+        "汇总表/缓存能提升读性能，但要定义更新与一致性，不能静默过期。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "游标分页",
+        "code": "-- 第一页\nSELECT id, created_at\nFROM orders\nWHERE user_id = ?\nORDER BY created_at DESC, id DESC\nLIMIT 20;\n\n-- 下一页：传入上一页最后一条 (created_at, id)\nSELECT id, created_at\nFROM orders\nWHERE user_id = ?\n  AND (created_at, id) < (?, ?)\nORDER BY created_at DESC, id DESC\nLIMIT 20;"
+      },
+      "pitfalls": [
+        "只给 created_at 建索引，却忽视排序键不唯一和过滤列。",
+        "用 OFFSET 很大时仍以为加了索引就会变快。"
+      ],
+      "interviewTip": "按证据、瓶颈、单变量优化、复测四步回答；再补游标分页与汇总表的一致性代价。",
+      "skills": [
+        "mysql-performance",
+        "sql-database",
+        "transactions"
+      ],
+      "id": "db-j2-query-a3",
+      "chapterId": "db-j2-query"
+    },
+    {
+      "title": "主从复制、读写分离与延迟",
+      "summary": "复制是异步日志回放；读写分离必须处理复制延迟与读己之写。",
+      "minutes": 8,
+      "objective": "能解释 binlog 复制链路、复制延迟的读风险，并设计读写分离的兜底。",
+      "explanation": "主库写 binlog，从库拉取并回放，默认异步复制存在延迟；网络、从库压力、大事务都会放大延迟。读写分离能扩展读吞吐，但用户刚写完立刻读从库可能看不到自己的更新。可按会话粘主、写后读主、版本/GTID 等待或提供延迟可接受的业务提示，而不是假设从库实时一致。",
+      "teachingSteps": [
+        {
+          "title": "先画复制链路",
+          "detail": "主库写 binlog → 从库 IO/SQL 线程回放。"
+        },
+        {
+          "title": "再找延迟来源",
+          "detail": "大事务、锁等待、从库资源、网络与并行复制。"
+        },
+        {
+          "title": "最后设计读策略",
+          "detail": "读己之写粘主/等待，监控 Seconds_Behind_Source。"
+        }
+      ],
+      "keyPoints": [
+        "异步复制从库可能滞后；写后立即读从库会出现“刚保存就不见了”。",
+        "大事务放大复制延迟与锁持有时间；拆小批、控制批量写入。",
+        "读己之写可通过会话粘主或等待位点解决，必须明确降级行为。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "观察复制延迟",
+        "code": "SHOW REPLICA STATUS\\G\n-- 关注 Replica_IO_Running、Replica_SQL_Running、\n-- Seconds_Behind_Source、Last_Error\n\n-- 读己之写：同一会话写后短期内读主库\n-- 或等待从库回放到指定 GTID/位点（按版本与架构）"
+      },
+      "pitfalls": [
+        "所有读请求无脑走从库，忽视下单后立即查询的读己之写。",
+        "用长事务/大批量写造成复制延迟，却没有告警与限流。"
+      ],
+      "interviewTip": "从复制链路与延迟讲风险，再讲读写分离的读己之写兜底，最后补大事务与监控指标。",
+      "skills": [
+        "high-availability",
+        "mysql",
+        "transactions"
+      ],
+      "id": "db-j3-scale-a1",
+      "chapterId": "db-j3-scale"
+    },
+    {
+      "title": "备份、恢复与高可用",
+      "summary": "高可用不等于有备份；没有恢复演练的备份只是心理安慰。",
+      "minutes": 8,
+      "objective": "能设计备份策略、RPO/RTO 和故障切换检查清单，说明数据丢失窗口。",
+      "explanation": "备份要同时覆盖全量 + 增量/binlog，并异地/独立存储；恢复演练验证 RTO（多久恢复）与 RPO（可丢多少数据）。主从切换需要处理延迟、脑裂与旧主恢复；切换后应用连接、缓存与任务调度都要重新指向。高可用是流程与演练，不只是多一个从库。",
+      "teachingSteps": [
+        {
+          "title": "先定 RPO/RTO",
+          "detail": "业务能接受丢多少数据、停多久。"
+        },
+        {
+          "title": "再组合备份与 binlog",
+          "detail": "全量定期 + 增量/日志连续备份，异地保存。"
+        },
+        {
+          "title": "最后演练切换",
+          "detail": "故障检测、提升从库、旧主隔离、应用重连与数据核对。"
+        }
+      ],
+      "keyPoints": [
+        "备份必须可恢复；定期在独立环境演练，验证 RPO/RTO。",
+        "主从切换要防止旧主继续写入导致脑裂，并检查复制延迟。",
+        "备份文件加密、权限隔离，避免泄露全量用户数据。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "备份与切换检查单",
+        "code": "RPO：最多丢失 5 分钟 → binlog 连续归档 + 5 分钟增量\nRTO：30 分钟内恢复 → 自动化恢复脚本 + 定期演练\n切换：检测主库不可用 → 选择延迟最小从库 → 提升\n      → 隔离旧主 → 更新连接/服务发现 → 核对数据\n备份：全量每日 + binlog 实时归档 + 异地加密存储"
+      },
+      "pitfalls": [
+        "只备份从未恢复演练，真正故障时发现文件损坏或步骤缺失。",
+        "切换后仍允许旧主写入，造成双主数据冲突。"
+      ],
+      "interviewTip": "先讲 RPO/RTO，再讲全量+日志与异地存储，最后用防脑裂和恢复演练说明高可用闭环。",
+      "skills": [
+        "high-availability",
+        "mysql",
+        "observability"
+      ],
+      "id": "db-j3-scale-a2",
+      "chapterId": "db-j3-scale"
+    },
+    {
+      "title": "分库分表、在线 DDL 与迁移",
+      "summary": "分片只在单库遇到真实上限后引入；迁移与 DDL 的核心是兼容、可回滚、可校验。",
+      "minutes": 9,
+      "objective": "能选择分片键、设计双写/回填/切读流程，并说明跨片查询与事务代价。",
+      "explanation": "分库分表用分片键把数据路由到不同库/表，解决单库容量与写入瓶颈，但跨片 JOIN、聚合和事务变复杂。分片键要保证高频查询能落到单片，并考虑数据倾斜与扩容。在线 DDL 采用兼容扩展、影子表/双写、回填、切读、再清理旧结构；每一步都要可回滚、可校验。",
+      "teachingSteps": [
+        {
+          "title": "先证明需要分片",
+          "detail": "单库容量、写 QPS、连接/索引维护是否达上限。"
+        },
+        {
+          "title": "再选分片键",
+          "detail": "高频查询维度、分布均匀、扩容路径与跨片代价。"
+        },
+        {
+          "title": "最后迁移与 DDL",
+          "detail": "双写/回填/切读/对账/清理，保留回滚窗口。"
+        }
+      ],
+      "keyPoints": [
+        "分片键决定查询路由；高频查询跨片会退化成广播与聚合，必须提前评估。",
+        "分片后跨片事务困难，优先本地事务 + 幂等/补偿，不要假设分布式事务无成本。",
+        "在线 DDL 用兼容扩展与影子表/双写回填，切读前后做数据校验与回滚预案。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "在线迁移步骤",
+        "code": "1. 新增兼容列/新表（旧代码可继续运行）\n2. 双写：新写入同时写旧结构与新结构\n3. 回填：分批迁移历史数据，可中断可重试\n4. 校验：行数、校验和、关键抽样对比\n5. 切读：灰度读新结构，保留开关回滚\n6. 清理：确认无旧调用后删除旧结构（独立变更）"
+      },
+      "pitfalls": [
+        "为了“扩展性”过早分库分表，引入无法承受的跨片事务与运维复杂度。",
+        "迁移一步切换并立刻删旧表，缺少回滚与数据核对。"
+      ],
+      "interviewTip": "先证明分片必要性，再讲分片键与跨片代价，最后用双写/回填/切读/对账说明在线迁移的安全步骤。",
+      "skills": [
+        "high-availability",
+        "database-design",
+        "distributed-systems",
+        "mysql-performance"
+      ],
+      "id": "db-j3-scale-a3",
+      "chapterId": "db-j3-scale"
+    }
+  ],
+  "questions": [
+    {
+      "prompt": "订单与商品是多对多关系，最合理的落表方式是？",
+      "options": [
+        "订单表存逗号分隔商品 ID",
+        "增加订单项连接表",
+        "商品表存订单 ID",
+        "只把商品名复制到订单表"
+      ],
+      "answerIndex": 1,
+      "explanation": "多对多需要连接表保存订单-商品关系与数量/单价快照；逗号字段难约束、难索引，复制名称也不足以表达关系。",
+      "skills": [
+        "database-design"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-db-j1-model-1",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "prompt": "订单号由业务生成且可能重发，表设计中应如何保证唯一？",
+      "options": [
+        "把它作为唯一约束或唯一索引",
+        "只在应用层查询后插入",
+        "用 FLOAT 存储",
+        "不用约束"
+      ],
+      "answerIndex": 0,
+      "explanation": "唯一约束能在并发下由数据库兜底；应用层“先查再插”存在竞态。订单号可作为唯一业务键，主键仍使用稳定无业务含义的值。",
+      "skills": [
+        "database-design",
+        "sql-database"
+      ],
+      "difficulty": 1,
+      "kind": "scenario",
+      "id": "q-db-j1-model-2",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "prompt": "金额字段使用 FLOAT 的主要风险是？",
+      "options": [
+        "空间占用更大",
+        "二进制浮点精度误差导致金额不一致",
+        "无法排序",
+        "不支持索引"
+      ],
+      "answerIndex": 1,
+      "explanation": "FLOAT/DOUBLE 不能精确表示多数十进制小数，累加与比较会产生误差；金额应使用整数分或 DECIMAL，并明确币种。",
+      "skills": [
+        "database-design"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-db-j1-model-3",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "prompt": "联合索引 (user_id, created_at) 无法高效支持哪种查询？",
+      "options": [
+        "WHERE user_id=? ORDER BY created_at DESC",
+        "WHERE user_id=? AND created_at>?",
+        "WHERE created_at>? 单独过滤",
+        "WHERE user_id=? LIMIT 20"
+      ],
+      "answerIndex": 2,
+      "explanation": "跳过最左列 user_id 的查询通常无法利用该联合索引；只按 created_at 过滤需要另建索引或调整索引顺序。",
+      "skills": [
+        "mysql-performance",
+        "sql-database"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-db-j1-model-4",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "prompt": "EXPLAIN 出现 type=ALL 通常表示？",
+      "options": [
+        "全表扫描",
+        "使用主键等值",
+        "覆盖索引",
+        "无结果"
+      ],
+      "answerIndex": 0,
+      "explanation": "type=ALL 是全表扫描；需结合 rows、key、Extra 与数据量判断是否可接受，考虑索引或查询改写。",
+      "skills": [
+        "mysql-performance"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-db-j1-model-5",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "prompt": "订单项保存成交单价快照属于什么设计？",
+      "options": [
+        "纯规范化",
+        "有意的反范式，保证历史价格稳定",
+        "违反所有数据库设计原则",
+        "为了隐藏商品价格"
+      ],
+      "answerIndex": 1,
+      "explanation": "订单项需要保留成交时价格，属于有控制的反范式；它避免商品改价影响历史订单，并配合对账/审计保证一致性。",
+      "skills": [
+        "database-design"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-db-j1-model-6",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "prompt": "用 LEFT JOIN 保留全部用户，右表条件应放在？",
+      "options": [
+        "WHERE",
+        "ON",
+        "HAVING",
+        "ORDER BY"
+      ],
+      "answerIndex": 1,
+      "explanation": "右表过滤放 ON 才能保留未匹配左表行；放 WHERE 会把未匹配的 NULL 行过滤掉，接近 INNER JOIN。",
+      "skills": [
+        "sql-database"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-db-j2-query-1",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "prompt": "取每个用户最新一笔已支付订单，最直接的 SQL 技术是？",
+      "options": [
+        "多个相关子查询",
+        "窗口函数 ROW_NUMBER 按用户分组排序",
+        "ORDER BY 后 LIMIT 1",
+        "用应用层循环查询"
+      ],
+      "answerIndex": 1,
+      "explanation": "ROW_NUMBER() PARTITION BY user_id ORDER BY created_at DESC 给每组排名，再取 rn=1；应用层循环会产生 N+1。",
+      "skills": [
+        "sql-database",
+        "mysql-performance"
+      ],
+      "difficulty": 2,
+      "kind": "code",
+      "id": "q-db-j2-query-2",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "prompt": "InnoDB 默认隔离级别通常是？",
+      "options": [
+        "READ UNCOMMITTED",
+        "READ COMMITTED",
+        "REPEATABLE READ",
+        "SERIALIZABLE"
+      ],
+      "answerIndex": 2,
+      "explanation": "InnoDB 默认 REPEATABLE READ，通过 MVCC 提供一致性读；不同版本/配置可能调整，回答时应说明默认值。",
+      "skills": [
+        "transactions",
+        "mysql"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-db-j2-query-3",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "prompt": "SELECT ... FOR UPDATE 与普通 SELECT 的关键区别是？",
+      "options": [
+        "一个读快照，一个加锁做当前读",
+        "两者完全一样",
+        "FOR UPDATE 只读历史版本",
+        "普通 SELECT 一定加写锁"
+      ],
+      "answerIndex": 0,
+      "explanation": "普通 SELECT 在 RR 下通常读一致性快照；FOR UPDATE 是当前读并加锁，需要事务与锁等待预算。",
+      "skills": [
+        "transactions",
+        "mysql"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-db-j2-query-4",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "prompt": "防止并发转账把余额扣成负数，最可靠的数据库写法是？",
+      "options": [
+        "先 SELECT 余额再 UPDATE",
+        "条件更新 WHERE balance_cents >= ? 并检查影响行数",
+        "把隔离级别设为最高即可",
+        "使用更多线程"
+      ],
+      "answerIndex": 1,
+      "explanation": "条件更新把检查与扣减放在同一语句，由数据库原子执行；先查后改存在竞态，仅提高隔离级别也不能替代正确的更新语义。",
+      "skills": [
+        "transactions",
+        "sql-database"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-db-j2-query-5",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "prompt": "深分页 LIMIT 100000,20 慢的主要原因是？",
+      "options": [
+        "MySQL 不支持 LIMIT",
+        "需要扫描并丢弃大量 offset 行，排序/回表成本高",
+        "索引会阻止分页",
+        "20 条太多"
+      ],
+      "answerIndex": 1,
+      "explanation": "大 OFFSET 仍要访问前面的大量行；用基于排序游标的分页或延迟关联减少扫描，同时保证稳定唯一排序。",
+      "skills": [
+        "mysql-performance",
+        "sql-database"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-db-j2-query-6",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "prompt": "MySQL 默认异步主从复制下，写后立即读从库最可能出现什么？",
+      "options": [
+        "一定读到最新数据",
+        "从库尚未回放，读到旧数据",
+        "主库自动等待",
+        "从库拒绝读请求"
+      ],
+      "answerIndex": 1,
+      "explanation": "异步复制存在回放延迟；写后读从库可能看不到刚提交的数据。需要对读己之写做会话粘主/等待位点或业务提示。",
+      "skills": [
+        "high-availability",
+        "mysql"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-db-j3-scale-1",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "评估备份方案时，RPO 指什么？",
+      "options": [
+        "多久能恢复",
+        "最多可接受丢失的数据时间窗口",
+        "备份文件大小",
+        "数据库版本"
+      ],
+      "answerIndex": 1,
+      "explanation": "RPO 是恢复点目标，表示最多能接受丢失多少数据；RTO 是恢复时间目标。两者共同决定备份与切换策略。",
+      "skills": [
+        "high-availability"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-db-j3-scale-2",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "主从切换后最危险的状态之一是？",
+      "options": [
+        "旧主继续接受写入造成双主冲突",
+        "从库只读",
+        "应用连接池断开",
+        "备份文件变大"
+      ],
+      "answerIndex": 0,
+      "explanation": "旧主未隔离可能继续写入，与新主产生分叉和脑裂；切换流程必须隔离旧主并核对复制位点与数据。",
+      "skills": [
+        "high-availability"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-db-j3-scale-3",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "选择分片键时最需要关注什么？",
+      "options": [
+        "字段名长度",
+        "高频查询能否落到单片、分布均匀与扩容代价",
+        "是否英文单词",
+        "是否可作为主键"
+      ],
+      "answerIndex": 1,
+      "explanation": "分片键决定路由；若高频查询跨片会广播/聚合，成本高。还要考虑数据倾斜和未来扩容方式。",
+      "skills": [
+        "database-design",
+        "high-availability"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-db-j3-scale-4",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "在线大表加索引/改结构，较安全的做法是？",
+      "options": [
+        "业务高峰直接执行并立即删旧结构",
+        "兼容扩展、双写/回填、切读、校验与回滚窗口",
+        "停服数小时不做通知",
+        "只改代码不改数据库"
+      ],
+      "answerIndex": 1,
+      "explanation": "在线变更需要兼容旧代码、逐步回填与校验；切读和清理分开，保留回滚窗口，避免不可逆一步切换。",
+      "skills": [
+        "high-availability",
+        "mysql-performance"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-db-j3-scale-5",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "分库分表后跨片 JOIN 的主要代价是？",
+      "options": [
+        "自动变快",
+        "需要广播/聚合或数据传输，延迟与资源成本上升",
+        "不需要索引",
+        "事务更强"
+      ],
+      "answerIndex": 1,
+      "explanation": "跨片 JOIN 无法在单库完成，通常需要广播查询、应用层聚合或数据冗余；事务与一致性也更复杂，因此分片键要尽量对齐高频查询。",
+      "skills": [
+        "database-design",
+        "distributed-systems"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-db-j3-scale-6",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    }
+  ],
+  "codeChallenges": [
+    {
+      "title": "为订单表写出约束与索引",
+      "prompt": "写出 MySQL 建表语句：orders 包含 id BIGINT 主键、user_id BIGINT 非空、order_no VARCHAR(32) 唯一、status VARCHAR(16) 非空、total_cents INT 非负、created_at DATETIME(3) 非空；并建立支撑“用户 + 时间倒序”查询的索引。完成后对照参考实现自评。",
+      "requirements": [
+        "主键与业务唯一键分离",
+        "total_cents 使用 CHECK 或等价约束保证非负",
+        "为 (user_id, created_at) 建联合索引"
+      ],
+      "starterCode": "-- 写出你的建表语句\n",
+      "solutionCode": "CREATE TABLE orders (\n  id BIGINT PRIMARY KEY AUTO_INCREMENT,\n  user_id BIGINT NOT NULL,\n  order_no VARCHAR(32) NOT NULL,\n  status VARCHAR(16) NOT NULL,\n  total_cents INT NOT NULL CHECK (total_cents >= 0),\n  created_at DATETIME(3) NOT NULL,\n  UNIQUE KEY uk_orders_order_no (order_no),\n  KEY idx_orders_user_created (user_id, created_at DESC)\n);",
+      "rubric": [
+        "主键与 order_no 唯一约束分别存在",
+        "金额非负约束明确",
+        "联合索引列顺序能支撑用户+时间查询",
+        "字段类型与可空性符合业务"
+      ],
+      "language": "sql",
+      "skills": [
+        "database-design",
+        "sql-database"
+      ],
+      "id": "code-db-j1-model",
+      "trackId": "database-mysql",
+      "chapterId": "db-j1-model",
+      "level": "junior"
+    },
+    {
+      "title": "写“每用户最新已支付订单”查询",
+      "prompt": "写出 SQL：从 orders 中取每个 user_id 最新一条 status='PAID' 的订单，返回 user_id、id、total_cents、created_at；同一时间按 id 倒序取最大。完成后对照参考实现自评。",
+      "requirements": [
+        "分组取每组最新一单",
+        "只包含 PAID 状态",
+        "排序键唯一稳定（created_at + id）"
+      ],
+      "starterCode": "-- 写出你的 SQL\n",
+      "solutionCode": "WITH ranked AS (\n  SELECT user_id, id, total_cents, created_at, status,\n         ROW_NUMBER() OVER (\n           PARTITION BY user_id\n           ORDER BY created_at DESC, id DESC\n         ) AS rn\n  FROM orders\n  WHERE status = 'PAID'\n)\nSELECT user_id, id, total_cents, created_at\nFROM ranked\nWHERE rn = 1;",
+      "rubric": [
+        "窗口分区与排序符合“每用户最新”",
+        "过滤 PAID 在排名前完成",
+        "排序键稳定，避免同时间不确定",
+        "理解窗口函数不会折叠原始行"
+      ],
+      "language": "sql",
+      "skills": [
+        "sql-database",
+        "mysql-performance"
+      ],
+      "id": "code-db-j2-query",
+      "trackId": "database-mysql",
+      "chapterId": "db-j2-query",
+      "level": "middle"
+    },
+    {
+      "title": "设计在线迁移步骤",
+      "prompt": "写出把 orders 表从旧结构迁移到新结构的 SQL/流程清单：至少包含新表/兼容列、双写或回填、数据校验、切读、回滚与清理。完成后对照参考实现自评。",
+      "requirements": [
+        "先兼容再切换，不能一步删除旧结构",
+        "回填可断点续跑、可校验",
+        "切读有灰度与回滚方案"
+      ],
+      "starterCode": "-- 写出迁移步骤或关键 SQL\n",
+      "solutionCode": "-- 1. 兼容扩展：先加可空列或新表，旧代码可继续运行\nALTER TABLE orders ADD COLUMN new_status VARCHAR(24) NULL;\n\n-- 2. 双写：应用新写入同时写旧/新字段\n-- 3. 回填：分批迁移历史数据，按主键游标推进\nUPDATE orders\nSET new_status = status\nWHERE id > ? AND id <= ? AND new_status IS NULL;\n\n-- 4. 校验：抽样对比 status 与 new_status，统计差异\nSELECT COUNT(*) FROM orders\nWHERE new_status IS NULL OR new_status <> status;\n\n-- 5. 切读：灰度读新列，保留回滚开关\n-- 6. 清理：确认旧调用消失后，单独变更删除旧列",
+      "rubric": [
+        "先扩展后收缩，未一步破坏旧版本",
+        "回填可分批、可重试、可校验",
+        "切读有灰度与回滚路径",
+        "清理旧结构作为独立变更"
+      ],
+      "language": "sql",
+      "skills": [
+        "high-availability",
+        "database-design",
+        "mysql-performance"
+      ],
+      "id": "code-db-j3-scale",
+      "trackId": "database-mysql",
+      "chapterId": "db-j3-scale",
+      "level": "senior"
+    }
+  ]
+}

@@ -293,7 +293,7 @@ export default async function SprintPlanPage({
                         href={`/learn/${track.id}/${chapter?.id}/${atom.id}`}
                         className="mt-2.5 inline-flex items-center gap-1 text-[10px] text-lime/70 hover:text-lime"
                       >
-                        打开微课
+                        打开知识点
                         <ArrowUpRight className="h-2.5 w-2.5" />
                       </Link>
                     </div>
@@ -344,7 +344,7 @@ export default async function SprintPlanPage({
               <p className="text-[12px] font-medium text-paper">计划说明</p>
             </div>
             <ul className="mt-3 space-y-2 text-[10px] leading-5 text-muted/60">
-              <li>· 任务完成状态由真实微课完成、章节练习提交、代码通过和面试记录派生。</li>
+              <li>· 任务完成状态由真实知识点完成、章节练习提交、代码通过和面试记录派生。</li>
               <li>· 先做「下一任务」即可，不必按天死磕；时间紧张可优先必背清单。</li>
               <li>· 计划生成时的简历/JD 会保留在快照中，用于后续模拟面试。</li>
             </ul>

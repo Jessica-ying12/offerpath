@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, Layers, Loader2, Smartphone } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Code2, Database, Layers, Loader2, Smartphone, Sparkles } from "lucide-react";
 import { Badge, Button, Input } from "@/components/ui/primitives";
 import type { LevelId, TrackId } from "@/lib/content/schema";
 import { cn } from "@/lib/utils";
@@ -27,6 +27,27 @@ const TRACKS: Array<{
     icon: Layers,
     copy: "从浏览器到数据库：React、TypeScript、Node、SQL 与系统设计。",
     items: ["JS / TS 与 React", "Node API 与数据库", "缓存、安全与系统设计"],
+  },
+  {
+    id: "backend-java",
+    name: "Java 后端开发",
+    icon: Code2,
+    copy: "Java、Spring Boot、JVM、MySQL、Redis 与高并发可观测性。",
+    items: ["Java 与 Spring Boot", "JVM / 线程池 / 事务", "Redis 缓存与高并发"],
+  },
+  {
+    id: "database-mysql",
+    name: "MySQL 数据库",
+    icon: Database,
+    copy: "从建模、索引到事务、复制与分库分表，按真实查询学习。",
+    items: ["建模与索引", "事务 / MVCC / 锁", "复制、高可用与迁移"],
+  },
+  {
+    id: "cs-ai-foundations",
+    name: "计算机基础与 AI 前沿",
+    icon: Sparkles,
+    copy: "HTTP、操作系统、性能，以及 LLM 应用的评测与安全。",
+    items: ["HTTP / 缓存 / 幂等", "OS / 内存 / IO", "RAG / 评测 / 提示注入"],
   },
 ];
 

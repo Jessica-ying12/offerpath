@@ -13,7 +13,7 @@ const HORIZONS = [
   { value: 12 as const, label: "12 周", copy: "系统进阶" },
 ];
 
-const UPCOMING = ["后端开发", "前端开发", "数据开发", "测试开发", "安全工程师"];
+const UPCOMING = ["前端开发", "数据开发", "测试开发", "安全工程师"];
 
 export function CareerForm({
   initialTrack,
@@ -67,7 +67,7 @@ export function CareerForm({
   }
 
   return (
-    <form onSubmit={submit} className="space-y-6">
+    <form method="post" onSubmit={submit} className="space-y-6">
       <div>
         <div className="mb-2.5 flex items-center justify-between">
           <span className="text-[12px] font-medium text-muted">目标方向</span>
@@ -77,6 +77,9 @@ export function CareerForm({
           {[
             { id: "mobile" as const, label: "移动端开发", hint: "Android / Kotlin" },
             { id: "fullstack" as const, label: "全栈开发", hint: "React / Node / SQL" },
+            { id: "backend-java" as const, label: "Java 后端", hint: "Java / Spring / MySQL / Redis" },
+            { id: "database-mysql" as const, label: "MySQL 数据库", hint: "建模 / 查询 / 高可用" },
+            { id: "cs-ai-foundations" as const, label: "CS / AI 前沿", hint: "网络 / OS / LLM 应用" },
           ].map((item) => (
             <button
               key={item.id}

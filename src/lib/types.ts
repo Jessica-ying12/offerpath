@@ -30,7 +30,10 @@ export type ActivityType =
   | "plan_created"
   | "interview_started"
   | "interview_completed"
-  | "solution_viewed";
+  | "solution_viewed"
+  | "review_completed"
+  | "bank_practiced"
+  | "exam_completed";
 
 export type Activity = {
   id: string;
@@ -287,4 +290,46 @@ export type OverviewStats = {
   openMistakes: number;
   interviewsCompleted: number;
   streakDays: number;
+};
+
+export type MasteryStage = 1 | 2 | 3 | 4 | 5;
+
+export type MasteryRecord = {
+  userId: string;
+  chapterId: string;
+  trackId: TrackId;
+  stage: MasteryStage;
+  reviewCount: number;
+  nextReviewAt: string | null;
+  lastReviewAt: string | null;
+  updatedAt: string;
+};
+
+export type ReviewAttemptRecord = {
+  id: string;
+  chapterId: string;
+  trackId: TrackId;
+  level: LevelId;
+  score: number;
+  total: number;
+  createdAt: string;
+};
+
+export type BankAttemptRecord = {
+  id: string;
+  scope: Record<string, unknown>;
+  score: number;
+  total: number;
+  durationSeconds: number;
+  createdAt: string;
+};
+
+export type ExamAttemptRecord = {
+  id: string;
+  trackId: TrackId;
+  level: LevelId;
+  score: number;
+  total: number;
+  durationSeconds: number;
+  createdAt: string;
 };

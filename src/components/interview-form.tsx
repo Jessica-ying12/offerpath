@@ -71,7 +71,7 @@ export function InterviewForm({
   }
 
   return (
-    <form onSubmit={submit} className="space-y-6">
+    <form method="post" onSubmit={submit} className="space-y-6">
       <div>
         <div className="mb-2.5 flex items-center justify-between">
           <span className="text-[12px] font-medium text-muted">面试方式</span>
@@ -109,10 +109,11 @@ export function InterviewForm({
             <span className="text-[12px] font-medium text-muted">方向</span>
             <span className="font-mono text-[9px] text-muted/40">TRACK</span>
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-3 gap-2">
             {[
               { id: "mobile" as const, label: "移动端" },
               { id: "fullstack" as const, label: "全栈" },
+              { id: "backend-java" as const, label: "Java 后端" },
             ].map((item) => (
               <button
                 key={item.id}

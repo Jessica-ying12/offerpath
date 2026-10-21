@@ -58,7 +58,7 @@ export function ProfileForm({ profile, name }: { profile: Profile; name: string 
   }
 
   return (
-    <form onSubmit={submit} className="space-y-7">
+    <form method="post" onSubmit={submit} className="space-y-7">
       <section>
         <div className="eyebrow mb-4 text-lime/70">01 / IDENTITY</div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -84,8 +84,11 @@ export function ProfileForm({ profile, name }: { profile: Profile; name: string 
             <p className="mb-2 text-[12px] font-medium text-muted">当前方向</p>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { id: "mobile" as TrackId, label: "移动端开发" },
-                { id: "fullstack" as TrackId, label: "全栈开发" },
+                { id: "mobile" as TrackId, label: "移动端" },
+                { id: "fullstack" as TrackId, label: "全栈" },
+                { id: "backend-java" as TrackId, label: "Java 后端" },
+                { id: "database-mysql" as TrackId, label: "MySQL" },
+                { id: "cs-ai-foundations" as TrackId, label: "CS / AI" },
               ].map((item) => (
                 <button
                   key={item.id}

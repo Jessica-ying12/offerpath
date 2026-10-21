@@ -34,7 +34,7 @@ function taskHref(task: PlanTask, track: Track, planId: string | null, interview
 function taskMeta(task: PlanTask): string {
   switch (task.type) {
     case "atom":
-      return `微课 · ${task.minutes} 分钟`;
+      return `知识点 · ${task.minutes} 分钟`;
     case "practice":
       return "章节练习 · 5 题";
     case "code":

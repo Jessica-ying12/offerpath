@@ -5,7 +5,7 @@ import { Brand } from "@/components/brand";
 import { getCurrentUser } from "@/lib/auth";
 
 const PROOF = [
-  "54 节 3–6 分钟微课，学完立刻做题",
+  "90 个知识点精讲，学完立刻做题",
   "简历 + JD 生成可解释的急冲清单",
   "面试答错有引导，答好继续追问",
 ];

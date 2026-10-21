@@ -501,7 +501,7 @@ export function buildInterviewSummary(input: {
   } else if (average >= 40) {
     verdict = "能说出概念，但缺少原因、代价和项目证据。先背要点，再做章节练习巩固。";
   } else {
-    verdict = "答案覆盖不足。建议先完成推荐微课与章节练习，再进行一次模拟面试。";
+    verdict = "答案覆盖不足。建议先完成推荐知识点与章节练习，再进行一次模拟面试。";
   }
 
   return {

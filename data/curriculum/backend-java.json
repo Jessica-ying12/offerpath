@@ -1,0 +1,2782 @@
+{
+  "id": "backend-java",
+  "name": "Java 后端开发",
+  "shortName": "Java 后端",
+  "direction": "backend",
+  "roles": [
+    "后端开发",
+    "Java 后端开发",
+    "服务端开发"
+  ],
+  "tagline": "Java、Spring Boot、MySQL、Redis 与高并发，按知识点练到能讲清楚。",
+  "description": "从 Java 值语义与集合，到 Spring Boot API、事务、JVM、线程池、MySQL 索引、Redis 缓存与高并发可观测性。2 章/级别，共 6 章；每章 3 个知识点、8 道练习与 1 道代码题，配套 15 道后端面试题。",
+  "landingPoints": [
+    "Java / Spring Boot",
+    "MySQL / Redis",
+    "高并发与可观测性"
+  ],
+  "levels": [
+    {
+      "id": "junior",
+      "name": "初级",
+      "summary": "写对 Java 对象、集合与 SQL，理解 Spring 分层和基础事务边界。",
+      "focus": [
+        "Java 核心",
+        "MySQL 基础",
+        "接口与校验"
+      ]
+    },
+    {
+      "id": "middle",
+      "name": "中级",
+      "summary": "理解 JVM、线程池、事务传播与缓存，能定位常见线上问题。",
+      "focus": [
+        "JVM/并发",
+        "Spring 事务",
+        "MySQL 优化"
+      ]
+    },
+    {
+      "id": "senior",
+      "name": "高级",
+      "summary": "设计缓存、最终一致与高并发方案，用指标与降级守住系统。",
+      "focus": [
+        "Redis 一致性",
+        "分布式系统",
+        "可观测性"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "java-core",
+      "name": "Java 核心",
+      "aliases": [
+        "java",
+        "jdk",
+        "集合",
+        "面向对象",
+        "jvm 基础"
+      ],
+      "category": "language"
+    },
+    {
+      "id": "jvm-concurrency",
+      "name": "JVM 与并发",
+      "aliases": [
+        "jvm",
+        "gc",
+        "线程池",
+        "jmm",
+        "并发",
+        "锁"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "spring-boot",
+      "name": "Spring Boot",
+      "aliases": [
+        "spring",
+        "spring boot",
+        "spring mvc",
+        "ioc",
+        "aop",
+        "事务"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "aliases": [
+        "mysql",
+        "innodb",
+        "b+树",
+        "binlog"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "mysql-performance",
+      "name": "MySQL 性能",
+      "aliases": [
+        "执行计划",
+        "explain",
+        "慢查询",
+        "联合索引",
+        "索引优化"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "aliases": [
+        "redis",
+        "缓存",
+        "分布式锁",
+        "ttl"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "sql-database",
+      "name": "SQL 与数据库",
+      "aliases": [
+        "sql",
+        "数据库",
+        "索引",
+        "事务",
+        "join"
+      ],
+      "category": "database"
+    },
+    {
+      "id": "http-api",
+      "name": "HTTP 与 API",
+      "aliases": [
+        "http",
+        "rest",
+        "api 设计",
+        "接口设计",
+        "状态码"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "distributed-systems",
+      "name": "分布式系统",
+      "aliases": [
+        "分布式",
+        "消息队列",
+        "最终一致",
+        "幂等",
+        "补偿"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "observability",
+      "name": "可观测性",
+      "aliases": [
+        "可观测性",
+        "监控",
+        "指标",
+        "trace",
+        "日志",
+        "slo"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "system-design",
+      "name": "系统设计",
+      "aliases": [
+        "系统设计",
+        "架构设计",
+        "高并发",
+        "容量",
+        "降级"
+      ],
+      "category": "backend"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "be-j1-java",
+      "trackId": "backend-java",
+      "level": "junior",
+      "order": 1,
+      "title": "Java 类型、对象与集合",
+      "summary": "先把 Java 的值语义、对象边界与集合复杂度写对，再进入框架。",
+      "atomIds": [
+        "be-j1-java-a1",
+        "be-j1-java-a2",
+        "be-j1-java-a3"
+      ],
+      "questionIds": [
+        "q-be-j1-java-1",
+        "q-be-j1-java-2",
+        "q-be-j1-java-3",
+        "q-be-j1-java-4",
+        "q-be-j1-java-5",
+        "q-be-j1-java-6",
+        "q-be-j1-java-7",
+        "q-be-j1-java-8"
+      ],
+      "codeChallengeIds": [
+        "code-be-j1-java"
+      ],
+      "references": [
+        {
+          "title": "Dev.java — Learn Java",
+          "url": "https://dev.java/learn/",
+          "publisher": "Oracle / Dev.java"
+        },
+        {
+          "title": "Java SE 21 API",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/",
+          "publisher": "Oracle"
+        }
+      ]
+    },
+    {
+      "id": "be-j1-mysql",
+      "trackId": "backend-java",
+      "level": "junior",
+      "order": 2,
+      "title": "MySQL 基础与索引",
+      "summary": "从业务约束到表设计，再用索引与执行计划解释查询为什么慢。",
+      "atomIds": [
+        "be-j1-mysql-a1",
+        "be-j1-mysql-a2",
+        "be-j1-mysql-a3"
+      ],
+      "questionIds": [
+        "q-be-j1-mysql-1",
+        "q-be-j1-mysql-2",
+        "q-be-j1-mysql-3",
+        "q-be-j1-mysql-4",
+        "q-be-j1-mysql-5",
+        "q-be-j1-mysql-6",
+        "q-be-j1-mysql-7",
+        "q-be-j1-mysql-8"
+      ],
+      "codeChallengeIds": [
+        "code-be-j1-mysql"
+      ],
+      "references": [
+        {
+          "title": "MySQL 8.4 Reference Manual",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "MySQL Optimization",
+          "url": "https://dev.mysql.com/doc/refman/8.4/en/optimization.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "roadmap.sh SQL",
+          "url": "https://roadmap.sh/sql",
+          "publisher": "roadmap.sh"
+        }
+      ]
+    },
+    {
+      "id": "be-j2-spring",
+      "trackId": "backend-java",
+      "level": "middle",
+      "order": 1,
+      "title": "Spring Boot API 与事务",
+      "summary": "理解容器、分层、边界校验与事务传播，写出可维护、可回滚的服务端接口。",
+      "atomIds": [
+        "be-j2-spring-a1",
+        "be-j2-spring-a2",
+        "be-j2-spring-a3"
+      ],
+      "questionIds": [
+        "q-be-j2-spring-1",
+        "q-be-j2-spring-2",
+        "q-be-j2-spring-3",
+        "q-be-j2-spring-4",
+        "q-be-j2-spring-5",
+        "q-be-j2-spring-6",
+        "q-be-j2-spring-7",
+        "q-be-j2-spring-8"
+      ],
+      "codeChallengeIds": [
+        "code-be-j2-spring"
+      ],
+      "references": [
+        {
+          "title": "Spring Boot Reference Documentation",
+          "url": "https://docs.spring.io/spring-boot/index.html",
+          "publisher": "Spring"
+        },
+        {
+          "title": "Spring Framework Transactions",
+          "url": "https://docs.spring.io/spring-framework/reference/data-access/transaction.html",
+          "publisher": "Spring"
+        },
+        {
+          "title": "Spring Guides",
+          "url": "https://spring.io/guides",
+          "publisher": "Spring"
+        }
+      ]
+    },
+    {
+      "id": "be-j2-jvm",
+      "trackId": "backend-java",
+      "level": "middle",
+      "order": 2,
+      "title": "JVM、线程池与并发",
+      "summary": "从内存区域、GC 到线程池与 Java 内存模型，解释并发问题的根因。",
+      "atomIds": [
+        "be-j2-jvm-a1",
+        "be-j2-jvm-a2",
+        "be-j2-jvm-a3"
+      ],
+      "questionIds": [
+        "q-be-j2-jvm-1",
+        "q-be-j2-jvm-2",
+        "q-be-j2-jvm-3",
+        "q-be-j2-jvm-4",
+        "q-be-j2-jvm-5",
+        "q-be-j2-jvm-6",
+        "q-be-j2-jvm-7",
+        "q-be-j2-jvm-8"
+      ],
+      "codeChallengeIds": [
+        "code-be-j2-jvm"
+      ],
+      "references": [
+        {
+          "title": "Java Virtual Machine Specification",
+          "url": "https://docs.oracle.com/javase/specs/jvms/se21/html/index.html",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "Java Concurrency Tutorial",
+          "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/",
+          "publisher": "Oracle"
+        },
+        {
+          "title": "Java SE API — java.util.concurrent",
+          "url": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html",
+          "publisher": "Oracle"
+        }
+      ]
+    },
+    {
+      "id": "be-j3-redis",
+      "trackId": "backend-java",
+      "level": "senior",
+      "order": 1,
+      "title": "Redis 与缓存一致性",
+      "summary": "缓存是复制的事实；先定义一致性、失效与故障边界，再谈性能。",
+      "atomIds": [
+        "be-j3-redis-a1",
+        "be-j3-redis-a2",
+        "be-j3-redis-a3"
+      ],
+      "questionIds": [
+        "q-be-j3-redis-1",
+        "q-be-j3-redis-2",
+        "q-be-j3-redis-3",
+        "q-be-j3-redis-4",
+        "q-be-j3-redis-5",
+        "q-be-j3-redis-6",
+        "q-be-j3-redis-7",
+        "q-be-j3-redis-8"
+      ],
+      "codeChallengeIds": [
+        "code-be-j3-redis"
+      ],
+      "references": [
+        {
+          "title": "Redis Documentation",
+          "url": "https://redis.io/docs/latest/",
+          "publisher": "Redis"
+        },
+        {
+          "title": "Redis Persistence",
+          "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
+          "publisher": "Redis"
+        },
+        {
+          "title": "Google SRE Book",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "publisher": "Google"
+        }
+      ]
+    },
+    {
+      "id": "be-j3-scale",
+      "trackId": "backend-java",
+      "level": "senior",
+      "order": 2,
+      "title": "高并发、消息与可观测性",
+      "summary": "用容量、队列与降级守住系统，用指标、日志、追踪验证你的判断。",
+      "atomIds": [
+        "be-j3-scale-a1",
+        "be-j3-scale-a2",
+        "be-j3-scale-a3"
+      ],
+      "questionIds": [
+        "q-be-j3-scale-1",
+        "q-be-j3-scale-2",
+        "q-be-j3-scale-3",
+        "q-be-j3-scale-4",
+        "q-be-j3-scale-5",
+        "q-be-j3-scale-6",
+        "q-be-j3-scale-7",
+        "q-be-j3-scale-8"
+      ],
+      "codeChallengeIds": [
+        "code-be-j3-scale"
+      ],
+      "references": [
+        {
+          "title": "Google SRE Book",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "publisher": "Google"
+        },
+        {
+          "title": "OpenTelemetry Documentation",
+          "url": "https://opentelemetry.io/docs/",
+          "publisher": "CNCF"
+        },
+        {
+          "title": "Microservices Patterns",
+          "url": "https://microservices.io/patterns/index.html",
+          "publisher": "Chris Richardson"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "title": "基本类型、包装类型与自动装箱",
+      "summary": "基本类型存值，包装类型是可空对象；装箱带来便利也带来空指针与相等性陷阱。",
+      "minutes": 6,
+      "objective": "能解释 Java 的值/引用语义、自动装箱缓存与 ==/equals 的差异，并避免空指针。",
+      "explanation": "Java 的基本类型直接保存值，包装类型是对象引用，可以为 null。自动装箱让两者在赋值、集合和方法参数间自动转换，但拆箱时遇到 null 会立即抛 NullPointerException。Integer 的有限值缓存和对象身份还会让 == 与 equals 的语义不同：比较值应使用 equals 或先拆箱为基本类型。",
+      "teachingSteps": [
+        {
+          "title": "先区分值语义与引用",
+          "detail": "int 与 Integer 的默认值、可空性和内存位置不同。"
+        },
+        {
+          "title": "再理解自动装箱",
+          "detail": "集合只能存对象；拆箱发生在运算、比较和赋值时。"
+        },
+        {
+          "title": "最后统一相等性规则",
+          "detail": "业务值使用 equals；null 先判空或用 Objects.equals。"
+        }
+      ],
+      "keyPoints": [
+        "包装类型可能为 null，拆箱前必须判空；集合中的数字默认是包装类型。",
+        "Integer 有 -128..127 的缓存，== 可能碰巧为 true，不能作为值比较依据。",
+        "优先用 Objects.equals 或基本类型比较，避免隐式装箱带来的歧义与开销。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "包装类型比较与空值",
+        "code": "Integer a = 127;\nInteger b = 127;\nInteger c = 128;\nInteger d = 128;\n\nSystem.out.println(a == b);        // true（缓存）\nSystem.out.println(c == d);        // false（不同对象）\nSystem.out.println(c.equals(d));   // true（值相等）\n\nInteger nullable = null;\n// int n = nullable; // 自动拆箱导致 NullPointerException\nint safe = nullable == null ? 0 : nullable;"
+      },
+      "pitfalls": [
+        "把 == 当成值比较，尤其在超过缓存范围时出现“有时对有时错”。",
+        "把可能为空的包装类型直接参与算术运算，触发隐式拆箱 NPE。"
+      ],
+      "interviewTip": "先说值/引用与可空性，再说自动拆箱和缓存，最后给出比较规则：业务值用 equals，空值先处理。",
+      "skills": [
+        "java-core"
+      ],
+      "id": "be-j1-java-a1",
+      "chapterId": "be-j1-java"
+    },
+    {
+      "title": "类、接口、组合与不可变对象",
+      "summary": "接口约束能力，组合表达能力边界；不可变对象让并发与相等性更可控。",
+      "minutes": 7,
+      "objective": "能用接口与组合设计低耦合对象，并说明不可变对象的构造与收益。",
+      "explanation": "Java 用类表达状态与行为，用接口表达可替换的能力。继承适合共享实现但容易产生脆弱基类，组合把能力作为成员注入，更容易测试与替换。不可变对象在构造后不再改变，天然适合共享、缓存和并发，但要注意引用类型字段仍需防御性复制或使用不可变类型。",
+      "teachingSteps": [
+        {
+          "title": "从职责划分开始",
+          "detail": "先问这个类负责什么、哪些能力需要被替换，而不是先想继承树。"
+        },
+        {
+          "title": "用组合替代脆弱继承",
+          "detail": "通过构造注入接口实现，运行时替换，测试注入 Fake。"
+        },
+        {
+          "title": "封闭可变入口",
+          "detail": "字段 final、无 setter、集合防御性复制，保证对象不可变。"
+        }
+      ],
+      "keyPoints": [
+        "面向接口编程降低实现耦合，但接口不应过宽；按真实能力拆分。",
+        "组合优于继承：避免子类依赖父类实现细节，优先注入依赖。",
+        "不可变对象要封闭所有可变入口，尤其是集合与 Date 等可变引用。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "组合 + 不可变字段 + 防御性复制",
+        "code": "public final class Money {\n    private final long cents;\n    private final String currency;\n\n    public Money(long cents, String currency) {\n        if (cents < 0) throw new IllegalArgumentException(\"cents < 0\");\n        this.cents = cents;\n        this.currency = Objects.requireNonNull(currency);\n    }\n\n    public Money plus(Money other) {\n        if (!currency.equals(other.currency)) throw new IllegalArgumentException(\"currency\");\n        return new Money(cents + other.cents, currency);\n    }\n\n    public long cents() { return cents; }\n}"
+      },
+      "pitfalls": [
+        "为复用强行继承，导致子类暴露父类不该继承的方法。",
+        "声明不可变却把内部 List 直接返回，调用方仍能修改状态。"
+      ],
+      "interviewTip": "先讲接口与组合的边界，再说明不可变的构造规则，最后用一个实际的可变集合防御性复制例子收尾。",
+      "skills": [
+        "java-core"
+      ],
+      "id": "be-j1-java-a2",
+      "chapterId": "be-j1-java"
+    },
+    {
+      "title": "集合框架与复杂度选择",
+      "summary": "List/Set/Map 的语义不同；选择数据结构前先看查询模式、顺序与并发要求。",
+      "minutes": 7,
+      "objective": "能根据访问模式选择 List/Set/Map，并解释哈希、排序与内存成本。",
+      "explanation": "List 保序可重复，适合按索引访问；Set 去重，HashSet 依靠 hashCode/equals，TreeSet 排序但操作是 O(log n)；Map 建立键值索引，HashMap 平均 O(1)，ConcurrentHashMap 支持并发读和分段写入。选择前要明确是否需要顺序、去重、范围查询和线程安全，而不是默认用 ArrayList 或 HashMap。",
+      "teachingSteps": [
+        {
+          "title": "先列访问模式",
+          "detail": "按索引、按键、按范围、是否需要去重和顺序。"
+        },
+        {
+          "title": "再看复杂度",
+          "detail": "哈希平均 O(1)，树 O(log n)，遍历 O(n)，注意常数与内存。"
+        },
+        {
+          "title": "最后补并发边界",
+          "detail": "共享可变集合不是线程安全的；优先不可变快照或并发容器。"
+        }
+      ],
+      "keyPoints": [
+        "HashMap 需要正确的 hashCode/equals；可变对象作为 key 后修改字段会破坏查找。",
+        "需要排序或范围查询时选 TreeMap/TreeSet；只是需要稳定顺序可用 LinkedHashMap。",
+        "并发共享优先 ConcurrentHashMap 或不可变拷贝；不要用 Collections.synchronizedMap 代替复合原子操作。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "按业务键建立索引并保持顺序",
+        "code": "record Order(String id, String status, long cents) {}\n\nList<Order> orders = List.of(\n    new Order(\"o1\", \"PAID\", 100),\n    new Order(\"o2\", \"PAID\", 200),\n    new Order(\"o3\", \"REFUND\", 300)\n);\n\nMap<String, Order> byId = orders.stream()\n    .collect(Collectors.toMap(Order::id, Function.identity()));\n\nlong paidTotal = orders.stream()\n    .filter(o -> o.status().equals(\"PAID\"))\n    .mapToLong(Order::cents)\n    .sum();"
+      },
+      "pitfalls": [
+        "用可变对象作 HashMap 的 key，修改字段后 hashCode 变化，导致再也查不到。",
+        "在遍历集合时直接删除元素，触发 ConcurrentModificationException。"
+      ],
+      "interviewTip": "从访问模式讲选型，再补 HashSet/HashMap 的 equals/hashCode 约定，最后说明并发共享与遍历删除的边界。",
+      "skills": [
+        "java-core"
+      ],
+      "id": "be-j1-java-a3",
+      "chapterId": "be-j1-java"
+    },
+    {
+      "title": "表设计、范式与约束",
+      "summary": "约束是数据库的第一道业务防线；范式减少冗余，反范式要为查询代价服务。",
+      "minutes": 7,
+      "objective": "能为订单/用户场景设计主键、外键、唯一约束与非空约束，并说明反范式取舍。",
+      "explanation": "表设计先确定实体、关系和访问模式。主键提供行身份，唯一约束防止重复业务键，外键维护引用完整性，非空约束把未知状态显式化。规范化减少更新异常，但复杂查询可能需要反范式冗余；冗余必须有明确的读写收益与一致性维护方案，而不是随手复制字段。",
+      "teachingSteps": [
+        {
+          "title": "画实体与关系",
+          "detail": "用户、订单、订单项先区分一对多与多对多，再落表。"
+        },
+        {
+          "title": "先写约束",
+          "detail": "主键、业务唯一键、非空、外键与检查约束先于业务代码。"
+        },
+        {
+          "title": "评估反范式",
+          "detail": "只为高频读或跨表聚合复制字段，并说明更新路径与一致性。"
+        }
+      ],
+      "keyPoints": [
+        "主键用于行身份，业务唯一键要单独建唯一约束；不要用可变的邮箱当主键。",
+        "能约束在数据库的内容不要只靠应用层；唯一、非空、外键能挡住并发与遗漏。",
+        "反范式复制字段必须有同步策略与对账，读写收益不足以抵消不一致风险时不做。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "约束显式表达业务规则",
+        "code": "CREATE TABLE orders (\n  id BIGINT PRIMARY KEY AUTO_INCREMENT,\n  user_id BIGINT NOT NULL,\n  status VARCHAR(16) NOT NULL,\n  total_cents INT NOT NULL CHECK (total_cents >= 0),\n  created_at DATETIME(3) NOT NULL,\n  UNIQUE KEY uk_orders_no (order_no),\n  KEY idx_orders_user_created (user_id, created_at)\n);\n\nCREATE TABLE order_items (\n  id BIGINT PRIMARY KEY AUTO_INCREMENT,\n  order_id BIGINT NOT NULL,\n  sku_id BIGINT NOT NULL,\n  quantity INT NOT NULL CHECK (quantity BETWEEN 1 AND 99),\n  unit_price_cents INT NOT NULL CHECK (unit_price_cents >= 0),\n  CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders(id)\n);"
+      },
+      "pitfalls": [
+        "用业务可修改字段当主键，导致外键与历史数据连锁修改。",
+        "只靠应用层校验，并发下仍可能出现重复订单或负金额。"
+      ],
+      "interviewTip": "先讲实体与约束，再说明范式与反范式的取舍，最后用唯一键/非空约束举一个防并发问题的例子。",
+      "skills": [
+        "mysql",
+        "sql-database"
+      ],
+      "id": "be-j1-mysql-a1",
+      "chapterId": "be-j1-mysql"
+    },
+    {
+      "title": "B+ 树索引与最左前缀",
+      "summary": "索引不是“加得越多越快”；它服务查询模式，联合索引顺序决定能否命中。",
+      "minutes": 8,
+      "objective": "能为查询设计联合索引，解释最左前缀、回表与索引失效。",
+      "explanation": "InnoDB 使用 B+ 树组织索引，叶子节点按键有序，适合等值与范围查询。联合索引遵循最左前缀：跳过最左列、对列做函数运算或隐式类型转换会削弱索引能力。二级索引查到主键后通常需要回表，覆盖索引可以避免；写入频繁时索引会增加维护成本。",
+      "teachingSteps": [
+        {
+          "title": "从查询反推列顺序",
+          "detail": "等值列在前，范围/排序列在后，并保证最左列被使用。"
+        },
+        {
+          "title": "看执行计划",
+          "detail": "关注 type、key、rows、Extra，区分全表扫描、索引扫描与回表。"
+        },
+        {
+          "title": "权衡覆盖与写入",
+          "detail": "高频读可加覆盖索引；写多表控制索引数量，避免无效索引。"
+        }
+      ],
+      "keyPoints": [
+        "联合索引遵循最左前缀；只查后面的列通常无法高效使用。",
+        "避免在索引列上套函数或做隐式类型转换，否则可能退化为全表扫描。",
+        "覆盖索引减少回表；索引增加写放大，按真实查询与数据分布评估。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "按用户与时间查询订单",
+        "code": "CREATE INDEX idx_orders_user_created\n  ON orders (user_id, created_at DESC);\n\n-- 命中联合索引最左列 + 范围/排序\nSELECT id, status, total_cents\nFROM orders\nWHERE user_id = ?\nORDER BY created_at DESC\nLIMIT 20;\n\n-- 只按 created_at 查询，通常无法利用上述索引\nSELECT id FROM orders WHERE created_at > ?;"
+      },
+      "pitfalls": [
+        "为每个字段单独建索引，写放大且优化器难以选择。",
+        "在 where 中写 DATE(created_at) = ?，导致列上计算，无法使用普通索引。"
+      ],
+      "interviewTip": "从 B+ 树有序性讲索引，再讲联合索引顺序、最左前缀与回表，最后用执行计划和写入成本做取舍。",
+      "skills": [
+        "mysql",
+        "sql-database",
+        "mysql-performance"
+      ],
+      "id": "be-j1-mysql-a2",
+      "chapterId": "be-j1-mysql"
+    },
+    {
+      "title": "JOIN、聚合与执行计划",
+      "summary": "JOIN 表达集合关系，聚合回答业务问题；先确认语义，再优化性能。",
+      "minutes": 7,
+      "objective": "能写出正确的 JOIN/聚合查询，并用 EXPLAIN 判断行数与访问路径。",
+      "explanation": "INNER JOIN 只保留匹配行，LEFT JOIN 保留左表；右表的过滤条件放在 ON 还是 WHERE 会改变语义。GROUP BY 后过滤用 HAVING，普通行过滤用 WHERE。EXPLAIN 的 type、key、rows、Extra 可以暴露全表扫描、临时表与 filesort；优化前先保证 SQL 结果正确，再考虑索引、改写或数据模型。",
+      "teachingSteps": [
+        {
+          "title": "先写业务语义",
+          "detail": "明确要保留哪些左表行、右表缺失时如何表现。"
+        },
+        {
+          "title": "再检查过滤位置",
+          "detail": "LEFT JOIN 的右表条件通常放 ON；分组过滤用 HAVING。"
+        },
+        {
+          "title": "最后看计划",
+          "detail": "用 EXPLAIN 验证索引命中、扫描行数、临时表与排序。"
+        }
+      ],
+      "keyPoints": [
+        "LEFT JOIN 的右表条件放错位置会把未匹配行过滤掉，语义退化为 INNER JOIN。",
+        "COUNT(column) 忽略 NULL，COUNT(*) 统计行数；LEFT JOIN 后含义不同。",
+        "WHERE 先过滤行，HAVING 过滤分组聚合结果；不要把业务过滤全丢给 HAVING。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "保留所有用户并统计已支付订单数",
+        "code": "SELECT u.id, u.name,\n       COUNT(o.id) AS paid_orders\nFROM users u\nLEFT JOIN orders o\n  ON o.user_id = u.id\n AND o.status = 'PAID'\nGROUP BY u.id, u.name\nORDER BY paid_orders DESC, u.id\nLIMIT 50;\n\nEXPLAIN ANALYZE\nSELECT u.id, COUNT(o.id)\nFROM users u\nLEFT JOIN orders o ON o.user_id = u.id\nWHERE u.created_at >= '2026-01-01'\nGROUP BY u.id;"
+      },
+      "pitfalls": [
+        "把右表 status 条件写在 WHERE，导致 LEFT JOIN 丢失未匹配用户。",
+        "SELECT 非聚合、非分组字段，依赖数据库的宽松模式产生不确定结果。"
+      ],
+      "interviewTip": "先讲 JOIN 保留语义与 ON/WHERE 差异，再讲 WHERE/HAVING 与 NULL，最后用 EXPLAIN 说明如何确认索引与行数。",
+      "skills": [
+        "mysql",
+        "sql-database",
+        "mysql-performance"
+      ],
+      "id": "be-j1-mysql-a3",
+      "chapterId": "be-j1-mysql"
+    },
+    {
+      "title": "IoC、依赖注入与 Bean 生命周期",
+      "summary": "Spring 管理对象创建与依赖，生命周期回调是资源初始化与释放的边界。",
+      "minutes": 7,
+      "objective": "能解释构造器注入、Bean 作用域与生命周期，并避免在控制器里堆业务。",
+      "explanation": "IoC 容器负责创建 Bean 并注入依赖。构造器注入让依赖显式、不可变且易于测试；单例 Bean 在容器内共享，不能保存请求级可变状态。Bean 生命周期从实例化、依赖注入、初始化回调到销毁，适合在初始化时校验配置、在销毁时释放资源，而不是把业务逻辑塞进生命周期方法。",
+      "teachingSteps": [
+        {
+          "title": "先划分 Bean 职责",
+          "detail": "Controller 处理协议，Service 编排业务，Repository 访问数据。"
+        },
+        {
+          "title": "用构造器表达必需依赖",
+          "detail": "字段 final，测试可直接传入 Fake 实现。"
+        },
+        {
+          "title": "关注作用域与销毁",
+          "detail": "单例 Bean 不持有用户请求状态；外部资源在销毁时关闭。"
+        }
+      ],
+      "keyPoints": [
+        "优先构造器注入：依赖显式、不可变、无需反射字段也能测试。",
+        "单例 Bean 默认共享，禁止把请求用户或可变请求数据放进字段。",
+        "初始化/销毁回调只做资源生命周期，不承担业务事务。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "构造器注入 + 单例只保存无状态依赖",
+        "code": "@Service\npublic class OrderService {\n    private final OrderRepository repository;\n    private final PaymentClient paymentClient;\n\n    public OrderService(OrderRepository repository, PaymentClient paymentClient) {\n        this.repository = repository;\n        this.paymentClient = paymentClient;\n    }\n\n    @Transactional\n    public Order create(CreateOrderCommand command) {\n        Order order = Order.create(command);\n        repository.save(order);\n        paymentClient.authorize(order.id(), order.totalCents());\n        return order;\n    }\n}"
+      },
+      "pitfalls": [
+        "在单例 Controller 字段里保存当前用户，多个请求互相覆盖。",
+        "使用字段注入隐藏依赖，测试必须启动容器，循环依赖也更难发现。"
+      ],
+      "interviewTip": "从 IoC 与构造器注入讲依赖边界，再讲单例作用域的危险与生命周期回调的职责，最后落到分层可测。",
+      "skills": [
+        "spring-boot",
+        "java-core"
+      ],
+      "id": "be-j2-spring-a1",
+      "chapterId": "be-j2-spring"
+    },
+    {
+      "title": "REST 参数校验与异常语义",
+      "summary": "Controller 是协议边界：入参校验、错误码映射与幂等语义在这里收口。",
+      "minutes": 7,
+      "objective": "能为请求 DTO 做边界校验，并用统一异常处理返回稳定错误契约。",
+      "explanation": "Controller 接收不可信的 HTTP 输入，DTO 用 Bean Validation 做结构校验，业务规则仍由 Service 校验。异常处理器把校验失败映射为 400、未认证 401、无权限 403、冲突 409 等；不要把堆栈或数据库细节返回给客户端。幂等键、重复提交和状态机冲突要在业务层明确处理。",
+      "teachingSteps": [
+        {
+          "title": "先在 DTO 上做结构校验",
+          "detail": "@NotBlank、@Min、@Size 等只覆盖格式与范围。"
+        },
+        {
+          "title": "在 Service 做业务规则",
+          "detail": "库存、状态迁移、权限与唯一性属于业务层。"
+        },
+        {
+          "title": "统一异常映射",
+          "detail": "返回稳定错误码、可读消息与 requestId，不泄露内部堆栈。"
+        }
+      ],
+      "keyPoints": [
+        "结构校验与业务校验分开：DTO 保证格式，Service 保证状态与权限。",
+        "错误响应使用明确状态码与稳定错误码，便于客户端分支与监控。",
+        "写接口考虑幂等键与重复提交，不能只靠前端按钮禁用。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "DTO 校验与统一异常",
+        "code": "public record CreateOrderRequest(\n    @NotBlank String customerId,\n    @NotEmpty @Size(max = 20) List<@Valid Item> items\n) {}\n\n@RestControllerAdvice\npublic class ApiExceptionHandler {\n    @ExceptionHandler(MethodArgumentNotValidException.class)\n    ResponseEntity<ApiError> invalid(MethodArgumentNotValidException ex) {\n        var fields = ex.getBindingResult().getFieldErrors().stream()\n            .collect(Collectors.toMap(\n                FieldError::getField,\n                error -> Objects.requireNonNullElse(error.getDefaultMessage(), \"invalid\"),\n                (left, right) -> left));\n        return ResponseEntity.badRequest()\n            .body(new ApiError(\"VALIDATION_FAILED\", \"参数不合法\", fields));\n    }\n}"
+      },
+      "pitfalls": [
+        "把数据库异常和信息直接返回给客户端，泄露表结构与内部路径。",
+        "所有业务错误都用 200 + success:false，导致网关与监控无法正确统计失败。"
+      ],
+      "interviewTip": "先讲边界校验与业务校验分工，再讲状态码与错误契约，最后补幂等和并发冲突的处理。",
+      "skills": [
+        "spring-boot",
+        "http-api",
+        "java-core"
+      ],
+      "id": "be-j2-spring-a2",
+      "chapterId": "be-j2-spring"
+    },
+    {
+      "title": "声明式事务与传播行为",
+      "summary": "事务是连接与锁的边界；传播行为决定方法之间是新事务、加入还是挂起。",
+      "minutes": 8,
+      "objective": "能正确使用 @Transactional，解释回滚规则、传播行为与自调用失效。",
+      "explanation": "Spring 通过代理在方法边界开启/提交事务。默认传播 REQUIRED 会加入当前事务，REQUIRES_NEW 会挂起旧事务；同类内部方法自调用不经过代理，事务注解可能不生效。默认只对 RuntimeException 回滚，受检异常需显式配置；事务内不要调用慢速外部服务，避免长时间占用连接与锁。",
+      "teachingSteps": [
+        {
+          "title": "先界定事务边界",
+          "detail": "把需要原子提交的数据库写操作放进同一个 Service 方法。"
+        },
+        {
+          "title": "再选传播行为",
+          "detail": "默认 REQUIRED；独立审计/日志才考虑 REQUIRES_NEW。"
+        },
+        {
+          "title": "最后检查回滚与代理",
+          "detail": "明确异常类型、跨方法调用和外部调用位置。"
+        }
+      ],
+      "keyPoints": [
+        "同类自调用不走代理，@Transactional 可能失效；通过拆分 Bean 或显式代理调用。",
+        "默认仅 RuntimeException 回滚，受检异常需 rollbackFor 明确声明。",
+        "事务应短小，不要在事务内等待远程 IO；传播行为要按一致性需求选择。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "明确回滚与独立审计事务",
+        "code": "@Service\npublic class OrderService {\n    @Transactional(rollbackFor = Exception.class)\n    public void placeOrder(PlaceOrderCommand command) throws Exception {\n        Order order = orderRepository.save(Order.create(command));\n        inventoryService.reserve(order); // 同一事务\n        auditService.record(order);      // REQUIRES_NEW，独立提交\n    }\n}\n\n@Service\nclass AuditService {\n    @Transactional(propagation = Propagation.REQUIRES_NEW)\n    public void record(Order order) { /* 审计 */ }\n}"
+      },
+      "pitfalls": [
+        "在同一个类里调用自己的 @Transactional 方法，误以为新事务生效。",
+        "在事务中调用 HTTP/消息等慢操作，连接与行锁被长时间占用。"
+      ],
+      "interviewTip": "从代理机制讲失效场景，再讲传播行为与回滚规则，最后用短事务和外部调用的边界说明生产约束。",
+      "skills": [
+        "spring-boot",
+        "mysql",
+        "distributed-systems"
+      ],
+      "id": "be-j2-spring-a3",
+      "chapterId": "be-j2-spring"
+    },
+    {
+      "title": "JVM 内存区域与垃圾回收",
+      "summary": "对象在堆上分配，线程栈保存调用帧；GC 关注可达性与停顿，而不是简单“内存满了”。",
+      "minutes": 8,
+      "objective": "能解释堆/栈/方法区/元空间、可达性分析与常见 GC 指标，定位内存问题。",
+      "explanation": "JVM 将线程私有的虚拟机栈、本地方法栈、程序计数器与共享的堆、方法区/元空间分开管理。对象通常在堆上分配，GC 从 GC Roots 出发判断对象是否可达；一次 Full GC 的停顿、内存回收后残留与分配速率才是判断依据。内存泄漏往往是长生命周期集合、监听器或缓存无上限持有对象，而不是“GC 没跑”。",
+      "teachingSteps": [
+        {
+          "title": "先分清共享与私有",
+          "detail": "堆/元空间共享，线程栈与程序计数器私有。"
+        },
+        {
+          "title": "再判断对象存活",
+          "detail": "从 GC Roots 做可达性分析，循环引用不等于泄漏。"
+        },
+        {
+          "title": "最后看指标",
+          "detail": "结合堆曲线、GC 日志、停顿与对象直方图定位。"
+        }
+      ],
+      "keyPoints": [
+        "GC Roots 包含活动线程栈引用、静态字段、JNI 引用等；不可达对象才可回收。",
+        "频繁 Full GC 可能是内存泄漏、堆过小或分配速率过高，不能只调大堆。",
+        "缓存/静态集合/未注销监听是最常见的长生命周期持有者。"
+      ],
+      "example": {
+        "language": "bash",
+        "caption": "先观察再调整",
+        "code": "# 查看 GC 与堆（示例参数，按 JDK 版本确认）\njava -Xms512m -Xmx512m \\\n  -Xlog:gc*:file=gc.log:time,uptime,level,tags \\\n  -jar app.jar\n\n# 线上定位对象持有链：heap dump 后使用 MAT/JFR 分析\njcmd <pid> GC.heap_dump /tmp/app.hprof"
+      },
+      "pitfalls": [
+        "看到内存高就直接调大堆，掩盖泄漏并延长 Full GC 停顿。",
+        "把 SoftReference 当万能缓存，忽略回收时机和内存压力。"
+      ],
+      "interviewTip": "先讲区域与可达性，再讲 GC 指标和常见持有链，最后强调先取证（GC 日志/堆快照）再调参。",
+      "skills": [
+        "jvm-concurrency",
+        "java-core"
+      ],
+      "id": "be-j2-jvm-a1",
+      "chapterId": "be-j2-jvm"
+    },
+    {
+      "title": "线程池参数与拒绝策略",
+      "summary": "线程池不是线程越多越快；核心线程、队列、最大线程与拒绝策略共同决定吞吐与延迟。",
+      "minutes": 8,
+      "objective": "能根据任务类型与下游容量配置线程池，并解释队列积压与拒绝策略。",
+      "explanation": "ThreadPoolExecutor 先使用核心线程，随后进入队列，队列满后才扩到最大线程，最后触发拒绝策略。无界队列会让最大线程失效并积压任务；线程数过多会加剧 CPU 切换与下游压力。线程池应隔离不同依赖、设置容量与监控，拒绝不是异常噪音，而是容量边界信号。",
+      "teachingSteps": [
+        {
+          "title": "先区分任务类型",
+          "detail": "CPU 密集接近核数；IO 密集需结合下游并发与延迟预算。"
+        },
+        {
+          "title": "再选有界队列",
+          "detail": "队列容量是等待预算，不能无限积压。"
+        },
+        {
+          "title": "最后定义拒绝与监控",
+          "detail": "拒绝策略要能告警/降级，监控活跃线程、队列与完成任务。"
+        }
+      ],
+      "keyPoints": [
+        "执行顺序：核心线程 → 队列 → 扩到最大线程 → 拒绝策略；无界队列会让最大线程失去意义。",
+        "线程池必须隔离依赖与设置容量，避免一个慢下游拖垮所有任务。",
+        "拒绝策略要可见、可告警、可降级；CallerRuns 会反压调用方。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "有界队列、命名线程与拒绝可见",
+        "code": "ThreadPoolExecutor executor = new ThreadPoolExecutor(\n    8, 16,\n    60, TimeUnit.SECONDS,\n    new ArrayBlockingQueue<>(200),\n    new ThreadFactory() {\n        private final AtomicInteger seq = new AtomicInteger();\n        public Thread newThread(Runnable task) {\n            return new Thread(task, \"order-worker-\" + seq.incrementAndGet());\n        }\n    },\n    new ThreadPoolExecutor.AbortPolicy()\n);"
+      },
+      "pitfalls": [
+        "使用 Executors.newFixedThreadPool 的无界队列，任务堆积到 OOM。",
+        "所有业务共用一个大线程池，慢任务挤占快任务。"
+      ],
+      "interviewTip": "按执行顺序讲参数，再讲队列容量与最大线程的交互，最后用隔离、拒绝与监控说明生产配置。",
+      "skills": [
+        "jvm-concurrency",
+        "java-core"
+      ],
+      "id": "be-j2-jvm-a2",
+      "chapterId": "be-j2-jvm"
+    },
+    {
+      "title": "Java 内存模型、锁与并发工具",
+      "summary": "可见性、原子性与有序性共同构成并发正确性；锁和原子类解决不同问题。",
+      "minutes": 8,
+      "objective": "能解释 happens-before、volatile、synchronized 与并发容器的适用边界。",
+      "explanation": "JMM 规定线程间通过 happens-before 建立可见性。volatile 保证读写可见与禁止部分重排，但不保证复合操作原子性；synchronized/Lock 提供互斥与内存语义；Atomic 类用 CAS 处理单变量原子更新，但高竞争会自旋。并发容器把常见复合操作封装为原子方法，优先使用而不是自己给 HashMap 加锁。",
+      "teachingSteps": [
+        {
+          "title": "先判断问题类型",
+          "detail": "是可见性、原子性还是互斥临界区。"
+        },
+        {
+          "title": "再选同步原语",
+          "detail": "volatile 适合状态标志，锁保护多步不变量，CAS 适合低竞争计数。"
+        },
+        {
+          "title": "最后验证边界",
+          "detail": "考虑 ABA、死锁、锁顺序与高竞争退化为自旋。"
+        }
+      ],
+      "keyPoints": [
+        "volatile 不保证 i++ 原子性；复合状态更新需要锁或原子类。",
+        "synchronized 与 Lock 都提供互斥与可见性；死锁来自锁顺序不一致或不可抢占资源。",
+        "优先并发容器与不可变对象，避免在共享可变状态上手写同步。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "用原子类表达单变量计数",
+        "code": "private final AtomicLong processed = new AtomicLong();\n\npublic void onMessage(Message message) {\n    process(message);\n    processed.incrementAndGet();\n}\n\npublic long processedCount() {\n    return processed.get();\n}\n\n// 多字段不变量（余额 + 流水）不能只靠 Atomic，\n// 必须用锁/事务或不可变状态整体替换。"
+      },
+      "pitfalls": [
+        "误以为 volatile 能让复合操作线程安全。",
+        "多个锁获取顺序不一致，造成死锁。"
+      ],
+      "interviewTip": "从可见性、原子性、有序性三个问题切入，再比较 volatile、锁、CAS 与并发容器，最后补死锁/ABA 的边界。",
+      "skills": [
+        "jvm-concurrency",
+        "java-core"
+      ],
+      "id": "be-j2-jvm-a3",
+      "chapterId": "be-j2-jvm"
+    },
+    {
+      "title": "数据结构、过期与持久化",
+      "summary": "Redis 的价值来自数据结构与内存模型；过期不是强一致删除，持久化也有丢失窗口。",
+      "minutes": 8,
+      "objective": "能按访问模式选择 Redis 数据结构，并说明过期删除、淘汰与持久化的边界。",
+      "explanation": "Redis 提供 String/Hash/List/Set/ZSet 等结构，选择取决于访问模式与原子命令需求。过期键采用惰性删除 + 定期抽样删除，不能保证到期瞬间消失；内存达到上限时按 maxmemory-policy 淘汰。RDB 是快照、AOF 记录写命令，两者都有丢失/恢复时间窗口，必须按业务容忍度配置。",
+      "teachingSteps": [
+        {
+          "title": "先按访问模式选结构",
+          "detail": "计数用 String 自增，对象字段用 Hash，排行榜用 ZSet。"
+        },
+        {
+          "title": "再明确过期与淘汰",
+          "detail": "TTL 只保证最终清理，内存压力下可能提前淘汰。"
+        },
+        {
+          "title": "最后定持久化与恢复目标",
+          "detail": "按可接受丢失时间选择 RDB/AOF 与刷盘策略。"
+        }
+      ],
+      "keyPoints": [
+        "TTL 是最终一致的清理机制，不能当作“到期瞬间业务值必然不存在”。",
+        "maxmemory-policy 决定内存压力下淘汰谁；缓存与持久数据要分开实例/策略。",
+        "RDB/AOF 有恢复点与丢失窗口；关键数据不能只存在 Redis。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "典型结构选择",
+        "code": "计数：INCR rate:user:42:20261021\n对象缓存：HSET product:100 name \"键盘\" price \"299\"\n排行榜：ZADD leaderboard 95 user:42\n带过期：SET session:abc \"uid=42\" EX 1800\n列表/队列：LPUSH jobs:email \"id=7\" / BRPOP jobs:email 5"
+      },
+      "pitfalls": [
+        "把 Redis 当唯一数据库，忽略持久化丢失与淘汰导致的数据消失。",
+        "给不同生命周期的数据使用同一淘汰策略与实例。"
+      ],
+      "interviewTip": "先讲结构选型，再讲 TTL/淘汰的“最终清理”语义，最后说明持久化窗口与不可替代的事实源。",
+      "skills": [
+        "redis",
+        "distributed-systems",
+        "system-design"
+      ],
+      "id": "be-j3-redis-a1",
+      "chapterId": "be-j3-redis"
+    },
+    {
+      "title": "缓存模式与穿透、击穿、雪崩",
+      "summary": "缓存设计的核心是事实源、失效路径与并发回源控制，而不是简单 SET/GET。",
+      "minutes": 8,
+      "objective": "能选择 cache-aside 等模式，并针对穿透/击穿/雪崩设计防护与一致性策略。",
+      "explanation": "Cache-aside 由应用读缓存、未命中回源并回填；更新通常先写数据库再删缓存，并处理删除失败。穿透是不存在的 key 绕过缓存，需空值缓存/布隆过滤器；击穿是热点 key 失效瞬间并发回源，需互斥重建；雪崩是大量 key 同时失效或缓存整体不可用，需随机 TTL、限流、多级缓存与降级。",
+      "teachingSteps": [
+        {
+          "title": "先明确事实源与一致性",
+          "detail": "数据库为准，缓存是可重建副本；定义可接受的新鲜度。"
+        },
+        {
+          "title": "再设计读写路径",
+          "detail": "cache-aside 读回填；写后删缓存并补偿失败。"
+        },
+        {
+          "title": "最后补三类失效防护",
+          "detail": "空值/布隆防穿透，互斥防击穿，TTL 抖动+限流防雪崩。"
+        }
+      ],
+      "keyPoints": [
+        "更新顺序通常先写数据库再删除缓存；删除失败需重试/消息补偿。",
+        "空值缓存要短 TTL，避免长期缓存“不存在”；布隆过滤器有误判无漏判。",
+        "热点 key 重建必须互斥/单飞；全站 TTL 同时过期会造成雪崩。"
+      ],
+      "example": {
+        "language": "java",
+        "caption": "互斥重建热点缓存（伪代码）",
+        "code": "public Product get(long id) {\n    String key = \"product:\" + id;\n    Product cached = redis.get(key);\n    if (cached != null) return cached;\n\n    String lock = \"lock:product:\" + id;\n    if (redis.setIfAbsent(lock, \"1\", Duration.ofSeconds(3))) {\n        try {\n            Product db = repository.findById(id).orElse(null);\n            if (db == null) {\n                redis.set(key, NULL_PLACEHOLDER, Duration.ofSeconds(30));\n                return null;\n            }\n            redis.set(key, db, Duration.ofMinutes(10));\n            return db;\n        } finally {\n            redis.delete(lock);\n        }\n    }\n    // 未拿到锁：短暂等待/直接回源，避免无限自旋\n    return repository.findById(id).orElse(null);\n}"
+      },
+      "pitfalls": [
+        "先删缓存再写数据库，并发读把旧值重新回填。",
+        "所有缓存统一 TTL，整点同时失效导致数据库被打满。"
+      ],
+      "interviewTip": "先讲事实源与 cache-aside 读写路径，再分别讲穿透/击穿/雪崩防护，最后说明删除失败补偿与可接受一致性。",
+      "skills": [
+        "redis",
+        "distributed-systems",
+        "mysql",
+        "system-design"
+      ],
+      "id": "be-j3-redis-a2",
+      "chapterId": "be-j3-redis"
+    },
+    {
+      "title": "分布式锁、幂等与最终一致",
+      "summary": "锁只解决互斥，不自动保证安全；超时、续期、误删与网络分区都要设计。",
+      "minutes": 9,
+      "objective": "能设计带唯一值的 Redis 锁、幂等键与补偿流程，并说明其失效边界。",
+      "explanation": "Redis 分布式锁用 SET NX PX 获取，value 使用唯一 token，释放时用 Lua 比较 token 再删除，避免误删他人锁。锁有租约，长任务需要续期或改用带 fencing token 的方案；网络分区下无法保证强互斥。跨服务写操作还需要幂等键、唯一约束、状态机与补偿，锁不能替代最终一致设计。",
+      "teachingSteps": [
+        {
+          "title": "先说明锁的边界",
+          "detail": "锁是性能/协调优化，不是数据库之外的强一致替代。"
+        },
+        {
+          "title": "安全获取与释放",
+          "detail": "SET NX PX + 唯一 token + Lua 原子校验释放。"
+        },
+        {
+          "title": "跨系统靠幂等与补偿",
+          "detail": "幂等键、唯一约束、状态机、消息重试与对账。"
+        }
+      ],
+      "keyPoints": [
+        "锁 value 必须唯一，释放时比较 value；DEL 直接删除可能误删过期后他人持有的锁。",
+        "租约到期而任务未完成会失去互斥；续期、fencing token 或缩短临界区是必要取舍。",
+        "幂等键/唯一约束/状态机才是跨服务重复请求的底线，锁不是。"
+      ],
+      "example": {
+        "language": "lua",
+        "caption": "比较 token 后释放锁",
+        "code": "-- KEYS[1] = lock key, ARGV[1] = token\nif redis.call(\"GET\", KEYS[1]) == ARGV[1] then\n  return redis.call(\"DEL\", KEYS[1])\nelse\n  return 0\nend\n\n-- 获取：SET lock:order:1 token NX PX 30000"
+      },
+      "pitfalls": [
+        "释放锁不校验 token，任务超时后删掉别人的锁。",
+        "认为 Redis 锁在任何网络分区下都能保证强一致，忽略 fencing。"
+      ],
+      "interviewTip": "先说锁只做互斥与性能优化，再讲 token+Lua+租约，最后用幂等键、状态机与补偿说明跨服务一致性。",
+      "skills": [
+        "redis",
+        "distributed-systems",
+        "system-design",
+        "spring-boot"
+      ],
+      "id": "be-j3-redis-a3",
+      "chapterId": "be-j3-redis"
+    },
+    {
+      "title": "容量估算、限流与队列",
+      "summary": "容量不是拍脑袋：用 QPS、并发、资源与尾延迟估算，再用限流与排队保护。",
+      "minutes": 8,
+      "objective": "能做基础容量估算，区分限流、排队、熔断，并说明各自的用户体验。",
+      "explanation": "容量估算从请求量、峰值系数、单请求成本与资源上限出发，得到需要的实例、连接与队列。Little 定律可用于估算并发与等待时间。限流保护系统但会拒绝用户；排队吸收突发却增加延迟；熔断切断故障依赖防止雪崩。三者解决不同问题，不能用一个“线程池调大”替代。",
+      "teachingSteps": [
+        {
+          "title": "先量化流量与资源",
+          "detail": "QPS、峰值、单请求 CPU/IO、连接池与下游配额。"
+        },
+        {
+          "title": "再选背压手段",
+          "detail": "入口限流、队列削峰、熔断隔离，明确拒绝与等待策略。"
+        },
+        {
+          "title": "最后用指标验证",
+          "detail": "观察队列深度、P99、错误率与下游饱和度。"
+        }
+      ],
+      "keyPoints": [
+        "容量要包含峰值系数与尾延迟，不只用平均 QPS。",
+        "限流是主动拒绝、队列是延迟增加、熔断是停止调用故障依赖；三者目标不同。",
+        "无界队列会把过载变成 OOM/超时；队列必须有容量与超时预算。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "容量估算的最小算式",
+        "code": "峰值 QPS = 平均 QPS × 峰值系数\n并发请求数 ≈ QPS × 平均延迟(s)\n连接池需求 ≈ 并发 × 安全系数\n队列等待 ≈ 排队长度 / 服务速率\n若 P99 已接近超时预算，优先拒绝而不是继续排队"
+      },
+      "pitfalls": [
+        "只按平均值扩容，忽略突发与长尾请求。",
+        "无限排队导致请求超时、内存上涨，最终拖垮整个服务。"
+      ],
+      "interviewTip": "从流量与资源估算开始，再区分限流/排队/熔断的用户体验，最后用队列深度、P99、饱和度验证。",
+      "skills": [
+        "distributed-systems",
+        "system-design",
+        "observability"
+      ],
+      "id": "be-j3-scale-a1",
+      "chapterId": "be-j3-scale"
+    },
+    {
+      "title": "消息队列、幂等与最终一致",
+      "summary": "异步解耦带来吞吐与弹性，也带来重复、乱序、延迟与一致性成本。",
+      "minutes": 8,
+      "objective": "能设计生产-消费的幂等、重试、死信与最终一致补偿，并说明顺序边界。",
+      "explanation": "消息系统通常至少一次投递，消费者必须幂等；本地事务与发送消息存在双写一致性问题，可用事务消息、outbox 表或业务对账解决。重试要有退避与最大次数，持续失败进入死信并告警；顺序只在同一分区/键内可控。异步化不是免费：用户看到的是最终一致与延迟，需要明确状态展示。",
+      "teachingSteps": [
+        {
+          "title": "先定义投递语义",
+          "detail": "至少一次意味着重复，消费者按业务键幂等。"
+        },
+        {
+          "title": "再解决双写一致",
+          "detail": "outbox/事务消息 + 重试对账，避免消息丢失或幽灵消息。"
+        },
+        {
+          "title": "最后设计失败路径",
+          "detail": "退避、死信、人工补偿；分区键决定顺序范围。"
+        }
+      ],
+      "keyPoints": [
+        "至少一次投递必须配合消费幂等；不能假设“只消费一次”。",
+        "数据库写入与消息发送双写需要 outbox/事务消息或对账，不能裸写两次。",
+        "顺序仅在同一分区/业务键内可靠；重试与死信要可观测、可补偿。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "Outbox 表保证业务与消息同事务",
+        "code": "BEGIN;\nINSERT INTO orders (id, status, total_cents) VALUES (?, 'CREATED', ?);\nINSERT INTO outbox_events (id, aggregate_id, type, payload, published_at)\nVALUES (?, ?, 'OrderCreated', ?, NULL);\nCOMMIT;\n\n-- 独立发布器轮询未发送事件，发送成功后标记 published_at\n-- 发送失败可安全重试；消费者按事件 id/业务键幂等"
+      },
+      "pitfalls": [
+        "订单写库成功后直接发消息，消息失败造成下游永远不知道订单已创建。",
+        "消费者重试没有上限/死信，坏消息无限重放阻塞分区。"
+      ],
+      "interviewTip": "先说至少一次与幂等，再讲 outbox/事务消息解决双写，最后用重试、死信和分区键说明失败与顺序边界。",
+      "skills": [
+        "distributed-systems",
+        "mysql",
+        "system-design",
+        "spring-boot"
+      ],
+      "id": "be-j3-scale-a2",
+      "chapterId": "be-j3-scale"
+    },
+    {
+      "title": "指标、日志、追踪与降级",
+      "summary": "可观测性回答“发生了什么、影响谁、卡在哪”；降级必须有产品语义和恢复条件。",
+      "minutes": 8,
+      "objective": "能定义 SLI/SLO、关联日志/指标/追踪，并设计带监控与回滚的降级。",
+      "explanation": "指标适合趋势与分位（QPS、错误率、P95/P99、饱和度），日志提供上下文，追踪还原跨服务调用；三者用 requestId/traceId 关联。SLI 是用户可感知的测量，SLO 是目标与错误预算。降级不是隐藏故障：返回缓存、关闭非核心功能或明确失败，都要有开关、告警、恢复条件与用户提示。",
+      "teachingSteps": [
+        {
+          "title": "先定义用户信号",
+          "detail": "成功率、延迟分位、核心业务转化，而非只看 CPU。"
+        },
+        {
+          "title": "再建立关联",
+          "detail": "结构化日志 + traceId + 服务指标，能沿调用链定位。"
+        },
+        {
+          "title": "最后设计降级与演练",
+          "detail": "开关、阈值、回滚、告警与恢复条件，定期演练。"
+        }
+      ],
+      "keyPoints": [
+        "监控用户影响：错误率、P95/P99、饱和度、业务成功率，避免只盯机器指标。",
+        "日志结构化并带 traceId，敏感字段脱敏；高基数字段不要做指标标签。",
+        "每个降级有触发阈值、用户提示、恢复条件与回滚；降级也要监控。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "一次发布/降级的观测清单",
+        "code": "SLI：支付成功率、下单 P95、库存服务错误率\n告警：5 分钟错误预算燃烧率 > 2%\n降级：关闭推荐，保留下单/支付；返回上次缓存\n恢复：依赖错误率连续 10 分钟 < 1% 且 P95 恢复\n记录：requestId、发布版本、开关状态、回滚时间点"
+      },
+      "pitfalls": [
+        "只监控服务器 CPU，不监控用户支付成功率。",
+        "降级开关没有恢复条件，故障恢复后长期处于残缺功能。"
+      ],
+      "interviewTip": "从 SLI/SLO 与用户信号讲监控，再讲日志/指标/追踪的关联，最后用触发阈值、用户提示、恢复条件说明降级闭环。",
+      "skills": [
+        "observability",
+        "distributed-systems",
+        "system-design"
+      ],
+      "id": "be-j3-scale-a3",
+      "chapterId": "be-j3-scale"
+    }
+  ],
+  "questions": [
+    {
+      "prompt": "下面代码输出什么？\n\nInteger a = 127;\nInteger b = 127;\nInteger c = 128;\nInteger d = 128;\nSystem.out.println(a == b);\nSystem.out.println(c == d);",
+      "options": [
+        "true / true",
+        "true / false",
+        "false / false",
+        "编译错误"
+      ],
+      "answerIndex": 1,
+      "explanation": "Integer 对 -128..127 有缓存，a 和 b 指向同一缓存对象；128 超出缓存，c、d 是两个对象，== 比较引用结果为 false。值比较应使用 equals。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 1,
+      "kind": "code",
+      "id": "q-be-j1-java-1",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "把一个可能为 null 的 Integer 直接赋给 int 变量，会发生什么？",
+      "options": [
+        "得到 0",
+        "得到 null",
+        "自动拆箱抛出 NullPointerException",
+        "编译失败"
+      ],
+      "answerIndex": 2,
+      "explanation": "Integer 到 int 是自动拆箱，本质调用 intValue()；对象为 null 时无法解引用，运行时抛 NullPointerException。应先判空或用默认值。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j1-java-2",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "需要在业务层比较两个金额包装对象的值，最稳妥的做法是？",
+      "options": [
+        "使用 ==",
+        "使用 equals 或先拆箱",
+        "比较 hashCode",
+        "把对象转成字符串比较"
+      ],
+      "answerIndex": 1,
+      "explanation": "== 比较引用，缓存范围外会失败；hashCode 碰撞不能证明相等，字符串转换也可能引入格式差异。值比较使用 equals，空值用 Objects.equals 处理。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j1-java-3",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "需要按主键高频查询订单，并保持插入顺序。哪种结构最合适？",
+      "options": [
+        "ArrayList",
+        "LinkedHashMap",
+        "TreeSet",
+        "普通数组"
+      ],
+      "answerIndex": 1,
+      "explanation": "LinkedHashMap 提供按键查找并保留插入顺序；ArrayList 查找主键需要遍历，TreeSet 不是键值映射，数组不适合动态主键索引。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j1-java-4",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "以下哪种设计最符合“面向接口 + 组合优于继承”？",
+      "options": [
+        "让 OrderService 继承 OrderRepository 复用查询代码",
+        "让 OrderService 构造注入 OrderRepository 接口，测试可替换实现",
+        "把所有能力放进一个 BaseService 父类",
+        "使用静态单例在业务方法内部 new Repository"
+      ],
+      "answerIndex": 1,
+      "explanation": "构造注入接口实现让服务依赖抽象、运行时可替换、测试可注入 Fake；继承具体实现会耦合内部细节，静态单例则隐藏依赖并降低可测性。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j1-java-5",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "不可变类持有 List<String> 字段，哪种实现更正确？",
+      "options": [
+        "直接保存并返回原 List",
+        "构造时复制，返回时再复制或用不可变视图",
+        "只把字段声明为 final 就足够",
+        "提供 setList 方法方便修改"
+      ],
+      "answerIndex": 1,
+      "explanation": "final 只固定引用，不固定内容；构造与读取都需防御性复制，或保存 List.copyOf 的不可变副本，才能真正封闭可变入口。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j1-java-6",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "HashMap 中作为 key 的对象，使用过程中修改了参与 hashCode 的字段，最可能发生什么？",
+      "options": [
+        "Map 自动重新索引",
+        "仍能正常按原引用取值",
+        "按值查找可能找不到",
+        "编译错误"
+      ],
+      "answerIndex": 2,
+      "explanation": "HashMap 按插入时的哈希定位 bucket；key 修改后哈希改变，后续 get/contains 会去另一个位置查找，导致逻辑上“丢失”。应使用不可变 key。",
+      "skills": [
+        "java-core"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j1-java-7",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "多个线程只读共享一个 HashMap，不修改它，是否一定安全？",
+      "options": [
+        "一定安全，读操作无锁",
+        "是否安全取决于是否还有线程修改；无修改时读取安全但没有内存可见性保证",
+        "HashMap 自带线程安全",
+        "需要用 Hashtable 才能读"
+      ],
+      "answerIndex": 1,
+      "explanation": "HashMap 不提供并发修改保证；没有任何写入时通常只读没问题，但发布共享引用需要安全发布（final、不可变快照或并发容器）来保证可见性。",
+      "skills": [
+        "java-core",
+        "jvm-concurrency"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j1-java-8",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior"
+    },
+    {
+      "prompt": "订单表用邮箱作为主键，用户更换邮箱后可能导致什么问题？",
+      "options": [
+        "没有任何问题",
+        "主键变更会牵连外键、索引与历史引用，更新成本与风险高",
+        "MySQL 会自动阻止更换邮箱",
+        "邮箱可空所以一定能做主键"
+      ],
+      "answerIndex": 1,
+      "explanation": "业务字段可变，主键应稳定且无业务含义；可变邮箱会迫使关联表级联更新并影响缓存/日志引用。业务唯一性用唯一约束表达，不用主键承担。",
+      "skills": [
+        "mysql",
+        "sql-database"
+      ],
+      "difficulty": 1,
+      "kind": "scenario",
+      "id": "q-be-j1-mysql-1",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "联合索引 (user_id, created_at) 最适合哪类查询？",
+      "options": [
+        "只按 created_at 过滤",
+        "user_id 等值过滤，按 created_at 排序或范围过滤",
+        "对 status 进行模糊匹配",
+        "对 user_id 做函数计算后过滤"
+      ],
+      "answerIndex": 1,
+      "explanation": "联合索引从最左列开始生效；user_id 等值后可利用 created_at 排序/范围。跳过最左列或对索引列计算，通常无法有效利用该索引。",
+      "skills": [
+        "mysql",
+        "mysql-performance"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j1-mysql-2",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "在索引列上写 WHERE DATE(created_at) = '2026-10-21'，最可能的后果是？",
+      "options": [
+        "索引仍然完全命中",
+        "索引失效或退化为全表扫描",
+        "数据库自动创建新索引",
+        "查询结果一定错误"
+      ],
+      "answerIndex": 1,
+      "explanation": "对列套函数后，B+ 树无法直接按原值定位，通常无法使用该列索引。应改写为范围查询 created_at >= ... AND created_at < ...。",
+      "skills": [
+        "mysql",
+        "mysql-performance"
+      ],
+      "difficulty": 2,
+      "kind": "code",
+      "id": "q-be-j1-mysql-3",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "LEFT JOIN 右表的过滤条件写在 WHERE 中，通常会导致什么？",
+      "options": [
+        "保留更多左表行",
+        "未匹配的右表行被过滤，语义接近 INNER JOIN",
+        "查询一定报错",
+        "数据库自动改成 RIGHT JOIN"
+      ],
+      "answerIndex": 1,
+      "explanation": "未匹配时右表列为 NULL，WHERE 条件对 NULL 不成立，会把左表行一起过滤掉。要保留左表，右表过滤应放在 ON 中。",
+      "skills": [
+        "mysql",
+        "sql-database"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j1-mysql-4",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "LEFT JOIN 后统计每个用户的订单数，哪个表达式只统计真正匹配的订单？",
+      "options": [
+        "COUNT(*)",
+        "COUNT(1)",
+        "COUNT(o.id)",
+        "SUM(1)"
+      ],
+      "answerIndex": 2,
+      "explanation": "COUNT(o.id) 忽略 NULL，只统计匹配的右表订单；COUNT(*) 和 COUNT(1) 会把未匹配的左表行也计入。",
+      "skills": [
+        "mysql",
+        "sql-database"
+      ],
+      "difficulty": 2,
+      "kind": "code",
+      "id": "q-be-j1-mysql-5",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "执行计划中出现 type=ALL，通常意味着？",
+      "options": [
+        "使用了覆盖索引",
+        "全表扫描",
+        "使用了主键等值查询",
+        "查询没有结果"
+      ],
+      "answerIndex": 1,
+      "explanation": "type=ALL 表示全表扫描；需要结合 key、rows、Extra 与数据量判断是否可接受，并考虑索引或查询改写。",
+      "skills": [
+        "mysql",
+        "mysql-performance"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j1-mysql-6",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "对一个写多读少的日志表，哪种索引策略更合理？",
+      "options": [
+        "给每一列都建索引",
+        "只保留真正支撑查询的少量索引，并接受写入成本",
+        "不建主键以减少写入",
+        "索引越多，写入越快"
+      ],
+      "answerIndex": 1,
+      "explanation": "索引会增加插入/更新维护成本与存储；写多表应只保留必要索引，避免无效索引。主键仍是行身份与访问路径的基础。",
+      "skills": [
+        "mysql",
+        "mysql-performance"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j1-mysql-7",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "分页查询 ORDER BY created_at LIMIT 100000, 20 很慢，较合理的优化方向是？",
+      "options": [
+        "增大 OFFSET",
+        "使用基于上一页最后一条记录的游标分页，并确保排序列有索引",
+        "把 ORDER BY 去掉让结果随机",
+        "给所有列建索引"
+      ],
+      "answerIndex": 1,
+      "explanation": "深页 OFFSET 需要扫描并丢弃大量行；游标分页利用 WHERE (created_at,id) > (...) 与索引定位，避免线性丢弃。排序仍必须由索引支撑。",
+      "skills": [
+        "mysql",
+        "mysql-performance"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j1-mysql-8",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior"
+    },
+    {
+      "prompt": "Spring 中推荐构造器注入的主要原因不包括？",
+      "options": [
+        "依赖显式且可设为 final",
+        "单元测试可直接传 Fake",
+        "避免字段反射注入隐藏依赖",
+        "让单例 Bean 自动变成多例"
+      ],
+      "answerIndex": 3,
+      "explanation": "构造器注入不会改变 Bean 作用域；它让依赖必需、不可变且可测试。单例/多例由 Scope 配置决定。",
+      "skills": [
+        "spring-boot",
+        "java-core"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j2-spring-1",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "单例 Controller 中保存当前登录用户字段，最可能发生什么？",
+      "options": [
+        "请求自动隔离",
+        "用户数据在并发请求间串扰",
+        "Spring 自动转多例",
+        "线程安全，因为 Controller 无状态"
+      ],
+      "answerIndex": 1,
+      "explanation": "Spring MVC 的 Controller 默认单例，字段被所有请求共享；当前用户应通过方法参数/ThreadLocal 或安全上下文获取，不能存成实例字段。",
+      "skills": [
+        "spring-boot",
+        "jvm-concurrency"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j2-spring-2",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "DTO 上的 @Min(1) 属于哪类校验？",
+      "options": [
+        "业务状态校验",
+        "结构/格式校验",
+        "数据库约束",
+        "权限校验"
+      ],
+      "answerIndex": 1,
+      "explanation": "Bean Validation 处理格式、范围、非空等结构约束；库存是否足够、订单状态是否允许修改等业务规则仍需 Service 与数据库约束保证。",
+      "skills": [
+        "spring-boot",
+        "http-api"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j2-spring-3",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "写接口收到重复请求，最可靠的防重方案是？",
+      "options": [
+        "前端按钮置灰",
+        "服务端幂等键 + 唯一约束/状态机",
+        "只加日志",
+        "把超时时间调大"
+      ],
+      "answerIndex": 1,
+      "explanation": "前端禁用无法防重放；服务端以幂等键唯一约束或状态机条件更新保证同一操作只生效一次，并把结果返回给重复请求。",
+      "skills": [
+        "spring-boot",
+        "http-api",
+        "mysql"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j2-spring-4",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "同一个类中，非事务方法直接调用本类的 @Transactional 方法，事务通常会？",
+      "options": [
+        "正常开启",
+        "因绕过代理而不生效",
+        "强制开启新事务",
+        "自动抛出异常"
+      ],
+      "answerIndex": 1,
+      "explanation": "Spring 事务基于代理，自调用不经过代理，注解不会被拦截。应拆分到另一个 Bean，或通过代理对象调用，避免误以为有事务。",
+      "skills": [
+        "spring-boot"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j2-spring-5",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "默认情况下，@Transactional 对哪类异常自动回滚？",
+      "options": [
+        "所有 Throwable",
+        "仅 RuntimeException 和 Error",
+        "仅受检异常",
+        "从不回滚"
+      ],
+      "answerIndex": 1,
+      "explanation": "默认回滚 RuntimeException 与 Error；受检异常需要 rollbackFor 显式声明，否则可能已提交部分写入。",
+      "skills": [
+        "spring-boot",
+        "mysql"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j2-spring-6",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "REQUIRES_NEW 传播行为会导致什么？",
+      "options": [
+        "加入当前事务",
+        "挂起当前事务并开启新事务",
+        "禁止事务",
+        "只读事务"
+      ],
+      "answerIndex": 1,
+      "explanation": "REQUIRES_NEW 会挂起外层事务并开启独立事务，适合必须独立提交的审计等场景；它也意味着两段事务不再原子，需要接受部分成功。",
+      "skills": [
+        "spring-boot",
+        "mysql",
+        "distributed-systems"
+      ],
+      "difficulty": 3,
+      "kind": "concept",
+      "id": "q-be-j2-spring-7",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "事务方法中调用一个很慢的第三方支付 HTTP 接口，主要风险是？",
+      "options": [
+        "事务自动变成只读",
+        "数据库连接与锁被长时间占用，并放大失败回滚成本",
+        "Spring 会自动把 HTTP 放进事务",
+        "只会增加代码行数"
+      ],
+      "answerIndex": 1,
+      "explanation": "外部调用不可控，事务内等待会长时间占用数据库连接/锁；应缩短事务，采用状态机 + 异步/补偿处理跨系统一致性。",
+      "skills": [
+        "spring-boot",
+        "distributed-systems",
+        "mysql"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j2-spring-8",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle"
+    },
+    {
+      "prompt": "JVM 中线程私有的内存区域通常包括？",
+      "options": [
+        "堆与方法区",
+        "虚拟机栈、本地方法栈、程序计数器",
+        "只包含堆",
+        "只包含元空间"
+      ],
+      "answerIndex": 1,
+      "explanation": "虚拟机栈、本地方法栈和程序计数器随线程私有；堆和方法区/元空间是线程共享的。",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j2-jvm-1",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "GC 判断对象是否可回收，主要依据是什么？",
+      "options": [
+        "引用计数为 0",
+        "从 GC Roots 出发的可达性分析",
+        "对象大小",
+        "线程数量"
+      ],
+      "answerIndex": 1,
+      "explanation": "主流 JVM 使用可达性分析，GC Roots 不可达的对象可回收；引用计数无法处理循环引用。",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j2-jvm-2",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "ThreadPoolExecutor 在有界队列满后仍低于 maximumPoolSize，会优先做什么？",
+      "options": [
+        "直接拒绝所有任务",
+        "创建新线程直到最大线程数",
+        "丢弃队列最旧任务",
+        "停止线程池"
+      ],
+      "answerIndex": 1,
+      "explanation": "执行顺序是核心线程 → 队列 → 扩到最大线程 → 拒绝。队列满且未达最大值时创建线程，之后才拒绝。",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j2-jvm-3",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "使用无界队列的固定线程池，最大线程数参数会怎样？",
+      "options": [
+        "正常生效",
+        "队列永不饱和，最大线程数基本不会触发",
+        "自动变为 1",
+        "导致线程池创建失败"
+      ],
+      "answerIndex": 1,
+      "explanation": "无界队列不会满，任务持续入队而不会扩到最大线程，可能积压到内存耗尽；应使用有界队列明确容量边界。",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j2-jvm-4",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "volatile 能保证以下哪一项？",
+      "options": [
+        "i++ 的复合原子性",
+        "变量的可见性并禁止相关重排",
+        "所有临界区互斥",
+        "线程池自动扩容"
+      ],
+      "answerIndex": 1,
+      "explanation": "volatile 提供可见性与一定的有序性，不保证复合操作原子性；互斥仍需要锁，单变量原子更新用 Atomic 类。",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j2-jvm-5",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "两个线程以相反顺序获取锁 A、B，最可能导致什么？",
+      "options": [
+        "死锁",
+        "内存泄漏",
+        "GC 停顿",
+        "线程池拒绝"
+      ],
+      "answerIndex": 0,
+      "explanation": "线程 1 持有 A 等 B，线程 2 持有 B 等 A，循环等待造成死锁；固定锁顺序或超时可降低风险。",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j2-jvm-6",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "频繁 Full GC 且每次回收后老年代仍接近满，优先怀疑什么？",
+      "options": [
+        "CPU 核数过多",
+        "存在长生命周期持有/内存泄漏，或堆与分配速率不匹配",
+        "线程池太小",
+        "日志级别太低"
+      ],
+      "answerIndex": 1,
+      "explanation": "回收后仍残留说明对象仍可达或堆容量不足；需结合堆快照与持有链定位，而不是盲目调大堆或调 GC 参数。",
+      "skills": [
+        "jvm-concurrency",
+        "observability"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j2-jvm-7",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "多个线程共享可变对象且存在复合不变量，最稳妥的做法是？",
+      "options": [
+        "都加 volatile",
+        "用锁/事务保护整个不变量，或改为不可变对象+原子引用",
+        "增加更多线程",
+        "取消 getter/setter"
+      ],
+      "answerIndex": 1,
+      "explanation": "复合不变量涉及多个字段，volatile 无法保证整体原子性；锁/事务或整体不可变替换才能保证一致性。",
+      "skills": [
+        "jvm-concurrency",
+        "java-core"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j2-jvm-8",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle"
+    },
+    {
+      "prompt": "需要实现商品销量排行榜，Redis 最合适的数据结构是？",
+      "options": [
+        "String",
+        "Hash",
+        "ZSet",
+        "List"
+      ],
+      "answerIndex": 2,
+      "explanation": "ZSet 按 score 排序并支持范围查询，适合排行榜；String 适合计数，Hash 适合对象字段，List 适合顺序列表/队列。",
+      "skills": [
+        "redis"
+      ],
+      "difficulty": 1,
+      "kind": "scenario",
+      "id": "q-be-j3-redis-1",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "Redis 的键设置 TTL 后，到期的行为更准确的说法是？",
+      "options": [
+        "到期瞬间一定从内存删除",
+        "通过惰性删除和定期抽样最终清理，期间读可能看不到",
+        "TTL 只是逻辑标签，永不清理",
+        "到期后自动持久化到磁盘"
+      ],
+      "answerIndex": 1,
+      "explanation": "Redis 过期不是强实时删除，惰性删除 + 定期抽样保证最终清理；业务不能依赖“TTL 到期瞬间必然不可见”。",
+      "skills": [
+        "redis"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j3-redis-2",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "缓存穿透最直接的防护是？",
+      "options": [
+        "随机 TTL",
+        "对不存在的数据缓存短时空值或使用布隆过滤器",
+        "热点 key 互斥重建",
+        "增加更多 Redis 副本"
+      ],
+      "answerIndex": 1,
+      "explanation": "穿透是不存在的 key 绕过缓存；空值短缓存/布隆过滤器能在入口挡住无效查询。随机 TTL 防雪崩，互斥防击穿。",
+      "skills": [
+        "redis",
+        "system-design"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j3-redis-3",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "热点商品缓存失效瞬间大量请求同时回源，最合适的防护是？",
+      "options": [
+        "统一加长 TTL",
+        "单飞/互斥重建，只允许一个请求回源",
+        "关闭缓存",
+        "把所有 key 设置相同过期时间"
+      ],
+      "answerIndex": 1,
+      "explanation": "击穿是热点 key 并发回源；用 singleflight/锁控制重建，其他请求等待或读取旧值。加长 TTL 只降低频率，不解决并发回源。",
+      "skills": [
+        "redis",
+        "distributed-systems"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j3-redis-4",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "“先写数据库再删缓存”的方案中，删缓存失败最需要什么？",
+      "options": [
+        "忽略即可",
+        "重试/消息补偿并接受短期旧值窗口",
+        "立即回滚数据库事务",
+        "把所有缓存永久关闭"
+      ],
+      "answerIndex": 1,
+      "explanation": "删除失败会留下旧缓存；应将删除放入可靠重试/消息补偿，并用短 TTL/版本控制缩短不一致窗口。回滚数据库可能破坏已提交业务。",
+      "skills": [
+        "redis",
+        "mysql",
+        "distributed-systems"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j3-redis-5",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "Redis 分布式锁释放时，为什么要用 Lua 比较 token？",
+      "options": [
+        "提高网络带宽",
+        "避免锁过期后误删其他请求持有的锁",
+        "让锁永久有效",
+        "自动续期"
+      ],
+      "answerIndex": 1,
+      "explanation": "锁可能已过期并被其他请求获取；只有 value 仍为自己 token 时才删除，才能防止误删。Lua 保证比较和删除原子性。",
+      "skills": [
+        "redis",
+        "distributed-systems"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j3-redis-6",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "Redis 持久化策略选择时，最应该先确认什么？",
+      "options": [
+        "Redis 版本号颜色",
+        "业务可接受的数据丢失窗口与恢复时间",
+        "客户端语言",
+        "服务器机箱大小"
+      ],
+      "answerIndex": 1,
+      "explanation": "RDB/AOF 的同步与刷盘设置决定可能丢失的时间窗口；先明确业务容忍度，再选择持久化与备份策略，且关键数据仍需数据库事实源。",
+      "skills": [
+        "redis",
+        "system-design"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j3-redis-7",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "缓存雪崩与缓存击穿的区别是？",
+      "options": [
+        "雪崩是大量 key 同时失效/缓存整体不可用，击穿是单个热点 key 失效的并发回源",
+        "两者完全相同",
+        "雪崩只发生在写操作",
+        "击穿是 Redis 宕机，雪崩是网络超时"
+      ],
+      "answerIndex": 0,
+      "explanation": "雪崩是面（大量键/整体不可用）导致数据库压力骤增；击穿是点（单一热点键）并发回源。防护组合不同：抖动/限流/降级 vs 互斥重建。",
+      "skills": [
+        "redis",
+        "system-design"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j3-redis-8",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior"
+    },
+    {
+      "prompt": "平均 QPS 100、峰值系数 5、单请求平均延迟 200ms，按 Little 定律估算并发约为？",
+      "options": [
+        "20",
+        "100",
+        "500",
+        "1000"
+      ],
+      "answerIndex": 1,
+      "explanation": "峰值 QPS = 100×5 = 500，并发 ≈ QPS×延迟(s) = 500×0.2 = 100。这是粗略估算，仍需用尾延迟和资源校正。",
+      "skills": [
+        "distributed-systems",
+        "system-design"
+      ],
+      "difficulty": 2,
+      "kind": "code",
+      "id": "q-be-j3-scale-1",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "限流、排队与熔断的核心区别是？",
+      "options": [
+        "三者都只是增加线程",
+        "限流主动拒绝，排队增加等待，熔断停止调用故障依赖",
+        "熔断只用于数据库，排队只用于消息",
+        "限流保证所有请求成功"
+      ],
+      "answerIndex": 1,
+      "explanation": "三者针对不同过载/故障场景：限流保护入口，排队削峰但增加延迟，熔断隔离故障依赖避免级联失败。",
+      "skills": [
+        "distributed-systems",
+        "system-design"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j3-scale-2",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "消息“至少一次投递”对消费者的直接要求是？",
+      "options": [
+        "必须使用多线程",
+        "消费逻辑必须幂等或可去重",
+        "不需要 ack",
+        "消息一定按全局顺序到达"
+      ],
+      "answerIndex": 1,
+      "explanation": "至少一次意味着可能重复投递；消费者需按消息 id/业务键幂等，避免重复扣款/发货。全局顺序不保证，分区内才可能有序。",
+      "skills": [
+        "distributed-systems",
+        "system-design"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j3-scale-3",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "数据库写入与消息发送双写，最可靠的基础模式是？",
+      "options": [
+        "先发消息再写库，失败忽略",
+        "业务写与 outbox 事件同事务，独立发布并重试",
+        "使用两个独立事务并发写",
+        "把消息写入日志文件"
+      ],
+      "answerIndex": 1,
+      "explanation": "outbox 让业务数据与待发送事件原子落库，发布器重试并标记；避免库成功消息失败的永久不一致。事务消息也是类似目标。",
+      "skills": [
+        "distributed-systems",
+        "mysql",
+        "spring-boot"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j3-scale-4",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "消费者遇到持续失败的消息，正确的基础处理是？",
+      "options": [
+        "无限立即重试",
+        "有限退避重试，超限进入死信并告警/人工处理",
+        "直接丢弃且不记录",
+        "暂停整个集群"
+      ],
+      "answerIndex": 1,
+      "explanation": "有限退避避免重试风暴；死信保留现场、告警并允许补偿，避免坏消息阻塞分区或无声丢失。",
+      "skills": [
+        "distributed-systems",
+        "observability"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-be-j3-scale-5",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "以下哪组最适合作为用户可感知的监控指标？",
+      "options": [
+        "CPU 温度、机箱风扇转速",
+        "支付成功率、P95 延迟、错误率、队列深度",
+        "代码行数、分支数量",
+        "开发者在线人数"
+      ],
+      "answerIndex": 1,
+      "explanation": "用户影响与系统饱和度的组合才能判断是否可继续服务；CPU 温度等硬件指标不能直接说明用户是否成功支付。",
+      "skills": [
+        "observability",
+        "system-design"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-be-j3-scale-6",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "结构化日志中不建议作为高基数指标标签的是？",
+      "options": [
+        "服务名",
+        "HTTP 状态码",
+        "用户 ID",
+        "接口名"
+      ],
+      "answerIndex": 2,
+      "explanation": "用户 ID 基数极高，作为指标标签会导致时间序列爆炸；可放日志/追踪用于定位，不作为常规聚合标签。",
+      "skills": [
+        "observability"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-be-j3-scale-7",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "降级设计的必要组成部分不包括？",
+      "options": [
+        "触发阈值",
+        "用户可见提示",
+        "恢复条件与回滚",
+        "永久开启且不监控"
+      ],
+      "answerIndex": 3,
+      "explanation": "降级必须有触发、提示、恢复/回滚和监控；永久开启且不监控会让系统长期处于残缺状态，用户与团队都不知情。",
+      "skills": [
+        "distributed-systems",
+        "observability",
+        "system-design"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-be-j3-scale-8",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior"
+    }
+  ],
+  "codeChallenges": [
+    {
+      "title": "校验订单请求体",
+      "prompt": "实现 validateOrderPayload(payload)：customerId 必须是非空字符串；items 必须是 1..20 项的数组；每项 quantity 为 1..99 的整数、unitPriceCents 为非负整数。返回 { valid, errors }，按字段出现顺序收集错误路径。",
+      "requirements": [
+        "非法 payload 返回 valid:false 与 errors:['payload']",
+        "customerId、items、quantity、unitPriceCents 逐项校验",
+        "保持确定性的错误顺序，方便前端定位"
+      ],
+      "starterCode": "function validateOrderPayload(payload) {\n  // TODO: 按字段收集错误\n  return { valid: false, errors: [] };\n}",
+      "solutionCode": "function validateOrderPayload(payload) {\n  if (!payload || typeof payload !== \"object\" || Array.isArray(payload)) {\n    return { valid: false, errors: [\"payload\"] };\n  }\n  const errors = [];\n  if (typeof payload.customerId !== \"string\" || !payload.customerId.trim()) {\n    errors.push(\"customerId\");\n  }\n  const items = Array.isArray(payload.items) ? payload.items : [];\n  if (!Array.isArray(payload.items) || items.length < 1 || items.length > 20) {\n    errors.push(\"items\");\n  }\n  items.forEach((item, index) => {\n    if (!item || typeof item !== \"object\") {\n      errors.push(\"items[\" + index + \"]\");\n      return;\n    }\n    if (!Number.isInteger(item.quantity) || item.quantity < 1 || item.quantity > 99) {\n      errors.push(\"items[\" + index + \"].quantity\");\n    }\n    if (!Number.isInteger(item.unitPriceCents) || item.unitPriceCents < 0) {\n      errors.push(\"items[\" + index + \"].unitPriceCents\");\n    }\n  });\n  return { valid: errors.length === 0, errors };\n}",
+      "functionName": "validateOrderPayload",
+      "tests": [
+        {
+          "name": "合法订单",
+          "args": [
+            {
+              "customerId": "c1",
+              "items": [
+                {
+                  "quantity": 2,
+                  "unitPriceCents": 100
+                }
+              ]
+            }
+          ],
+          "expected": {
+            "valid": true,
+            "errors": []
+          }
+        },
+        {
+          "name": "缺少客户与空明细",
+          "args": [
+            {
+              "items": []
+            }
+          ],
+          "expected": {
+            "valid": false,
+            "errors": [
+              "customerId",
+              "items"
+            ]
+          }
+        },
+        {
+          "name": "明细范围错误",
+          "args": [
+            {
+              "customerId": "c1",
+              "items": [
+                {
+                  "quantity": 0,
+                  "unitPriceCents": -1
+                }
+              ]
+            }
+          ],
+          "expected": {
+            "valid": false,
+            "errors": [
+              "items[0].quantity",
+              "items[0].unitPriceCents"
+            ]
+          }
+        },
+        {
+          "name": "非法对象",
+          "args": [
+            null
+          ],
+          "expected": {
+            "valid": false,
+            "errors": [
+              "payload"
+            ]
+          }
+        }
+      ],
+      "rubric": [
+        "字段校验顺序确定",
+        "边界值 1/99 与 0 判断正确",
+        "null 与数组结构安全",
+        "错误路径清晰可定位"
+      ],
+      "skills": [
+        "java-core",
+        "http-api"
+      ],
+      "id": "code-be-j1-java",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-java",
+      "level": "junior",
+      "language": "javascript"
+    },
+    {
+      "title": "构造安全的订单分页查询",
+      "prompt": "实现 buildOrderPage(filters, page, pageSize)：可选 status 与 minTotalCents；page 从 1 开始，pageSize 限制 1..100（默认 20）。返回 { sql, params, page, pageSize }，所有值参数化，使用 LIMIT ? OFFSET ?，SQL 固定包含 WHERE 1=1。",
+      "requirements": [
+        "status 与 minTotalCents 只进入 params",
+        "page/pageSize 规范化为正整数，pageSize 上限 100",
+        "SQL 条件顺序固定，便于缓存与测试"
+      ],
+      "starterCode": "function buildOrderPage(filters, page = 1, pageSize = 20) {\n  // TODO: 生成参数化分页 SQL\n  return { sql: \"\", params: [], page: 1, pageSize: 20 };\n}",
+      "solutionCode": "function buildOrderPage(filters, page = 1, pageSize = 20) {\n  const input = filters && typeof filters === \"object\" ? filters : {};\n  const safePage = Number.isInteger(page) && page > 0 ? page : 1;\n  const safeSize = Number.isInteger(pageSize)\n    ? Math.min(100, Math.max(1, pageSize))\n    : 20;\n  const clauses = [\"1=1\"];\n  const params = [];\n\n  if (typeof input.status === \"string\" && input.status.trim()) {\n    clauses.push(\"status = ?\");\n    params.push(input.status.trim());\n  }\n  if (Number.isInteger(input.minTotalCents) && input.minTotalCents >= 0) {\n    clauses.push(\"total_cents >= ?\");\n    params.push(input.minTotalCents);\n  }\n  const sql = \"SELECT id, user_id, status, total_cents FROM orders WHERE \" +\n    clauses.join(\" AND \") + \" ORDER BY id LIMIT ? OFFSET ?\";\n  params.push(safeSize, (safePage - 1) * safeSize);\n  return { sql, params, page: safePage, pageSize: safeSize };\n}",
+      "functionName": "buildOrderPage",
+      "tests": [
+        {
+          "name": "条件与第二页",
+          "args": [
+            {
+              "status": "PAID",
+              "minTotalCents": 100
+            },
+            2,
+            20
+          ],
+          "expected": {
+            "sql": "SELECT id, user_id, status, total_cents FROM orders WHERE 1=1 AND status = ? AND total_cents >= ? ORDER BY id LIMIT ? OFFSET ?",
+            "params": [
+              "PAID",
+              100,
+              20,
+              20
+            ],
+            "page": 2,
+            "pageSize": 20
+          }
+        },
+        {
+          "name": "无筛选与页大小上限",
+          "args": [
+            {},
+            1,
+            500
+          ],
+          "expected": {
+            "sql": "SELECT id, user_id, status, total_cents FROM orders WHERE 1=1 ORDER BY id LIMIT ? OFFSET ?",
+            "params": [
+              100,
+              0
+            ],
+            "page": 1,
+            "pageSize": 100
+          }
+        },
+        {
+          "name": "非法页码",
+          "args": [
+            {
+              "status": "CREATED"
+            },
+            -3,
+            0
+          ],
+          "expected": {
+            "sql": "SELECT id, user_id, status, total_cents FROM orders WHERE 1=1 AND status = ? ORDER BY id LIMIT ? OFFSET ?",
+            "params": [
+              "CREATED",
+              1,
+              0
+            ],
+            "page": 1,
+            "pageSize": 1
+          }
+        }
+      ],
+      "rubric": [
+        "全部值参数化",
+        "分页规范化与上限正确",
+        "SQL 条件顺序稳定",
+        "边界输入安全"
+      ],
+      "skills": [
+        "mysql",
+        "sql-database",
+        "java-core"
+      ],
+      "id": "code-be-j1-mysql",
+      "trackId": "backend-java",
+      "chapterId": "be-j1-mysql",
+      "level": "junior",
+      "language": "javascript"
+    },
+    {
+      "title": "匹配 Spring 风格路径变量",
+      "prompt": "实现 matchPath(pattern, path)：pattern 形如 /orders/{id}/items/{itemId}，path 形如 /orders/o1/items/i2；返回变量对象（字符串值），不匹配返回 null；只支持整段 {name} 占位，不支持通配符。",
+      "requirements": [
+        "段数不同返回 null",
+        "静态段必须完全相等",
+        "占位段提取为字符串键值"
+      ],
+      "starterCode": "function matchPath(pattern, path) {\n  // TODO: 拆分路径段并匹配占位符\n  return null;\n}",
+      "solutionCode": "function matchPath(pattern, path) {\n  if (typeof pattern !== \"string\" || typeof path !== \"string\") return null;\n  const patternParts = pattern.split(\"/\").filter(Boolean);\n  const pathParts = path.split(\"/\").filter(Boolean);\n  if (patternParts.length !== pathParts.length) return null;\n\n  const params = {};\n  for (let i = 0; i < patternParts.length; i += 1) {\n    const expected = patternParts[i];\n    const actual = pathParts[i];\n    const match = /^\\{([A-Za-z][A-Za-z0-9_]*)\\}$/.exec(expected);\n    if (match) {\n      if (!actual) return null;\n      params[match[1]] = actual;\n    } else if (expected !== actual) {\n      return null;\n    }\n  }\n  return params;\n}",
+      "functionName": "matchPath",
+      "tests": [
+        {
+          "name": "两个变量",
+          "args": [
+            "/orders/{id}/items/{itemId}",
+            "/orders/o1/items/i2"
+          ],
+          "expected": {
+            "id": "o1",
+            "itemId": "i2"
+          }
+        },
+        {
+          "name": "无变量",
+          "args": [
+            "/health",
+            "/health"
+          ],
+          "expected": {}
+        },
+        {
+          "name": "静态段不匹配",
+          "args": [
+            "/orders/{id}",
+            "/users/o1"
+          ],
+          "expected": null
+        },
+        {
+          "name": "段数不同",
+          "args": [
+            "/orders/{id}",
+            "/orders"
+          ],
+          "expected": null
+        }
+      ],
+      "rubric": [
+        "段数与静态段匹配",
+        "占位符提取正确",
+        "非法输入与空段安全",
+        "不误支持通配符"
+      ],
+      "skills": [
+        "spring-boot",
+        "http-api",
+        "java-core"
+      ],
+      "id": "code-be-j2-spring",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-spring",
+      "level": "middle",
+      "language": "javascript"
+    },
+    {
+      "title": "模拟线程池任务接纳",
+      "prompt": "实现 simulatePool(tasks, { core, max, queue })：任务依次尝试执行；优先核心线程，核心满则入队，队列满且线程数 < max 时扩线程，否则拒绝。返回 { accepted, rejected, activeThreads, queued }，其中 queued 表示最终队列长度。",
+      "requirements": [
+        "遵循核心线程 → 队列 → 扩线程 → 拒绝的顺序",
+        "参数非负；max 不小于 core，queue 为非负整数",
+        "不修改 tasks 输入"
+      ],
+      "starterCode": "function simulatePool(tasks, config) {\n  // TODO: 模拟 ThreadPoolExecutor 的接纳顺序\n  return { accepted: 0, rejected: 0, activeThreads: 0, queued: 0 };\n}",
+      "solutionCode": "function simulatePool(tasks, config) {\n  const list = Array.isArray(tasks) ? tasks : [];\n  const core = Number.isInteger(config?.core) && config.core > 0 ? config.core : 1;\n  const max = Number.isInteger(config?.max) && config.max >= core ? config.max : core;\n  const queueCap = Number.isInteger(config?.queue) && config.queue >= 0 ? config.queue : 0;\n  let threads = 0;\n  let queued = 0;\n  let accepted = 0;\n  let rejected = 0;\n\n  for (let i = 0; i < list.length; i += 1) {\n    if (threads < core) {\n      threads += 1;\n      accepted += 1;\n    } else if (queued < queueCap) {\n      queued += 1;\n      accepted += 1;\n    } else if (threads < max) {\n      threads += 1;\n      accepted += 1;\n    } else {\n      rejected += 1;\n    }\n  }\n  return { accepted, rejected, activeThreads: threads, queued };\n}",
+      "functionName": "simulatePool",
+      "tests": [
+        {
+          "name": "核心与队列",
+          "args": [
+            [
+              "t",
+              "t",
+              "t",
+              "t",
+              "t",
+              "t"
+            ],
+            {
+              "core": 2,
+              "max": 4,
+              "queue": 3
+            }
+          ],
+          "expected": {
+            "accepted": 6,
+            "rejected": 0,
+            "activeThreads": 3,
+            "queued": 3
+          }
+        },
+        {
+          "name": "扩线程再拒绝",
+          "args": [
+            [
+              "t",
+              "t",
+              "t",
+              "t",
+              "t",
+              "t",
+              "t",
+              "t"
+            ],
+            {
+              "core": 1,
+              "max": 3,
+              "queue": 2
+            }
+          ],
+          "expected": {
+            "accepted": 5,
+            "rejected": 3,
+            "activeThreads": 3,
+            "queued": 2
+          }
+        },
+        {
+          "name": "无队列",
+          "args": [
+            [
+              "t",
+              "t",
+              "t",
+              "t"
+            ],
+            {
+              "core": 1,
+              "max": 2,
+              "queue": 0
+            }
+          ],
+          "expected": {
+            "accepted": 2,
+            "rejected": 2,
+            "activeThreads": 2,
+            "queued": 0
+          }
+        },
+        {
+          "name": "空任务",
+          "args": [
+            [],
+            {
+              "core": 2,
+              "max": 4,
+              "queue": 2
+            }
+          ],
+          "expected": {
+            "accepted": 0,
+            "rejected": 0,
+            "activeThreads": 0,
+            "queued": 0
+          }
+        }
+      ],
+      "rubric": [
+        "接纳顺序正确",
+        "队列满后才扩最大线程",
+        "拒绝计数正确",
+        "参数边界与空输入安全"
+      ],
+      "skills": [
+        "jvm-concurrency",
+        "java-core",
+        "spring-boot"
+      ],
+      "id": "code-be-j2-jvm",
+      "trackId": "backend-java",
+      "chapterId": "be-j2-jvm",
+      "level": "middle",
+      "language": "javascript"
+    },
+    {
+      "title": "实现滑动窗口限流判定",
+      "prompt": "实现 allowRequests(timestamps, now, limit, windowMs)：按时间戳数组（毫秒）判断在 (now-windowMs, now] 内的请求数是否小于 limit；返回布尔值，不修改输入。若同一毫秒并发请求，按当前统计。",
+      "requirements": [
+        "窗口左边界为开区间，右边界包含 now",
+        "只统计窗口内时间戳，limit 与 windowMs 为合法正整数",
+        "无状态纯函数，便于测试"
+      ],
+      "starterCode": "function allowRequests(timestamps, now, limit, windowMs) {\n  // TODO: 统计滑动窗口内的请求数\n  return false;\n}",
+      "solutionCode": "function allowRequests(timestamps, now, limit, windowMs) {\n  if (!Array.isArray(timestamps)) return false;\n  if (!Number.isInteger(limit) || limit <= 0) return false;\n  if (!Number.isInteger(windowMs) || windowMs <= 0) return false;\n  const start = now - windowMs;\n  const count = timestamps.filter((time) => time > start && time <= now).length;\n  return count < limit;\n}",
+      "functionName": "allowRequests",
+      "tests": [
+        {
+          "name": "窗口内未达上限",
+          "args": [
+            [
+              1000,
+              2000,
+              3000
+            ],
+            3500,
+            4,
+            1000
+          ],
+          "expected": true
+        },
+        {
+          "name": "左开右闭边界",
+          "args": [
+            [
+              2500,
+              3000
+            ],
+            3000,
+            1,
+            500
+          ],
+          "expected": false
+        },
+        {
+          "name": "窗口外放行",
+          "args": [
+            [
+              1000,
+              2000
+            ],
+            5000,
+            2,
+            1000
+          ],
+          "expected": true
+        },
+        {
+          "name": "非法参数",
+          "args": [
+            [],
+            1000,
+            0,
+            1000
+          ],
+          "expected": false
+        }
+      ],
+      "rubric": [
+        "窗口边界严格执行",
+        "计数正确且不修改输入",
+        "非法参数安全返回",
+        "实现无状态、可复现"
+      ],
+      "skills": [
+        "redis",
+        "distributed-systems",
+        "java-core"
+      ],
+      "id": "code-be-j3-redis",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-redis",
+      "level": "senior",
+      "language": "javascript"
+    },
+    {
+      "title": "合并分片结果并取 Top K",
+      "prompt": "实现 mergeTopK(shards, k)：每个 shard 是已按 score 降序、再按 id 升序排好的数组 [{id, score}]；合并所有分片，按 score 降序、score 相同按 id 升序，返回前 k 条。不得修改输入，k 非法时返回空数组。",
+      "requirements": [
+        "正确合并多个已排序分片",
+        "score 相同按 id 升序",
+        "不修改分片数组；k<=0 返回空数组"
+      ],
+      "starterCode": "function mergeTopK(shards, k) {\n  // TODO: 合并有序分片并按规则排序\n  return [];\n}",
+      "solutionCode": "function mergeTopK(shards, k) {\n  if (!Array.isArray(shards) || !Number.isInteger(k) || k <= 0) return [];\n  const merged = [];\n  for (const shard of shards) {\n    if (Array.isArray(shard)) merged.push(...shard.map((item) => ({ ...item })));\n  }\n  merged.sort((a, b) => (b.score - a.score) || a.id.localeCompare(b.id));\n  return merged.slice(0, k);\n}",
+      "functionName": "mergeTopK",
+      "tests": [
+        {
+          "name": "合并两个分片",
+          "args": [
+            [
+              [
+                {
+                  "id": "a",
+                  "score": 10
+                },
+                {
+                  "id": "c",
+                  "score": 5
+                }
+              ],
+              [
+                {
+                  "id": "b",
+                  "score": 10
+                },
+                {
+                  "id": "d",
+                  "score": 7
+                }
+              ]
+            ],
+            3
+          ],
+          "expected": [
+            {
+              "id": "a",
+              "score": 10
+            },
+            {
+              "id": "b",
+              "score": 10
+            },
+            {
+              "id": "d",
+              "score": 7
+            }
+          ]
+        },
+        {
+          "name": "同分按 id",
+          "args": [
+            [
+              [
+                {
+                  "id": "z",
+                  "score": 1
+                }
+              ],
+              [
+                {
+                  "id": "a",
+                  "score": 1
+                }
+              ]
+            ],
+            2
+          ],
+          "expected": [
+            {
+              "id": "a",
+              "score": 1
+            },
+            {
+              "id": "z",
+              "score": 1
+            }
+          ]
+        },
+        {
+          "name": "空结果",
+          "args": [
+            [],
+            3
+          ],
+          "expected": []
+        },
+        {
+          "name": "非法 k",
+          "args": [
+            [
+              [
+                {
+                  "id": "a",
+                  "score": 1
+                }
+              ]
+            ],
+            0
+          ],
+          "expected": []
+        }
+      ],
+      "rubric": [
+        "合并与排序规则正确",
+        "同分 id 升序",
+        "不修改输入",
+        "边界输入安全"
+      ],
+      "skills": [
+        "distributed-systems",
+        "system-design",
+        "java-core"
+      ],
+      "id": "code-be-j3-scale",
+      "trackId": "backend-java",
+      "chapterId": "be-j3-scale",
+      "level": "senior",
+      "language": "javascript"
+    }
+  ]
+}

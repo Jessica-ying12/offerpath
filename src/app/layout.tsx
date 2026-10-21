@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s · 职跃 OfferPath",
   },
   description:
-    "把求职拆成今天能完成的一小步：移动端与全栈微课、章节练习、简历/JD 急冲计划、自适应模拟面试与完整学习记录。",
+    "把求职拆成今天能完成的一小步：移动端、全栈、Java 后端、MySQL 与计算机基础/AI 前沿的逐点精讲、题库、周期复习、简历/JD 急冲、自适应模拟面试与学习报告。",
   applicationName: "职跃 OfferPath",
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],

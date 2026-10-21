@@ -32,6 +32,7 @@ import {
 import { LEVELS, LEVEL_LABEL, type Atom, type Chapter, type LevelId, type Track } from "@/lib/content/schema";
 import type { QuizDetail, QuizResult } from "@/lib/types";
 import { AppError } from "@/lib/errors";
+import { scheduleChapterPractice } from "./mastery";
 
 export type PublicQuestion = ReturnType<typeof toPublicQuestion>;
 
@@ -131,7 +132,7 @@ export function getTrackPageData(
     completed: completed.size,
     total: track.atoms.length,
   };
-  // 已学进度由微课完成事实派生，不使用单独状态字段。
+  // 已学进度由知识点完成事实派生，不使用单独状态字段。
   void attempted;
   return { track, level, levelInfo, chapters, nextHref, levelStats, overall };
 }
@@ -173,6 +174,7 @@ export function getLessonPageData(
         ? `/learn/${track.id}/${chapter.id}/${atoms[index - 1].id}`
         : `/learn/${track.id}?level=${chapter.level}`,
     challengeTitle: challenge?.title ?? null,
+    references: chapter.references,
     atoms: atoms.map((item) => ({
       id: item.id,
       title: item.title,
@@ -204,7 +206,7 @@ export function completeAtomForUser(
         id: randomUUID(),
         userId,
         type: "lesson_completed",
-        title: `完成微课：${atom.title}`,
+        title: `完成知识点：${atom.title}`,
         meta: {
           trackId: track.id,
           chapterId: chapter.id,
@@ -366,6 +368,10 @@ export function submitQuizForUser(
       .filter((detail) => detail.correct)
       .map((detail) => ({ questionId: detail.questionId }));
     const resolvedMistakes = applyQuizOutcomes(db, { userId, wrong, correct: correctAnswers, now });
+
+    if (input.sourceType === "chapter") {
+      scheduleChapterPractice(userId, sourceId, track.id, correct, details.length, db, new Date(now));
+    }
 
     logActivity(db, {
       id: randomUUID(),

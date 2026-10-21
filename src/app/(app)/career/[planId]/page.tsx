@@ -62,7 +62,7 @@ export default async function CareerPlanPage({
       <PageHeader
         eyebrow={`CAREER ROADMAP · ${plan.horizonWeeks} WEEKS · ${LEVEL_LABEL[plan.level]}`}
         title={view.title}
-        description={`${plan.analysis.summary} 路线生成于 ${formatDate(view.createdAt)}；阶段完成度按微课、章节练习、代码题与面试记录自动计算。`}
+        description={`${plan.analysis.summary} 路线生成于 ${formatDate(view.createdAt)}；阶段完成度按知识点、章节练习、代码题与面试记录自动计算。`}
         actions={
           <>
             <Link href="/interview" className={buttonClass("secondary", "md")}>
@@ -127,7 +127,7 @@ export default async function CareerPlanPage({
               ))}
             </div>
             <p className="mt-3 text-[10px] leading-5 text-muted/45">
-              阶段内先完成微课，再做章节练习；代码题和模拟面试用来检验迁移能力。
+              阶段内先完成知识点，再做章节练习；代码题和模拟面试用来检验迁移能力。
             </p>
           </div>
         </div>

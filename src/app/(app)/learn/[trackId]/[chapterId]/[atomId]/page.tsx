@@ -5,6 +5,8 @@ import {
   ArrowLeft,
   AlertTriangle,
   ArrowRight,
+  BookOpen,
+  ExternalLink,
   Check,
   ChevronRight,
   Clock3,
@@ -23,7 +25,7 @@ import { getLessonPageData } from "@/lib/services/learning";
 import { AppError } from "@/lib/errors";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = { title: "微课" };
+export const metadata: Metadata = { title: "知识点精讲" };
 
 export default async function LessonPage({
   params,
@@ -63,7 +65,7 @@ export default async function LessonPage({
                 <div className="flex items-center gap-2.5">
                   <Badge tone="lime">{LEVEL_LABEL[chapter.level]}</Badge>
                   <span className="font-mono text-[10px] tracking-[0.12em] text-muted/50">
-                    MICRO LESSON · {data.position}/{data.totalAtoms}
+                    KNOWLEDGE POINT · {data.position}/{data.totalAtoms}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 font-mono text-[10px] text-muted/50">
@@ -91,12 +93,46 @@ export default async function LessonPage({
               </h1>
               <p className="mt-4 max-w-2xl text-[15px] leading-8 text-muted">{atom.summary}</p>
 
+              <div className="mt-5 rounded-xl border border-lime/15 bg-lime/[0.035] px-4 py-3.5">
+                <p className="eyebrow mb-1.5 text-lime/80">本节目标 · 无视频</p>
+                <p className="text-[12px] leading-6 text-paper/80">
+                  {atom.objective ?? `学完这个知识点，你能解释「${atom.title}」的适用边界，并在示例与练习题中使用它。`}
+                </p>
+              </div>
+
               <div className="my-8 h-px bg-white/[0.07]" />
 
+              {atom.explanation || atom.teachingSteps ? (
+                <section aria-labelledby="teaching" className="mb-9">
+                  <SectionLabel index="01">EXPLAIN</SectionLabel>
+                  <h2 id="teaching" className="mt-3 text-[17px] font-semibold text-paper">
+                    按步骤理解
+                  </h2>
+                  {atom.explanation ? (
+                    <p className="mt-3 text-[13px] leading-7 text-paper/75">{atom.explanation}</p>
+                  ) : null}
+                  {atom.teachingSteps?.length ? (
+                    <div className="mt-4 space-y-2.5">
+                      {atom.teachingSteps.map((step, index) => (
+                        <div key={step.title} className="flex gap-3 rounded-xl border border-white/[0.06] bg-white/[0.015] px-4 py-3">
+                          <span className="mt-0.5 font-mono text-[10px] text-lime/60">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <div>
+                            <p className="text-[12px] font-medium text-paper/90">{step.title}</p>
+                            <p className="mt-0.5 text-[12px] leading-6 text-muted">{step.detail}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                </section>
+              ) : null}
+
               <section aria-labelledby="key-points">
-                <SectionLabel index="01">REMEMBER THIS</SectionLabel>
+                <SectionLabel index={atom.explanation ? "02" : "01"}>REMEMBER THIS</SectionLabel>
                 <h2 id="key-points" className="mt-3 text-[17px] font-semibold text-paper">
-                  先记住这几条
+                  关键点：能复述，才算会
                 </h2>
                 <div className="mt-4 space-y-2.5">
                   {atom.keyPoints.map((point, index) => (
@@ -115,7 +151,7 @@ export default async function LessonPage({
 
               {atom.example ? (
                 <section className="mt-9" aria-labelledby="example">
-                  <SectionLabel index="02">EXAMPLE</SectionLabel>
+                  <SectionLabel index={atom.explanation ? "03" : "02"}>EXAMPLE</SectionLabel>
                   <div className="mt-3 flex items-center justify-between">
                     <h2 id="example" className="text-[17px] font-semibold text-paper">
                       {atom.example.caption}
@@ -255,6 +291,30 @@ export default async function LessonPage({
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             ) : null}
+          </Panel>
+
+          <Panel className="p-4">
+            <div className="flex items-center gap-2">
+              <BookOpen className="h-4 w-4 text-muted" />
+              <p className="text-[12px] font-medium text-paper">官方参考来源</p>
+            </div>
+            <div className="mt-3 space-y-2">
+              {data.references.map((reference) => (
+                <a
+                  key={reference.url}
+                  href={reference.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-start gap-2 rounded-lg border border-white/[0.05] px-2.5 py-2 text-[10px] leading-4 text-muted transition hover:border-lime/20 hover:text-paper"
+                >
+                  <ExternalLink className="mt-0.5 h-3 w-3 shrink-0 text-muted/40" />
+                  <span>
+                    {reference.title}
+                    <span className="mt-0.5 block text-[8px] text-muted/40">{reference.publisher}</span>
+                  </span>
+                </a>
+              ))}
+            </div>
           </Panel>
 
           <Panel className="p-4">

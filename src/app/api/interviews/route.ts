@@ -5,7 +5,7 @@ import { createInterviewForUser } from "@/lib/services/interviews";
 import { MAX_JD_LENGTH, MAX_RESUME_LENGTH } from "@/lib/constants";
 
 const schema = z.object({
-  trackId: z.enum(["mobile", "fullstack"]),
+  trackId: z.enum(["mobile", "fullstack", "backend-java", "database-mysql", "cs-ai-foundations"]),
   level: z.enum(["junior", "middle", "senior"]),
   mode: z.enum(["resume", "jd", "position"]),
   company: z.string().trim().max(80).optional(),

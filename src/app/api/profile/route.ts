@@ -6,7 +6,7 @@ import { MAX_JD_LENGTH, MAX_RESUME_LENGTH } from "@/lib/constants";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(40).optional(),
-  trackId: z.enum(["mobile", "fullstack"]).optional(),
+  trackId: z.enum(["mobile", "fullstack", "backend-java", "database-mysql", "cs-ai-foundations"]).optional(),
   level: z.enum(["junior", "middle", "senior"]).optional(),
   targetRole: z.string().trim().max(80).optional(),
   targetCompany: z.string().trim().max(80).optional(),

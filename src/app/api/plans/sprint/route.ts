@@ -5,7 +5,7 @@ import { createSprintPlanForUser } from "@/lib/services/plans";
 import { MAX_JD_LENGTH, MAX_RESUME_LENGTH } from "@/lib/constants";
 
 const schema = z.object({
-  trackId: z.enum(["mobile", "fullstack"]),
+  trackId: z.enum(["mobile", "fullstack", "backend-java", "database-mysql", "cs-ai-foundations"]),
   level: z.enum(["junior", "middle", "senior"]),
   urgencyDays: z.union([z.literal(3), z.literal(7), z.literal(14)]),
   company: z.string().trim().max(80).optional(),

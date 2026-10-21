@@ -5,8 +5,10 @@ import {
   BookOpen,
   Check,
   Layers,
+  ListChecks,
   MessagesSquare,
   Mic,
+  RotateCcw,
   Route,
   Smartphone,
   Sparkles,
@@ -20,13 +22,27 @@ import { LEVEL_LABEL } from "@/lib/content/schema";
 const MODES = [
   {
     index: "01",
-    title: "系统学习",
-    description: "基础薄弱也别硬啃长文。3 分钟一个点，学完立刻做题，每章都有练习。",
-    href: "/learn",
+    title: "技术库",
+    description: "按岗位、技术筛选：Java、Spring、MySQL、Redis、React、Node、Kotlin……逐章精讲，不灌长文。",
+    href: "/library",
     icon: BookOpen,
   },
   {
     index: "02",
+    title: "题库练习",
+    description: "210+ 道原创选择题，按技术、等级、难度筛着练；提交即判分，错误进入复习。",
+    href: "/bank",
+    icon: ListChecks,
+  },
+  {
+    index: "03",
+    title: "周期复习",
+    description: "章节练习通过后按 D+1/D+3/D+7 复习；三次通过才标记已掌握。",
+    href: "/review",
+    icon: RotateCcw,
+  },
+  {
+    index: "04",
     title: "急冲计划",
     description: "上传简历和目标 JD，抽取技能缺口，生成每天可执行的知识点、题和代码任务。",
     href: "/sprint",
@@ -34,14 +50,14 @@ const MODES = [
     highlight: true,
   },
   {
-    index: "03",
+    index: "05",
     title: "职业规划",
     description: "想转岗或长期进阶？按目标等级拆成阶段路线，每一阶段都有验收标准。",
     href: "/career",
     icon: Route,
   },
   {
-    index: "04",
+    index: "06",
     title: "模拟面试",
     description: "从简历项目开问。答错给提示和参考答案，答得好继续追问，最后出报告。",
     href: "/interview",
@@ -50,7 +66,7 @@ const MODES = [
 ];
 
 const LOOP = [
-  { title: "学", copy: "3–6 分钟微课" },
+  { title: "学", copy: "3–6 分钟知识点精讲" },
   { title: "练", copy: "章节练习 + 代码" },
   { title: "错", copy: "记下错误与次数" },
   { title: "面", copy: "追问与参考表达" },
@@ -65,7 +81,7 @@ export default function LandingPage() {
       acc.atoms += stats.atoms;
       acc.questions += stats.questions;
       acc.challenges += stats.challenges;
-      acc.interviews += getInterviewBank(track.id).questions.length;
+      acc.interviews += getInterviewBank(track.id)?.questions.length ?? 0;
       return acc;
     },
     { atoms: 0, questions: 0, challenges: 0, interviews: 0 },
@@ -106,7 +122,7 @@ export default function LandingPage() {
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.025] px-3 py-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_10px_rgba(201,245,106,0.8)]" />
               <span className="font-mono text-[10px] tracking-[0.14em] text-muted">
-                MOBILE / FULLSTACK · 三级路径
+                MOBILE / FULLSTACK / BACKEND / DB / AI
               </span>
             </div>
 
@@ -129,7 +145,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="mt-6 max-w-xl text-[15px] leading-8 text-muted">
-              微课 5 分钟、练习一套、面试一轮。基础弱就系统学；时间紧就用简历和 JD
+              一个知识点 5 分钟、练习一套、面试一轮。基础弱就系统学；时间紧就用简历和 JD
               生成专属清单。每一次学习、错误、重做和面试都会留下记录。
             </p>
 
@@ -146,7 +162,7 @@ export default function LandingPage() {
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-muted/70">
               <span className="inline-flex items-center gap-1.5">
                 <Check className="h-3.5 w-3.5 text-lime" />
-                移动端 + 全栈
+                移动端 / 全栈 / 后端 / 数据库
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Check className="h-3.5 w-3.5 text-lime" />
@@ -202,7 +218,7 @@ export default function LandingPage() {
                       <p className="truncate text-[12px] text-muted line-through decoration-white/20">
                         Compose 状态与重组
                       </p>
-                      <p className="mt-0.5 font-mono text-[9px] text-muted/50">MICRO LESSON · 4 MIN</p>
+                      <p className="mt-0.5 font-mono text-[9px] text-muted/50">KNOWLEDGE POINT · 4 MIN</p>
                     </div>
                     <span className="font-mono text-[10px] text-muted/50">DONE</span>
                   </div>
@@ -262,8 +278,9 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 divide-x divide-white/[0.07] overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] sm:grid-cols-4">
             {[
               ["02", "首发方向", "移动端 / 全栈"],
-              [String(totals.atoms), "微课", "3–6 分钟一节"],
-              [String(totals.questions), "道笔试练习", "每章 5 题"],
+              [String(tracks.length), "门课程", "3 个岗位方向"],
+              [String(totals.atoms), "个知识点精讲", "逐点教学，无视频"],
+              [String(totals.questions), "道题库练习", "按技术/等级筛选"],
               [String(totals.interviews), "道面试题", "含追问与参考"],
             ].map(([value, label, hint], index) => (
               <div key={label} className={index > 1 ? "col-span-1 px-5 py-5 sm:py-6" : "px-5 py-5 sm:py-6"}>
@@ -280,11 +297,11 @@ export default function LandingPage() {
             <div>
               <div className="eyebrow mb-3 text-lime/80">01 / TRACKS</div>
               <h2 className="text-[28px] font-semibold tracking-[-0.03em] text-paper sm:text-[34px]">
-                先把两条路走透。
+                先选方向，再深入技术。
               </h2>
             </div>
             <p className="max-w-md text-[13px] leading-6 text-muted">
-              每个方向 3 个等级 × 3 个章节，章节内是微课，章节后是练习与代码题。等级不是标签，考察深度真的不同。
+              课程、章节按等级拆分；每个知识点有讲解、示例、易错点与官方来源，学完立刻练习。技术路径聚合所有相关章节。
             </p>
           </div>
 
@@ -331,7 +348,7 @@ export default function LandingPage() {
 
                   <div className="mt-6 flex items-center justify-between border-t border-white/[0.06] pt-4">
                     <span className="font-mono text-[10px] text-muted/60">
-                      {stats.atoms} 微课 · {stats.questions} 题 · {stats.challenges} 代码题
+                      {stats.atoms} 知识点 · {stats.questions} 题 · {stats.challenges} 代码题
                     </span>
                     <span className="inline-flex items-center gap-1 text-[12px] font-medium text-paper transition group-hover:text-lime">
                       进入方向
@@ -358,7 +375,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {MODES.map((mode) => {
                 const Icon = mode.icon;
                 return (
@@ -403,7 +420,7 @@ export default function LandingPage() {
                 是留下可复用的证据。
               </h2>
               <p className="mt-5 max-w-md text-[13px] leading-7 text-muted">
-                每一次微课完成、每一道错题、每一次重做、每一轮面试回答都会进入你的记录。下一次计划会基于这些真实状态，而不是一个空白的进度条。
+                每一次知识点完成、每一道错题、每一次重做、每一轮面试回答都会进入你的记录。下一次计划会基于这些真实状态，而不是一个空白的进度条。
               </p>
               <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-amber/20 bg-amber/[0.06] px-3.5 py-2 text-[11px] text-amber">
                 <span className="h-1.5 w-1.5 rounded-full bg-amber" />
@@ -433,7 +450,7 @@ export default function LandingPage() {
                 <div className="mt-4 grid grid-cols-3 gap-3">
                   <div>
                     <p className="font-mono text-lg text-paper">12</p>
-                    <p className="mt-0.5 text-[10px] text-muted">微课完成</p>
+                    <p className="mt-0.5 text-[10px] text-muted">知识点完成</p>
                   </div>
                   <div>
                     <p className="font-mono text-lg text-paper">78%</p>
@@ -461,7 +478,7 @@ export default function LandingPage() {
                   剩下的会有路径。
                 </h2>
                 <p className="mt-4 max-w-lg text-[13px] leading-7 text-muted">
-                  注册后选择方向和等级，三十秒进入第一节微课。也可以直接用演示账号看完整闭环。
+                  注册后选择方向和等级，三十秒进入第一节知识点。也可以直接用演示账号看完整闭环。
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
@@ -485,7 +502,7 @@ export default function LandingPage() {
             移动端 / 全栈 · 初级 / 中级 / 高级
           </p>
           <p className="text-[11px] text-muted/50">
-            {totals.atoms} 微课 · {totals.questions} 题 · {totals.challenges} 代码题 · {totals.interviews} 面试题
+            {totals.atoms} 知识点 · {totals.questions} 题 · {totals.challenges} 代码题 · {totals.interviews} 面试题
           </p>
         </div>
       </footer>

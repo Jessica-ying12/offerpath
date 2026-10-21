@@ -27,6 +27,8 @@ import { requireProfile, requireUser } from "@/lib/auth";
 import { getTrack, getSkillName } from "@/lib/content";
 import { LEVEL_LABEL, LEVELS, type LevelId } from "@/lib/content/schema";
 import { getTrackPageData } from "@/lib/services/learning";
+import { getChapterMasteryMap, MASTERY_LABEL } from "@/lib/services/mastery";
+import { getDb } from "@/lib/db/client";
 import { cn, percent } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "学习路径" };
@@ -50,6 +52,7 @@ export default async function TrackPage({
       ? profile.level
       : "junior";
   const data = getTrackPageData(user.id, track.id, levelParam);
+  const masteryMap = getChapterMasteryMap(user.id, track.id, getDb());
   const Icon = track.id === "mobile" ? Smartphone : Layers;
   const levelCompleted = data.levelStats.find((item) => item.level === data.level);
   const overallPercent = percent(data.overall.completed, data.overall.total);
@@ -103,7 +106,7 @@ export default async function TrackPage({
                   active ? "text-ink-950/60" : "text-muted/50",
                 )}
               >
-                {item.completed}/{item.total} 微课
+                {item.completed}/{item.total} 知识点
               </span>
             </Link>
           );
@@ -163,6 +166,20 @@ export default async function TrackPage({
                     <span className="font-mono text-[10px] text-muted/50">
                       {completedAtoms}/3 完成
                     </span>
+                    {masteryMap.get(chapter.id) ? (
+                      <Badge
+                        tone={
+                          masteryMap.get(chapter.id)!.stage === 5
+                            ? "mint"
+                            : masteryMap.get(chapter.id)!.nextReviewAt &&
+                                masteryMap.get(chapter.id)!.nextReviewAt! <= new Date().toISOString()
+                              ? "amber"
+                              : "outline"
+                        }
+                      >
+                        {MASTERY_LABEL[masteryMap.get(chapter.id)!.stage]}
+                      </Badge>
+                    ) : null}
                     <Link
                       href={`/learn/${track.id}/${chapter.id}/${firstIncomplete.id}`}
                       className={buttonClass("secondary", "sm")}
@@ -252,9 +269,9 @@ export default async function TrackPage({
                   {data.overall.completed}
                   <span className="text-sm text-muted">/{data.overall.total}</span>
                 </p>
-                <p className="mt-1 text-[11px] text-muted">已掌握微课</p>
+                <p className="mt-1 text-[11px] text-muted">已掌握知识点</p>
                 <p className="mt-3 text-[10px] leading-4 text-muted/50">
-                  完成微课只代表学习过；通过章节练习与代码题才算真正闭环。
+                  完成知识点只代表学习过；通过章节练习与代码题才算真正闭环。
                 </p>
               </div>
             </div>

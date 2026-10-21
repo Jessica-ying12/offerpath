@@ -5,7 +5,7 @@ import { createCareerPlanForUser } from "@/lib/services/plans";
 import { MAX_JD_LENGTH } from "@/lib/constants";
 
 const schema = z.object({
-  trackId: z.enum(["mobile", "fullstack"]),
+  trackId: z.enum(["mobile", "fullstack", "backend-java", "database-mysql", "cs-ai-foundations"]),
   level: z.enum(["junior", "middle", "senior"]),
   horizonWeeks: z.union([z.literal(4), z.literal(8), z.literal(12)]),
   company: z.string().trim().max(80).optional(),

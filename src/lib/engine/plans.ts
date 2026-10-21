@@ -244,7 +244,7 @@ export function buildCareerPlan(input: CareerInput): CareerPlan {
         .filter((challenge) => chapters.some((chapter) => chapter.id === challenge.chapterId))
         .map((challenge) => challenge.id),
       interviewFocus: gapNames.slice(0, 4),
-      checkpoint: `完成 9 节微课与 3 次章节练习，章节正确率 ≥ 60%${
+      checkpoint: `完成 9 节知识点与 3 次章节练习，章节正确率 ≥ 60%${
         phaseLevel === level ? "，并完成一次同等级模拟面试" : ""
       }。`,
     };

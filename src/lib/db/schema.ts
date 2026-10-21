@@ -19,7 +19,7 @@ CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
 
 CREATE TABLE IF NOT EXISTS profiles (
   user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
+  track_id TEXT NOT NULL,
   level TEXT NOT NULL CHECK (level IN ('junior','middle','senior')),
   target_role TEXT NOT NULL DEFAULT '',
   target_company TEXT NOT NULL DEFAULT '',
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS lesson_progress (
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   atom_id TEXT NOT NULL,
   chapter_id TEXT NOT NULL,
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
+  track_id TEXT NOT NULL,
   completed_at TEXT NOT NULL,
   PRIMARY KEY (user_id, atom_id)
 );
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS quiz_attempts (
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   source_type TEXT NOT NULL CHECK (source_type IN ('chapter','mistake')),
   source_id TEXT NOT NULL,
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
+  track_id TEXT NOT NULL,
   level TEXT NOT NULL CHECK (level IN ('junior','middle','senior')),
   score INTEGER NOT NULL,
   total INTEGER NOT NULL,
@@ -58,7 +58,7 @@ CREATE INDEX IF NOT EXISTS idx_quiz_attempts_user_time ON quiz_attempts(user_id,
 CREATE TABLE IF NOT EXISTS mistakes (
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   question_id TEXT NOT NULL,
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
+  track_id TEXT NOT NULL,
   wrong_count INTEGER NOT NULL DEFAULT 1,
   last_wrong_at TEXT NOT NULL,
   resolved_at TEXT,
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS code_attempts (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   challenge_id TEXT NOT NULL,
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
-  language TEXT NOT NULL CHECK (language IN ('javascript','kotlin')),
+  track_id TEXT NOT NULL,
+  language TEXT NOT NULL CHECK (language IN ('javascript','kotlin','sql')),
   code TEXT NOT NULL,
   passed INTEGER NOT NULL,
   total INTEGER NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS plans (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   kind TEXT NOT NULL CHECK (kind IN ('sprint','career')),
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
+  track_id TEXT NOT NULL,
   level TEXT NOT NULL CHECK (level IN ('junior','middle','senior')),
   title TEXT NOT NULL,
   input_json TEXT NOT NULL,
@@ -95,7 +95,7 @@ CREATE INDEX IF NOT EXISTS idx_plans_user_time ON plans(user_id, created_at DESC
 CREATE TABLE IF NOT EXISTS interview_sessions (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  track_id TEXT NOT NULL CHECK (track_id IN ('mobile','fullstack')),
+  track_id TEXT NOT NULL,
   level TEXT NOT NULL CHECK (level IN ('junior','middle','senior')),
   mode TEXT NOT NULL CHECK (mode IN ('resume','jd','position')),
   status TEXT NOT NULL CHECK (status IN ('active','completed')),
@@ -131,6 +131,57 @@ CREATE TABLE IF NOT EXISTS activities (
   created_at TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_activities_user_time ON activities(user_id, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS chapter_mastery (
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  chapter_id TEXT NOT NULL,
+  track_id TEXT NOT NULL,
+  stage INTEGER NOT NULL DEFAULT 1 CHECK (stage BETWEEN 1 AND 5),
+  review_count INTEGER NOT NULL DEFAULT 0,
+  next_review_at TEXT,
+  last_review_at TEXT,
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, chapter_id)
+);
+CREATE INDEX IF NOT EXISTS idx_mastery_due ON chapter_mastery(user_id, next_review_at);
+
+CREATE TABLE IF NOT EXISTS review_attempts (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  chapter_id TEXT NOT NULL,
+  track_id TEXT NOT NULL,
+  level TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  total INTEGER NOT NULL,
+  details_json TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_review_attempts_user_time ON review_attempts(user_id, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS bank_attempts (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  scope_json TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  total INTEGER NOT NULL,
+  duration_seconds INTEGER NOT NULL DEFAULT 0,
+  details_json TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_bank_attempts_user_time ON bank_attempts(user_id, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS exam_attempts (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  track_id TEXT NOT NULL,
+  level TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  total INTEGER NOT NULL,
+  duration_seconds INTEGER NOT NULL DEFAULT 0,
+  details_json TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_exam_attempts_user_time ON exam_attempts(user_id, created_at DESC);
 `;
 
 export function migrate(db: Database): void {

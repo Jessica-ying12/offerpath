@@ -3,26 +3,34 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  BarChart3,
   BookOpen,
+  Boxes,
   History,
   Home,
+  ListChecks,
   MessagesSquare,
   Route,
+  RotateCcw,
   Settings2,
   Zap,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
-import { APP_NAV, MOBILE_NAV } from "@/lib/constants";
+import { APP_NAV, MOBILE_NAV, TRACK_SHORT_NAME } from "@/lib/constants";
 import type { Profile, User } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { LEVEL_LABEL } from "@/lib/content/schema";
 
 const ICONS = {
   "/dashboard": Home,
+  "/library": Boxes,
   "/learn": BookOpen,
+  "/bank": ListChecks,
+  "/review": RotateCcw,
   "/sprint": Zap,
   "/career": Route,
   "/interview": MessagesSquare,
+  "/reports": BarChart3,
   "/records": History,
 } as const;
 
@@ -41,7 +49,7 @@ export function AppShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const trackName = profile.trackId === "mobile" ? "移动端" : "全栈";
+  const trackName = TRACK_SHORT_NAME[profile.trackId] ?? profile.trackId;
   const initial = user.name.trim().slice(0, 1).toUpperCase();
 
   return (
@@ -53,7 +61,7 @@ export function AppShell({
 
         <div className="mt-9 flex items-center justify-between px-2">
           <span className="eyebrow">TRAINING DECK</span>
-          <span className="font-mono text-[10px] text-muted/50">V0.1</span>
+          <span className="font-mono text-[10px] text-muted/50">V2.0</span>
         </div>
 
         <nav className="mt-3 space-y-1" aria-label="主导航">

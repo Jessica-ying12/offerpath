@@ -52,7 +52,8 @@
         "null safety",
         "data class",
         "高阶函数"
-      ]
+      ],
+      "category": "language"
     },
     {
       "id": "android-lifecycle",
@@ -64,7 +65,8 @@
         "fragment",
         "savedstate",
         "配置变更"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "compose-ui",
@@ -76,7 +78,8 @@
         "声明式 ui",
         "重组",
         "recomposition"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "state-management",
@@ -88,7 +91,8 @@
         "udf",
         "状态管理",
         "state"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "coroutines",
@@ -101,7 +105,8 @@
         "结构化并发",
         "dispatchers",
         "flow"
-      ]
+      ],
+      "category": "language"
     },
     {
       "id": "networking",
@@ -114,7 +119,8 @@
         "拦截器",
         "弱网",
         "深链"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "local-storage",
@@ -126,7 +132,8 @@
         "本地存储",
         "数据库",
         "离线缓存"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "app-architecture",
@@ -140,7 +147,8 @@
         "依赖注入",
         "hilt",
         "koin"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "performance",
@@ -153,7 +161,8 @@
         "anr",
         "帧率",
         "leakcanary"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "testing",
@@ -165,7 +174,8 @@
         "espresso",
         "测试金字塔",
         "automation"
-      ]
+      ],
+      "category": "tool"
     },
     {
       "id": "flutter-crossplatform",
@@ -177,7 +187,8 @@
         "跨端",
         "混合开发",
         "跨平台"
-      ]
+      ],
+      "category": "mobile"
     },
     {
       "id": "release-engineering",
@@ -191,7 +202,8 @@
         "play store",
         "feature flag",
         "发布"
-      ]
+      ],
+      "category": "tool"
     }
   ],
   "chapters": [
@@ -212,10 +224,25 @@
         "q-mob-j1-kotlin-2",
         "q-mob-j1-kotlin-3",
         "q-mob-j1-kotlin-4",
-        "q-mob-j1-kotlin-5"
+        "q-mob-j1-kotlin-5",
+        "qx-mob-j1-kotlin-1",
+        "qx-mob-j1-kotlin-2"
       ],
       "codeChallengeIds": [
         "code-mob-j1-kotlin"
+      ],
+      "references": [
+        {
+          "title": "Kotlin Documentation",
+          "url": "https://kotlinlang.org/docs/home.html",
+          "publisher": "JetBrains",
+          "note": "语言、空安全、集合与高阶函数"
+        },
+        {
+          "title": "Kotlin Null Safety",
+          "url": "https://kotlinlang.org/docs/null-safety.html",
+          "publisher": "JetBrains"
+        }
       ]
     },
     {
@@ -235,10 +262,24 @@
         "q-mob-j1-android-2",
         "q-mob-j1-android-3",
         "q-mob-j1-android-4",
-        "q-mob-j1-android-5"
+        "q-mob-j1-android-5",
+        "qx-mob-j1-android-3",
+        "qx-mob-j1-android-4"
       ],
       "codeChallengeIds": [
         "code-mob-j1-android"
+      ],
+      "references": [
+        {
+          "title": "Android App Architecture",
+          "url": "https://developer.android.com/topic/architecture",
+          "publisher": "Android Developers"
+        },
+        {
+          "title": "Activity Lifecycle",
+          "url": "https://developer.android.com/guide/components/activities/activity-lifecycle",
+          "publisher": "Android Developers"
+        }
       ]
     },
     {
@@ -258,10 +299,24 @@
         "q-mob-j1-compose-2",
         "q-mob-j1-compose-3",
         "q-mob-j1-compose-4",
-        "q-mob-j1-compose-5"
+        "q-mob-j1-compose-5",
+        "qx-mob-j1-compose-5",
+        "qx-mob-j1-compose-6"
       ],
       "codeChallengeIds": [
         "code-mob-j1-compose"
+      ],
+      "references": [
+        {
+          "title": "Jetpack Compose Documentation",
+          "url": "https://developer.android.com/develop/ui/compose/documentation",
+          "publisher": "Android Developers"
+        },
+        {
+          "title": "State and Jetpack Compose",
+          "url": "https://developer.android.com/develop/ui/compose/state",
+          "publisher": "Android Developers"
+        }
       ]
     },
     {
@@ -281,10 +336,24 @@
         "q-mob-j2-coroutines-2",
         "q-mob-j2-coroutines-3",
         "q-mob-j2-coroutines-4",
-        "q-mob-j2-coroutines-5"
+        "q-mob-j2-coroutines-5",
+        "qx-mob-j2-coroutines-7",
+        "qx-mob-j2-coroutines-8"
       ],
       "codeChallengeIds": [
         "code-mob-j2-coroutines"
+      ],
+      "references": [
+        {
+          "title": "Kotlin Coroutines Guide",
+          "url": "https://kotlinlang.org/docs/coroutines-guide.html",
+          "publisher": "JetBrains"
+        },
+        {
+          "title": "Structured Concurrency",
+          "url": "https://kotlinlang.org/docs/coroutines-basics.html#structured-concurrency",
+          "publisher": "JetBrains"
+        }
       ]
     },
     {
@@ -304,10 +373,24 @@
         "q-mob-j2-data-2",
         "q-mob-j2-data-3",
         "q-mob-j2-data-4",
-        "q-mob-j2-data-5"
+        "q-mob-j2-data-5",
+        "qx-mob-j2-data-9",
+        "qx-mob-j2-data-10"
       ],
       "codeChallengeIds": [
         "code-mob-j2-data"
+      ],
+      "references": [
+        {
+          "title": "Save Data in a Local Database Using Room",
+          "url": "https://developer.android.com/training/data-storage/room",
+          "publisher": "Android Developers"
+        },
+        {
+          "title": "OkHttp Documentation",
+          "url": "https://square.github.io/okhttp/",
+          "publisher": "Square"
+        }
       ]
     },
     {
@@ -327,10 +410,24 @@
         "q-mob-j2-arch-2",
         "q-mob-j2-arch-3",
         "q-mob-j2-arch-4",
-        "q-mob-j2-arch-5"
+        "q-mob-j2-arch-5",
+        "qx-mob-j2-arch-11",
+        "qx-mob-j2-arch-12"
       ],
       "codeChallengeIds": [
         "code-mob-j2-arch"
+      ],
+      "references": [
+        {
+          "title": "Guide to App Architecture",
+          "url": "https://developer.android.com/topic/architecture",
+          "publisher": "Android Developers"
+        },
+        {
+          "title": "ViewModel Overview",
+          "url": "https://developer.android.com/topic/libraries/architecture/viewmodel",
+          "publisher": "Android Developers"
+        }
       ]
     },
     {
@@ -350,10 +447,24 @@
         "q-mob-j3-performance-2",
         "q-mob-j3-performance-3",
         "q-mob-j3-performance-4",
-        "q-mob-j3-performance-5"
+        "q-mob-j3-performance-5",
+        "qx-mob-j3-performance-13",
+        "qx-mob-j3-performance-14"
       ],
       "codeChallengeIds": [
         "code-mob-j3-performance"
+      ],
+      "references": [
+        {
+          "title": "Android Performance",
+          "url": "https://developer.android.com/topic/performance",
+          "publisher": "Android Developers"
+        },
+        {
+          "title": "Macrobenchmark",
+          "url": "https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview",
+          "publisher": "Android Developers"
+        }
       ]
     },
     {
@@ -373,10 +484,24 @@
         "q-mob-j3-cross-2",
         "q-mob-j3-cross-3",
         "q-mob-j3-cross-4",
-        "q-mob-j3-cross-5"
+        "q-mob-j3-cross-5",
+        "qx-mob-j3-cross-15",
+        "qx-mob-j3-cross-16"
       ],
       "codeChallengeIds": [
         "code-mob-j3-cross"
+      ],
+      "references": [
+        {
+          "title": "Flutter Documentation",
+          "url": "https://docs.flutter.dev/",
+          "publisher": "Google"
+        },
+        {
+          "title": "React Native Documentation",
+          "url": "https://reactnative.dev/docs/getting-started",
+          "publisher": "Meta"
+        }
       ]
     },
     {
@@ -396,10 +521,24 @@
         "q-mob-j3-system-2",
         "q-mob-j3-system-3",
         "q-mob-j3-system-4",
-        "q-mob-j3-system-5"
+        "q-mob-j3-system-5",
+        "qx-mob-j3-system-17",
+        "qx-mob-j3-system-18"
       ],
       "codeChallengeIds": [
         "code-mob-j3-system"
+      ],
+      "references": [
+        {
+          "title": "Android Background Work",
+          "url": "https://developer.android.com/develop/background-work",
+          "publisher": "Android Developers"
+        },
+        {
+          "title": "Google SRE Book",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "publisher": "Google"
+        }
       ]
     }
   ],
@@ -1934,6 +2073,366 @@
       "trackId": "mobile",
       "chapterId": "mob-j3-system",
       "level": "senior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "difficulty": 2,
+      "kind": "scenario",
+      "prompt": "一个 var 的可空变量在判空后被另一个线程修改，Kotlin 的智能转换为什么可能失效？",
+      "options": [
+        "编译器禁止一切可空变量",
+        "智能转换要求编译器能证明引用在检查后不被并发修改",
+        "只有 val 才能判空",
+        "智能转换只对字符串生效"
+      ],
+      "answerIndex": 1,
+      "explanation": "智能转换依赖编译器的稳定性证明；共享可变 var 可能在检查后被其他线程改变，编译器会拒绝转换。可先复制到局部 val 再判空。",
+      "id": "qx-mob-j1-kotlin-1",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "level": "junior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "difficulty": 3,
+      "kind": "concept",
+      "prompt": "inline 重ified 类型参数最典型的用途是？",
+      "options": [
+        "让函数自动线程安全",
+        "在运行时保留类型信息，例如获取 T::class 或做类型判断",
+        "替代所有接口",
+        "让 lambda 永远不分配内存"
+      ],
+      "answerIndex": 1,
+      "explanation": "reified 类型参数配合 inline 才能在运行时使用具体类型信息，例如 Gson 的 typeToken 或类型判断；它不自动提供线程安全。",
+      "id": "qx-mob-j1-kotlin-2",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "level": "junior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "difficulty": 2,
+      "kind": "concept",
+      "prompt": "onStop 与 onDestroy 的关键区别是？",
+      "options": [
+        "onStop 表示页面完全销毁",
+        "onStop 表示不可见但仍可能存活，onDestroy 才是实例销毁前",
+        "两者完全等价",
+        "onDestroy 只在系统回收时调用"
+      ],
+      "answerIndex": 1,
+      "explanation": "onStop 后页面不可见但仍可能回到前台；onDestroy 是实例销毁。资源清理应按需要区分释放不可见资源与终止生命周期任务。",
+      "id": "qx-mob-j1-android-3",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "level": "junior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "进程被系统回收后恢复页面，SavedStateHandle 能恢复什么？",
+      "options": [
+        "所有网络数据和大图片",
+        "轻量、可序列化的页面参数和少量关键状态",
+        "OkHttp 连接",
+        "Activity 引用"
+      ],
+      "answerIndex": 1,
+      "explanation": "SavedStateHandle 适合少量可序列化状态；大对象/网络数据应重新请求或从持久化缓存恢复，引用和连接不能保存。",
+      "id": "qx-mob-j1-android-4",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "level": "junior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "difficulty": 2,
+      "kind": "scenario",
+      "prompt": "Composable 中直接调用网络请求，最可能造成什么问题？",
+      "options": [
+        "自动缓存结果",
+        "每次重组都可能重复发起请求或产生副作用",
+        "提高 UI 帧率",
+        "自动取消旧请求"
+      ],
+      "answerIndex": 1,
+      "explanation": "Composable 可能频繁重组，直接副作用会重复执行；应放入 LaunchedEffect 并绑定 key，配合取消/清理。",
+      "id": "qx-mob-j1-compose-5",
+      "skills": [
+        "compose-ui"
+      ],
+      "level": "junior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "difficulty": 3,
+      "kind": "code",
+      "prompt": "LazyColumn 中列表项用索引作为 key，删除中间项后最可能导致？",
+      "options": [
+        "所有项自动刷新",
+        "列表项局部状态错位",
+        "Compose 编译失败",
+        "自动清空输入框"
+      ],
+      "answerIndex": 1,
+      "explanation": "索引 key 随位置变化，Compose 会复用错误的项身份，导致输入/展开等状态串位；应使用稳定业务 id。",
+      "id": "qx-mob-j1-compose-6",
+      "skills": [
+        "state-management"
+      ],
+      "level": "junior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "difficulty": 2,
+      "kind": "concept",
+      "prompt": "withTimeout 与取消协程的关系是？",
+      "options": [
+        "超时会取消被包裹的协程并抛出 TimeoutCancellationException",
+        "超时只打印日志",
+        "withTimeout 会让协程变成同步",
+        "超时后协程继续运行"
+      ],
+      "answerIndex": 0,
+      "explanation": "withTimeout 在超时后取消作用域内的协程，并抛出 TimeoutCancellationException；可按需要捕获或让取消继续传播。",
+      "id": "qx-mob-j2-coroutines-7",
+      "skills": [
+        "coroutines"
+      ],
+      "level": "middle"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "多个互不依赖的上传任务，希望一个失败不影响其他任务，应优先使用？",
+      "options": [
+        "coroutineScope",
+        "supervisorScope",
+        "GlobalScope",
+        "runBlocking"
+      ],
+      "answerIndex": 1,
+      "explanation": "supervisorScope 隔离子任务失败，兄弟任务继续；仍需保留取消传播，避免吞掉 CancellationException。",
+      "id": "qx-mob-j2-coroutines-8",
+      "skills": [
+        "coroutines"
+      ],
+      "level": "middle"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "difficulty": 2,
+      "kind": "concept",
+      "prompt": "Retrofit 接口返回非 2xx 时通常会怎样？",
+      "options": [
+        "自动抛业务异常并包含解析后的 body",
+        "返回响应对象，需检查 code/errorBody 或使用 Response<T>",
+        "自动重试",
+        "返回空字符串"
+      ],
+      "answerIndex": 1,
+      "explanation": "Retrofit 对非 2xx 默认返回 Response/HttpException，错误 body 需要显式解析；不能只看成功模型。",
+      "id": "qx-mob-j2-data-9",
+      "skills": [
+        "networking"
+      ],
+      "level": "middle"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "Room 迁移中直接使用破坏性迁移最严重的后果是？",
+      "options": [
+        "查询变慢",
+        "清空用户本地数据",
+        "无法编译 DAO",
+        "索引失效但数据保留"
+      ],
+      "answerIndex": 1,
+      "explanation": "破坏性迁移会重建数据库，用户本地数据丢失；只适合可丢弃缓存，正式业务应提供并测试 Migration。",
+      "id": "qx-mob-j2-data-10",
+      "skills": [
+        "local-storage"
+      ],
+      "level": "middle"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "difficulty": 2,
+      "kind": "concept",
+      "prompt": "StateFlow 用 stateIn(WhileSubscribed) 的主要收益是？",
+      "options": [
+        "永久保持上游运行",
+        "无订阅时释放上游，短暂后台延迟取消以减少重复请求",
+        "自动重试失败",
+        "保证不重组"
+      ],
+      "answerIndex": 1,
+      "explanation": "WhileSubscribed 按订阅者管理上游生命周期，超时参数减少旋转/短暂后台造成的重复请求；它不是重试或去重机制。",
+      "id": "qx-mob-j2-arch-11",
+      "skills": [
+        "app-architecture"
+      ],
+      "level": "middle"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "一次性跳转事件用 Boolean 状态保存，旋转屏幕后最可能？",
+      "options": [
+        "自动只触发一次",
+        "状态重放导致重复跳转",
+        "事件永久丢失",
+        "Compose 无法渲染"
+      ],
+      "answerIndex": 1,
+      "explanation": "Boolean 是持续状态，重建或重复收集时会再次触发；一次性事件应使用 Channel/SharedFlow 并确保单次消费。",
+      "id": "qx-mob-j2-arch-12",
+      "skills": [
+        "state-management"
+      ],
+      "level": "middle"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "评估启动优化时，最可信的证据组合是？",
+      "options": [
+        "一次 Debug 启动耗时",
+        "固定构建/设备、多次采样的首帧/可交互 P50/P95 + 线上真实指标",
+        "只测 CPU 温度",
+        "开发者主观感觉"
+      ],
+      "answerIndex": 1,
+      "explanation": "性能结论需要可复现基线与分位指标；Debug、单次和主观感受噪声大，线上用户指标验证外部有效性。",
+      "id": "qx-mob-j3-performance-13",
+      "skills": [
+        "performance"
+      ],
+      "level": "senior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "difficulty": 3,
+      "kind": "concept",
+      "prompt": "LeakCanary 报告 Activity 泄漏，最应该先看什么？",
+      "options": [
+        "APK 体积",
+        "从 GC Root 到 Activity 的持有链",
+        "手机壁纸",
+        "网络 DNS"
+      ],
+      "answerIndex": 1,
+      "explanation": "泄漏定位靠持有链：谁（单例/线程/静态集合/监听器）持有了 Activity；修复引用生命周期错配，而不是盲目调大内存。",
+      "id": "qx-mob-j3-performance-14",
+      "skills": [
+        "performance"
+      ],
+      "level": "senior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "difficulty": 2,
+      "kind": "scenario",
+      "prompt": "CI 中把签名文件提交到仓库的主要风险是？",
+      "options": [
+        "编译变慢",
+        "凭据泄露，任何人可伪造发布包",
+        "R8 失效",
+        "APK 变大"
+      ],
+      "answerIndex": 1,
+      "explanation": "签名私钥进入版本历史后难以彻底清除；应通过 CI Secret/密钥管理注入，发现泄露要轮换。",
+      "id": "qx-mob-j3-cross-15",
+      "skills": [
+        "release-engineering"
+      ],
+      "level": "senior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "灰度分流要保证同一用户体验稳定，分桶应基于？",
+      "options": [
+        "每次请求随机数",
+        "稳定用户/设备标识的确定性哈希",
+        "设备电量",
+        "当前 CPU"
+      ],
+      "answerIndex": 1,
+      "explanation": "确定性哈希保证同一用户始终进入相同实验组；每次随机分桶会造成体验抖动和问题难复现。",
+      "id": "qx-mob-j3-cross-16",
+      "skills": [
+        "testing"
+      ],
+      "level": "senior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "离线同步时服务端采用“版本号比较”，客户端最需要做什么？",
+      "options": [
+        "只保留最新本地数据，无需上传版本",
+        "携带读取时的版本并在 409 时拉取最新、让用户处理冲突",
+        "忽略冲突直接覆盖",
+        "关闭离线功能"
+      ],
+      "answerIndex": 1,
+      "explanation": "乐观并发需要版本/ETag；版本不匹配返回冲突，客户端拉取最新并由用户合并或重试，不能静默覆盖。",
+      "id": "qx-mob-j3-system-17",
+      "skills": [
+        "local-storage"
+      ],
+      "level": "senior"
+    },
+    {
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "difficulty": 3,
+      "kind": "scenario",
+      "prompt": "深链跳转最必要的安全措施是？",
+      "options": [
+        "信任任意 host",
+        "校验 host/路由白名单与参数格式，并处理登录态",
+        "把 token 放 URL",
+        "忽略系统权限"
+      ],
+      "answerIndex": 1,
+      "explanation": "深链来自外部，必须限制可跳转目标并校验参数；登录态缺失时保存目标后再引导登录，敏感令牌不应出现在 URL。",
+      "id": "qx-mob-j3-system-18",
+      "skills": [
+        "networking"
+      ],
+      "level": "senior"
     }
   ],
   "codeChallenges": [
@@ -2173,5 +2672,10 @@
       "level": "senior",
       "language": "kotlin"
     }
+  ],
+  "direction": "mobile",
+  "roles": [
+    "移动端开发",
+    "Android 开发"
   ]
 }

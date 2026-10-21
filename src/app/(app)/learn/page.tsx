@@ -34,7 +34,7 @@ export default async function LearnPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="CURRICULUM / 02 TRACKS"
+        eyebrow="CURRICULUM / 05 COURSES"
         title={
           <>
             小步学，
@@ -42,7 +42,7 @@ export default async function LearnPage() {
             马上练。
           </>
         }
-        description="每章只有 3 个知识点，读完立刻做 5 道题和 1 道代码题。选一个方向开始；等级随时切换。"
+        description="逐知识点精讲，不靠视频。每章学完做专项练习与代码题；技术库还可以按 Java、MySQL、React 等技术筛选。"
         actions={
           current ? (
             <Link
@@ -56,7 +56,7 @@ export default async function LearnPage() {
         }
       />
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {data.tracks.map(({ track, completed, total, percent }) => {
           const Icon = track.id === "mobile" ? Smartphone : Layers;
           const stats = getTrackStats(track);
@@ -99,7 +99,7 @@ export default async function LearnPage() {
               <div className="mt-5 grid grid-cols-3 divide-x divide-white/[0.06] rounded-xl border border-white/[0.06] bg-white/[0.015] py-3">
                 <div className="px-3 text-center">
                   <p className="font-mono text-[15px] text-paper">{stats.atoms}</p>
-                  <p className="mt-0.5 text-[10px] text-muted">微课</p>
+                  <p className="mt-0.5 text-[10px] text-muted">知识点</p>
                 </div>
                 <div className="px-3 text-center">
                   <p className="font-mono text-[15px] text-paper">{stats.questions}</p>
@@ -184,7 +184,7 @@ export default async function LearnPage() {
       <div className="mt-8 flex items-start gap-3 rounded-xl border border-white/[0.06] px-4 py-3.5">
         <Code2 className="mt-0.5 h-4 w-4 shrink-0 text-muted/50" />
         <p className="text-[11px] leading-5 text-muted/60">
-          首发开放移动端与全栈。后端、前端、数据、测试、安全方向已在路线图中规划，未上线前不提供空壳课程。
+          已开放移动端、全栈、Java 后端、MySQL 与计算机基础/AI 前沿。前端、数据、测试、安全等方向按路线图逐个立项，不提供空壳课程。
         </p>
       </div>
     </div>

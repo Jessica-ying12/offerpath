@@ -73,7 +73,7 @@ export function SprintForm({
   }
 
   return (
-    <form onSubmit={submit} className="space-y-6">
+    <form method="post" onSubmit={submit} className="space-y-6">
       <div>
         <div className="mb-2.5 flex items-center justify-between">
           <span className="text-[12px] font-medium text-muted">方向</span>
@@ -83,6 +83,9 @@ export function SprintForm({
           {[
             { id: "mobile" as const, label: "移动端开发", hint: "Android / Kotlin / 跨端" },
             { id: "fullstack" as const, label: "全栈开发", hint: "React / Node / 数据库" },
+            { id: "backend-java" as const, label: "Java 后端", hint: "Java / Spring / MySQL / Redis" },
+            { id: "database-mysql" as const, label: "MySQL 数据库", hint: "建模 / 索引 / 事务 / 高可用" },
+            { id: "cs-ai-foundations" as const, label: "CS / AI 前沿", hint: "HTTP / OS / LLM 工程" },
           ].map((item) => (
             <button
               key={item.id}

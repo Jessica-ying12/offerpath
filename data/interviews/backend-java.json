@@ -1,0 +1,1184 @@
+{
+  "trackId": "backend-java",
+  "questions": [
+    {
+      "id": "iv-backend-junior-1",
+      "level": "junior",
+      "skills": [
+        "java-core"
+      ],
+      "kind": "knowledge",
+      "prompt": "线上订单金额比较出现“有时相等有时不等”，你怀疑 Integer 比较。请解释原因并给出正确写法。",
+      "modelAnswer": "Integer 是包装对象，== 比较引用。Integer 对 -128..127 有缓存，所以小数字可能指向同一对象；超出范围就是不同对象。比较金额值应使用 equals 或 Objects.equals，空值先处理；更好的做法是用 long 分值或 BigDecimal 并统一精度。",
+      "keyPoints": [
+        {
+          "label": "引用比较与值比较",
+          "aliases": [
+            "== 引用",
+            "引用比较",
+            "equals",
+            "值比较"
+          ]
+        },
+        {
+          "label": "Integer 缓存范围",
+          "aliases": [
+            "-128",
+            "127",
+            "缓存",
+            "Integer cache"
+          ]
+        },
+        {
+          "label": "空值与金额表示",
+          "aliases": [
+            "null",
+            "Objects.equals",
+            "BigDecimal",
+            "long 分值"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果金额来自外部 JSON 字符串，你会怎么保证比较和存储都正确？",
+          "modelAnswer": "在边界把字符串解析为 BigDecimal 或整数分，校验精度与币种，统一数据库 DECIMAL/整数存储；比较使用 compareTo 而不是 equals 判断数值相等。",
+          "keyPoints": [
+            {
+              "label": "边界解析与校验",
+              "aliases": [
+                "解析",
+                "校验",
+                "边界"
+              ]
+            },
+            {
+              "label": "统一金额类型",
+              "aliases": [
+                "BigDecimal",
+                "整数分",
+                "DECIMAL"
+              ]
+            },
+            {
+              "label": "compareTo 比较",
+              "aliases": [
+                "compareTo",
+                "数值相等"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用 == 比较包装类型",
+        "用 double 存金额"
+      ]
+    },
+    {
+      "id": "iv-backend-junior-2",
+      "level": "junior",
+      "skills": [
+        "sql-database",
+        "mysql-performance"
+      ],
+      "kind": "knowledge",
+      "prompt": "订单表查询按 user_id 过滤、按 created_at 倒序取 20 条很慢。你会如何设计索引并验证？",
+      "modelAnswer": "先看 EXPLAIN 是否全表扫描、回表或 filesort。高频查询是 user_id 等值加 created_at 排序，我会建立联合索引 (user_id, created_at)，让过滤和排序共同命中，必要时覆盖查询列。索引会增加写入成本，所以先用真实数据验证 rows 与执行计划，再决定是否需要。",
+      "keyPoints": [
+        {
+          "label": "执行计划定位",
+          "aliases": [
+            "EXPLAIN",
+            "执行计划",
+            "全表扫描",
+            "filesort"
+          ]
+        },
+        {
+          "label": "联合索引顺序",
+          "aliases": [
+            "联合索引",
+            "user_id",
+            "created_at",
+            "最左前缀"
+          ]
+        },
+        {
+          "label": "覆盖与写入成本",
+          "aliases": [
+            "覆盖索引",
+            "回表",
+            "写入成本",
+            "索引数量"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果还有按 status 过滤、按 created_at 排序的查询，你会直接再加一个索引吗？",
+          "modelAnswer": "不会直接加。先看这类查询频率、选择性与其他查询的复用；可能建 (status, created_at) 或调整联合索引，但每个索引都有写入成本，必须用真实数据与执行计划验证收益。",
+          "keyPoints": [
+            {
+              "label": "查询频率与选择性",
+              "aliases": [
+                "频率",
+                "选择性",
+                "数据分布"
+              ]
+            },
+            {
+              "label": "索引复用与成本",
+              "aliases": [
+                "复用",
+                "写入成本",
+                "索引数量"
+              ]
+            },
+            {
+              "label": "执行计划验证",
+              "aliases": [
+                "EXPLAIN",
+                "验证",
+                "真实数据"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "给每个字段单独建索引",
+        "在索引列上套函数"
+      ]
+    },
+    {
+      "id": "iv-backend-junior-3",
+      "level": "junior",
+      "skills": [
+        "spring-boot",
+        "http-api"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个创建订单接口收到缺字段的请求，现在返回 200 + success:false，前端和监控经常误判。你会怎么改？",
+      "modelAnswer": "把协议错误与业务失败区分：参数校验失败返回 400，并在响应中给字段级错误；未登录 401，无权限 403，冲突 409，限流 429，服务端错误 5xx。错误体包含稳定错误码、可读消息、requestId，不返回堆栈。写接口增加幂等键，避免重复提交。",
+      "keyPoints": [
+        {
+          "label": "正确 HTTP 状态码",
+          "aliases": [
+            "400",
+            "401",
+            "403",
+            "409",
+            "状态码"
+          ]
+        },
+        {
+          "label": "字段校验错误",
+          "aliases": [
+            "字段",
+            "校验",
+            "参数",
+            "错误信息"
+          ]
+        },
+        {
+          "label": "错误契约与 requestId",
+          "aliases": [
+            "错误码",
+            "requestId",
+            "不泄露堆栈"
+          ]
+        },
+        {
+          "label": "幂等与重复提交",
+          "aliases": [
+            "幂等",
+            "重复提交",
+            "唯一约束"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "客户端如何判断这个错误能不能自动重试？",
+          "modelAnswer": "响应里应有明确的 retryable 或错误码语义，区分限流/瞬时 5xx 与参数/权限错误；写请求还必须带幂等键，重试才不会产生重复订单。",
+          "keyPoints": [
+            {
+              "label": "可重试语义",
+              "aliases": [
+                "retryable",
+                "可重试",
+                "瞬时错误"
+              ]
+            },
+            {
+              "label": "幂等键设计",
+              "aliases": [
+                "幂等键",
+                "idempotency",
+                "去重"
+              ]
+            },
+            {
+              "label": "错误分类",
+              "aliases": [
+                "4xx",
+                "5xx",
+                "429"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "所有响应都是 200",
+        "把异常堆栈返回客户端"
+      ]
+    },
+    {
+      "id": "iv-backend-junior-4",
+      "level": "junior",
+      "skills": [
+        "java-core"
+      ],
+      "kind": "knowledge",
+      "prompt": "为什么 Spring 推荐构造器注入？单例 Bean 中保存当前用户字段会有什么问题？",
+      "modelAnswer": "构造器注入让依赖必需、可设为 final、测试可直接传 Fake，依赖关系显式。Spring MVC Controller 默认单例，字段被所有请求共享，保存当前用户会在并发请求间串扰甚至泄露数据。当前用户应通过方法参数、安全上下文或请求作用域获取。",
+      "keyPoints": [
+        {
+          "label": "构造器注入优点",
+          "aliases": [
+            "构造器注入",
+            "final",
+            "可测试",
+            "显式依赖"
+          ]
+        },
+        {
+          "label": "单例与并发请求",
+          "aliases": [
+            "单例",
+            "共享",
+            "并发",
+            "串扰"
+          ]
+        },
+        {
+          "label": "请求作用域状态",
+          "aliases": [
+            "安全上下文",
+            "方法参数",
+            "请求作用域",
+            "ThreadLocal"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果确实需要请求级状态，你会如何实现而不是把 Controller 改成多例？",
+          "modelAnswer": "使用请求作用域 Bean 或从安全上下文/方法参数读取，并在请求结束清理；把 Controller 改多例并不能解决所有下游单例共享状态的问题，也会带来额外对象创建。",
+          "keyPoints": [
+            {
+              "label": "请求作用域 Bean",
+              "aliases": [
+                "RequestScope",
+                "请求作用域"
+              ]
+            },
+            {
+              "label": "上下文读取与清理",
+              "aliases": [
+                "安全上下文",
+                "清理",
+                "ThreadLocal"
+              ]
+            },
+            {
+              "label": "不滥用多例",
+              "aliases": [
+                "多例",
+                "单例",
+                "对象创建"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "在单例中保存用户请求数据",
+        "字段注入隐藏依赖"
+      ]
+    },
+    {
+      "id": "iv-backend-junior-5",
+      "level": "junior",
+      "skills": [
+        "mysql",
+        "sql-database"
+      ],
+      "kind": "knowledge",
+      "prompt": "订单表用邮箱做主键有什么问题？你会怎样设计主键和业务唯一键？",
+      "modelAnswer": "邮箱是可变业务字段，做主键会让外键、索引和历史引用都随修改变化。我会用稳定、短、无业务含义的主键（自增或雪花 ID），把邮箱作为唯一约束表达业务唯一性；订单号同理，另建唯一索引。",
+      "keyPoints": [
+        {
+          "label": "主键稳定且无业务含义",
+          "aliases": [
+            "主键稳定",
+            "无业务含义",
+            "雪花",
+            "自增"
+          ]
+        },
+        {
+          "label": "业务唯一约束",
+          "aliases": [
+            "唯一约束",
+            "唯一索引",
+            "订单号",
+            "邮箱"
+          ]
+        },
+        {
+          "label": "变更牵连",
+          "aliases": [
+            "外键",
+            "索引",
+            "历史引用",
+            "迁移成本"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "唯一约束能替代应用层的“先查再插”吗？",
+          "modelAnswer": "可以在并发下兜底重复数据：先查再插存在竞态，唯一约束由数据库原子保证。但应用仍需要处理冲突错误并返回友好结果，不能只依赖捕获数据库异常。",
+          "keyPoints": [
+            {
+              "label": "并发竞态",
+              "aliases": [
+                "竞态",
+                "先查再插",
+                "并发"
+              ]
+            },
+            {
+              "label": "数据库兜底",
+              "aliases": [
+                "唯一约束",
+                "原子",
+                "兜底"
+              ]
+            },
+            {
+              "label": "冲突处理",
+              "aliases": [
+                "冲突",
+                "错误",
+                "友好"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用可变邮箱做主键",
+        "仅应用层查重"
+      ]
+    },
+    {
+      "id": "iv-backend-middle-1",
+      "level": "middle",
+      "skills": [
+        "spring-boot",
+        "mysql"
+      ],
+      "kind": "knowledge",
+      "prompt": "同类中一个方法调用本类的 @Transactional 方法，事务经常没生效。请解释并给出修复方案。",
+      "modelAnswer": "Spring 事务基于 AOP 代理，同类自调用不经过代理，所以注解不会被拦截。可以把事务方法拆到另一个 Bean，或通过代理对象调用；同时确认方法是 public、异常类型触发回滚、事务管理器配置正确。更好的设计是把事务边界放在业务服务入口，避免依赖隐式代理。",
+      "keyPoints": [
+        {
+          "label": "AOP 代理与自调用",
+          "aliases": [
+            "代理",
+            "自调用",
+            "AOP",
+            "不经过"
+          ]
+        },
+        {
+          "label": "拆 Bean 或代理调用",
+          "aliases": [
+            "拆 Bean",
+            "代理对象",
+            "注入自身"
+          ]
+        },
+        {
+          "label": "回滚规则与入口边界",
+          "aliases": [
+            "RuntimeException",
+            "rollbackFor",
+            "事务边界",
+            "public"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "把方法改成 public 或加 rollbackFor 能解决自调用失效吗？",
+          "modelAnswer": "不能。自调用的根因是绕过代理，公共方法和回滚配置解决的是另外两类问题。应拆 Bean/通过代理调用，并单独校准回滚异常类型。",
+          "keyPoints": [
+            {
+              "label": "根因是绕过代理",
+              "aliases": [
+                "绕过代理",
+                "自调用",
+                "根因"
+              ]
+            },
+            {
+              "label": "公共方法限制",
+              "aliases": [
+                "public",
+                "方法可见性"
+              ]
+            },
+            {
+              "label": "回滚类型独立配置",
+              "aliases": [
+                "rollbackFor",
+                "回滚类型"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "以为事务注解在同类调用也生效",
+        "只调大隔离级别"
+      ]
+    },
+    {
+      "id": "iv-backend-middle-2",
+      "level": "middle",
+      "skills": [
+        "jvm-concurrency"
+      ],
+      "kind": "knowledge",
+      "prompt": "订单服务用了固定线程池 + 无界队列，下游变慢后内存持续上涨。你会如何定位和修复？",
+      "modelAnswer": "无界队列让任务无限积压，最大线程数基本失效，最终可能 OOM 或延迟无限增长。我会看活跃线程、队列深度、任务耗时与下游延迟，改为有界队列、合理核心/最大线程、超时、拒绝策略和监控；不同下游用隔离线程池，并对入口限流。",
+      "keyPoints": [
+        {
+          "label": "无界队列风险",
+          "aliases": [
+            "无界队列",
+            "积压",
+            "最大线程",
+            "OOM"
+          ]
+        },
+        {
+          "label": "有界队列与线程参数",
+          "aliases": [
+            "有界队列",
+            "核心线程",
+            "最大线程",
+            "拒绝策略"
+          ]
+        },
+        {
+          "label": "隔离、超时与监控",
+          "aliases": [
+            "隔离",
+            "超时",
+            "队列深度",
+            "线程池监控"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "拒绝策略选 CallerRuns 有什么利弊？",
+          "modelAnswer": "CallerRuns 让提交任务的线程自己执行，能形成反压、避免任务丢失，但会阻塞调用方（可能是 Web 线程），拉高整体延迟；要结合业务可接受度和限流一起用。",
+          "keyPoints": [
+            {
+              "label": "反压与不丢任务",
+              "aliases": [
+                "反压",
+                "调用方执行",
+                "不丢"
+              ]
+            },
+            {
+              "label": "阻塞调用方",
+              "aliases": [
+                "阻塞",
+                "延迟",
+                "Web 线程"
+              ]
+            },
+            {
+              "label": "配合限流",
+              "aliases": [
+                "限流",
+                "容量",
+                "监控"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "无界队列",
+        "所有业务共用线程池"
+      ]
+    },
+    {
+      "id": "iv-backend-middle-3",
+      "level": "middle",
+      "skills": [
+        "mysql",
+        "sql-database"
+      ],
+      "kind": "knowledge",
+      "prompt": "InnoDB 的 MVCC 与 SELECT ... FOR UPDATE 有什么区别？高并发扣库存应该用哪种？",
+      "modelAnswer": "MVCC 通过版本链和快照实现一致性读，普通 SELECT 通常不加锁；FOR UPDATE 是当前读并加锁，能看到最新提交并阻塞冲突写。扣库存更重要的是用条件更新 WHERE stock >= ? 并检查影响行数，把检查与扣减原子化；必要时在短事务里配合行锁，避免长事务和外部调用。",
+      "keyPoints": [
+        {
+          "label": "快照读与当前读",
+          "aliases": [
+            "快照读",
+            "当前读",
+            "MVCC",
+            "FOR UPDATE"
+          ]
+        },
+        {
+          "label": "条件更新防止超卖",
+          "aliases": [
+            "条件更新",
+            "stock >= ?",
+            "影响行数"
+          ]
+        },
+        {
+          "label": "短事务与锁边界",
+          "aliases": [
+            "短事务",
+            "行锁",
+            "外部调用"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "条件更新影响行数为 0，一定是库存不足吗？",
+          "modelAnswer": "不一定，也可能是 id 不存在或并发下已被其他事务更新。要区分业务语义并决定重试/返回；高并发扣减还可以配合重试策略与库存预占，但必须幂等。",
+          "keyPoints": [
+            {
+              "label": "影响行数多种含义",
+              "aliases": [
+                "影响行数",
+                "id 不存在",
+                "并发"
+              ]
+            },
+            {
+              "label": "幂等重试",
+              "aliases": [
+                "幂等",
+                "重试",
+                "预占"
+              ]
+            },
+            {
+              "label": "业务语义区分",
+              "aliases": [
+                "库存不足",
+                "业务",
+                "区分"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "先查库存再更新",
+        "长事务中调用远程服务"
+      ]
+    },
+    {
+      "id": "iv-backend-middle-4",
+      "level": "middle",
+      "skills": [
+        "redis",
+        "mysql"
+      ],
+      "kind": "knowledge",
+      "prompt": "商品详情采用 cache-aside，更新商品后偶尔仍看到旧价格。你会如何排查和修复？",
+      "modelAnswer": "先确认更新顺序和缓存失效是否成功：通常先更新数据库再删缓存，删除失败会留下旧缓存；并发读写也可能把旧值回填。修复上给缓存加版本/TTL，删除失败重试或投递补偿，热点键用互斥重建；价格等敏感字段定义可接受新鲜度，必要时读主库。",
+      "keyPoints": [
+        {
+          "label": "更新顺序与删除失败",
+          "aliases": [
+            "先更新数据库",
+            "删缓存",
+            "删除失败",
+            "补偿"
+          ]
+        },
+        {
+          "label": "并发回填与版本",
+          "aliases": [
+            "并发",
+            "回填",
+            "版本",
+            "TTL"
+          ]
+        },
+        {
+          "label": "按业务定义新鲜度",
+          "aliases": [
+            "新鲜度",
+            "一致性",
+            "价格",
+            "读主库"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "为什么“先删缓存再写数据库”可能放大旧值回填？",
+          "modelAnswer": "删除后、数据库写入完成前，读请求可能回源读到旧库值并回填；写完成后缓存里就是旧值。先写库再删缓存缩短窗口，但仍要处理删除失败与并发，复杂场景用版本/消息补偿。",
+          "keyPoints": [
+            {
+              "label": "旧值回填窗口",
+              "aliases": [
+                "旧值",
+                "回填",
+                "窗口"
+              ]
+            },
+            {
+              "label": "先写库再删缓存",
+              "aliases": [
+                "先写库",
+                "删缓存",
+                "顺序"
+              ]
+            },
+            {
+              "label": "版本与补偿",
+              "aliases": [
+                "版本",
+                "消息",
+                "补偿"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "缓存更新与数据库双写无失效方案",
+        "所有商品一律强一致读主库"
+      ]
+    },
+    {
+      "id": "iv-backend-middle-5",
+      "level": "middle",
+      "skills": [
+        "distributed-systems",
+        "mysql"
+      ],
+      "kind": "knowledge",
+      "prompt": "订单写库成功后调用消息队列失败，下游永远收不到订单创建事件。你会如何保证可靠发布？",
+      "modelAnswer": "不要把数据库写和消息发送当成两个独立成功。用 outbox 表把业务数据和待发送事件放在同一本地事务，再由独立发布器读取未发送事件、发送成功后标记；失败可安全重试，消费者按事件 id/业务键幂等。事务消息也是同类目标，但要符合中间件能力。",
+      "keyPoints": [
+        {
+          "label": "本地事务 + outbox",
+          "aliases": [
+            "outbox",
+            "本地事务",
+            "同一事务"
+          ]
+        },
+        {
+          "label": "独立发布与重试",
+          "aliases": [
+            "发布器",
+            "重试",
+            "published_at"
+          ]
+        },
+        {
+          "label": "消费者幂等",
+          "aliases": [
+            "幂等",
+            "事件 id",
+            "业务键"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果 outbox 发布器重复发送同一条事件，系统还能保证正确吗？",
+          "modelAnswer": "可以，只要消费者按事件 id 或业务幂等键去重，并让业务状态机只允许合法迁移；重复发送是至少一次投递的常态，不能依赖“只发一次”。",
+          "keyPoints": [
+            {
+              "label": "至少一次投递",
+              "aliases": [
+                "至少一次",
+                "重复",
+                "投递"
+              ]
+            },
+            {
+              "label": "消费去重",
+              "aliases": [
+                "事件 id",
+                "幂等键",
+                "去重"
+              ]
+            },
+            {
+              "label": "状态机约束",
+              "aliases": [
+                "状态机",
+                "合法迁移"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "写库后裸发消息",
+        "消费者不做幂等"
+      ]
+    },
+    {
+      "id": "iv-backend-senior-1",
+      "level": "senior",
+      "skills": [
+        "redis",
+        "distributed-systems"
+      ],
+      "kind": "knowledge",
+      "prompt": "设计一个 Redis 分布式锁：如何安全获取、释放，任务超时或网络分区怎么办？",
+      "modelAnswer": "用 SET key token NX PX 获取锁，token 唯一；释放时用 Lua 比较 token 再删，避免误删他人锁。锁有租约，长任务需续期或缩短临界区；网络分区下 Redis 锁不能保证强互斥，关键业务要配合 fencing token、数据库约束或幂等状态机。锁只用于协调，不替代一致性设计。",
+      "keyPoints": [
+        {
+          "label": "NX/PX 与唯一 token",
+          "aliases": [
+            "SET NX",
+            "PX",
+            "token",
+            "唯一"
+          ]
+        },
+        {
+          "label": "Lua 比较后释放",
+          "aliases": [
+            "Lua",
+            "比较",
+            "释放",
+            "误删"
+          ]
+        },
+        {
+          "label": "租约、续期与 fencing",
+          "aliases": [
+            "租约",
+            "续期",
+            "fencing",
+            "网络分区"
+          ]
+        },
+        {
+          "label": "锁不替代一致性",
+          "aliases": [
+            "幂等",
+            "唯一约束",
+            "状态机"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "锁过期后任务仍在执行，如何避免它对共享资源的写冲突？",
+          "modelAnswer": "缩短临界区或续期只能降低概率；更强做法是给资源写操作带 fencing token/版本，数据库只接受更高版本，或把关键写交给带唯一约束的存储，保证旧持有者无法覆盖新状态。",
+          "keyPoints": [
+            {
+              "label": "fencing token/版本",
+              "aliases": [
+                "fencing",
+                "版本",
+                "单调递增"
+              ]
+            },
+            {
+              "label": "存储层约束",
+              "aliases": [
+                "唯一约束",
+                "数据库",
+                "版本条件"
+              ]
+            },
+            {
+              "label": "缩短临界区",
+              "aliases": [
+                "缩短",
+                "续期",
+                "降低概率"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "DEL 释放不校验 token",
+        "认为锁能保证网络分区下强一致"
+      ]
+    },
+    {
+      "id": "iv-backend-senior-2",
+      "level": "senior",
+      "skills": [
+        "distributed-systems",
+        "mysql"
+      ],
+      "kind": "knowledge",
+      "prompt": "如何设计一个支付回调接口，保证重复回调、并发回调和下游失败时都不会重复发货？",
+      "modelAnswer": "以支付平台交易号/业务幂等键建唯一约束；状态机只允许未支付到已支付等合法迁移，用条件更新或行锁保证只推进一次。回调快速确认、发货异步处理，异步任务持久化状态、可重试、有死信和补偿；重复请求返回已处理结果，所有操作可审计。",
+      "keyPoints": [
+        {
+          "label": "幂等键与唯一约束",
+          "aliases": [
+            "幂等键",
+            "交易号",
+            "唯一约束"
+          ]
+        },
+        {
+          "label": "状态机与条件更新",
+          "aliases": [
+            "状态机",
+            "条件更新",
+            "只推进一次"
+          ]
+        },
+        {
+          "label": "异步发货与补偿",
+          "aliases": [
+            "异步",
+            "持久化",
+            "重试",
+            "死信"
+          ]
+        },
+        {
+          "label": "审计与用户可见",
+          "aliases": [
+            "审计",
+            "状态",
+            "用户"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "快速返回成功但异步发货失败，用户会看到什么风险？如何设计？",
+          "modelAnswer": "用户可能看到已支付但迟迟未发货。发货任务要有持久化状态、退避重试、死信与人工补偿，并把处理中/失败暴露在订单状态；对超时任务告警与对账，保证最终一致。",
+          "keyPoints": [
+            {
+              "label": "持久化任务状态",
+              "aliases": [
+                "持久化",
+                "任务状态",
+                "队列"
+              ]
+            },
+            {
+              "label": "重试与死信补偿",
+              "aliases": [
+                "退避",
+                "死信",
+                "人工",
+                "补偿"
+              ]
+            },
+            {
+              "label": "用户可见与告警",
+              "aliases": [
+                "用户",
+                "状态",
+                "告警"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "按回调次数防抖",
+        "重复回调继续推进状态"
+      ]
+    },
+    {
+      "id": "iv-backend-senior-3",
+      "level": "senior",
+      "skills": [
+        "redis",
+        "system-design"
+      ],
+      "kind": "knowledge",
+      "prompt": "大促商品详情出现缓存击穿和雪崩，数据库被打满。你会如何设计缓存防线并保证价格一致性？",
+      "modelAnswer": "先区分穿透、击穿和雪崩：不存在的数据空值缓存/布隆，热点键互斥重建，统一 TTL 加抖动并限流、保留降级。数据库是事实源，更新后删缓存并做失败补偿；价格/库存定义新鲜度，必要时读主库或缩短 TTL。用命中率、回源 QPS、P95 和数据库饱和度验证。",
+      "keyPoints": [
+        {
+          "label": "穿透/击穿/雪崩",
+          "aliases": [
+            "穿透",
+            "击穿",
+            "雪崩",
+            "空值"
+          ]
+        },
+        {
+          "label": "互斥重建与 TTL 抖动",
+          "aliases": [
+            "singleflight",
+            "互斥",
+            "抖动",
+            "TTL"
+          ]
+        },
+        {
+          "label": "事实源与失效补偿",
+          "aliases": [
+            "事实源",
+            "删缓存",
+            "补偿",
+            "一致性"
+          ]
+        },
+        {
+          "label": "指标验证",
+          "aliases": [
+            "命中率",
+            "P95",
+            "回源",
+            "饱和度"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "价格强一致要求下，缓存方案应如何收缩？",
+          "modelAnswer": "对价格这类强一致字段减少缓存或仅缓存极短时间，读时校验版本/时间戳；写路径用事务和条件更新，读路径可直接主库或使用带版本的短缓存。不要用一个通用缓存策略覆盖所有字段。",
+          "keyPoints": [
+            {
+              "label": "强一致字段收缩",
+              "aliases": [
+                "强一致",
+                "短缓存",
+                "主库",
+                "价格"
+              ]
+            },
+            {
+              "label": "版本/时间戳校验",
+              "aliases": [
+                "版本",
+                "时间戳",
+                "校验"
+              ]
+            },
+            {
+              "label": "按字段差异化",
+              "aliases": [
+                "字段",
+                "差异",
+                "策略"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "统一 TTL",
+        "缓存失效无并发保护"
+      ]
+    },
+    {
+      "id": "iv-backend-senior-4",
+      "level": "senior",
+      "skills": [
+        "distributed-systems",
+        "system-design"
+      ],
+      "kind": "knowledge",
+      "prompt": "设计一个日百万订单的秒杀/下单系统，你会从哪些约束开始？关键取舍是什么？",
+      "modelAnswer": "先澄清峰值 QPS、库存一致性、超卖容忍度、延迟目标和预算。前端限流/静态化，网关鉴权与防刷；库存预占用 Redis 原子扣减或数据库条件更新，订单创建异步落库，消息削峰；接口幂等，失败补偿。容量按峰值与下游配额估算，设置限流、降级和可观测指标。当前阶段先单库+缓存，分片按真实增长演进。",
+      "keyPoints": [
+        {
+          "label": "需求与容量约束",
+          "aliases": [
+            "峰值",
+            "QPS",
+            "延迟",
+            "库存",
+            "容量"
+          ]
+        },
+        {
+          "label": "限流、防刷与静态化",
+          "aliases": [
+            "限流",
+            "防刷",
+            "缓存",
+            "静态化"
+          ]
+        },
+        {
+          "label": "库存原子与幂等",
+          "aliases": [
+            "原子扣减",
+            "幂等",
+            "条件更新",
+            "预占"
+          ]
+        },
+        {
+          "label": "削峰、补偿与指标",
+          "aliases": [
+            "消息队列",
+            "异步",
+            "补偿",
+            "监控"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "库存放在 Redis 后如何避免缓存与数据库长期不一致？",
+          "modelAnswer": "Redis 只做预占/限流等短期决策，最终库存以数据库为准；通过异步落库、对账/补偿修正差异，并记录操作流水。强一致库存则直接在数据库条件更新，牺牲一部分吞吐换正确性。",
+          "keyPoints": [
+            {
+              "label": "Redis 预占与数据库事实源",
+              "aliases": [
+                "预占",
+                "数据库",
+                "事实源"
+              ]
+            },
+            {
+              "label": "对账与补偿",
+              "aliases": [
+                "对账",
+                "补偿",
+                "差异"
+              ]
+            },
+            {
+              "label": "强一致取舍",
+              "aliases": [
+                "强一致",
+                "条件更新",
+                "吞吐"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "一上来画微服务分片",
+        "没有容量估算与降级"
+      ]
+    },
+    {
+      "id": "iv-backend-senior-5",
+      "level": "senior",
+      "skills": [
+        "observability",
+        "system-design"
+      ],
+      "kind": "knowledge",
+      "prompt": "线上发布后 P99 变高但 CPU 正常，你会如何定位并决定是否回滚？",
+      "modelAnswer": "先看用户信号：错误率、P95/P99、核心业务成功率和队列/连接池饱和度，再按版本、实例、接口、下游拆分。用 trace 串联请求，找最慢 span；日志带 requestId，检查连接池等待、GC 停顿、锁竞争或下游变慢。若影响用户且无快速旁路，关闭开关/回滚；否则小流量修复并用指标验证。",
+      "keyPoints": [
+        {
+          "label": "用户分位信号",
+          "aliases": [
+            "P99",
+            "错误率",
+            "成功率",
+            "分位"
+          ]
+        },
+        {
+          "label": "按维度拆分",
+          "aliases": [
+            "版本",
+            "实例",
+            "接口",
+            "下游"
+          ]
+        },
+        {
+          "label": "trace/日志/连接池",
+          "aliases": [
+            "trace",
+            "requestId",
+            "连接池",
+            "GC"
+          ]
+        },
+        {
+          "label": "开关/回滚决策",
+          "aliases": [
+            "开关",
+            "回滚",
+            "降级",
+            "验证"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "CPU 正常是否说明不是应用问题？",
+          "modelAnswer": "不能。应用可能在等下游、等锁、等连接池，CPU 空闲但延迟很高；要结合饱和度、等待时间、trace 与下游指标判断，而不是只看 CPU。",
+          "keyPoints": [
+            {
+              "label": "等待型瓶颈",
+              "aliases": [
+                "下游",
+                "锁",
+                "连接池",
+                "等待"
+              ]
+            },
+            {
+              "label": "饱和度与长时间分析",
+              "aliases": [
+                "饱和度",
+                "等待时间",
+                "trace"
+              ]
+            },
+            {
+              "label": "不能只看 CPU",
+              "aliases": [
+                "CPU",
+                "只看",
+                "误判"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "CPU 正常就不处理",
+        "所有发布都直接全量回滚或死撑"
+      ]
+    }
+  ]
+}

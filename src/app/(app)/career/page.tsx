@@ -111,7 +111,7 @@ export default async function CareerPage() {
             <div className="mt-3 space-y-3">
               {[
                 ["按等级铺地基", "目标中级也会覆盖初级核心；目标高级则补中高级断层。"],
-                ["每阶段有验收", "微课、章节练习、代码题和同等级模拟面试都有明确完成线。"],
+                ["每阶段有验收", "知识点、章节练习、代码题和同等级模拟面试都有明确完成线。"],
                 ["用 JD 校准", "有 JD 时优先覆盖要求技能，避免路线偏离真实岗位。"],
               ].map(([title, copy], index) => (
                 <div key={title} className="flex gap-2.5">
