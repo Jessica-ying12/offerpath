@@ -2,7 +2,12 @@
 
 - 状态：blocked（等待 GitHub 授权）
 - 依赖：REQ-009
-- 阻塞事实：当前 `gh auth status` 未登录；本工作区 `.git/config` 无 remote，尚未推送。本地分支将统一为 `main`
+- 阻塞事实：当前 `gh auth status` 未登录；本工作区 `.git/config` 无 remote，尚未推送。本地分支已改为 `main`
+- 环境事实（2026-10-21 实测）：
+  - `GH_TOKEN` / `GITHUB_TOKEN` 均为空；`~/.ssh` 无私钥，`ssh -T git@github.com` 返回 `Permission denied (publickey)`。
+  - 未认证调用 `POST https://api.github.com/user/repos` 返回 401，无法创建仓库。
+  - 当前网络下 `https://github.com` 与 `github.com:443` 超时；`api.github.com:443` 与 `github.com:22` 可达。即使获得令牌，HTTPS 推送仍可能受网络限制，需按实际网络选择 HTTPS 代理或配置 SSH key。
+  - 因此 GitHub 公开发布无法在缺少一次性用户授权/网络放行的情况下自动完成；不得声称已上传。
 
 ## 背景
 
@@ -33,6 +38,14 @@ npm run content:validate && npm run typecheck && npm test && npm run build
 gh repo create offerpath --public --source=. --remote=origin --push
 gh repo view --web                     # 确认公开描述与 README
 ```
+
+### 恢复步骤（需要用户完成一次）
+
+1. 在可访问 `github.com` 的终端执行 `gh auth login`（选择 GitHub.com + HTTPS/SSH），或用具备 `repo` 权限的 `GH_TOKEN` 环境变量注入；不要把令牌粘贴到聊天或提交到仓库。
+2. 若 HTTPS 仍被网络阻断：配置 SSH key 并 `ssh -T git@github.com` 验证，再将 remote 改为 `git@github.com:<username>/offerpath.git`。
+3. 执行上面的 `gh repo create ... --push`，然后重新跑 `npm ci && npm run content:validate && npm test && npm run build` 做克隆验收。
+
+本仓库已具备 12 个按需求拆分的本地提交和干净工作区；只差远程创建与推送这一外部动作。
 
 - 仓库描述建议：`职跃 OfferPath — 面向程序员的求职与技能进阶平台（MVP）`；若 `offerpath` 被占用，用 `offerpath-platform`。手动建 remote 时用 `git remote add origin https://github.com/<user>/offerpath.git`，再 `git push -u origin master`（或改名后的 `main`）。
 - 推送后从临时目录 `git clone`，执行 `npm ci`、`npm run content:validate`、`npm run typecheck`、`npm test`、`npm run seed`、`npm run dev`，确认克隆可用。
