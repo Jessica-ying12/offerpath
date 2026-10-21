@@ -20,7 +20,7 @@
 | [REQ-013](REQ-013-question-bank-and-exam.md) | 题库扩容、筛选练习与模拟笔试 | done | 210 题、筛选练习、限时笔试 |
 | [REQ-014](REQ-014-mastery-and-spaced-review.md) | 掌握度、周期复习与学习报告 | done | 掌握判定、D+1/D+3/D+7、报告 |
 | [REQ-015](REQ-015-public-deployment.md) | 公网可访问与生产运行 | done | Docker、部署文档、临时公网预览 |
-| [REQ-016](REQ-016-v2-qa-release.md) | v2 质量验收与发布 | in-progress | 全量测试、浏览器走查、增量提交 |
+| [REQ-016](REQ-016-v2-qa-release.md) | v2 质量验收与发布 | done | 全量测试、浏览器走查、增量提交 |
 
 > 公开仓库：[Jessica-ying12/offerpath](https://github.com/Jessica-ying12/offerpath)；`main` 分支已推送并通过远程一致性校验。
 
