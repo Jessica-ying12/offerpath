@@ -56,4 +56,4 @@
 - 未覆盖：自动化死循环沙箱用例、HTTP 层集成测试套件、CI、部署、监控、密码找回/邮箱验证、多设备会话管理、真实大模型。
 - 内容存在少量超过 80 字的要点提醒，不影响校验；后续可按教学审校精简。
 - `docs/ROADMAP.md` 已规划后端、前端、iOS、数据、测试、DevOps/安全、AI 应用方向；本阶段完成后停止新增方向功能，按方向单独建 REQ。
-- GitHub 公开仓库尚未创建/推送，原因是缺少 GitHub 授权，见 REQ-010。
+- GitHub 公开仓库已发布：[Jessica-ying12/offerpath](https://github.com/Jessica-ying12/offerpath)，详见 REQ-010。

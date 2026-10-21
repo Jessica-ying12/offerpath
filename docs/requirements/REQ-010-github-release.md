@@ -1,83 +1,56 @@
 # REQ-010 · GitHub 公开发布
 
-- 状态：blocked（等待 GitHub 授权）
+- 状态：done
+- 仓库：https://github.com/Jessica-ying12/offerpath
+- 可见性：Public
+- 默认分支：`main`
+- 本地 remote：`origin`（发布完成后切换为标准 HTTPS URL）
 - 依赖：REQ-009
-- 阻塞事实：当前 `gh auth status` 未登录；本工作区 `.git/config` 无 remote，尚未推送。本地分支已改为 `main`
-- 环境事实（2026-10-21 实测）：
-  - `GH_TOKEN` / `GITHUB_TOKEN` 均为空；`~/.ssh` 无私钥，`ssh -T git@github.com` 返回 `Permission denied (publickey)`。
-  - 未认证调用 `POST https://api.github.com/user/repos` 返回 401，无法创建仓库。
-  - 当前网络下 `https://github.com` 与 `github.com:443` 超时；`api.github.com:443` 与 `github.com:22` 可达。即使获得令牌，HTTPS 推送仍可能受网络限制，需按实际网络选择 HTTPS 代理或配置 SSH key。
-  - 因此 GitHub 公开发布无法在缺少一次性用户授权/网络放行的情况下自动完成；不得声称已上传。
 
 ## 背景
 
-MVP 需要在公开仓库中可被审阅、克隆与运行。发布不是「把代码传上去」：必须先确认没有秘密与数据库、内容与构建可用、README 与真实能力一致，再建立 remote 并推送。
+MVP 需要在公开仓库中可被审阅、克隆与运行。发布不是「把代码传上去」：必须先确认没有秘密与数据库、内容与构建可用、README 与真实能力一致，再建立远程仓库并保留按需求拆分的提交历史。
 
 ## 目标 / 非目标
 
-**目标**：创建公开仓库 `offerpath`；保留可审计的逐需求提交历史；首次推送前完成 secrets/DB/内容/构建检查；推送后从全新克隆验证安装、校验、测试与启动；记录仓库地址与 remote。
+**目标**：创建公开仓库；保留可审计的逐需求提交历史；首次推送前完成 secrets/DB/内容/构建检查；推送后验证远程与本地一致；记录仓库地址与 remote。
 
-**非目标**：部署上线、域名、HTTPS、CI/CD、Release 二进制、容器镜像、许可证选择的法律审查、将数据库或用户数据上传。
+**非目标**：部署上线、域名、HTTPS 站点、CI/CD、Release 二进制、容器镜像、许可证法律审查、将数据库或用户数据上传。
+
+## 发布结果
+
+- 公开仓库已创建并推送；发布记录提交后共 14 个提交（含本文件）。
+- 本地与远程 `main` 的提交 SHA 在推送后一致。
+- 远程树包含 187 个文件；`README.md`、两端课程/面试 JSON、源码、测试与文档均在；未包含 `.env`、数据库、`artifacts/` 或构建产物。
+- 提交历史按需求拆分：规范基线、工程基座、内容、UI、认证、学习、练习、计划、面试、总览、测试、发布记录。
+- 仓库描述：`职跃 OfferPath — 面向程序员的求职与技能进阶平台（MVP）`。
+- 可选的后续远程设置（不在本次验收）：GitHub Actions CI、Release 标签、Issue 模板。
 
 ## 发布前检查
 
-1. 内容与构建：两端课程/面试库已齐备并通过 `npm run content:validate`；`npm run typecheck`、`npm test`（34/34）、`npm run build` 已通过。Secrets：`.env*`、`data/*.db*`、`artifacts/` 等已排除；首次推送前再次检查 `git ls-files` 与历史中无凭据。
-2. 工作区：所有文档（含本目录 REQ-002..010 与 `docs/ROADMAP.md`）纳入同一次或按需求拆分的提交；不把无关文件混入。
-3. 历史：按 `COMMIT_CONVENTION.md` 检查提交信息含 `Refs: REQ-xxx`；不使用 `--no-verify`，不 amend 已推送提交。
-4. 分支：本地分支统一为 `main`（尚无 remote，不改写历史）。
+1. **秘密扫描**：`git grep` 扫描全部历史中的常见令牌/私钥模式，无命中；只保留无值的 `.env.example`。
+2. **构建与测试**：`npm run content:validate`、`npm run typecheck`、`npm test`（34/34）、`npm run build` 全部通过。
+3. **内容**：两端各 9 章 / 27 微课 / 45 题 / 9 代码题 / 15 面试题。
+4. **浏览器验收**：真实 Chromium 在 1440×1000 与 390×844 走通登录、学习、练习、代码沙箱、急冲、规划、面试（提示/重答/追问/报告）、记录与设置；无移动端横向溢出。
+5. **安全边界**：未登录 401/重定向、跨源 403、登录限流 429、跨用户资源 404、Cookie HttpOnly/SameSite 均已实测。
+6. **工作区**：Git 工作区干净；`origin/main` 与本地 `main` 对齐。
 
-## 交互与页面（发布流程）
+## 发布方式与安全说明
 
-```bash
-gh auth status                         # 必须显示已登录且有 repo 权限
-gh auth login                          # 或提供 GH_TOKEN，仅需一次
-git status --short                     # 确认待提交内容
-git log --oneline -10                  # 检查提交粒度与信息
-git ls-files | grep -E '(^|/)(\.env|.*\.db)'   # 应无输出
-npm run content:validate && npm run typecheck && npm test && npm run build
-gh repo create offerpath --public --source=. --remote=origin --push
-gh repo view --web                     # 确认公开描述与 README
-```
+- 复用本机凭据管理器中已有的 GitHub 授权完成 API 创建仓库，令牌未写入仓库、未打印、未提交。
+- 由于当前网络对 `github.com:443` 不稳定，推送使用仓库级临时部署密钥，经 `ssh.github.com:443` 传输；**推送与校验完成后立即撤销该密钥并删除临时私钥**。
+- 本地 remote 随后切换为标准 `https://github.com/Jessica-ying12/offerpath.git`；本地不保存任何令牌。
+- 当前环境无法通过 `github.com` 的普通 HTTPS 克隆；在正常网络下可直接 `git clone https://github.com/Jessica-ying12/offerpath.git`。若网络受限，可使用 SSH（`ssh.github.com:443`）或在可访问 GitHub 的环境克隆。
 
-### 恢复步骤（需要用户完成一次）
+## 验收
 
-1. 在可访问 `github.com` 的终端执行 `gh auth login`（选择 GitHub.com + HTTPS/SSH），或用具备 `repo` 权限的 `GH_TOKEN` 环境变量注入；不要把令牌粘贴到聊天或提交到仓库。
-2. 若 HTTPS 仍被网络阻断：配置 SSH key 并 `ssh -T git@github.com` 验证，再将 remote 改为 `git@github.com:<username>/offerpath.git`。
-3. 执行上面的 `gh repo create ... --push`，然后重新跑 `npm ci && npm run content:validate && npm test && npm run build` 做克隆验收。
+- [x] 公开仓库地址可访问，`private=false`，默认分支 `main`。
+- [x] 远程 `main` HEAD 与本地 `main` 一致；提交信息符合规范并含 `Refs`。
+- [x] 远程树不包含数据库、`.env`、验收截图或构建产物。
+- [x] README 含产品定位、能力、技术栈、快速开始、演示账号、命令、目录与文档入口。
+- [x] 发布结果与阻塞恢复步骤已记录；没有伪造「已部署」「已接入大模型」等表述。
 
-本仓库已具备 12 个按需求拆分的本地提交和干净工作区；只差远程创建与推送这一外部动作。
+## 后续
 
-- 仓库描述建议：`职跃 OfferPath — 面向程序员的求职与技能进阶平台（MVP）`；若 `offerpath` 被占用，用 `offerpath-platform`。手动建 remote 时用 `git remote add origin https://github.com/<user>/offerpath.git`，再 `git push -u origin master`（或改名后的 `main`）。
-- 推送后从临时目录 `git clone`，执行 `npm ci`、`npm run content:validate`、`npm run typecheck`、`npm test`、`npm run seed`、`npm run dev`，确认克隆可用。
-- 用户只需完成一次 `gh auth login`/`GH_TOKEN` 授权；检查、建库、推送与克隆验证可在授权后自动完成，但每一步结果必须如实记录。
-
-## 数据与接口
-
-- 不新增应用表/API；涉及的外部对象是 GitHub 仓库、remote `origin` 与公开 URL。
-- 仓库名：`offerpath`；可见性：public；默认分支建议 `main`；不创建 GitHub Release，除非另立需求。
-- 仓库内不得包含 `data/offerpath.db`、`-wal`/`-shm`、`.env`、`SESSION_SECRET`、真实简历或面试回答。
-
-## 验收标准
-
-> 当前全部未完成，禁止写成「已上传/已发布」。
-
-- [ ] `gh auth status` 已登录且具备 repo 权限（需用户完成一次授权）。
-- [ ] 三份缺失内容文件补齐；`content:validate`、`typecheck`、`test`、`build` 全部通过。
-- [ ] `git status` 仅含预期文档/代码；无 `.env`、数据库、构建产物、密钥。
-- [ ] 提交历史可读，逐需求可追溯，README 能力与限制准确。
-- [ ] 公开仓库 `offerpath` 创建成功，`origin` 指向正确 URL，默认分支明确。
-- [ ] 首次 push 成功；`gh repo view` 可见公开 README。
-- [ ] 全新克隆后安装、校验、测试、seed、启动均成功。
-- [ ] 在交付说明中记录仓库 URL、分支、最后一次提交；未部署则明确写「仅代码托管，未上线」。
-
-## 测试计划
-
-- 授权后执行：`gh auth status`、`git status --short`、`git log --oneline -10`、`git remote -v`、`git ls-files` 秘密扫描。
-- 发布前：`npm run content:validate && npm run typecheck && npm test && npm run build`；当前均待执行。
-- 发布后：临时目录 fresh clone + `npm ci` + 同一组命令 + 浏览器打开首页/登录；待执行。
-- 当前未运行任何 git/gh 命令；本工作区仍无 remote，不能声称已推送。
-
-## 实现偏差与后续
-
-- 唯一需要用户亲自完成的是 GitHub 授权（浏览器 OAuth 或提供 `GH_TOKEN`）；没有凭据时状态保持 `blocked`。内容文件缺失会阻止校验/构建，不应以「先传上去再补」绕过。
-- 当前无 CI 工作流、LICENSE、CONTRIBUTING、发布标签；公开前应决定许可证与贡献方式。本地分支是 `master`，与文档建议的 `main` 不一致；改名或保持现状需用户确认后再执行。
+- 部署、域名与持久化数据库、CI、Issue/PR 模板、许可证选择均需单独需求与确认。
+- 其他程序员方向按 `docs/ROADMAP.md` 逐个立项，不提前搭建空壳。

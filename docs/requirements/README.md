@@ -14,9 +14,9 @@
 | [REQ-007](REQ-007-mock-interview.md) | 自适应模拟面试 | done | 组题、评分/提示/追问、报告 |
 | [REQ-008](REQ-008-dashboard-records-mobile.md) | 仪表盘、记录中心与移动端体验 | done | 首页聚合、记录、响应式 |
 | [REQ-009](REQ-009-qa-and-roadmap.md) | 质量验收、运行文档与方向规划 | done | 浏览器走查、文档、路线图 |
-| [REQ-010](REQ-010-github-release.md) | GitHub 公开发布 | blocked | 公开仓库、remote、推送与校验 |
+| [REQ-010](REQ-010-github-release.md) | GitHub 公开发布 | done | 公开仓库、remote、推送与校验 |
 
-> REQ-010 阻塞于 GitHub 授权：当前 `gh auth status` 未登录，工作区无 remote，尚未推送。状态 `blocked` 不等于已发布。
+> 公开仓库：[Jessica-ying12/offerpath](https://github.com/Jessica-ying12/offerpath)；`main` 分支已推送并通过远程一致性校验。
 
 ## 依赖顺序
 
