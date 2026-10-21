@@ -1,0 +1,1330 @@
+{
+  "trackId": "mobile",
+  "questions": [
+    {
+      "id": "iv-mobile-junior-1",
+      "level": "junior",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "kind": "knowledge",
+      "prompt": "接口返回的用户昵称可能为空，页面需要展示一个可读的名字。你会怎么用 Kotlin 处理这个空值，并避免线上 NPE？",
+      "modelAnswer": "我会把昵称建模为可空类型 String?，展示时先用安全调用和 Elvis 运算符回退到用户名或默认文案，比如 nickname?.takeIf { it.isNotBlank() } ?: name。我尽量避免 !!，因为那只是把空值风险推到运行时。数据进入业务层前也会做一次边界校验，缺字段时明确降级，而不是让 UI 猜。",
+      "keyPoints": [
+        {
+          "label": "可空类型与安全调用",
+          "aliases": [
+            "String?",
+            "可空",
+            "安全调用",
+            "?.",
+            "空安全"
+          ]
+        },
+        {
+          "label": "Elvis 回退默认值",
+          "aliases": [
+            "?:",
+            "Elvis",
+            "默认值",
+            "回退"
+          ]
+        },
+        {
+          "label": "避免非空断言",
+          "aliases": [
+            "!!",
+            "非空断言",
+            "NPE",
+            "空指针"
+          ]
+        },
+        {
+          "label": "边界校验与降级",
+          "aliases": [
+            "边界",
+            "校验",
+            "降级",
+            "兜底"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果这个字段来自后端，某天突然从 null 变成空字符串，你的展示逻辑还成立吗？怎么补？",
+          "modelAnswer": "空字符串不是 null，安全调用不会触发回退。我会用 isBlank 或 takeIf 把空白也归为无效值，再回退默认文案；同时与后端确认字段契约，在数据映射层统一清洗，避免每个页面各写一遍。",
+          "keyPoints": [
+            {
+              "label": "空白字符串处理",
+              "aliases": [
+                "isBlank",
+                "空白",
+                "空字符串",
+                "trim"
+              ]
+            },
+            {
+              "label": "映射层统一清洗",
+              "aliases": [
+                "映射层",
+                "统一",
+                "数据层",
+                "清洗"
+              ]
+            },
+            {
+              "label": "契约确认",
+              "aliases": [
+                "契约",
+                "后端",
+                "字段定义",
+                "接口文档"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用 !! 强行断言昵称非空",
+        "只判 null 不处理空字符串"
+      ]
+    },
+    {
+      "id": "iv-mobile-junior-2",
+      "level": "junior",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "kind": "knowledge",
+      "prompt": "用户在订单详情页发起了一个网络请求，还没返回就退出了页面。你会怎么避免请求回调更新已销毁的界面？",
+      "modelAnswer": "我会把请求绑定到页面的生命周期作用域，比如 lifecycleScope，或者放到 ViewModel 的 viewModelScope，由结构化并发在页面销毁时取消。回调更新 UI 前会确认页面仍处于活跃状态。对于必须完成的写入，会放在业务层而不是页面作用域，并明确清理时机。",
+      "keyPoints": [
+        {
+          "label": "生命周期作用域",
+          "aliases": [
+            "lifecycleScope",
+            "viewModelScope",
+            "生命周期",
+            "作用域"
+          ]
+        },
+        {
+          "label": "取消请求",
+          "aliases": [
+            "取消",
+            "cancel",
+            "销毁",
+            "onDestroy"
+          ]
+        },
+        {
+          "label": "避免更新失效 UI",
+          "aliases": [
+            "已销毁",
+            "失效 UI",
+            "活跃状态",
+            "重复更新"
+          ]
+        },
+        {
+          "label": "写入与页面解耦",
+          "aliases": [
+            "业务层",
+            "解耦",
+            "Repository",
+            "必须完成"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果这个请求是「提交订单」这种不能因为退页面就取消的写操作，你会放在哪里执行？",
+          "modelAnswer": "提交订单属于业务写操作，不应绑定页面生命周期。我会放到 ViewModel 之外的业务作用域或工作队列，配合幂等键和明确的结果状态，把结果持久化，页面回来再观察状态。这样退出页面不会撤销提交，也不会丢结果。",
+          "keyPoints": [
+            {
+              "label": "业务作用域",
+              "aliases": [
+                "业务作用域",
+                "工作队列",
+                "applicationScope",
+                "Repository"
+              ]
+            },
+            {
+              "label": "幂等键设计",
+              "aliases": [
+                "幂等",
+                "idempotency",
+                "唯一键",
+                "去重"
+              ]
+            },
+            {
+              "label": "结果持久化",
+              "aliases": [
+                "持久化",
+                "状态",
+                "观察",
+                "落库"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用 Activity 引用在回调里直接更新 UI",
+        "所有请求都放进 GlobalScope"
+      ]
+    },
+    {
+      "id": "iv-mobile-junior-3",
+      "level": "junior",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "kind": "knowledge",
+      "prompt": "Compose 页面在旋转屏幕后，搜索框内容丢了。你会怎么排查和修复？",
+      "modelAnswer": "先看搜索词是不是只放在普通变量或 remember 里；remember 只活在当前组合，配置变化重建后会丢。如果需要在旋转后保留，我会用 rememberSaveable，或者把状态提升到 ViewModel，页面只消费状态并发送输入事件。选择取决于它是否需要跨页面存活和是否可序列化。",
+      "keyPoints": [
+        {
+          "label": "remember 的生命周期",
+          "aliases": [
+            "remember",
+            "组合",
+            "配置变化",
+            "重建"
+          ]
+        },
+        {
+          "label": "rememberSaveable",
+          "aliases": [
+            "rememberSaveable",
+            "保存状态",
+            "saved state",
+            "恢复"
+          ]
+        },
+        {
+          "label": "状态提升 / ViewModel",
+          "aliases": [
+            "状态提升",
+            "ViewModel",
+            "提升",
+            "单一事实源"
+          ]
+        },
+        {
+          "label": "按存活范围选择",
+          "aliases": [
+            "存活范围",
+            "序列化",
+            "跨页面",
+            "取舍"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "为什么不能把所有页面状态都塞进 rememberSaveable 或 SavedStateHandle？",
+          "modelAnswer": "保存状态要求可序列化且体积受限，大列表、Bitmap 或复杂对象会导致序列化失败、性能问题甚至 TransactionTooLarge。它们应该重新请求或从数据库缓存恢复；保存状态只放页面参数、少量草稿和恢复必需的最小信息。",
+          "keyPoints": [
+            {
+              "label": "序列化与大小限制",
+              "aliases": [
+                "序列化",
+                "大小",
+                "TransactionTooLarge",
+                "Bundle"
+              ]
+            },
+            {
+              "label": "大对象恢复策略",
+              "aliases": [
+                "重新请求",
+                "数据库",
+                "缓存",
+                "大列表"
+              ]
+            },
+            {
+              "label": "最小必要状态",
+              "aliases": [
+                "最小",
+                "必要",
+                "参数",
+                "草稿"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "把输入值放在普通 var 里",
+        "把所有对象都放进 SavedStateHandle"
+      ]
+    },
+    {
+      "id": "iv-mobile-junior-4",
+      "level": "junior",
+      "skills": [
+        "networking"
+      ],
+      "kind": "knowledge",
+      "prompt": "列表页网络请求失败了。你会怎样区分不同错误并给用户合适的提示？",
+      "modelAnswer": "我会在数据层把异常分类：断网或超时属于可重试，4xx 里 401 要引导重新登录，403 是权限不足，5xx 提示稍后重试，解析失败则提示更新或反馈。UI 展示可执行的动作，而不是统一弹网络错误；同时保留缓存内容并标明数据可能过期。",
+      "keyPoints": [
+        {
+          "label": "错误分类",
+          "aliases": [
+            "分类",
+            "断网",
+            "超时",
+            "解析失败"
+          ]
+        },
+        {
+          "label": "状态码语义",
+          "aliases": [
+            "401",
+            "403",
+            "5xx",
+            "4xx",
+            "状态码"
+          ]
+        },
+        {
+          "label": "可执行提示",
+          "aliases": [
+            "提示",
+            "重新登录",
+            "稍后重试",
+            "动作"
+          ]
+        },
+        {
+          "label": "缓存与过期标注",
+          "aliases": [
+            "缓存",
+            "过期",
+            "离线",
+            "旧数据"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "用户点“重试”时，如何避免连续点击产生多组请求并互相覆盖？",
+          "modelAnswer": "我会让重试按钮在请求期间禁用或进入 loading，并在 ViewModel 里保持单一请求 Job，新请求先取消旧请求。响应要带请求标识，只有最新请求能写入状态；同时使用幂等设计避免重复副作用。",
+          "keyPoints": [
+            {
+              "label": "单飞与取消旧请求",
+              "aliases": [
+                "Job",
+                "取消旧请求",
+                "singleflight",
+                "唯一请求"
+              ]
+            },
+            {
+              "label": "请求标识防覆盖",
+              "aliases": [
+                "请求标识",
+                "requestId",
+                "最新请求",
+                "覆盖"
+              ]
+            },
+            {
+              "label": "按钮 loading / 禁用",
+              "aliases": [
+                "loading",
+                "禁用",
+                "防抖",
+                "连续点击"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "所有错误都提示网络异常",
+        "失败后不保留已有缓存内容"
+      ]
+    },
+    {
+      "id": "iv-mobile-junior-5",
+      "level": "junior",
+      "skills": [
+        "local-storage"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个 Android 应用要保存用户设置、订单列表和登录令牌，分别应该怎么选本地存储？",
+      "modelAnswer": "设置是少量键值，优先 DataStore；订单列表需要查询、分页和关系，使用 Room 并做好索引与迁移；登录令牌属于敏感凭证，应使用系统安全存储或加密方案，不能明文放 SharedPreferences。无论哪种，都要定义数据生命周期、清理时机和迁移策略。",
+      "keyPoints": [
+        {
+          "label": "DataStore 存轻量设置",
+          "aliases": [
+            "DataStore",
+            "键值",
+            "设置",
+            "SharedPreferences"
+          ]
+        },
+        {
+          "label": "Room 存结构化列表",
+          "aliases": [
+            "Room",
+            "结构化",
+            "订单",
+            "查询"
+          ]
+        },
+        {
+          "label": "令牌安全存储",
+          "aliases": [
+            "安全存储",
+            "加密",
+            "Keystore",
+            "令牌"
+          ]
+        },
+        {
+          "label": "迁移与清理",
+          "aliases": [
+            "迁移",
+            "清理",
+            "生命周期",
+            "schema"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "订单列表以后要支持离线查看与后台同步，Room 设计需要注意什么？",
+          "modelAnswer": "我会让 Room 成为唯一事实源，增加同步状态、版本和更新时间字段，UI 只观察数据库。网络结果先落库，再用同步队列表处理待上传操作；索引要围绕查询与同步条件设计，迁移需要版本化并测试升级路径。",
+          "keyPoints": [
+            {
+              "label": "单一事实源",
+              "aliases": [
+                "事实源",
+                "唯一数据源",
+                "数据库",
+                "观察"
+              ]
+            },
+            {
+              "label": "同步状态字段",
+              "aliases": [
+                "同步状态",
+                "版本",
+                "更新时间",
+                "队列"
+              ]
+            },
+            {
+              "label": "索引与迁移",
+              "aliases": [
+                "索引",
+                "迁移",
+                "版本化",
+                "测试升级"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "登录令牌明文存入普通偏好设置",
+        "把所有数据都塞进 SharedPreferences"
+      ]
+    },
+    {
+      "id": "iv-mobile-middle-1",
+      "level": "middle",
+      "skills": [
+        "coroutines"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个页面需要并行加载三个互不依赖的数据源。如果其中一个失败，你希望其他请求继续完成并统一返回部分成功。用协程怎么设计？",
+      "modelAnswer": "我会在 supervisorScope 里为三个数据源分别 async，用 runCatching 收集失败但排除 CancellationException。supervisorScope 让一个子任务失败不取消兄弟任务，await 后把成功和失败分别聚合。若业务要求全部成功，则改用 coroutineScope 让失败快速传播，这是关键取舍。",
+      "keyPoints": [
+        {
+          "label": "supervisorScope 隔离失败",
+          "aliases": [
+            "supervisorScope",
+            "隔离",
+            "兄弟任务",
+            "互不影响"
+          ]
+        },
+        {
+          "label": "async 并行与聚合",
+          "aliases": [
+            "async",
+            "并行",
+            "await",
+            "聚合"
+          ]
+        },
+        {
+          "label": "取消异常不能吞",
+          "aliases": [
+            "CancellationException",
+            "取消异常",
+            "继续抛出",
+            "传播"
+          ]
+        },
+        {
+          "label": "全部成功的替代方案",
+          "aliases": [
+            "coroutineScope",
+            "全部成功",
+            "快速失败",
+            "取舍"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果页面在某个数据源返回前被销毁，你希望取消所有任务并释放资源，这会影响你的方案吗？",
+          "modelAnswer": "会。外层应该绑定 viewModelScope 或 lifecycleScope，销毁时统一取消。supervisorScope 只隔离子任务的业务失败，不会阻止外部取消传播；清理放在 finally 或 NonCancellable 中，并确保阻塞资源支持取消。",
+          "keyPoints": [
+            {
+              "label": "外层生命周期作用域",
+              "aliases": [
+                "viewModelScope",
+                "lifecycleScope",
+                "统一取消",
+                "生命周期"
+              ]
+            },
+            {
+              "label": "取消仍能传播",
+              "aliases": [
+                "取消传播",
+                "外部取消",
+                "supervisorScope",
+                "父作用域"
+              ]
+            },
+            {
+              "label": "资源清理",
+              "aliases": [
+                "finally",
+                "NonCancellable",
+                "关闭资源",
+                "清理"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用 GlobalScope 并行加载",
+        "runCatching 把 CancellationException 一起吞掉"
+      ]
+    },
+    {
+      "id": "iv-mobile-middle-2",
+      "level": "middle",
+      "skills": [
+        "local-storage"
+      ],
+      "kind": "knowledge",
+      "prompt": "线上要升级 Room 数据库，给订单表加一个可空字段并回填历史数据。你会怎样保证升级安全？",
+      "modelAnswer": "我会提升数据库版本并提供显式 Migration，先 ALTER TABLE 加可空列，再在迁移事务里回填默认值或从旧字段推导。Schema 导出纳入版本控制，迁移前后跑真实升级测试。不会用破坏性迁移，因为那会清空用户数据；迁移完成后还要验证索引与查询兼容性。",
+      "keyPoints": [
+        {
+          "label": "版本化 Migration",
+          "aliases": [
+            "Migration",
+            "版本",
+            "升级",
+            "ALTER TABLE"
+          ]
+        },
+        {
+          "label": "加可空列再回填",
+          "aliases": [
+            "可空列",
+            "回填",
+            "默认值",
+            "历史数据"
+          ]
+        },
+        {
+          "label": "事务与升级测试",
+          "aliases": [
+            "事务",
+            "升级测试",
+            "Schema",
+            "导出"
+          ]
+        },
+        {
+          "label": "避免破坏性迁移",
+          "aliases": [
+            "破坏性迁移",
+            "清空",
+            "fallbackToDestructiveMigration",
+            "数据丢失"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果这次升级涉及大表回填，直接在迁移里一次性 UPDATE 有什么风险？",
+          "modelAnswer": "大表一次性 UPDATE 会长时间持有锁、产生大量日志，升级期间 ANR 或超时。我会拆分回填批次、在后台分批执行，或先允许 NULL 并在读取时兜底，再逐步补齐；任何方案都要可中断、可重试并监控进度。",
+          "keyPoints": [
+            {
+              "label": "锁与耗时风险",
+              "aliases": [
+                "锁",
+                "耗时",
+                "ANR",
+                "超时"
+              ]
+            },
+            {
+              "label": "分批回填",
+              "aliases": [
+                "分批",
+                "批量",
+                "后台",
+                "进度"
+              ]
+            },
+            {
+              "label": "可中断可重试",
+              "aliases": [
+                "可重试",
+                "可中断",
+                "幂等",
+                "监控"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "直接开启破坏性迁移",
+        "在迁移中执行无上限的大表更新"
+      ]
+    },
+    {
+      "id": "iv-mobile-middle-3",
+      "level": "middle",
+      "skills": [
+        "app-architecture",
+        "state-management"
+      ],
+      "kind": "knowledge",
+      "prompt": "MVVM 页面里既有加载失败提示，又有一次性跳转事件。你会怎么组织 UiState，避免旋转屏幕后重复跳转？",
+      "modelAnswer": "我会用一个不可变的 UiState 表达持久状态：loading、数据、错误等；跳转和 Snackbar 属于一次性事件，不放 Boolean 状态，而是用 Channel 或 SharedFlow 发送并在 UI 侧消费一次。UI 只渲染状态、发送意图，ViewModel 处理数据与事件，这样重建页面不会重放旧跳转。",
+      "keyPoints": [
+        {
+          "label": "单一不可变 UiState",
+          "aliases": [
+            "UiState",
+            "不可变",
+            "data class",
+            "单一状态"
+          ]
+        },
+        {
+          "label": "一次性事件独立通道",
+          "aliases": [
+            "Channel",
+            "SharedFlow",
+            "一次性事件",
+            "消费者"
+          ]
+        },
+        {
+          "label": "UI 渲染状态并发意图",
+          "aliases": [
+            "意图",
+            "事件向上",
+            "状态向下",
+            "单向数据流"
+          ]
+        },
+        {
+          "label": "避免重建重放",
+          "aliases": [
+            "重建",
+            "重放",
+            "旋转",
+            "重复跳转"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "SharedFlow 与 StateFlow 在一次性事件上有什么差别？你会怎么选？",
+          "modelAnswer": "StateFlow 有当前值，新的订阅者会收到最后一个值，适合状态而不适合一次性事件；SharedFlow 可以配置 replay=0 且没有当前值，更适合事件。我会确保事件只被一个消费者处理，必要时用 Channel 实现点对点投递。",
+          "keyPoints": [
+            {
+              "label": "StateFlow 有当前值",
+              "aliases": [
+                "StateFlow",
+                "当前值",
+                "重放",
+                "订阅者"
+              ]
+            },
+            {
+              "label": "SharedFlow 配置 replay",
+              "aliases": [
+                "SharedFlow",
+                "replay=0",
+                "无重放",
+                "事件"
+              ]
+            },
+            {
+              "label": "单消费者投递",
+              "aliases": [
+                "单消费者",
+                "Channel",
+                "点对点",
+                "只处理一次"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用 Boolean 表示跳转事件",
+        "在 UI 中直接修改 ViewModel 的可变集合"
+      ]
+    },
+    {
+      "id": "iv-mobile-middle-4",
+      "level": "middle",
+      "skills": [
+        "local-storage",
+        "networking",
+        "app-architecture"
+      ],
+      "kind": "knowledge",
+      "prompt": "做一个离线优先的订单列表：用户断网也能新建草稿，联网后自动同步。你会如何设计数据流与冲突处理？",
+      "modelAnswer": "本地数据库作为事实源，用户操作先写本地并进入待同步队列，UI 立即反馈。每个写操作带客户端生成的幂等键，网络恢复后按退避重试，服务端据此去重。冲突按业务选择：以服务端为准、版本号比较或字段合并，并把同步中、失败、冲突状态显式展示给用户，不能静默丢数据。",
+      "keyPoints": [
+        {
+          "label": "本地事实源与先写",
+          "aliases": [
+            "事实源",
+            "先写本地",
+            "本地数据库",
+            "立即反馈"
+          ]
+        },
+        {
+          "label": "待同步队列与幂等键",
+          "aliases": [
+            "队列",
+            "幂等键",
+            "去重",
+            "重试"
+          ]
+        },
+        {
+          "label": "冲突策略",
+          "aliases": [
+            "冲突",
+            "版本号",
+            "服务端为准",
+            "字段合并"
+          ]
+        },
+        {
+          "label": "同步状态可见",
+          "aliases": [
+            "同步状态",
+            "失败",
+            "可见",
+            "不能静默"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果用户在两台设备上同时修改同一草稿，服务端如何避免最后写入的数据悄悄覆盖另一台？",
+          "modelAnswer": "服务端可以维护版本号或 ETag，写请求携带读取时的版本，版本不匹配返回 409，由客户端拉取最新版本并让用户选择合并或重试。也可以做字段级合并，但需要业务定义优先级；关键是冲突必须被检测并向用户解释。",
+          "keyPoints": [
+            {
+              "label": "版本号 / ETag",
+              "aliases": [
+                "版本号",
+                "ETag",
+                "乐观锁",
+                "条件更新"
+              ]
+            },
+            {
+              "label": "409 冲突处理",
+              "aliases": [
+                "409",
+                "冲突",
+                "重试",
+                "拉取最新"
+              ]
+            },
+            {
+              "label": "用户可见的合并策略",
+              "aliases": [
+                "合并",
+                "用户选择",
+                "字段级",
+                "解释"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "断网时禁止所有操作",
+        "同步失败静默重试且用户不可见"
+      ]
+    },
+    {
+      "id": "iv-mobile-middle-5",
+      "level": "middle",
+      "skills": [
+        "performance",
+        "compose-ui"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个 Compose 订单列表滑动时掉帧，列表项有图片、状态标签和输入框。你会如何定位并优化？",
+      "modelAnswer": "先用布局检查器、重组计数和 Macrobenchmark 定位是重组过多、图片解码还是主线程 IO。列表项用稳定 key，把频繁变化的状态下沉，避免整页读取；图片按尺寸采样并缓存，计算放到后台。优化前后用同一场景的分位帧耗时和卡顿率对比，而不是只看主观感受。",
+      "keyPoints": [
+        {
+          "label": "先测量定位",
+          "aliases": [
+            "布局检查器",
+            "重组计数",
+            "Macrobenchmark",
+            "定位"
+          ]
+        },
+        {
+          "label": "稳定 key 与状态下沉",
+          "aliases": [
+            "稳定 key",
+            "状态下沉",
+            "重组范围",
+            "列表"
+          ]
+        },
+        {
+          "label": "图片采样与缓存",
+          "aliases": [
+            "采样",
+            "图片",
+            "缓存",
+            "解码"
+          ]
+        },
+        {
+          "label": "分位指标验证",
+          "aliases": [
+            "帧耗时",
+            "卡顿率",
+            "P95",
+            "指标"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "把状态从列表项提升到列表父级一定更好吗？反过来会有什么问题？",
+          "modelAnswer": "不一定。状态提升便于共享与校验，但提升过高会让更多组件读取变化状态，扩大重组范围。应按消费边界放置：只有需要共享的部分提升，输入焦点等局部状态留在最近父级，并用稳定数据类型和 key 控制重组。",
+          "keyPoints": [
+            {
+              "label": "状态提升的代价",
+              "aliases": [
+                "状态提升",
+                "重组范围",
+                "代价",
+                "扩大"
+              ]
+            },
+            {
+              "label": "按消费边界放置",
+              "aliases": [
+                "消费边界",
+                "就近",
+                "局部状态",
+                "共享"
+              ]
+            },
+            {
+              "label": "稳定类型与 key",
+              "aliases": [
+                "稳定",
+                "key",
+                "数据类型",
+                "重组"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "凭感觉加 remember 优化",
+        "在大列表项中同步解码大图"
+      ]
+    },
+    {
+      "id": "iv-mobile-senior-1",
+      "level": "senior",
+      "skills": [
+        "performance",
+        "android-lifecycle"
+      ],
+      "kind": "knowledge",
+      "prompt": "新版本冷启动 P95 从 1.2s 上升到 2.4s。你会怎样建立证据链并把耗时降下来？",
+      "modelAnswer": "我会先固定构建类型、设备和场景，建立冷启动基线与分位指标，再用启动 trace 拆分 Application、ContentProvider、首屏网络与布局耗时。优先移除非首屏 SDK 初始化、并行独立任务、减少首帧布局复杂度。每次只改一个变量，用本地多次采样和线上真实用户 P95 验证，最后看崩溃与业务指标没有回退。",
+      "keyPoints": [
+        {
+          "label": "基线与分位指标",
+          "aliases": [
+            "基线",
+            "P95",
+            "分位",
+            "冷启动"
+          ]
+        },
+        {
+          "label": "trace 拆解瓶颈",
+          "aliases": [
+            "trace",
+            "Application",
+            "首屏",
+            "耗时"
+          ]
+        },
+        {
+          "label": "延迟非关键初始化",
+          "aliases": [
+            "延迟",
+            "SDK",
+            "初始化",
+            "非首屏"
+          ]
+        },
+        {
+          "label": "控制变量与线上验证",
+          "aliases": [
+            "一个变量",
+            "采样",
+            "线上",
+            "验证"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果线上 P95 仍高但本地复现不了，你会从哪里找差异？",
+          "modelAnswer": "我会按设备档位、系统版本、网络类型、启动来源与版本灰度拆分维度，检查低端机 CPU/IO 竞争、后台任务、磁盘压力和 A/B 配置差异；同时核对采样埋点是冷启动还是热启动。用真实用户 trace 和火焰图定位，而不是继续优化本地样本。",
+          "keyPoints": [
+            {
+              "label": "维度拆分",
+              "aliases": [
+                "设备档位",
+                "系统版本",
+                "网络",
+                "灰度"
+              ]
+            },
+            {
+              "label": "环境差异",
+              "aliases": [
+                "低端机",
+                "后台任务",
+                "磁盘",
+                "竞争"
+              ]
+            },
+            {
+              "label": "采样口径",
+              "aliases": [
+                "冷启动",
+                "热启动",
+                "埋点",
+                "口径"
+              ]
+            },
+            {
+              "label": "真实用户 trace",
+              "aliases": [
+                "trace",
+                "火焰图",
+                "真实用户",
+                "线上"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "用 Debug 包单次启动数据下结论",
+        "只看平均值忽略尾部延迟"
+      ]
+    },
+    {
+      "id": "iv-mobile-senior-2",
+      "level": "senior",
+      "skills": [
+        "release-engineering",
+        "performance"
+      ],
+      "kind": "knowledge",
+      "prompt": "灰度版本中崩溃率上升、同时有用户反馈卡死。你会怎么止损、定位并决定是否继续放量？",
+      "modelAnswer": "先止损：暂停放量，必要时关闭功能开关或回滚版本；数据迁移要保持向后兼容，避免回滚后数据库不兼容。接着用崩溃聚合、ANR traces、样本堆栈与 mapping 文件定位版本和场景，区分崩溃与主线程阻塞。修复后用受控灰度验证崩溃率、ANR、核心转化与延迟，再逐步放量。",
+      "keyPoints": [
+        {
+          "label": "先止损与回滚",
+          "aliases": [
+            "暂停放量",
+            "回滚",
+            "止损",
+            "功能开关"
+          ]
+        },
+        {
+          "label": "崩溃与 ANR 证据",
+          "aliases": [
+            "崩溃聚合",
+            "ANR",
+            "traces",
+            "mapping"
+          ]
+        },
+        {
+          "label": "维度定位",
+          "aliases": [
+            "版本",
+            "场景",
+            "设备",
+            "聚合"
+          ]
+        },
+        {
+          "label": "受控验证再放量",
+          "aliases": [
+            "灰度",
+            "崩溃率",
+            "转化",
+            "放量"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "为什么回滚 App 版本不一定能解决问题？数据库或服务端变更会带来什么约束？",
+          "modelAnswer": "如果新版本已经升级本地数据库结构，旧版本可能无法读取；服务端接口若不兼容旧客户端，回滚后请求仍会失败。因此发布需要先做向后兼容的数据库迁移与接口演进，回滚预案要覆盖客户端、服务端和开关，不能只回滚 APK。",
+          "keyPoints": [
+            {
+              "label": "数据库向后兼容",
+              "aliases": [
+                "数据库",
+                "向后兼容",
+                "迁移",
+                "旧版本"
+              ]
+            },
+            {
+              "label": "接口兼容",
+              "aliases": [
+                "接口",
+                "API",
+                "旧客户端",
+                "兼容"
+              ]
+            },
+            {
+              "label": "端到端回滚预案",
+              "aliases": [
+                "回滚预案",
+                "服务端",
+                "开关",
+                "客户端"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "继续放量观察更多样本",
+        "只回滚客户端而忽略数据库兼容"
+      ]
+    },
+    {
+      "id": "iv-mobile-senior-3",
+      "level": "senior",
+      "skills": [
+        "flutter-crossplatform",
+        "app-architecture"
+      ],
+      "kind": "knowledge",
+      "prompt": "公司要把一个已有原生 App 的订单模块改成跨端方案，候选是 Flutter 和 React Native。你会如何做选型并控制混合栈风险？",
+      "modelAnswer": "先约束业务与团队：页面复杂度、原生能力依赖、发布节奏、团队技能和维护预算。Flutter 自绘一致性高但需要 Dart 与渲染栈，RN 贴近前端生态但原生桥接与版本兼容要评估。混合栈必须统一导航、鉴权、埋点和状态边界，复杂相机/蓝牙等保留原生，通过明确接口隔离，先灰度一个模块验证再扩展。",
+      "keyPoints": [
+        {
+          "label": "业务与团队约束",
+          "aliases": [
+            "团队",
+            "发布节奏",
+            "维护预算",
+            "约束"
+          ]
+        },
+        {
+          "label": "框架能力与生态",
+          "aliases": [
+            "Flutter",
+            "React Native",
+            "自绘",
+            "生态"
+          ]
+        },
+        {
+          "label": "混合栈统一边界",
+          "aliases": [
+            "导航",
+            "鉴权",
+            "埋点",
+            "状态边界"
+          ]
+        },
+        {
+          "label": "原生能力隔离与灰度",
+          "aliases": [
+            "原生",
+            "接口隔离",
+            "灰度",
+            "模块"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果尝试后发现订单模块与原生购物车共享大量状态，你会怎么重新划边界？",
+          "modelAnswer": "我不会让两套状态直接互写。会把订单与购物车共享的领域状态放到单一事实源，由宿主或共享数据层管理，跨端只通过稳定的命令和状态接口交互。如果耦合仍然过高，就把跨端范围缩小到独立页面，而不是强行共享全部状态。",
+          "keyPoints": [
+            {
+              "label": "单一事实源",
+              "aliases": [
+                "事实源",
+                "共享数据层",
+                "宿主",
+                "状态"
+              ]
+            },
+            {
+              "label": "稳定命令与接口",
+              "aliases": [
+                "命令",
+                "接口",
+                "跨端",
+                "交互"
+              ]
+            },
+            {
+              "label": "缩小跨端范围",
+              "aliases": [
+                "缩小范围",
+                "独立页面",
+                "不强推",
+                "边界"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "只比较 Demo 帧率就做决定",
+        "两套路由和状态各自处理深链"
+      ]
+    },
+    {
+      "id": "iv-mobile-senior-4",
+      "level": "senior",
+      "skills": [
+        "app-architecture"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个 Android 项目从单模块发展到多业务团队协作，你会如何拆模块和控制依赖方向？",
+      "modelAnswer": "先按业务能力拆 feature，把共享的领域模型、网络与存储能力下沉到 core/data，依赖方向保持单向：feature 依赖抽象，data 实现抽象，避免 feature 之间直接依赖。用依赖注入按生命周期提供对象，公共能力通过稳定接口暴露。先用少量模块验证构建与团队边界，再逐步拆分，避免为了架构而制造无谓模块。",
+      "keyPoints": [
+        {
+          "label": "按业务能力拆 feature",
+          "aliases": [
+            "feature",
+            "业务模块",
+            "按能力",
+            "拆分"
+          ]
+        },
+        {
+          "label": "单向依赖",
+          "aliases": [
+            "单向依赖",
+            "core",
+            "data",
+            "避免循环"
+          ]
+        },
+        {
+          "label": "接口与依赖注入",
+          "aliases": [
+            "接口",
+            "依赖注入",
+            "生命周期",
+            "抽象"
+          ]
+        },
+        {
+          "label": "渐进验证",
+          "aliases": [
+            "渐进",
+            "验证",
+            "团队边界",
+            "避免过度"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "拆分后构建变慢、模块数量膨胀，你会怎么判断这次拆模块是否值得？",
+          "modelAnswer": "我会看团队并行开发、变更影响面和构建时间的实际变化，而不只看模块数量。可以通过按需构建、并行编译和最小暴露接口改善构建；如果边界没有带来独立演进与协作收益，就合并回去。模块化应解决真实协作问题，而不是成为组织结构表演。",
+          "keyPoints": [
+            {
+              "label": "团队并行与变更影响",
+              "aliases": [
+                "并行开发",
+                "变更影响",
+                "协作",
+                "边界"
+              ]
+            },
+            {
+              "label": "构建改进",
+              "aliases": [
+                "按需构建",
+                "并行编译",
+                "构建时间",
+                "最小暴露"
+              ]
+            },
+            {
+              "label": "不达标就回退",
+              "aliases": [
+                "合并",
+                "回退",
+                "收益",
+                "避免过度设计"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "按技术层无脑拆模块",
+        "所有模块都依赖一个巨大的 common"
+      ]
+    },
+    {
+      "id": "iv-mobile-senior-5",
+      "level": "senior",
+      "skills": [
+        "testing",
+        "release-engineering"
+      ],
+      "kind": "knowledge",
+      "prompt": "移动端功能即将上线，你会怎样设计测试与灰度策略，既保证质量又不过度拖慢发布？",
+      "modelAnswer": "按测试金字塔分配投入：纯逻辑用单测，Repository 与迁移用集成测试，关键购买或登录路径用 UI 自动化；设备农场覆盖低端机与系统版本。发布采用受控灰度，监控崩溃、ANR、核心转化和延迟，设置自动停止阈值与开关回滚。高风险功能用 Feature Flag 隔离，灰度通过后再逐步放量。",
+      "keyPoints": [
+        {
+          "label": "测试金字塔分层",
+          "aliases": [
+            "测试金字塔",
+            "单测",
+            "集成测试",
+            "UI 自动化"
+          ]
+        },
+        {
+          "label": "设备与系统覆盖",
+          "aliases": [
+            "设备农场",
+            "低端机",
+            "系统版本",
+            "覆盖"
+          ]
+        },
+        {
+          "label": "灰度指标与阈值",
+          "aliases": [
+            "灰度",
+            "崩溃率",
+            "ANR",
+            "阈值"
+          ]
+        },
+        {
+          "label": "开关与回滚",
+          "aliases": [
+            "Feature Flag",
+            "开关",
+            "回滚",
+            "放量"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果 UI 自动化套件运行一次要 40 分钟，团队开始跳过它，你会怎么改？",
+          "modelAnswer": "我会把 UI 用例收敛到关键路径，合并重复场景，并把稳定的业务逻辑下沉到更快的集成测试；对视觉或交互风险高的页面保留少量冒烟测试。再配合并行设备执行与按变更范围触发测试，让反馈时间可控，而不是靠要求大家「更努力地等」。",
+          "keyPoints": [
+            {
+              "label": "收敛关键路径",
+              "aliases": [
+                "关键路径",
+                "冒烟",
+                "收敛",
+                "UI 用例"
+              ]
+            },
+            {
+              "label": "下沉测试层级",
+              "aliases": [
+                "集成测试",
+                "下沉",
+                "逻辑",
+                "更快"
+              ]
+            },
+            {
+              "label": "并行与按变更触发",
+              "aliases": [
+                "并行",
+                "按变更",
+                "触发",
+                "反馈时间"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "把所有质量押在 UI 自动化",
+        "灰度只看崩溃率不看核心业务指标"
+      ]
+    }
+  ]
+}

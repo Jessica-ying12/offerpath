@@ -1,0 +1,2757 @@
+{
+  "id": "fullstack",
+  "name": "全栈开发",
+  "shortName": "全栈",
+  "tagline": "从浏览器到数据库：React、TypeScript、Node、SQL 与系统设计。",
+  "description": "覆盖 HTML/CSS、JavaScript、React、TypeScript、Node API、SQL、安全、缓存与系统设计。每个等级 3 章，每章 3 节微课、5 道练习和 1 道可在浏览器运行的 JavaScript 代码题。",
+  "landingPoints": [
+    "React / TypeScript",
+    "Node 与 SQL",
+    "安全、缓存与系统设计"
+  ],
+  "levels": [
+    {
+      "id": "junior",
+      "name": "初级",
+      "summary": "能写语义化页面、解释 JavaScript 行为，并用 React 组件与状态完成基础交互。",
+      "focus": [
+        "HTML/CSS 响应式",
+        "JS 作用域与异步",
+        "React 组件和状态"
+      ]
+    },
+    {
+      "id": "middle",
+      "name": "中级",
+      "summary": "能用 TypeScript 建模，设计 REST API 与校验，理解索引、事务和并发的一致性边界。",
+      "focus": [
+        "TypeScript 类型",
+        "Node 与 REST",
+        "SQL 索引与事务"
+      ]
+    },
+    {
+      "id": "senior",
+      "name": "高级",
+      "summary": "能从威胁模型出发做安全与隔离，设计缓存、降级与可观测性，并用系统设计框架表达取舍。",
+      "focus": [
+        "认证与越权防护",
+        "缓存与可靠性",
+        "部署与系统设计"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "html-css",
+      "name": "HTML / CSS",
+      "aliases": [
+        "html",
+        "css",
+        "flex",
+        "grid",
+        "响应式",
+        "可访问性",
+        "a11y",
+        "布局"
+      ]
+    },
+    {
+      "id": "javascript-core",
+      "name": "JavaScript 核心",
+      "aliases": [
+        "javascript",
+        "js",
+        "闭包",
+        "事件循环",
+        "原型",
+        "promise",
+        "this"
+      ]
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "aliases": [
+        "typescript",
+        "ts",
+        "泛型",
+        "类型系统",
+        "类型收窄",
+        "utility type"
+      ]
+    },
+    {
+      "id": "react-fundamentals",
+      "name": "React 基础",
+      "aliases": [
+        "react",
+        "react.js",
+        "reactjs",
+        "jsx",
+        "hooks",
+        "组件"
+      ]
+    },
+    {
+      "id": "state-data-flow",
+      "name": "状态与数据流",
+      "aliases": [
+        "redux",
+        "zustand",
+        "react query",
+        "状态管理",
+        "单向数据流",
+        "重渲染"
+      ]
+    },
+    {
+      "id": "node-runtime",
+      "name": "Node.js",
+      "aliases": [
+        "node",
+        "node.js",
+        "nodejs",
+        "express",
+        "事件循环",
+        "stream",
+        "event loop"
+      ]
+    },
+    {
+      "id": "http-api",
+      "name": "HTTP 与 API",
+      "aliases": [
+        "http",
+        "rest",
+        "restful",
+        "api 设计",
+        "接口设计",
+        "grpc",
+        "openapi"
+      ]
+    },
+    {
+      "id": "sql-database",
+      "name": "SQL 与数据库",
+      "aliases": [
+        "sql",
+        "mysql",
+        "postgresql",
+        "postgres",
+        "索引",
+        "事务",
+        "join",
+        "数据库"
+      ]
+    },
+    {
+      "id": "auth-security",
+      "name": "认证与安全",
+      "aliases": [
+        "认证",
+        "鉴权",
+        "session",
+        "jwt",
+        "cookie",
+        "csrf",
+        "xss",
+        "越权",
+        "安全"
+      ]
+    },
+    {
+      "id": "testing",
+      "name": "测试",
+      "aliases": [
+        "测试",
+        "unit test",
+        "vitest",
+        "jest",
+        "playwright",
+        "测试金字塔",
+        "ci"
+      ]
+    },
+    {
+      "id": "performance-caching",
+      "name": "性能与缓存",
+      "aliases": [
+        "性能优化",
+        "缓存",
+        "redis",
+        "cdn",
+        "p95",
+        "限流",
+        "重试",
+        "幂等"
+      ]
+    },
+    {
+      "id": "deployment-devops",
+      "name": "部署与运维",
+      "aliases": [
+        "docker",
+        "kubernetes",
+        "k8s",
+        "ci/cd",
+        "部署",
+        "灰度",
+        "可观测性",
+        "监控",
+        "日志"
+      ]
+    },
+    {
+      "id": "system-design",
+      "name": "系统设计",
+      "aliases": [
+        "系统设计",
+        "架构设计",
+        "高并发",
+        "扩展性",
+        "容量",
+        "降级",
+        "分布式"
+      ]
+    },
+    {
+      "id": "engineering-practices",
+      "name": "工程实践",
+      "aliases": [
+        "工程化",
+        "代码评审",
+        "git",
+        "重构",
+        "可维护性",
+        "技术方案"
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "fs-j1-web",
+      "trackId": "fullstack",
+      "level": "junior",
+      "order": 1,
+      "title": "HTML / CSS 与响应式",
+      "summary": "语义化、布局与响应式，是页面在真实设备上可用的底线。",
+      "atomIds": [
+        "fs-j1-web-a1",
+        "fs-j1-web-a2",
+        "fs-j1-web-a3"
+      ],
+      "questionIds": [
+        "q-fs-j1-web-1",
+        "q-fs-j1-web-2",
+        "q-fs-j1-web-3",
+        "q-fs-j1-web-4",
+        "q-fs-j1-web-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j1-web"
+      ]
+    },
+    {
+      "id": "fs-j1-js",
+      "trackId": "fullstack",
+      "level": "junior",
+      "order": 2,
+      "title": "JavaScript 核心",
+      "summary": "作用域、this 与事件循环，是读懂前端行为与异步顺序的基本功。",
+      "atomIds": [
+        "fs-j1-js-a1",
+        "fs-j1-js-a2",
+        "fs-j1-js-a3"
+      ],
+      "questionIds": [
+        "q-fs-j1-js-1",
+        "q-fs-j1-js-2",
+        "q-fs-j1-js-3",
+        "q-fs-j1-js-4",
+        "q-fs-j1-js-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j1-js"
+      ]
+    },
+    {
+      "id": "fs-j1-react",
+      "trackId": "fullstack",
+      "level": "junior",
+      "order": 3,
+      "title": "React 组件入门",
+      "summary": "组件、状态与副作用：让界面由数据推导，而不是手动同步。",
+      "atomIds": [
+        "fs-j1-react-a1",
+        "fs-j1-react-a2",
+        "fs-j1-react-a3"
+      ],
+      "questionIds": [
+        "q-fs-j1-react-1",
+        "q-fs-j1-react-2",
+        "q-fs-j1-react-3",
+        "q-fs-j1-react-4",
+        "q-fs-j1-react-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j1-react"
+      ]
+    },
+    {
+      "id": "fs-j2-ts",
+      "trackId": "fullstack",
+      "level": "middle",
+      "order": 1,
+      "title": "TypeScript 类型系统",
+      "summary": "用类型表达约束，在边界上把不可信数据变成可依赖的领域模型。",
+      "atomIds": [
+        "fs-j2-ts-a1",
+        "fs-j2-ts-a2",
+        "fs-j2-ts-a3"
+      ],
+      "questionIds": [
+        "q-fs-j2-ts-1",
+        "q-fs-j2-ts-2",
+        "q-fs-j2-ts-3",
+        "q-fs-j2-ts-4",
+        "q-fs-j2-ts-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j2-ts"
+      ]
+    },
+    {
+      "id": "fs-j2-node",
+      "trackId": "fullstack",
+      "level": "middle",
+      "order": 2,
+      "title": "Node.js 与 HTTP API",
+      "summary": "事件循环、REST 语义与错误边界，让接口可预测、可恢复。",
+      "atomIds": [
+        "fs-j2-node-a1",
+        "fs-j2-node-a2",
+        "fs-j2-node-a3"
+      ],
+      "questionIds": [
+        "q-fs-j2-node-1",
+        "q-fs-j2-node-2",
+        "q-fs-j2-node-3",
+        "q-fs-j2-node-4",
+        "q-fs-j2-node-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j2-node"
+      ]
+    },
+    {
+      "id": "fs-j2-db",
+      "trackId": "fullstack",
+      "level": "middle",
+      "order": 3,
+      "title": "数据库与 SQL",
+      "summary": "从查询模式反推索引，用事务与隔离级别守住一致性。",
+      "atomIds": [
+        "fs-j2-db-a1",
+        "fs-j2-db-a2",
+        "fs-j2-db-a3"
+      ],
+      "questionIds": [
+        "q-fs-j2-db-1",
+        "q-fs-j2-db-2",
+        "q-fs-j2-db-3",
+        "q-fs-j2-db-4",
+        "q-fs-j2-db-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j2-db"
+      ]
+    },
+    {
+      "id": "fs-j3-security",
+      "trackId": "fullstack",
+      "level": "senior",
+      "order": 1,
+      "title": "认证、安全与边界",
+      "summary": "把身份、会话、权限与数据隔离当作系统不变量，而不是页面补丁。",
+      "atomIds": [
+        "fs-j3-security-a1",
+        "fs-j3-security-a2",
+        "fs-j3-security-a3"
+      ],
+      "questionIds": [
+        "q-fs-j3-security-1",
+        "q-fs-j3-security-2",
+        "q-fs-j3-security-3",
+        "q-fs-j3-security-4",
+        "q-fs-j3-security-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j3-security"
+      ]
+    },
+    {
+      "id": "fs-j3-scale",
+      "trackId": "fullstack",
+      "level": "senior",
+      "order": 2,
+      "title": "性能、缓存与可靠性",
+      "summary": "先有指标与失败模型，再谈缓存、重试与降级；可靠性是设计出来的。",
+      "atomIds": [
+        "fs-j3-scale-a1",
+        "fs-j3-scale-a2",
+        "fs-j3-scale-a3"
+      ],
+      "questionIds": [
+        "q-fs-j3-scale-1",
+        "q-fs-j3-scale-2",
+        "q-fs-j3-scale-3",
+        "q-fs-j3-scale-4",
+        "q-fs-j3-scale-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j3-scale"
+      ]
+    },
+    {
+      "id": "fs-j3-system",
+      "trackId": "fullstack",
+      "level": "senior",
+      "order": 3,
+      "title": "测试、部署与系统设计",
+      "summary": "用测试与发布机制降低变更风险，用系统设计框架表达取舍。",
+      "atomIds": [
+        "fs-j3-system-a1",
+        "fs-j3-system-a2",
+        "fs-j3-system-a3"
+      ],
+      "questionIds": [
+        "q-fs-j3-system-1",
+        "q-fs-j3-system-2",
+        "q-fs-j3-system-3",
+        "q-fs-j3-system-4",
+        "q-fs-j3-system-5"
+      ],
+      "codeChallengeIds": [
+        "code-fs-j3-system"
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "title": "语义化与可访问性",
+      "summary": "语义标签表达结构，可访问性让键盘与读屏用户也能完成操作。",
+      "minutes": 5,
+      "keyPoints": [
+        "优先用 nav/main/header/footer/button 等语义元素表达结构，div 只承担纯布局；语义结构也利于 SEO 与读屏。",
+        "所有交互元素要可聚焦、可键盘触发；图标按钮必须有可读名称，表单控件要显式关联 label。",
+        "图片内容有意义时写具体 alt，纯装饰使用空 alt；不要用颜色作为唯一的信息载体。"
+      ],
+      "example": {
+        "language": "html",
+        "caption": "导航、主内容与可访问的图标按钮",
+        "code": "<header>\n  <nav aria-label=\"主导航\">\n    <a href=\"/learn\">学习</a>\n    <a href=\"/sprint\">冲刺</a>\n  </nav>\n</header>\n<main>\n  <h1>系统学习</h1>\n  <button type=\"button\" aria-label=\"关闭提示\">\n    <svg aria-hidden=\"true\">...</svg>\n  </button>\n</main>"
+      },
+      "pitfalls": [
+        "用 div 加 click 模拟按钮，键盘无法聚焦，也没有按空格/回车触发的语义。",
+        "给所有图片写 alt=\"image\"，读屏用户仍无法理解内容。"
+      ],
+      "interviewTip": "从语义结构、键盘可操作性、读屏名称三方面回答，再补一个实际修复过的表单或图标按钮案例。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "fs-j1-web-a1",
+      "chapterId": "fs-j1-web"
+    },
+    {
+      "title": "Flex / Grid 布局",
+      "summary": "Flex 擅长一维排布，Grid 擅长二维布局；选型取决于内容与约束。",
+      "minutes": 6,
+      "keyPoints": [
+        "Flex 沿主轴分配空间，justify-content 控制主轴、align-items 控制交叉轴；flex: 1 常见含义是等分剩余空间。",
+        "Grid 用行与列定义二维结构，repeat(auto-fit, minmax(240px, 1fr)) 能实现卡片自适应列数。",
+        "布局优先用 gap 控制间距；min-width: 0 / minmax(0,1fr) 常用于解决网格或弹性子项的溢出。"
+      ],
+      "example": {
+        "language": "css",
+        "caption": "自适应卡片网格",
+        "code": ".cards {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  gap: 16px;\n  align-items: stretch;\n}\n\n.card {\n  min-width: 0;\n  border: 1px solid #e5e7eb;\n  border-radius: 12px;\n  padding: 16px;\n}"
+      },
+      "pitfalls": [
+        "在 Flex 子项里放长文本或代码，忘记 min-width: 0，导致容器被撑破。",
+        "用 margin 模拟网格间距，最后一行/列多出无法消除的空白。"
+      ],
+      "interviewTip": "一句话区分 Flex 一维与 Grid 二维，再给一个自适应卡片或表单布局的具体实现，并说明溢出处理。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "fs-j1-web-a2",
+      "chapterId": "fs-j1-web"
+    },
+    {
+      "title": "响应式与移动适配",
+      "summary": "移动优先的断点、相对单位和触控尺寸，决定小屏是否真正可用。",
+      "minutes": 5,
+      "keyPoints": [
+        "用 meta viewport 声明视口；移动优先从小到大写 min-width 断点，避免为每个设备单独写样式。",
+        "字号/间距优先用 rem、clamp 等相对单位；容器用 max-width + padding 控制阅读宽度。",
+        "触控目标建议不小于 44px，输入字号至少 16px 以避免 iOS 自动放大；悬浮信息不能只在 hover 出现。"
+      ],
+      "example": {
+        "language": "css",
+        "caption": "移动优先的容器与断点",
+        "code": ".container {\n  width: min(100% - 32px, 1200px);\n  margin-inline: auto;\n}\n\n.title {\n  font-size: clamp(1.5rem, 4vw, 2.5rem);\n}\n\n@media (min-width: 768px) {\n  .layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; }\n}"
+      },
+      "pitfalls": [
+        "只按桌面写固定宽度，手机上出现横向滚动。",
+        "用 hover 才显示关键操作，触屏用户无法触达。"
+      ],
+      "interviewTip": "从 viewport、移动优先断点、相对单位与触控目标四点回答，再补一次真实移动端溢出的修复。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "fs-j1-web-a3",
+      "chapterId": "fs-j1-web"
+    },
+    {
+      "title": "作用域与闭包",
+      "summary": "闭包让函数记住定义时的词法环境，也让循环变量与缓存行为有了可解释的规则。",
+      "minutes": 6,
+      "keyPoints": [
+        "var 是函数作用域并提升，let/const 是块级作用域且有暂时性死区；优先使用 let/const 减少意外共享。",
+        "闭包是函数与其词法环境的组合；内部函数可以持续访问外部变量，常见于工厂函数、防抖与私有状态。",
+        "循环中创建回调时，var 会让所有回调共享同一个变量；用 let 或立即函数捕获每次迭代值。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "用闭包创建独立计数器",
+        "code": "function createCounter(start = 0) {\n  let value = start;\n  return {\n    increment() { value += 1; return value; },\n    current() { return value; }\n  };\n}\n\nconst counter = createCounter(10);\ncounter.increment();\ncounter.increment();\nconsole.log(counter.current()); // 12"
+      },
+      "pitfalls": [
+        "在 for 循环中用 var 注册异步回调，所有回调最终读到同一个结束值。",
+        "为每个组件实例共享闭包内部可变变量，导致状态串扰。"
+      ],
+      "interviewTip": "先讲词法作用域，再讲闭包为什么能保存状态，最后用循环绑定或防抖说明实际影响。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "fs-j1-js-a1",
+      "chapterId": "fs-j1-js"
+    },
+    {
+      "title": "原型与 this",
+      "summary": "对象通过原型链查找属性；this 取决于调用方式而非函数定义位置。",
+      "minutes": 6,
+      "keyPoints": [
+        "每个对象都有内部原型，属性查找沿原型链向上；null 原型对象没有 toString 等方法。",
+        "普通函数的 this 由调用点决定：方法调用指向接收者，独立调用在严格模式为 undefined；箭头函数捕获外层 this。",
+        "class 本质也是原型机制；实例方法挂在原型上避免每个实例复制函数，静态成员挂在构造函数上。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "this 丢失的典型场景",
+        "code": "const user = {\n  name: \"Ada\",\n  greet() { return \"Hi, \" + this.name; }\n};\n\nconst greet = user.greet;\n// greet() 在严格模式下 this 为 undefined，会抛 TypeError\nconsole.log(user.greet());          // Hi, Ada\nconsole.log(user.greet.call(user)); // Hi, Ada\nconsole.log(greet?.());             // 保持调用边界或在调用处绑定"
+      },
+      "pitfalls": [
+        "把对象方法作为回调直接传递，丢失 this 后读不到实例字段。",
+        "误以为箭头函数也有自己的 this，在事件处理函数里捕获了错误的上下文。"
+      ],
+      "interviewTip": "用调用点解释 this，再区分箭头函数与 class 方法；补一个回调丢失 this 的修复方式（bind 或箭头函数）。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "fs-j1-js-a2",
+      "chapterId": "fs-j1-js"
+    },
+    {
+      "title": "异步与事件循环",
+      "summary": "同步代码先执行，微任务优先于宏任务；理解顺序才能解释竞态与延迟。",
+      "minutes": 6,
+      "keyPoints": [
+        "调用栈清空后先执行微任务队列（Promise.then、queueMicrotask），再进入下一轮宏任务（setTimeout、事件回调）。",
+        "Promise 链返回新 Promise，值沿链传递；忘记 return 会让下一个 then 拿到 undefined。",
+        "并发不等于并行：Promise.all 适合全部成功才继续，allSettled 收集部分失败，race 只取最先完成。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "微任务先于宏任务",
+        "code": "console.log(\"A\");\n\nsetTimeout(() => console.log(\"B\"), 0);\n\nPromise.resolve().then(() => console.log(\"C\"));\n\nconsole.log(\"D\");\n\n// A → D → C → B"
+      },
+      "pitfalls": [
+        "在 Promise catch 中吞掉错误却不返回 rejected，导致调用方误以为成功。",
+        "用 forEach + async 处理异步任务，误以为会等待全部完成。"
+      ],
+      "interviewTip": "用调用栈、微任务、宏任务解释输出顺序，再补 Promise.all 与 allSettled 的业务取舍。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "fs-j1-js-a3",
+      "chapterId": "fs-j1-js"
+    },
+    {
+      "title": "组件与 JSX",
+      "summary": "组件是返回 UI 描述的函数；JSX 是表达式，属性与组合决定可复用边界。",
+      "minutes": 5,
+      "keyPoints": [
+        "组件名大写，返回 JSX；JSX 中表达式用 {}，条件可用三元表达式，列表必须提供稳定的 key。",
+        "props 是只读输入，不要把父级对象直接改掉；组合 children 比重复制参数更适合布局容器。",
+        "JSX 不等于 HTML：className、htmlFor 等属性不同，事件是合成事件；自定义组件必须返回单个根节点或 Fragment。"
+      ],
+      "example": {
+        "language": "jsx",
+        "caption": "可复用卡片与条件渲染",
+        "code": "function TaskCard({ task, onToggle }) {\n  return (\n    <article className=\"task-card\">\n      <h3>{task.title}</h3>\n      {task.done ? (\n        <button onClick={() => onToggle(task.id)}>标记未完成</button>\n      ) : (\n        <button onClick={() => onToggle(task.id)}>完成</button>\n      )}\n    </article>\n  );\n}"
+      },
+      "pitfalls": [
+        "使用 class 而不是 className，或忘记给按钮类型导致表单意外提交。",
+        "在渲染期间修改 props 或外部数组，导致不可预测的重渲染。"
+      ],
+      "interviewTip": "把组件说成 props → UI 的纯函数，再讲 JSX 表达式、条件渲染与组合 children 的复用价值。",
+      "skills": [
+        "react-fundamentals"
+      ],
+      "id": "fs-j1-react-a1",
+      "chapterId": "fs-j1-react"
+    },
+    {
+      "title": "state / props 与重渲染",
+      "summary": "state 是组件自己的可变快照；setState 触发重新渲染，而不是立即改变当前变量。",
+      "minutes": 6,
+      "keyPoints": [
+        "state 更新可能是批处理且异步可见，用函数式更新 setCount(prev => prev + 1) 避免闭包拿到旧值。",
+        "父组件重渲染默认会重新渲染子组件；用拆分、稳定 props 与必要时的 memo 控制成本，不要盲目 memo。",
+        "受控表单用 value + onChange 建立单一事实源；非受控表单用 ref，适合文件输入或性能敏感场景。"
+      ],
+      "example": {
+        "language": "jsx",
+        "caption": "函数式更新避免旧值覆盖",
+        "code": "function Counter() {\n  const [count, setCount] = useState(0);\n\n  function addTwice() {\n    setCount((prev) => prev + 1);\n    setCount((prev) => prev + 1);\n  }\n\n  return <button onClick={addTwice}>count: {count}</button>;\n}"
+      },
+      "pitfalls": [
+        "连续两次 setCount(count + 1) 期望加 2，实际只加 1。",
+        "在 useEffect 中以空依赖读取不断变化的 state，拿到初始快照。"
+      ],
+      "interviewTip": "先讲 state 快照与批量更新，再讲函数式更新与重渲染边界，最后补受控/非受控表单选择。",
+      "skills": [
+        "react-fundamentals",
+        "state-data-flow"
+      ],
+      "id": "fs-j1-react-a2",
+      "chapterId": "fs-j1-react"
+    },
+    {
+      "title": "列表、表单与副作用",
+      "summary": "副作用连接 React 与外部世界；依赖与清理决定它是否可靠。",
+      "minutes": 6,
+      "keyPoints": [
+        "列表 key 应使用稳定业务 id，而不是索引；key 影响 React 复用哪一项，错误 key 会串状态。",
+        "useEffect 的依赖必须包含所有被读取的响应式值；订阅、定时器、请求都要在清理函数中释放/取消。",
+        "事件处理函数不应依赖渲染次数；需要最新值时可使用 ref、函数式更新或在依赖中声明。"
+      ],
+      "example": {
+        "language": "jsx",
+        "caption": "带清理的订阅副作用",
+        "code": "function OnlineStatus() {\n  const [online, setOnline] = useState(navigator.onLine);\n\n  useEffect(() => {\n    const on = () => setOnline(true);\n    const off = () => setOnline(false);\n    window.addEventListener(\"online\", on);\n    window.addEventListener(\"offline\", off);\n    return () => {\n      window.removeEventListener(\"online\", on);\n      window.removeEventListener(\"offline\", off);\n    };\n  }, []);\n\n  return <span>{online ? \"在线\" : \"离线\"}</span>;\n}"
+      },
+      "pitfalls": [
+        "用数组索引作 key，删除中间项后输入框内容串行。",
+        "useEffect 中发起请求但不取消，页面切换后旧响应覆盖新数据。"
+      ],
+      "interviewTip": "从 key 身份、依赖数组、清理函数三点回答，再补一个请求取消或订阅释放的真实案例。",
+      "skills": [
+        "react-fundamentals",
+        "state-data-flow"
+      ],
+      "id": "fs-j1-react-a3",
+      "chapterId": "fs-j1-react"
+    },
+    {
+      "title": "结构化类型与联合类型",
+      "summary": "TypeScript 按结构兼容而非继承判断类型；联合类型表达互斥状态。",
+      "minutes": 6,
+      "keyPoints": [
+        "结构化类型只关心成员形状：只要结构兼容即可赋值，不要求显式 implements；这也意味着多余属性在直接字面量赋值时会被额外检查。",
+        "联合类型适合表达有限状态，配合可辨识字段（如 type/status）做收窄，避免一堆可选字段导致的非法组合。",
+        "any 会关闭类型检查并向调用方扩散；不确定的外部输入先用 unknown，再通过校验或类型守卫收窄。"
+      ],
+      "example": {
+        "language": "typescript",
+        "caption": "用可辨识联合表达请求状态",
+        "code": "type RequestState =\n  | { status: \"idle\" }\n  | { status: \"loading\" }\n  | { status: \"success\"; data: User }\n  | { status: \"error\"; message: string };\n\nfunction label(state: RequestState): string {\n  switch (state.status) {\n    case \"idle\": return \"待加载\";\n    case \"loading\": return \"加载中\";\n    case \"success\": return state.data.name;\n    case \"error\": return state.message;\n  }\n}"
+      },
+      "pitfalls": [
+        "用可选字段拼状态（loading? data? error?），可能出现同时 loading 与 error 的非法对象。",
+        "把 JSON 响应直接断言成接口类型，运行时字段缺失仍会出错。"
+      ],
+      "interviewTip": "先讲结构兼容与可辨识联合，再讲 unknown/类型守卫在边界上的作用，最后补一个非法状态被类型系统挡住的例子。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "fs-j2-ts-a1",
+      "chapterId": "fs-j2-ts"
+    },
+    {
+      "title": "泛型与约束",
+      "summary": "泛型把类型关系参数化；约束让函数在保留灵活性的同时可用具体能力。",
+      "minutes": 6,
+      "keyPoints": [
+        "泛型参数表达输入与输出之间的类型关系，例如 K extends keyof T 让 key 必须属于对象。",
+        "extends 约束提供最小能力集合，而不是继承实现；默认类型参数可以减少调用方负担。",
+        "泛型不是越多越好：无法建立类型关系时，具体类型往往更可读；避免把 any 藏在泛型里。"
+      ],
+      "example": {
+        "language": "typescript",
+        "caption": "通过 keyof 保持返回值类型",
+        "code": "function pluck<T, K extends keyof T>(items: T[], key: K): Array<T[K]> {\n  return items.map((item) => item[key]);\n}\n\nconst users = [{ id: \"1\", name: \"Ada\", age: 30 }];\nconst names = pluck(users, \"name\"); // string[]\n// pluck(users, \"email\") 编译错误"
+      },
+      "pitfalls": [
+        "用 <T> 但没有在参数与返回值之间建立约束，调用方失去真正有用的类型信息。",
+        "为了让泛型编译通过使用 as any，把错误推迟到运行时。"
+      ],
+      "interviewTip": "从「参数化类型关系」讲泛型，再说明 keyof/extends 的约束价值，最后说清何时不该用泛型。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "fs-j2-ts-a2",
+      "chapterId": "fs-j2-ts"
+    },
+    {
+      "title": "类型收窄与工具类型",
+      "summary": "收窄让联合类型在分支中变具体；工具类型用于从已有模型推导新模型。",
+      "minutes": 5,
+      "keyPoints": [
+        "typeof、in、instanceof、可辨识字段与自定义类型谓词都能收窄；类型谓词必须由实现保证真实。",
+        "Omit/Pick/Partial/Required/Record 用于组合领域类型，避免复制字段后漂移。",
+        "边界上先校验再断言；类型断言只改变编译器认知，不改变运行时数据。"
+      ],
+      "example": {
+        "language": "typescript",
+        "caption": "Omit 隐藏敏感字段，类型谓词校验外部值",
+        "code": "type User = { id: string; name: string; passwordHash: string };\ntype PublicUser = Omit<User, \"passwordHash\">;\n\nfunction isPublicUser(value: unknown): value is PublicUser {\n  if (!value || typeof value !== \"object\") return false;\n  const row = value as Record<string, unknown>;\n  return typeof row.id === \"string\" && typeof row.name === \"string\";\n}"
+      },
+      "pitfalls": [
+        "类型谓词随意返回 true，导致调用方信任不存在的字段。",
+        "用 as 绕过外部数据校验，类型安全只存在于编译期。"
+      ],
+      "interviewTip": "先列收窄手段，再讲工具类型减少重复，最后强调「断言不是校验」的运行时边界。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "fs-j2-ts-a3",
+      "chapterId": "fs-j2-ts"
+    },
+    {
+      "title": "事件循环与流",
+      "summary": "Node 单线程执行 JS，I/O 交给事件循环；流用背压控制内存。",
+      "minutes": 6,
+      "keyPoints": [
+        "process.nextTick 在当前操作结束后、Promise 微任务之前执行；阻塞主线程的计算会让所有请求排队。",
+        "流式处理大文件避免一次性读入内存；write() 返回 false 时应等待 drain，尊重背压。",
+        "CPU 密集任务不要占住主线程：拆分、worker_threads 或移到独立服务，并设置超时与限流。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "用 pipeline 处理流并传播错误",
+        "code": "import { pipeline } from \"node:stream/promises\";\nimport { createReadStream, createWriteStream } from \"node:fs\";\n\nawait pipeline(\n  createReadStream(\"input.log\"),\n  transformLines(),\n  createWriteStream(\"output.log\")\n);"
+      },
+      "pitfalls": [
+        "在请求处理里执行同步大计算，导致事件循环延迟、所有请求变慢。",
+        "忽略 write() 的返回值，生产速度超过消费速度造成内存暴涨。"
+      ],
+      "interviewTip": "先讲事件循环与阻塞风险，再讲流和背压，最后用 worker_threads/限流说明 CPU 密集任务的边界。",
+      "skills": [
+        "node-runtime"
+      ],
+      "id": "fs-j2-node-a1",
+      "chapterId": "fs-j2-node"
+    },
+    {
+      "title": "REST 设计与校验",
+      "summary": "资源、方法与状态码要一致；校验在系统边界完成。",
+      "minutes": 6,
+      "keyPoints": [
+        "用名词表示资源，HTTP 方法表达动作：GET 查询、POST 创建、PUT 全量替换、PATCH 部分更新、DELETE 删除。",
+        "状态码要准确：200/201/204、400 参数错误、401 未认证、403 无权限、404 不存在、409 冲突、429 限流。",
+        "请求体在入口用 schema 校验并限制长度；错误响应返回稳定错误码与可读消息，不泄露堆栈。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "用 Zod 在路由边界校验并返回稳定错误",
+        "code": "const CreateOrder = z.object({\n  productId: z.string().min(1).max(64),\n  quantity: z.number().int().min(1).max(99)\n});\n\napp.post(\"/orders\", async (req, res) => {\n  const parsed = CreateOrder.safeParse(req.body);\n  if (!parsed.success) {\n    return res.status(400).json({\n      error: \"参数不合法\",\n      fields: parsed.error.flatten().fieldErrors\n    });\n  }\n  res.status(201).json(await orders.create(parsed.data));\n});"
+      },
+      "pitfalls": [
+        "所有错误都返回 200，让客户端无法区分成功与失败。",
+        "把数据库异常堆栈直接返回给客户端，泄露实现细节。"
+      ],
+      "interviewTip": "从资源/方法/状态码讲 REST，再强调边界校验与稳定错误契约，最后补幂等与分页。",
+      "skills": [
+        "http-api",
+        "node-runtime"
+      ],
+      "id": "fs-j2-node-a2",
+      "chapterId": "fs-j2-node"
+    },
+    {
+      "title": "中间件与错误处理",
+      "summary": "中间件按顺序组合请求处理；集中错误中间件决定对外契约。",
+      "minutes": 5,
+      "keyPoints": [
+        "中间件按注册顺序执行，必须调用 next 或结束响应；鉴权、日志、校验适合放在业务处理器之前。",
+        "错误处理中间件需要四个参数 (err, req, res, next)，异步错误要显式传给 next 或被框架捕获。",
+        "错误分类后映射状态码与日志级别；可重试错误与不可重试错误不能使用同一提示。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "集中错误中间件",
+        "code": "app.use((err, req, res, next) => {\n  const status = err.status ?? 500;\n  const retryable = status >= 500 || status === 429;\n\n  logger[status >= 500 ? \"error\" : \"warn\"](\"request_failed\", {\n    path: req.path,\n    status,\n    requestId: req.id\n  });\n\n  res.status(status).json({\n    error: status >= 500 ? \"服务暂时不可用\" : err.message,\n    retryable,\n    requestId: req.id\n  });\n});"
+      },
+      "pitfalls": [
+        "自定义错误中间件写成三个参数，框架不会把它当作错误处理器。",
+        "在日志中打印完整请求体，意外记录密码或令牌。"
+      ],
+      "interviewTip": "从执行顺序、终止与传递、集中错误契约三块回答，再补日志脱敏与 requestId 追踪。",
+      "skills": [
+        "node-runtime",
+        "http-api"
+      ],
+      "id": "fs-j2-node-a3",
+      "chapterId": "fs-j2-node"
+    },
+    {
+      "title": "表设计与索引",
+      "summary": "索引服务查询模式；联合索引遵循最左前缀，写入也有成本。",
+      "minutes": 6,
+      "keyPoints": [
+        "为高频等值/范围/排序查询设计索引，联合索引的顺序按等值列、范围列、排序列排列；最左前缀失效要能解释。",
+        "区分聚簇索引与二级索引，避免 SELECT * 导致大量回表；覆盖索引可减少 I/O。",
+        "索引不是越多越好：每个索引增加写入与存储成本；低选择性列单独建索引收益有限。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "为“用户 + 时间”查询建立联合索引",
+        "code": "CREATE INDEX idx_orders_user_created\n  ON orders (user_id, created_at DESC);\n\n-- 能利用联合索引前缀\nSELECT id, status, amount\nFROM orders\nWHERE user_id = ?\nORDER BY created_at DESC\nLIMIT 20;\n\n-- 只按 created_at 查询，通常无法高效利用该索引\nSELECT id FROM orders WHERE created_at > ?;"
+      },
+      "pitfalls": [
+        "在索引列上套函数或做隐式类型转换，导致索引失效。",
+        "为每个字段都建单独索引，写入放大且优化器选择困难。"
+      ],
+      "interviewTip": "从查询模式反推索引，讲联合索引顺序与最左前缀，再补回表、覆盖索引与写入成本。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "fs-j2-db-a1",
+      "chapterId": "fs-j2-db"
+    },
+    {
+      "title": "JOIN 与聚合",
+      "summary": "JOIN 表达集合关联，聚合表达分组统计；先保证结果语义再谈性能。",
+      "minutes": 6,
+      "keyPoints": [
+        "INNER JOIN 只保留匹配行，LEFT JOIN 保留左表；过滤右表条件写在 ON 与 WHERE 会产生不同语义。",
+        "COUNT(*) 统计行数，COUNT(column) 忽略 NULL；COUNT(DISTINCT ...) 去重统计，注意大表代价。",
+        "分组过滤用 HAVING，行过滤用 WHERE；先缩小行集再聚合通常更高效。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "统计每个用户的已支付订单数",
+        "code": "SELECT u.id, u.name, COUNT(o.id) AS paid_orders\nFROM users u\nLEFT JOIN orders o\n  ON o.user_id = u.id\n AND o.status = 'PAID'\nGROUP BY u.id, u.name\nHAVING COUNT(o.id) > 0\nORDER BY paid_orders DESC\nLIMIT 50;"
+      },
+      "pitfalls": [
+        "把右表的过滤条件写在 WHERE，把 LEFT JOIN 实际退化成 INNER JOIN。",
+        "SELECT 未分组且非聚合的列，在严格 SQL 模式下报错或产生不确定结果。"
+      ],
+      "interviewTip": "先讲 JOIN 的保留语义与 ON/WHERE 差异，再讲 WHERE/HAVING 与聚合函数的 NULL 行为。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "fs-j2-db-a2",
+      "chapterId": "fs-j2-db"
+    },
+    {
+      "title": "事务与并发",
+      "summary": "事务保证一组操作的原子性；隔离级别在并发正确性与吞吐之间取舍。",
+      "minutes": 6,
+      "keyPoints": [
+        "ACID 中原子性靠事务回滚，隔离性靠锁/MVCC；长事务会持有快照或锁，放大冲突与清理成本。",
+        "读已提交避免脏读，但可能出现不可重复读/幻读；可重复读通过快照提升一致性，仍有写偏斜等场景需额外约束。",
+        "并发扣减库存可用条件更新（WHERE stock >= ?）或行锁，避免先查后改的竞态；必要时加唯一约束兜底。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "条件更新避免超卖",
+        "code": "UPDATE products\nSET stock = stock - ?\nWHERE id = ?\n  AND stock >= ?;\n\n-- 若 affected rows 为 0，说明库存不足或并发更新失败\n-- 不要先 SELECT stock 再在应用层判断后 UPDATE"
+      },
+      "pitfalls": [
+        "先查询余额/库存再更新，两个请求并发时都通过校验，产生超卖或负余额。",
+        "事务中调用慢速外部服务，长时间占用连接与锁。"
+      ],
+      "interviewTip": "从 ACID、隔离级别、条件更新与唯一约束兜底回答，再补长事务与外部调用的边界。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "fs-j2-db-a3",
+      "chapterId": "fs-j2-db"
+    },
+    {
+      "title": "Session / JWT 与 Cookie",
+      "summary": "会话方案要在可撤销性、无状态扩展与实现复杂度之间取舍。",
+      "minutes": 6,
+      "keyPoints": [
+        "服务端 Session 易于撤销与集中管理，但需要存储/共享；JWT 无状态便于横向扩展，但提前撤销与令牌轮换更复杂。",
+        "Cookie 用 HttpOnly 防脚本读取、Secure 仅走 HTTPS、SameSite 降低跨站请求风险；不要把令牌存入 localStorage 让 XSS 直接窃取。",
+        "刷新令牌应轮换并可撤销，访问令牌短有效期；退出、改密、权限变更要能失效已有会话。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "服务端会话 Cookie 的安全属性",
+        "code": "response.cookies.set(\"session\", token, {\n  httpOnly: true,\n  secure: process.env.NODE_ENV === \"production\",\n  sameSite: \"lax\",\n  path: \"/\",\n  maxAge: 60 * 60 * 24 * 7\n});\n\n// 数据库保存 token 的哈希，不保存明文\n// 退出登录时删除服务端会话记录"
+      },
+      "pitfalls": [
+        "把 JWT 存进 localStorage，XSS 后攻击者可直接读取并外传。",
+        "JWT 有效期很长且无法撤销，用户改密后旧令牌仍可访问。"
+      ],
+      "interviewTip": "先比较 Session 与 JWT 的撤销/扩展取舍，再讲 Cookie 属性与令牌轮换，最后说退出与改密的失效路径。",
+      "skills": [
+        "auth-security",
+        "http-api"
+      ],
+      "id": "fs-j3-security-a1",
+      "chapterId": "fs-j3-security"
+    },
+    {
+      "title": "常见 Web 攻击",
+      "summary": "威胁模型先于防护；XSS、CSRF、SQL 注入与 SSRF 的边界各不相同。",
+      "minutes": 6,
+      "keyPoints": [
+        "XSS 防护靠输出编码与框架默认转义，避免不必要的 dangerouslySetInnerHTML；CSP 是纵深防御，不是替代转义。",
+        "CSRF 依赖浏览器自动携带凭证，用 SameSite Cookie、Origin/Referer 校验与 CSRF Token 组合防护；GET 不应修改状态。",
+        "SQL 注入必须参数化；SSRF 需要 URL 白名单、内网地址封禁与协议限制；错误响应不暴露内部地址与堆栈。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "写操作的同源与内容校验",
+        "code": "function guard(request) {\n  const origin = request.headers.get(\"origin\");\n  if (origin && origin !== new URL(request.url).origin) {\n    return new Response(\"forbidden\", { status: 403 });\n  }\n  const contentType = request.headers.get(\"content-type\") ?? \"\";\n  if (!contentType.includes(\"application/json\")) {\n    return new Response(\"unsupported media type\", { status: 415 });\n  }\n  return null;\n}"
+      },
+      "pitfalls": [
+        "用前端隐藏按钮当权限控制，直接调用接口仍可越权。",
+        "认为用了容器/框架就自动免疫注入，忽略动态 SQL 与外部 URL。"
+      ],
+      "interviewTip": "按攻击面分别回答 XSS/CSRF/注入/SSRF 的触发条件与防线，再强调同源、参数化与最小暴露。",
+      "skills": [
+        "auth-security",
+        "http-api"
+      ],
+      "id": "fs-j3-security-a2",
+      "chapterId": "fs-j3-security"
+    },
+    {
+      "title": "权限模型与数据隔离",
+      "summary": "认证回答你是谁，授权回答你能做什么；数据隔离要落在查询条件上。",
+      "minutes": 6,
+      "keyPoints": [
+        "资源授权同时校验主体权限与资源归属；用户资源的查询必须带 user_id，更新/删除用条件更新防止 TOCTOU。",
+        "角色权限适合粗粒度，属主/租户隔离适合数据边界；不要把租户 id 只放在前端或请求参数中。",
+        "越权测试覆盖水平（同角色他人资源）与垂直（低权限访问高权限操作）；服务端默认拒绝，接口返回 404 避免枚举。"
+      ],
+      "example": {
+        "language": "sql",
+        "caption": "把归属写进更新条件，避免先查后改竞态",
+        "code": "UPDATE interview_sessions\nSET status = 'completed', ended_at = ?\nWHERE id = ?\n  AND user_id = ?\n  AND status = 'active';\n\n-- affected rows = 0：资源不存在、不属于当前用户或已结束\n-- 对外统一返回 404，避免泄露资源存在性"
+      },
+      "pitfalls": [
+        "只在页面隐藏管理入口，后端接口没有角色校验。",
+        "按 id 查询资源而不带 user_id，攻击者改 id 即可读取他人面试记录。"
+      ],
+      "interviewTip": "明确认证/授权/隔离三层，给出「查询带 user_id + 条件更新 + 越权测试」的完整闭环，并说明 404 的信息隐藏取舍。",
+      "skills": [
+        "auth-security",
+        "sql-database"
+      ],
+      "id": "fs-j3-security-a3",
+      "chapterId": "fs-j3-security"
+    },
+    {
+      "title": "缓存策略与失效",
+      "summary": "缓存是复制的事实；要定义键、TTL、失效与穿透/雪崩防线。",
+      "minutes": 6,
+      "keyPoints": [
+        "缓存键包含影响结果的维度与版本，TTL 与主动失效配合；先更新数据库再删除缓存，并为并发删除失败兜底。",
+        "穿透用空值缓存/布隆过滤器，击穿用 singleflight/互斥重建，雪崩用随机 TTL、限流与多级缓存。",
+        "一致性按业务要求选择：强一致场景减少缓存或使用读己之写；弱一致要标注数据新鲜度与可接受的延迟。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "singleflight 避免热点键击穿",
+        "code": "const inflight = new Map();\n\nasync function getProduct(id, load, cache) {\n  const cached = await cache.get(\"product:\" + id);\n  if (cached) return cached;\n\n  if (!inflight.has(id)) {\n    inflight.set(id, load(id).finally(() => inflight.delete(id)));\n  }\n  const product = await inflight.get(id);\n  await cache.set(\"product:\" + id, product, { ttl: 60 + Math.random() * 30 });\n  return product;\n}"
+      },
+      "pitfalls": [
+        "先删缓存再写数据库，并发读写把旧值重新写回缓存。",
+        "全站统一 TTL，整点同时失效造成雪崩。"
+      ],
+      "interviewTip": "从缓存键/TTL/失效讲策略，再区分穿透、击穿、雪崩，最后用业务一致性要求说明缓存取舍。",
+      "skills": [
+        "performance-caching",
+        "system-design"
+      ],
+      "id": "fs-j3-scale-a1",
+      "chapterId": "fs-j3-scale"
+    },
+    {
+      "title": "性能定位",
+      "summary": "性能优化从可复现的基线开始：先测量，再定位，再只改一个变量。",
+      "minutes": 6,
+      "keyPoints": [
+        "定义用户场景与分位指标（P95/P99、错误率、吞吐），区分客户端、网络、应用与数据库瓶颈。",
+        "用 trace/APM/慢日志定位链路，先解决重复查询与 N+1，再考虑索引、缓存与异步化。",
+        "优化只引入一个变量，灰度对比，关注副作用（一致性、资源成本）与回滚方案。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "性能排查的最小证据链",
+        "code": "1. 现象：结算页 P95 从 300ms 升到 1.8s\n2. 范围：仅新版本、仅大促期间、部分用户\n3. 证据：APM 显示数据库调用次数 ×8，接口串行等待\n4. 根因：列表项内循环查询，触发 N+1\n5. 修复：批量查询 + 索引 + 结果缓存\n6. 验证：灰度后 P95 320ms，错误率不变，缓存命中 70%"
+      },
+      "pitfalls": [
+        "只看平均值，掩盖尾部延迟与少数慢请求。",
+        "在压测环境用不正确数据量得出结论，线上索引选择与缓存行为不同。"
+      ],
+      "interviewTip": "按基线、范围、证据、根因、修复、验证六段讲一次真实排查，再补只改一个变量与回滚。",
+      "skills": [
+        "performance-caching",
+        "system-design"
+      ],
+      "id": "fs-j3-scale-a2",
+      "chapterId": "fs-j3-scale"
+    },
+    {
+      "title": "重试、幂等与降级",
+      "summary": "失败是常态；只有可安全重试的错误才重试，且必须有预算与退避。",
+      "minutes": 6,
+      "keyPoints": [
+        "重试只针对瞬时、可重试错误；写操作先有幂等键/唯一约束，否则重试会重复扣款或重复下单。",
+        "指数退避 + 抖动 + 最大次数/总预算，避免重试风暴；超时预算要覆盖调用链，而不是每层固定超时相加。",
+        "降级要有产品语义：返回缓存、关闭非核心功能或明确失败；所有降级需要监控、开关与恢复条件。"
+      ],
+      "example": {
+        "language": "javascript",
+        "caption": "带抖动与预算的重试",
+        "code": "async function withRetry(fn, { attempts = 3, base = 100, budget = 1000 } = {}) {\n  const startedAt = Date.now();\n  let lastError;\n\n  for (let i = 0; i < attempts; i += 1) {\n    try { return await fn(); } catch (error) {\n      lastError = error;\n      if (!error.retryable) throw error;\n      if (Date.now() - startedAt > budget) break;\n      const backoff = Math.min(base * 2 ** i, budget);\n      await new Promise((resolve) => setTimeout(resolve, backoff + Math.random() * 50));\n    }\n  }\n  throw lastError;\n}"
+      },
+      "pitfalls": [
+        "对非幂等写请求直接重试，用户被重复扣费。",
+        "所有层级都重试且没有总预算，故障时流量成倍放大。"
+      ],
+      "interviewTip": "先定义可重试错误与幂等，再讲退避/抖动/预算，最后用降级的产品语义与监控闭环收尾。",
+      "skills": [
+        "performance-caching",
+        "system-design"
+      ],
+      "id": "fs-j3-scale-a3",
+      "chapterId": "fs-j3-scale"
+    },
+    {
+      "title": "测试金字塔与 CI",
+      "summary": "不同测试覆盖不同风险；CI 把质量门禁变成默认路径。",
+      "minutes": 6,
+      "keyPoints": [
+        "单元测试覆盖纯逻辑与边界，集成测试覆盖数据库/HTTP 边界，端到端测试聚焦关键业务闭环；数量按反馈成本递减。",
+        "CI 固定 Node/依赖版本，缓存依赖但保持锁文件；lint、typecheck、测试与构建失败即阻断合并。",
+        "测试数据隔离，不访问生产；数据库集成测试用临时库/事务回滚，避免顺序依赖。"
+      ],
+      "example": {
+        "language": "yaml",
+        "caption": "最小可用的 CI 门禁",
+        "code": "name: ci\non: [push, pull_request]\njobs:\n  verify:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n          cache: npm\n      - run: npm ci\n      - run: npm run typecheck\n      - run: npm test\n      - run: npm run content:validate\n      - run: npm run build"
+      },
+      "pitfalls": [
+        "只做主流程测试，没有覆盖失败、权限与边界输入。",
+        "CI 使用本地已安装依赖而不是 npm ci，构建不可复现。"
+      ],
+      "interviewTip": "从测试分层覆盖风险、CI 可复现与质量门禁回答，再补测试数据隔离和失败即阻断。",
+      "skills": [
+        "testing",
+        "deployment-devops"
+      ],
+      "id": "fs-j3-system-a1",
+      "chapterId": "fs-j3-system"
+    },
+    {
+      "title": "部署与可观测性",
+      "summary": "发布是受控实验；日志、指标、追踪与回滚共同构成可运维性。",
+      "minutes": 6,
+      "keyPoints": [
+        "健康检查区分存活与就绪；滚动/蓝绿/金丝雀发布各有成本与回滚速度，数据库变更需前后兼容。",
+        "指标看请求量、错误率、延迟分位与饱和度；日志结构化并带 requestId；追踪串起跨服务调用。",
+        "告警基于用户影响与 SLO，避免只看 CPU；每个高风险发布都要有回滚开关与验证信号。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "一次可回滚的发布检查单",
+        "code": "1. 数据库迁移：先加列（可空），再双写，最后清理旧列\n2. 发布：5% 金丝雀，观察 15 分钟\n3. 信号：P95、5xx、业务成功率、数据库连接数\n4. 失败：关闭功能开关并回滚版本，不动已执行的数据迁移\n5. 完成：逐步放量，保留旧版本回滚窗口"
+      },
+      "pitfalls": [
+        "应用与数据库同时做不兼容变更，回滚应用后立即报错。",
+        "只告警服务器 CPU，不监控用户可见的错误率与延迟。"
+      ],
+      "interviewTip": "从发布策略、数据库兼容、可观测信号与回滚四块回答，再补 SLO 与告警收敛。",
+      "skills": [
+        "deployment-devops",
+        "system-design"
+      ],
+      "id": "fs-j3-system-a2",
+      "chapterId": "fs-j3-system"
+    },
+    {
+      "title": "系统设计答题框架",
+      "summary": "先澄清目标与约束，再给架构与数据流，最后讲失败、指标与演进。",
+      "minutes": 6,
+      "keyPoints": [
+        "开场澄清功能与非功能需求：用户规模、读写比、延迟目标、一致性、预算与团队边界；主动说明假设。",
+        "高层架构从客户端到网关、服务、存储与异步链路；关键写入与读取路径分别画清，标明数据事实源。",
+        "深入 1–2 个关键点（分页/缓存/一致性/限流），给出容量估算、失败与降级，最后说当前阶段取舍与后续演进。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "系统设计答题骨架",
+        "code": "1. 需求与约束：DAU、读多写少、P95 < 200ms、最终一致可接受\n2. API：POST /orders、GET /orders?cursor=...\n3. 架构：Web → API → 订单服务 → PostgreSQL；Redis 缓存热点\n4. 关键路径：写事务 + 幂等键；读缓存 + 回源\n5. 失败：重试预算、限流、降级为只读\n6. 指标：下单成功率、P95、重复下单率、缓存命中率\n7. 取舍：先单库事务，暂不做分片；增长后按 user_id 分片"
+      },
+      "pitfalls": [
+        "一上来画微服务与消息队列，却说不清数据一致性如何保证。",
+        "没有任何容量估算与指标，方案无法验证或比较。"
+      ],
+      "interviewTip": "用「澄清 → 架构 → 关键链路 → 失败与指标 → 取舍」五段式表达，主动说出暂不做什么以及原因。",
+      "skills": [
+        "system-design",
+        "deployment-devops",
+        "engineering-practices"
+      ],
+      "id": "fs-j3-system-a3",
+      "chapterId": "fs-j3-system"
+    }
+  ],
+  "questions": [
+    {
+      "prompt": "页面主导航最合适的容器元素是？",
+      "options": [
+        "<div class=\"nav\">",
+        "<nav>",
+        "<section>",
+        "<span>"
+      ],
+      "answerIndex": 1,
+      "explanation": "<nav> 表达导航地标的语义，读屏与辅助技术可快速定位；div 无语义，section 用于主题分块，不能替代导航语义。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "q-fs-j1-web-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-web",
+      "level": "junior"
+    },
+    {
+      "prompt": "使用 Flex 让子项在交叉轴上居中，应设置哪个属性？",
+      "options": [
+        "justify-content: center",
+        "align-items: center",
+        "text-align: center",
+        "float: center"
+      ],
+      "answerIndex": 1,
+      "explanation": "Flex 默认主轴为水平方向，justify-content 控制主轴分布；align-items 控制交叉轴对齐。text-align 和 float 不负责 Flex 交叉轴。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "q-fs-j1-web-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-web",
+      "level": "junior"
+    },
+    {
+      "prompt": "grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) 的效果是？",
+      "options": [
+        "固定 240 列",
+        "根据容器宽度自动决定列数，每列至少 240px 且均分剩余空间",
+        "只在移动端生效",
+        "让所有子项宽度固定为 240px"
+      ],
+      "answerIndex": 1,
+      "explanation": "auto-fit 会创建尽可能多的列，minmax(240px,1fr) 保证列宽不小于 240px、剩余空间平均分配；不是固定列数或固定宽度。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "q-fs-j1-web-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-web",
+      "level": "junior"
+    },
+    {
+      "prompt": "一张纯装饰性的背景图片，alt 应如何写？",
+      "options": [
+        "alt=\"背景\"",
+        "alt=\"decorative image\"",
+        "alt=\"\" 并标记为装饰",
+        "省略 alt 但保留 src"
+      ],
+      "answerIndex": 2,
+      "explanation": "装饰图片不承载信息，应使用空 alt 让读屏跳过；省略 alt 会让读屏尝试读取文件名，造成噪音。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "q-fs-j1-web-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-web",
+      "level": "junior"
+    },
+    {
+      "prompt": "屏幕宽度 500px，CSS 中基础样式 .card { padding: 12px }，并写了 @media (min-width: 768px) { .card { padding: 24px } }。实际内边距是？",
+      "options": [
+        "24px",
+        "12px",
+        "36px",
+        "取决于浏览器"
+      ],
+      "answerIndex": 1,
+      "explanation": "500px 未达到 768px 的媒体查询条件，使用基础样式 12px；移动优先的写法保证小屏先得到可用布局。",
+      "skills": [
+        "html-css"
+      ],
+      "id": "q-fs-j1-web-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-web",
+      "level": "junior"
+    },
+    {
+      "prompt": "下面代码最终输出什么？\n\nfunction create() {\n  let count = 0;\n  return () => ++count;\n}\nconst next = create();\nnext(); next(); console.log(next());",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "undefined"
+      ],
+      "answerIndex": 2,
+      "explanation": "闭包保留了 count 的引用，每次调用都会自增；前两次调用返回 1、2，第三次打印 3。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "q-fs-j1-js-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-js",
+      "level": "junior"
+    },
+    {
+      "prompt": "在严格模式下，将一个对象方法赋值给变量后直接调用，this 是什么？",
+      "options": [
+        "原对象",
+        "undefined",
+        "window",
+        "null"
+      ],
+      "answerIndex": 1,
+      "explanation": "this 由调用点决定，独立函数调用在严格模式下是 undefined；原对象不会自动绑定，需用 call/apply/bind 或箭头函数保留上下文。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "q-fs-j1-js-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-js",
+      "level": "junior"
+    },
+    {
+      "prompt": "下面输出顺序是？\n\nconsole.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');",
+      "options": [
+        "A B C D",
+        "A D B C",
+        "A D C B",
+        "A C D B"
+      ],
+      "answerIndex": 2,
+      "explanation": "同步的 A、D 先输出；本轮结束后先清空微任务队列输出 C，再执行定时器宏任务输出 B。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "q-fs-j1-js-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-js",
+      "level": "junior"
+    },
+    {
+      "prompt": "下面代码在控制台输出什么？\n\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
+      "options": [
+        "0 1 2",
+        "1 2 3",
+        "3 3 3",
+        "0 0 0"
+      ],
+      "answerIndex": 2,
+      "explanation": "var 是函数作用域，三个回调共享同一个 i；定时器执行时循环已经结束，i 为 3，因此输出三次 3。改用 let 会为每次迭代创建独立绑定。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "q-fs-j1-js-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-js",
+      "level": "junior"
+    },
+    {
+      "prompt": "输出结果是什么？\n\nfunction Person(name) { this.name = name; }\nPerson.prototype.say = function () { return this.name; };\nconst p = new Person('Ada');\nconsole.log(p.hasOwnProperty('say'), 'say' in p);",
+      "options": [
+        "true true",
+        "false true",
+        "true false",
+        "false false"
+      ],
+      "answerIndex": 1,
+      "explanation": "say 定义在 Person.prototype 上，不是实例自有属性，所以 hasOwnProperty 为 false；in 会沿原型链查找，因此第二个为 true。",
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "q-fs-j1-js-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-js",
+      "level": "junior"
+    },
+    {
+      "prompt": "React 列表使用索引作为 key，在删除中间项时最可能发生什么？",
+      "options": [
+        "列表无法渲染",
+        "组件内部状态可能错位到其他数据项",
+        "React 会自动压缩数组",
+        "所有 key 自动变成 id"
+      ],
+      "answerIndex": 1,
+      "explanation": "key 代表身份。用索引时删除中间项会改变后续项的 key，React 可能复用错误的组件实例，导致输入、展开等局部状态串位；应使用业务 id。",
+      "skills": [
+        "react-fundamentals"
+      ],
+      "id": "q-fs-j1-react-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-react",
+      "level": "junior"
+    },
+    {
+      "prompt": "同一个事件处理函数中连续调用两次 setCount(count + 1)，初始 count 为 0，结果通常是？",
+      "options": [
+        "2",
+        "1",
+        "0",
+        "抛出错误"
+      ],
+      "answerIndex": 1,
+      "explanation": "闭包中的 count 是本次渲染的快照，两次更新都基于 0；要基于上一次结果累加，应使用 setCount(prev => prev + 1)。",
+      "skills": [
+        "react-fundamentals",
+        "state-data-flow"
+      ],
+      "id": "q-fs-j1-react-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-react",
+      "level": "junior"
+    },
+    {
+      "prompt": "useEffect 中注册了 window 事件监听，为什么需要返回清理函数？",
+      "options": [
+        "为了提升渲染速度",
+        "避免组件卸载或依赖变化后残留监听，造成泄漏与重复回调",
+        "React 强制要求所有 useEffect 返回函数",
+        "为了自动触发重新渲染"
+      ],
+      "answerIndex": 1,
+      "explanation": "副作用连接外部系统，组件卸载或依赖改变时必须撤销旧订阅，否则监听持续累积并可能更新已卸载组件；清理函数是正确性要求。",
+      "skills": [
+        "react-fundamentals"
+      ],
+      "id": "q-fs-j1-react-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-react",
+      "level": "junior"
+    },
+    {
+      "prompt": "受控输入框的核心数据流是？",
+      "options": [
+        "value 由 DOM 自己维护，React 只读取一次",
+        "value 来自 state，onChange 更新 state，UI 随 state 重渲染",
+        "只能使用 ref 获取值",
+        "每次输入直接修改 props"
+      ],
+      "answerIndex": 1,
+      "explanation": "受控组件把输入值放进 React 状态，形成单一事实源；value 与 onChange 配合，便于校验、格式化与联动，但会增加重渲染。",
+      "skills": [
+        "react-fundamentals",
+        "state-data-flow"
+      ],
+      "id": "q-fs-j1-react-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-react",
+      "level": "junior"
+    },
+    {
+      "prompt": "下面条件渲染在 items 为空时可能渲染出什么异常内容？\n\n{items.length && <List items={items} />}",
+      "options": [
+        "空白字符串",
+        "数字 0",
+        "报错中断",
+        "自动变成 null，没有异常"
+      ],
+      "answerIndex": 1,
+      "explanation": "空数组的 length 为 0，JSX 中 0 是合法表达式，会被渲染成文本 0；应显式使用 items.length > 0 ? <List/> : null。",
+      "skills": [
+        "react-fundamentals"
+      ],
+      "id": "q-fs-j1-react-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-react",
+      "level": "junior"
+    },
+    {
+      "prompt": "可辨识联合类型中，最有助于 TypeScript 自动收窄的字段是？",
+      "options": [
+        "随机生成的 id",
+        "各分支不同的字面量 type/status",
+        "comment 字段",
+        "any 类型的 payload"
+      ],
+      "answerIndex": 1,
+      "explanation": "可辨识字段使用不同的字面量类型，switch/if 判断后可自动收窄到具体分支；随机 id 与注释不提供类型级区分。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "q-fs-j2-ts-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-ts",
+      "level": "middle"
+    },
+    {
+      "prompt": "TypeScript 的结构化类型意味着？",
+      "options": [
+        "必须显式 implements 接口才能赋值",
+        "只要对象成员结构兼容即可赋值，不要求继承关系",
+        "所有对象都必须有相同原型",
+        "类型在运行时被保留并检查"
+      ],
+      "answerIndex": 1,
+      "explanation": "结构化类型按成员形状判断兼容性；类型在编译后被擦除，运行时校验需要额外手段（schema/类型守卫）。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "q-fs-j2-ts-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-ts",
+      "level": "middle"
+    },
+    {
+      "prompt": "函数签名 function pluck<T, K extends keyof T>(items: T[], key: K) 的主要收益是？",
+      "options": [
+        "运行时自动校验字段存在",
+        "返回值类型与所选 key 精确关联，非法 key 在编译期报错",
+        "自动把数组转成 Set",
+        "允许传入任意字符串而无需约束"
+      ],
+      "answerIndex": 1,
+      "explanation": "K extends keyof T 限定 key 必须属于 T 的键，返回 Array<T[K]> 保持元素类型；这是编译期约束，不替代运行时校验。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "q-fs-j2-ts-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-ts",
+      "level": "middle"
+    },
+    {
+      "prompt": "要从 User 类型中移除 passwordHash 字段，最直接的工具类型是？",
+      "options": [
+        "Partial<User>",
+        "Omit<User, 'passwordHash'>",
+        "Pick<User, 'passwordHash'>",
+        "Required<User>"
+      ],
+      "answerIndex": 1,
+      "explanation": "Omit 删除指定键；Pick 只保留指定键，Partial/Required 只调整可选性，不删除字段。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "q-fs-j2-ts-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-ts",
+      "level": "middle"
+    },
+    {
+      "prompt": "关于 function isUser(v: unknown): v is User，哪项说法正确？",
+      "options": [
+        "类型谓词会在运行时自动校验 v",
+        "编译器会相信谓词返回 true 时 v 是 User，因此实现必须真的校验",
+        "unknown 会阻止任何属性访问且无法收窄",
+        "它等价于把参数断言为 any"
+      ],
+      "answerIndex": 1,
+      "explanation": "类型谓词只是告诉编译器收窄结果，运行时不会自动验证；实现若错误返回 true，调用方会在错误类型上继续操作。",
+      "skills": [
+        "typescript"
+      ],
+      "id": "q-fs-j2-ts-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-ts",
+      "level": "middle"
+    },
+    {
+      "prompt": "Node.js 中 process.nextTick 回调与 Promise.then 微任务的执行顺序通常是？",
+      "options": [
+        "Promise.then 总是先于 nextTick",
+        "同一轮中 nextTick 队列先于 Promise 微任务处理",
+        "两者随机执行",
+        "nextTick 在 setTimeout 之后执行"
+      ],
+      "answerIndex": 1,
+      "explanation": "Node 的 nextTick 队列优先级高于 Promise 微任务；两者都在当前宏任务之后、下一个事件循环阶段之前处理，但 nextTick 先清空。",
+      "skills": [
+        "node-runtime"
+      ],
+      "id": "q-fs-j2-node-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-node",
+      "level": "middle"
+    },
+    {
+      "prompt": "PUT 与 PATCH 的主要语义差异是？",
+      "options": [
+        "PUT 只能创建，PATCH 只能删除",
+        "PUT 通常是全量替换，PATCH 是部分更新",
+        "PATCH 不是 HTTP 方法",
+        "两者完全等价"
+      ],
+      "answerIndex": 1,
+      "explanation": "PUT 表达用完整表示替换资源，PATCH 表达局部修改；两者都可用于更新，但语义与幂等性需与实现一致。",
+      "skills": [
+        "http-api"
+      ],
+      "id": "q-fs-j2-node-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-node",
+      "level": "middle"
+    },
+    {
+      "prompt": "客户端提交了缺少必填字段的 JSON，最合适的响应是？",
+      "options": [
+        "200 + 空对象",
+        "400 + 字段级错误说明",
+        "500 + 数据库堆栈",
+        "302 重定向到首页"
+      ],
+      "answerIndex": 1,
+      "explanation": "参数错误属于客户端错误，应返回 400 并指出缺失/非法字段；200 会让客户端误判成功，500 与堆栈会误导并泄露内部信息。",
+      "skills": [
+        "http-api"
+      ],
+      "id": "q-fs-j2-node-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-node",
+      "level": "middle"
+    },
+    {
+      "prompt": "Express 风格的自定义错误中间件，签名必须包含几个参数才会被识别？",
+      "options": [
+        "2 个",
+        "3 个",
+        "4 个",
+        "任意数量"
+      ],
+      "answerIndex": 2,
+      "explanation": "错误处理中间件签名为 (err, req, res, next)，四个参数是框架识别它的依据；只有三个参数会被当成普通中间件。",
+      "skills": [
+        "node-runtime"
+      ],
+      "id": "q-fs-j2-node-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-node",
+      "level": "middle"
+    },
+    {
+      "prompt": "可写流 write() 返回 false 时，正确处理方式是？",
+      "options": [
+        "立即继续写入，忽略返回值",
+        "等待 drain 事件或使用 pipeline 处理背压",
+        "关闭流并丢弃数据",
+        "把数据转成 Buffer 后无限重试"
+      ],
+      "answerIndex": 1,
+      "explanation": "write 返回 false 表示内部缓冲达到阈值，继续写入会占用更多内存；应等待 drain 或使用 pipeline，由它处理背压与错误。",
+      "skills": [
+        "node-runtime"
+      ],
+      "id": "q-fs-j2-node-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-node",
+      "level": "middle"
+    },
+    {
+      "prompt": "联合索引 (user_id, created_at) 对哪类查询最有帮助？",
+      "options": [
+        "只按 created_at 过滤",
+        "先按 user_id 等值过滤，再按 created_at 排序/范围查询",
+        "对 status 做模糊匹配",
+        "对两列分别做函数计算后查询"
+      ],
+      "answerIndex": 1,
+      "explanation": "联合索引遵循最左前缀，user_id 等值匹配后可继续利用 created_at 的范围/排序；跳过最左列或对列做函数运算通常无法高效利用。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "q-fs-j2-db-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-db",
+      "level": "middle"
+    },
+    {
+      "prompt": "LEFT JOIN 中把右表的过滤条件写在 WHERE 中，最常见的后果是？",
+      "options": [
+        "结果行数变多",
+        "未匹配的右表行被过滤，语义退化为 INNER JOIN",
+        "索引自动失效但结果不变",
+        "数据库自动改成 CROSS JOIN"
+      ],
+      "answerIndex": 1,
+      "explanation": "LEFT JOIN 未匹配行的右表列为 NULL，WHERE 条件对 NULL 不成立会把它们过滤掉；右表条件应放在 ON 中才能保留左表全部行。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "q-fs-j2-db-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-db",
+      "level": "middle"
+    },
+    {
+      "prompt": "统计已支付订单数时，哪个表达式会忽略订单为 NULL 的行？",
+      "options": [
+        "COUNT(*)",
+        "COUNT(o.id)",
+        "COUNT(1)",
+        "ROW_COUNT()"
+      ],
+      "answerIndex": 1,
+      "explanation": "COUNT(column) 只统计非 NULL 值，适合 LEFT JOIN 后统计右表实际匹配行；COUNT(*) 与 COUNT(1) 会把左表未匹配的行也计入。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "q-fs-j2-db-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-db",
+      "level": "middle"
+    },
+    {
+      "prompt": "防止并发超卖，哪种数据库操作更可靠？",
+      "options": [
+        "先 SELECT 库存，再在应用里判断，最后无条件 UPDATE",
+        "UPDATE ... SET stock = stock - ? WHERE id = ? AND stock >= ?",
+        "把所有请求串行化到单线程且不设超时",
+        "用缓存计数代替数据库，不做持久化"
+      ],
+      "answerIndex": 1,
+      "explanation": "条件更新把检查与扣减放在同一原子语句，数据库行锁/一致性保证不会扣成负数；先查后改存在竞态，纯缓存则失去持久化与一致性兜底。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "q-fs-j2-db-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-db",
+      "level": "middle"
+    },
+    {
+      "prompt": "对分组后的聚合结果做过滤，应使用哪个子句？",
+      "options": [
+        "WHERE",
+        "HAVING",
+        "ORDER BY",
+        "LIMIT"
+      ],
+      "answerIndex": 1,
+      "explanation": "WHERE 在分组前过滤行，HAVING 在分组后过滤聚合结果；例如 HAVING COUNT(*) > 1。ORDER/LIMIT 负责排序与截断，不承担聚合过滤。",
+      "skills": [
+        "sql-database"
+      ],
+      "id": "q-fs-j2-db-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-db",
+      "level": "middle"
+    },
+    {
+      "prompt": "把会话令牌放在 HttpOnly Cookie 中，主要降低了哪类风险？",
+      "options": [
+        "SQL 注入",
+        "XSS 通过脚本直接读取令牌",
+        "服务器宕机",
+        "网络慢查询"
+      ],
+      "answerIndex": 1,
+      "explanation": "HttpOnly 禁止 document.cookie 读取令牌，降低 XSS 直接窃取会话的风险；但它不防 CSRF，也不能替代输入校验与 SQL 参数化。",
+      "skills": [
+        "auth-security"
+      ],
+      "id": "q-fs-j3-security-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-security",
+      "level": "senior"
+    },
+    {
+      "prompt": "以下哪组措施最直接地降低 CSRF 风险？",
+      "options": [
+        "把 GET 请求改成 POST 就足够",
+        "SameSite Cookie + Origin 校验 + 写操作 CSRF Token",
+        "将令牌存入 localStorage",
+        "对密码做 Base64 编码"
+      ],
+      "answerIndex": 1,
+      "explanation": "CSRF 利用浏览器自动携带凭证；SameSite 限制跨站发送，Origin 校验与 CSRF Token 提供额外绑定。Base64 不是加密，存 localStorage 反而扩大 XSS 影响。",
+      "skills": [
+        "auth-security"
+      ],
+      "id": "q-fs-j3-security-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-security",
+      "level": "senior"
+    },
+    {
+      "prompt": "JWT 相比服务端 Session 的主要缺点之一是？",
+      "options": [
+        "无法携带用户标识",
+        "提前撤销单个令牌与权限变更即时生效更困难",
+        "不能被放在请求头里",
+        "必须依赖 Cookie 才能工作"
+      ],
+      "answerIndex": 1,
+      "explanation": "JWT 自包含且无状态，服务端不在每次请求查会话，因此提前撤销需要额外黑名单/版本机制；Session 可集中删除立即失效。",
+      "skills": [
+        "auth-security"
+      ],
+      "id": "q-fs-j3-security-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-security",
+      "level": "senior"
+    },
+    {
+      "prompt": "读取用户面试记录的接口，最关键的越权防线是？",
+      "options": [
+        "前端只展示自己的记录",
+        "查询同时限定资源 id 与当前 user_id，并做归属校验",
+        "把 id 换成 UUID 就安全",
+        "只允许 GET 请求"
+      ],
+      "answerIndex": 1,
+      "explanation": "授权必须由服务端在查询层完成，资源 id 不可猜不等于授权；前端隐藏、UUID 与请求方法都不能替代 user_id 条件与归属校验。",
+      "skills": [
+        "auth-security",
+        "sql-database"
+      ],
+      "id": "q-fs-j3-security-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-security",
+      "level": "senior"
+    },
+    {
+      "prompt": "密码存储的正确做法是？",
+      "options": [
+        "明文保存以便找回",
+        "MD5 加密后保存",
+        "使用 scrypt/bcrypt 等加盐慢哈希，比较时使用恒定时间比较",
+        "Base64 编码后保存"
+      ],
+      "answerIndex": 2,
+      "explanation": "密码需要加盐慢哈希抵抗离线爆破，验证时避免时序泄露；MD5 与 Base64 都不是适合密码的安全方案，明文更不可接受。",
+      "skills": [
+        "auth-security"
+      ],
+      "id": "q-fs-j3-security-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-security",
+      "level": "senior"
+    },
+    {
+      "prompt": "缓存穿透与缓存击穿的区别是？",
+      "options": [
+        "两者完全相同",
+        "穿透是查询不存在的数据绕过缓存打数据库，击穿是热点键失效瞬间大量请求回源",
+        "穿透只发生在写操作，击穿只发生在读操作",
+        "击穿是缓存容量不足，穿透是网络断线"
+      ],
+      "answerIndex": 1,
+      "explanation": "穿透针对不存在的数据（空值未缓存/恶意查询），击穿针对热点键失效的并发回源；防护分别是空值缓存/布隆过滤器与互斥重建。",
+      "skills": [
+        "performance-caching"
+      ],
+      "id": "q-fs-j3-scale-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "缓存与数据库双写，哪种顺序更常见于减少脏数据？",
+      "options": [
+        "先删缓存再写数据库",
+        "先更新数据库，再删除缓存，并为并发删除失败做补偿",
+        "只删缓存不更新数据库",
+        "缓存和数据库永不同步"
+      ],
+      "answerIndex": 1,
+      "explanation": "先更新数据库再删缓存可减少旧值回填窗口；仍需处理删除失败与并发读写，复杂场景可用延迟双删/消息补偿，但都有代价。",
+      "skills": [
+        "performance-caching"
+      ],
+      "id": "q-fs-j3-scale-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "写接口要支持安全重试，最关键的前提是？",
+      "options": [
+        "增加更多日志",
+        "业务具备幂等性（幂等键/唯一约束/状态机）",
+        "把超时设置得更长",
+        "对所有错误立即重试"
+      ],
+      "answerIndex": 1,
+      "explanation": "重试可能重复执行写操作；幂等键、唯一约束或状态机保证重复请求只生效一次，否则应禁止或特殊处理重试。",
+      "skills": [
+        "performance-caching",
+        "system-design"
+      ],
+      "id": "q-fs-j3-scale-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "性能排查中，哪项证据最能支持「数据库 N+1」判断？",
+      "options": [
+        "CPU 使用率略高",
+        "APM/trace 显示同一请求内大量相似 SQL，调用次数随列表长度增长",
+        "页面颜色改变",
+        "构建时间增加"
+      ],
+      "answerIndex": 1,
+      "explanation": "N+1 的典型证据是列表主查询后逐项查询，SQL 次数与结果数量线性相关；CPU 略高不足以区分根因。",
+      "skills": [
+        "performance-caching",
+        "http-api"
+      ],
+      "id": "q-fs-j3-scale-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "给下游服务添加重试时，为什么需要指数退避与抖动？",
+      "options": [
+        "让代码更复杂",
+        "降低故障时的重试风暴与同步冲击，给下游恢复时间",
+        "保证每次重试都成功",
+        "减少日志数量"
+      ],
+      "answerIndex": 1,
+      "explanation": "固定间隔会造成大量客户端同时重试；指数退避逐步拉长间隔，抖动打散时间点，配合预算避免雪崩。",
+      "skills": [
+        "performance-caching",
+        "system-design"
+      ],
+      "id": "q-fs-j3-scale-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-scale",
+      "level": "senior"
+    },
+    {
+      "prompt": "测试金字塔的核心取舍是？",
+      "options": [
+        "所有测试都应该是端到端测试",
+        "用大量快速稳定的单元测试覆盖逻辑，集成测试覆盖边界，端到端聚焦关键路径",
+        "只写测试文档，不写自动化测试",
+        "测试越慢越可靠"
+      ],
+      "answerIndex": 1,
+      "explanation": "单元测试反馈快、定位准但覆盖不到真实边界；端到端可靠近用户但慢且脆弱。按成本与风险分层，关键路径保留端到端。",
+      "skills": [
+        "testing"
+      ],
+      "id": "q-fs-j3-system-1",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "CI 中使用 npm ci 而不是 npm install 的主要收益是？",
+      "options": [
+        "自动修复依赖漏洞",
+        "按锁文件可复现安装，并在锁文件不一致时失败",
+        "跳过测试",
+        "让构建速度永远更快"
+      ],
+      "answerIndex": 1,
+      "explanation": "npm ci 严格按 package-lock 安装且不修改锁文件，保证 CI 与本地一致；它不负责漏洞修复，也不跳过质量门禁。",
+      "skills": [
+        "testing",
+        "deployment-devops"
+      ],
+      "id": "q-fs-j3-system-2",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "金丝雀发布期间，最适合用于判断是否继续放量的信号是？",
+      "options": [
+        "服务器机箱温度",
+        "错误率、延迟分位、业务成功率与资源饱和度",
+        "代码行数",
+        "开发者在线人数"
+      ],
+      "answerIndex": 1,
+      "explanation": "放量决策要基于用户影响与系统饱和度：错误率、P95/P99、业务转化、CPU/连接数等；机箱温度、代码行数与在线人数不是直接质量信号。",
+      "skills": [
+        "deployment-devops",
+        "system-design"
+      ],
+      "id": "q-fs-j3-system-3",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "做系统设计题时，第一步最应该做什么？",
+      "options": [
+        "直接选择微服务框架",
+        "澄清功能与非功能需求、规模与约束，并说明假设",
+        "列出所有数据库索引",
+        "画出完整代码类图"
+      ],
+      "answerIndex": 1,
+      "explanation": "约束决定架构；先澄清读写规模、一致性、延迟、预算与团队能力，后续选择才有依据，也能暴露与面试官的分歧。",
+      "skills": [
+        "system-design"
+      ],
+      "id": "q-fs-j3-system-4",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "下列哪一项最能体现系统的可观测性？",
+      "options": [
+        "代码注释完整",
+        "结构化日志 + 指标分位 + 分布式追踪 + requestId 关联",
+        "只有服务器 CPU 告警",
+        "所有日志都打印到控制台"
+      ],
+      "answerIndex": 1,
+      "explanation": "可观测性依赖能回答「发生了什么、影响谁、卡在哪」的信号：指标看趋势与分位，日志给上下文，追踪还原跨服务链路，并用 requestId 串联。",
+      "skills": [
+        "deployment-devops",
+        "system-design"
+      ],
+      "id": "q-fs-j3-system-5",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-system",
+      "level": "senior"
+    }
+  ],
+  "codeChallenges": [
+    {
+      "title": "实现响应式图片宽度选择",
+      "prompt": "实现 chooseImageWidth(viewportWidth)：小于 640 返回 480，小于 1024 返回 768，小于 1440 返回 1200，其余返回 1600；非法输入（非有限数或 ≤0）按 480 处理。",
+      "requirements": [
+        "按视口宽度选择 480 / 768 / 1200 / 1600",
+        "处理 0、负数与 NaN",
+        "使用清晰的条件分支，避免重复比较"
+      ],
+      "starterCode": "function chooseImageWidth(viewportWidth) {\n  // TODO: 按断点返回图片宽度\n  return 480;\n}",
+      "solutionCode": "function chooseImageWidth(viewportWidth) {\n  if (!Number.isFinite(viewportWidth) || viewportWidth <= 0) return 480;\n  if (viewportWidth < 640) return 480;\n  if (viewportWidth < 1024) return 768;\n  if (viewportWidth < 1440) return 1200;\n  return 1600;\n}",
+      "functionName": "chooseImageWidth",
+      "tests": [
+        {
+          "name": "手机 390",
+          "args": [
+            390
+          ],
+          "expected": 480
+        },
+        {
+          "name": "平板 700",
+          "args": [
+            700
+          ],
+          "expected": 768
+        },
+        {
+          "name": "小桌面 1280",
+          "args": [
+            1280
+          ],
+          "expected": 1200
+        },
+        {
+          "name": "宽屏 1600",
+          "args": [
+            1600
+          ],
+          "expected": 1600
+        },
+        {
+          "name": "非法输入",
+          "args": [
+            -1
+          ],
+          "expected": 480
+        }
+      ],
+      "rubric": [
+        "断点边界是否准确（640/1024/1440）",
+        "非法视口是否安全回退",
+        "是否覆盖测试用例",
+        "分支是否清晰可读"
+      ],
+      "skills": [
+        "html-css",
+        "javascript-core"
+      ],
+      "id": "code-fs-j1-web",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-web",
+      "level": "junior",
+      "language": "javascript"
+    },
+    {
+      "title": "按字段分组数组",
+      "prompt": "实现 groupBy(items, key)：按对象指定字段分组，返回以字段值字符串为 key 的对象；保持原顺序；缺失字段归入 'undefined'；非数组输入返回空对象。",
+      "requirements": [
+        "不修改输入数组与对象",
+        "字段值转为字符串作为键",
+        "缺失字段归入 undefined 键"
+      ],
+      "starterCode": "function groupBy(items, key) {\n  // TODO: 一次遍历完成分组\n  return {};\n}",
+      "solutionCode": "function groupBy(items, key) {\n  if (!Array.isArray(items)) return {};\n  return items.reduce((result, item) => {\n    const value = item == null || item[key] === undefined ? \"undefined\" : String(item[key]);\n    (result[value] ||= []).push(item);\n    return result;\n  }, {});\n}",
+      "functionName": "groupBy",
+      "tests": [
+        {
+          "name": "按团队分组",
+          "args": [
+            [
+              {
+                "team": "A",
+                "name": "x"
+              },
+              {
+                "team": "B",
+                "name": "y"
+              },
+              {
+                "team": "A",
+                "name": "z"
+              }
+            ],
+            "team"
+          ],
+          "expected": {
+            "A": [
+              {
+                "team": "A",
+                "name": "x"
+              },
+              {
+                "team": "A",
+                "name": "z"
+              }
+            ],
+            "B": [
+              {
+                "team": "B",
+                "name": "y"
+              }
+            ]
+          }
+        },
+        {
+          "name": "空数组",
+          "args": [
+            [],
+            "team"
+          ],
+          "expected": {}
+        },
+        {
+          "name": "缺失字段",
+          "args": [
+            [
+              {
+                "name": "x"
+              },
+              {
+                "team": "B",
+                "name": "y"
+              }
+            ],
+            "team"
+          ],
+          "expected": {
+            "undefined": [
+              {
+                "name": "x"
+              }
+            ],
+            "B": [
+              {
+                "team": "B",
+                "name": "y"
+              }
+            ]
+          }
+        },
+        {
+          "name": "非数组输入",
+          "args": [
+            null,
+            "team"
+          ],
+          "expected": {}
+        }
+      ],
+      "rubric": [
+        "是否一次遍历完成分组",
+        "是否保持分组内与原数组顺序",
+        "缺失字段与非数组输入是否处理",
+        "是否避免修改输入"
+      ],
+      "skills": [
+        "javascript-core"
+      ],
+      "id": "code-fs-j1-js",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-js",
+      "level": "junior",
+      "language": "javascript"
+    },
+    {
+      "title": "把扁平评论组装成树",
+      "prompt": "实现 buildCommentTree(comments)：输入为 { id, parentId, text } 数组，parentId 为 null 表示根；返回带 children 的树。保持输入顺序；找不到父节点的评论作为根节点；不得修改原对象。",
+      "requirements": [
+        "每个节点带 children 数组",
+        "维护根节点与子节点顺序",
+        "孤立评论作为根节点，不丢数据"
+      ],
+      "starterCode": "function buildCommentTree(comments) {\n  // TODO: 建立节点索引并连接父子关系\n  return [];\n}",
+      "solutionCode": "function buildCommentTree(comments) {\n  const nodes = new Map();\n  for (const comment of comments) {\n    nodes.set(comment.id, { ...comment, children: [] });\n  }\n\n  const roots = [];\n  for (const comment of comments) {\n    const node = nodes.get(comment.id);\n    if (comment.parentId == null) {\n      roots.push(node);\n      continue;\n    }\n    const parent = nodes.get(comment.parentId);\n    if (parent) parent.children.push(node);\n    else roots.push(node);\n  }\n  return roots;\n}",
+      "functionName": "buildCommentTree",
+      "tests": [
+        {
+          "name": "两层评论",
+          "args": [
+            [
+              {
+                "id": "1",
+                "parentId": null,
+                "text": "root"
+              },
+              {
+                "id": "2",
+                "parentId": "1",
+                "text": "child"
+              },
+              {
+                "id": "3",
+                "parentId": "1",
+                "text": "child2"
+              }
+            ]
+          ],
+          "expected": [
+            {
+              "id": "1",
+              "parentId": null,
+              "text": "root",
+              "children": [
+                {
+                  "id": "2",
+                  "parentId": "1",
+                  "text": "child",
+                  "children": []
+                },
+                {
+                  "id": "3",
+                  "parentId": "1",
+                  "text": "child2",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "孤立评论作为根",
+          "args": [
+            [
+              {
+                "id": "9",
+                "parentId": "missing",
+                "text": "orphan"
+              }
+            ]
+          ],
+          "expected": [
+            {
+              "id": "9",
+              "parentId": "missing",
+              "text": "orphan",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "空数组",
+          "args": [
+            []
+          ],
+          "expected": []
+        }
+      ],
+      "rubric": [
+        "是否正确建立节点索引",
+        "父子顺序是否稳定",
+        "孤立节点是否保留为根",
+        "是否避免修改入参对象"
+      ],
+      "skills": [
+        "react-fundamentals",
+        "javascript-core"
+      ],
+      "id": "code-fs-j1-react",
+      "trackId": "fullstack",
+      "chapterId": "fs-j1-react",
+      "level": "junior",
+      "language": "javascript"
+    },
+    {
+      "title": "运行时归一化用户数据",
+      "prompt": "实现 normalizeUser(row)：id 必须是非空字符串（去除首尾空格）；name 去空格后为空则用「匿名用户」；age 转成整数，超出 0..150 或非整数则为 null。非法 row 返回 null。",
+      "requirements": [
+        "把外部输入当作不可信数据，先校验再返回",
+        "normalize id/name，非法 id 返回 null",
+        "age 只接受 0..150 的整数"
+      ],
+      "starterCode": "function normalizeUser(row) {\n  // TODO: 按运行时规则归一化，不修改入参\n  return null;\n}",
+      "solutionCode": "function normalizeUser(row) {\n  if (!row || typeof row !== \"object\") return null;\n\n  const id = typeof row.id === \"string\" ? row.id.trim() : \"\";\n  if (!id) return null;\n\n  const rawName = typeof row.name === \"string\" ? row.name.trim() : \"\";\n  const name = rawName || \"匿名用户\";\n\n  const rawAge = Number(row.age);\n  const age = Number.isInteger(rawAge) && rawAge >= 0 && rawAge <= 150 ? rawAge : null;\n\n  return { id, name, age };\n}",
+      "functionName": "normalizeUser",
+      "tests": [
+        {
+          "name": "正常用户",
+          "args": [
+            {
+              "id": " u1 ",
+              "name": " Ada ",
+              "age": "30"
+            }
+          ],
+          "expected": {
+            "id": "u1",
+            "name": "Ada",
+            "age": 30
+          }
+        },
+        {
+          "name": "空名字与非法年龄",
+          "args": [
+            {
+              "id": "u2",
+              "name": "   ",
+              "age": 151
+            }
+          ],
+          "expected": {
+            "id": "u2",
+            "name": "匿名用户",
+            "age": null
+          }
+        },
+        {
+          "name": "非法 id",
+          "args": [
+            {
+              "id": "   ",
+              "name": "Ada"
+            }
+          ],
+          "expected": null
+        },
+        {
+          "name": "非对象",
+          "args": [
+            null
+          ],
+          "expected": null
+        }
+      ],
+      "rubric": [
+        "是否校验 id 并 trim",
+        "name 默认值是否正确",
+        "age 的整数与范围判断是否完整",
+        "是否不修改输入对象"
+      ],
+      "skills": [
+        "typescript",
+        "javascript-core"
+      ],
+      "id": "code-fs-j2-ts",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-ts",
+      "level": "middle",
+      "language": "javascript"
+    },
+    {
+      "title": "实现安全分页参数",
+      "prompt": "实现 paginate(items, page, pageSize)：返回 { items, page, pageSize, total, totalPages }。pageSize 限制在 1..100，默认 10；page 最小为 1，超过总页数时收敛到最后一页；空数组 totalPages 为 1。",
+      "requirements": [
+        "处理非法 page/pageSize 与空数组",
+        "返回当前页数据切片，不修改原数组",
+        "total 与 totalPages 计算准确"
+      ],
+      "starterCode": "function paginate(items, page = 1, pageSize = 10) {\n  // TODO: 规范化参数并返回分页结果\n  return { items: [], page: 1, pageSize: 10, total: 0, totalPages: 1 };\n}",
+      "solutionCode": "function paginate(items, page = 1, pageSize = 10) {\n  const list = Array.isArray(items) ? items : [];\n  const size = Math.min(100, Math.max(1, Number.isInteger(pageSize) ? pageSize : 10));\n  const total = list.length;\n  const totalPages = Math.max(1, Math.ceil(total / size));\n  const current = Math.min(totalPages, Math.max(1, Number.isInteger(page) ? page : 1));\n  const start = (current - 1) * size;\n\n  return {\n    items: list.slice(start, start + size),\n    page: current,\n    pageSize: size,\n    total,\n    totalPages\n  };\n}",
+      "functionName": "paginate",
+      "tests": [
+        {
+          "name": "第二页",
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            2,
+            2
+          ],
+          "expected": {
+            "items": [
+              3,
+              4
+            ],
+            "page": 2,
+            "pageSize": 2,
+            "total": 5,
+            "totalPages": 3
+          }
+        },
+        {
+          "name": "页码超出收敛",
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            99,
+            2
+          ],
+          "expected": {
+            "items": [
+              3
+            ],
+            "page": 2,
+            "pageSize": 2,
+            "total": 3,
+            "totalPages": 2
+          }
+        },
+        {
+          "name": "非法页大小",
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            1,
+            0
+          ],
+          "expected": {
+            "items": [
+              1
+            ],
+            "page": 1,
+            "pageSize": 1,
+            "total": 3,
+            "totalPages": 3
+          }
+        },
+        {
+          "name": "空数组",
+          "args": [
+            [],
+            3,
+            10
+          ],
+          "expected": {
+            "items": [],
+            "page": 1,
+            "pageSize": 10,
+            "total": 0,
+            "totalPages": 1
+          }
+        }
+      ],
+      "rubric": [
+        "参数规范化与上限是否符合契约",
+        "页码收敛到最后一页",
+        "空数组 totalPages 为 1",
+        "是否返回新数组且不改输入"
+      ],
+      "skills": [
+        "node-runtime",
+        "http-api"
+      ],
+      "id": "code-fs-j2-node",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-node",
+      "level": "middle",
+      "language": "javascript"
+    },
+    {
+      "title": "构造参数化订单查询",
+      "prompt": "实现 buildOrderQuery(filters)：status 为非空字符串时加入 status = ?；minAmount 为有限数且 ≥0 时加入 amount >= ?；limit 为 1..100 的整数，默认 50。返回 { sql, params }，禁止拼接值。",
+      "requirements": [
+        "值全部进入 params，SQL 只含占位符",
+        "过滤条件顺序为 status、minAmount",
+        "limit 收敛到 1..100，默认 50"
+      ],
+      "starterCode": "function buildOrderQuery(filters) {\n  // TODO: 生成参数化 SQL 与参数数组\n  return { sql: \"\", params: [] };\n}",
+      "solutionCode": "function buildOrderQuery(filters) {\n  const input = filters && typeof filters === \"object\" ? filters : {};\n  const clauses = [\"1=1\"];\n  const params = [];\n\n  if (typeof input.status === \"string\" && input.status.trim()) {\n    clauses.push(\"status = ?\");\n    params.push(input.status.trim());\n  }\n  if (Number.isFinite(input.minAmount) && input.minAmount >= 0) {\n    clauses.push(\"amount >= ?\");\n    params.push(input.minAmount);\n  }\n\n  const limit = Number.isInteger(input.limit)\n    ? Math.min(100, Math.max(1, input.limit))\n    : 50;\n  const sql = \"SELECT id, status, amount FROM orders WHERE \" +\n    clauses.join(\" AND \") + \" ORDER BY id LIMIT ?\";\n\n  return { sql, params: [...params, limit] };\n}",
+      "functionName": "buildOrderQuery",
+      "tests": [
+        {
+          "name": "状态与金额",
+          "args": [
+            {
+              "status": "PAID",
+              "minAmount": 100,
+              "limit": 20
+            }
+          ],
+          "expected": {
+            "sql": "SELECT id, status, amount FROM orders WHERE 1=1 AND status = ? AND amount >= ? ORDER BY id LIMIT ?",
+            "params": [
+              "PAID",
+              100,
+              20
+            ]
+          }
+        },
+        {
+          "name": "无过滤条件",
+          "args": [
+            {}
+          ],
+          "expected": {
+            "sql": "SELECT id, status, amount FROM orders WHERE 1=1 ORDER BY id LIMIT ?",
+            "params": [
+              50
+            ]
+          }
+        },
+        {
+          "name": "非法参数被忽略/收敛",
+          "args": [
+            {
+              "status": "  ",
+              "minAmount": null,
+              "limit": 1000
+            }
+          ],
+          "expected": {
+            "sql": "SELECT id, status, amount FROM orders WHERE 1=1 ORDER BY id LIMIT ?",
+            "params": [
+              100
+            ]
+          }
+        }
+      ],
+      "rubric": [
+        "值是否全部参数化，没有字符串拼接注入风险",
+        "条件顺序与 limit 收敛是否符合契约",
+        "是否处理空对象与非法数值",
+        "返回结构是否稳定可测试"
+      ],
+      "skills": [
+        "sql-database",
+        "http-api"
+      ],
+      "id": "code-fs-j2-db",
+      "trackId": "fullstack",
+      "chapterId": "fs-j2-db",
+      "level": "middle",
+      "language": "javascript"
+    },
+    {
+      "title": "实现安全的登录后跳转",
+      "prompt": "实现 safeRedirect(target)：只允许站内绝对路径（以单个 / 开头，不以 // 或 /\\\\ 开头），拒绝协议、反斜杠、控制字符与空值；不安全时返回 /。",
+      "requirements": [
+        "只接受站内路径，拒绝 https:// 等外部地址",
+        "拒绝 //evil.com 与反斜杠绕过",
+        "拒绝控制字符，非法输入统一回退 /"
+      ],
+      "starterCode": "function safeRedirect(target) {\n  // TODO: 只允许安全的站内绝对路径\n  return \"/\";\n}",
+      "solutionCode": "function safeRedirect(target) {\n  if (typeof target !== \"string\") return \"/\";\n  const value = target.trim();\n  if (!value.startsWith(\"/\") || value.startsWith(\"//\")) return \"/\";\n  if (value.includes(\"\\\\\\\\\") || /[\\u0000-\\u001f]/.test(value)) return \"/\";\n  return value;\n}",
+      "functionName": "safeRedirect",
+      "tests": [
+        {
+          "name": "站内路径",
+          "args": [
+            "/dashboard?tab=learn"
+          ],
+          "expected": "/dashboard?tab=learn"
+        },
+        {
+          "name": "外部地址",
+          "args": [
+            "https://evil.example"
+          ],
+          "expected": "/"
+        },
+        {
+          "name": "协议相对地址",
+          "args": [
+            "//evil.example"
+          ],
+          "expected": "/"
+        },
+        {
+          "name": "空值",
+          "args": [
+            null
+          ],
+          "expected": "/"
+        },
+        {
+          "name": "反斜杠绕过",
+          "args": [
+            "/\\\\evil.example"
+          ],
+          "expected": "/"
+        }
+      ],
+      "rubric": [
+        "是否只允许单斜杠开头的站内路径",
+        "是否覆盖协议、协议相对与控制字符绕过",
+        "非字符串与空值是否安全回退",
+        "是否避免使用黑名单拼接字符串"
+      ],
+      "skills": [
+        "auth-security",
+        "javascript-core"
+      ],
+      "id": "code-fs-j3-security",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-security",
+      "level": "senior",
+      "language": "javascript"
+    },
+    {
+      "title": "模拟 LRU 缓存",
+      "prompt": "实现 lruSimulate(capacity, operations)：维护 LRU 缓存，put 更新/插入并使最近使用，get 返回值（不存在返回 null）并使最近使用，超容量淘汰最久未使用键。返回所有 get 的结果数组。",
+      "requirements": [
+        "put 已存在键时更新值并刷新最近使用",
+        "get 命中刷新顺序，未命中返回 null",
+        "容量非法按 1 处理"
+      ],
+      "starterCode": "function lruSimulate(capacity, operations) {\n  // TODO: 用 Map 顺序模拟 LRU\n  return [];\n}",
+      "solutionCode": "function lruSimulate(capacity, operations) {\n  const limit = Number.isInteger(capacity) && capacity > 0 ? capacity : 1;\n  const cache = new Map();\n  const result = [];\n\n  for (const op of Array.isArray(operations) ? operations : []) {\n    if (op.type === \"get\") {\n      if (!cache.has(op.key)) {\n        result.push(null);\n        continue;\n      }\n      const value = cache.get(op.key);\n      cache.delete(op.key);\n      cache.set(op.key, value);\n      result.push(value);\n      continue;\n    }\n    if (op.type === \"put\") {\n      if (cache.has(op.key)) cache.delete(op.key);\n      cache.set(op.key, op.value);\n      while (cache.size > limit) {\n        const oldest = cache.keys().next().value;\n        cache.delete(oldest);\n      }\n    }\n  }\n  return result;\n}",
+      "functionName": "lruSimulate",
+      "tests": [
+        {
+          "name": "淘汰最久未使用",
+          "args": [
+            2,
+            [
+              {
+                "type": "put",
+                "key": "a",
+                "value": 1
+              },
+              {
+                "type": "put",
+                "key": "b",
+                "value": 2
+              },
+              {
+                "type": "get",
+                "key": "a"
+              },
+              {
+                "type": "put",
+                "key": "c",
+                "value": 3
+              },
+              {
+                "type": "get",
+                "key": "b"
+              },
+              {
+                "type": "get",
+                "key": "a"
+              }
+            ]
+          ],
+          "expected": [
+            1,
+            null,
+            1
+          ]
+        },
+        {
+          "name": "更新已有键",
+          "args": [
+            1,
+            [
+              {
+                "type": "put",
+                "key": "a",
+                "value": 1
+              },
+              {
+                "type": "put",
+                "key": "a",
+                "value": 9
+              },
+              {
+                "type": "get",
+                "key": "a"
+              }
+            ]
+          ],
+          "expected": [
+            9
+          ]
+        },
+        {
+          "name": "容量非法按 1",
+          "args": [
+            0,
+            [
+              {
+                "type": "put",
+                "key": "a",
+                "value": 1
+              },
+              {
+                "type": "put",
+                "key": "b",
+                "value": 2
+              },
+              {
+                "type": "get",
+                "key": "a"
+              }
+            ]
+          ],
+          "expected": [
+            null
+          ]
+        },
+        {
+          "name": "空操作",
+          "args": [
+            2,
+            []
+          ],
+          "expected": []
+        }
+      ],
+      "rubric": [
+        "get/put 是否都刷新最近使用顺序",
+        "淘汰是否始终移除最久未使用键",
+        "容量与输入异常是否安全处理",
+        "是否使用 Map 顺序等简单可靠实现"
+      ],
+      "skills": [
+        "performance-caching",
+        "javascript-core"
+      ],
+      "id": "code-fs-j3-scale",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-scale",
+      "level": "senior",
+      "language": "javascript"
+    },
+    {
+      "title": "生成带预算的重试延迟",
+      "prompt": "实现 retryDelays(attempts, baseMs = 100, maxMs = 1000)：返回长度为 attempts 的延迟数组，按 base 翻倍增长并封顶 maxMs；attempts 非正数返回空数组；base/max 非法时使用默认值。",
+      "requirements": [
+        "延迟逐次翻倍，但不超过 maxMs",
+        "attempts = 0 或负数返回空数组",
+        "base/max 非法时回退默认值，max 不小于 base"
+      ],
+      "starterCode": "function retryDelays(attempts, baseMs = 100, maxMs = 1000) {\n  // TODO: 生成指数退避延迟\n  return [];\n}",
+      "solutionCode": "function retryDelays(attempts, baseMs = 100, maxMs = 1000) {\n  const count = Number.isInteger(attempts) ? attempts : 0;\n  if (count <= 0) return [];\n\n  const base = Number.isFinite(baseMs) && baseMs > 0 ? baseMs : 100;\n  const cap = Number.isFinite(maxMs) && maxMs >= base ? maxMs : Math.max(1000, base);\n  const delays = [];\n  let delay = base;\n\n  for (let i = 0; i < count; i += 1) {\n    delays.push(Math.min(delay, cap));\n    delay = Math.min(delay * 2, cap);\n  }\n  return delays;\n}",
+      "functionName": "retryDelays",
+      "tests": [
+        {
+          "name": "三次指数退避",
+          "args": [
+            3,
+            100,
+            1000
+          ],
+          "expected": [
+            100,
+            200,
+            400
+          ]
+        },
+        {
+          "name": "封顶",
+          "args": [
+            5,
+            100,
+            250
+          ],
+          "expected": [
+            100,
+            200,
+            250,
+            250,
+            250
+          ]
+        },
+        {
+          "name": "零次",
+          "args": [
+            0,
+            100,
+            1000
+          ],
+          "expected": []
+        },
+        {
+          "name": "非法基础值",
+          "args": [
+            2,
+            -5,
+            800
+          ],
+          "expected": [
+            100,
+            200
+          ]
+        }
+      ],
+      "rubric": [
+        "延迟是否指数增长并正确封顶",
+        "边界 attempts 是否安全",
+        "非法 base/max 是否合理回退",
+        "是否保持简单、无副作用"
+      ],
+      "skills": [
+        "system-design",
+        "javascript-core"
+      ],
+      "id": "code-fs-j3-system",
+      "trackId": "fullstack",
+      "chapterId": "fs-j3-system",
+      "level": "senior",
+      "language": "javascript"
+    }
+  ]
+}

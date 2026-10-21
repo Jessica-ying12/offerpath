@@ -1,0 +1,1335 @@
+{
+  "trackId": "fullstack",
+  "questions": [
+    {
+      "id": "iv-fullstack-junior-1",
+      "level": "junior",
+      "skills": [
+        "javascript-core"
+      ],
+      "kind": "knowledge",
+      "prompt": "请解释下面代码的输出顺序，并说明如果要在两个请求都成功后再继续，应该怎么写？\n\nconsole.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');",
+      "modelAnswer": "同步的 A 和 D 先执行；当前调用栈清空后先处理 Promise 微任务输出 C，再进入下一轮宏任务执行 setTimeout 输出 B，所以是 A D C B。若要等两个请求都成功，我会用 Promise.all 或 await 两个 promise，全部成功后再进入下一步；如果有部分失败也要保留，则用 Promise.allSettled 区分结果。",
+      "keyPoints": [
+        {
+          "label": "微任务优先于宏任务",
+          "aliases": [
+            "微任务",
+            "宏任务",
+            "Promise",
+            "setTimeout"
+          ]
+        },
+        {
+          "label": "调用栈清空后执行队列",
+          "aliases": [
+            "调用栈",
+            "事件循环",
+            "队列",
+            "当前同步"
+          ]
+        },
+        {
+          "label": "Promise.all 等待全部成功",
+          "aliases": [
+            "Promise.all",
+            "全部成功",
+            "await",
+            "并发等待"
+          ]
+        },
+        {
+          "label": "allSettled 收集部分失败",
+          "aliases": [
+            "allSettled",
+            "部分失败",
+            "结果",
+            "容错"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果两个请求中一个失败，你希望仍然拿到另一个的结果并分别提示，Promise.all 还合适吗？",
+          "modelAnswer": "不合适。Promise.all 在任一失败时会整体 reject，其他结果无法直接拿到。我会使用 Promise.allSettled，然后按 fulfilled/rejected 分别处理；若业务要求任何一个失败就整体失败，则保留 Promise.all 并在 catch 中统一处理。",
+          "keyPoints": [
+            {
+              "label": "all 快速失败",
+              "aliases": [
+                "Promise.all",
+                "reject",
+                "快速失败",
+                "整体失败"
+              ]
+            },
+            {
+              "label": "allSettled 汇总状态",
+              "aliases": [
+                "allSettled",
+                "fulfilled",
+                "rejected",
+                "汇总"
+              ]
+            },
+            {
+              "label": "按结果分支处理",
+              "aliases": [
+                "分别处理",
+                "提示",
+                "结果",
+                "分支"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "把 setTimeout 当成同步延时",
+        "用 forEach + async 误以为会等待全部完成"
+      ]
+    },
+    {
+      "id": "iv-fullstack-junior-2",
+      "level": "junior",
+      "skills": [
+        "html-css"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个页面在手机上出现横向滚动，且图标按钮键盘无法操作。你会从哪些方面排查和修复？",
+      "modelAnswer": "先查固定宽度、未换行的长文本和图片是否撑破容器，用 min-width: 0、max-width: 100% 和相对单位修复；再检查 viewport 与断点是否移动优先。键盘问题通常是 div 模拟按钮或没有可聚焦语义，我会改用 button 或补 tabindex 与键盘事件，并给图标加 aria-label、保证触控目标足够大。",
+      "keyPoints": [
+        {
+          "label": "溢出与固定宽度",
+          "aliases": [
+            "横向滚动",
+            "固定宽度",
+            "溢出",
+            "min-width: 0"
+          ]
+        },
+        {
+          "label": "响应式单位与断点",
+          "aliases": [
+            "viewport",
+            "断点",
+            "相对单位",
+            "移动优先"
+          ]
+        },
+        {
+          "label": "语义化按钮与键盘",
+          "aliases": [
+            "button",
+            "键盘",
+            "可聚焦",
+            "语义"
+          ]
+        },
+        {
+          "label": "可访问名称与触控尺寸",
+          "aliases": [
+            "aria-label",
+            "触控",
+            "44",
+            "可访问"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "用 CSS 让一个很长的订单号不撑破卡片，同时用户仍能看到完整内容，你会怎么做？",
+          "modelAnswer": "我会给容器 min-width: 0 或 max-width: 100%，对订单号使用 overflow-wrap: anywhere 或 word-break 处理无空格长串，必要时加省略与展开交互。如果要求完整可见，就允许换行而不是简单裁切；同时用可复制的文本和清晰的焦点状态保证可用性。",
+          "keyPoints": [
+            {
+              "label": "容器收缩",
+              "aliases": [
+                "min-width: 0",
+                "max-width",
+                "容器",
+                "收缩"
+              ]
+            },
+            {
+              "label": "长字符串换行",
+              "aliases": [
+                "overflow-wrap",
+                "word-break",
+                "换行",
+                "anywhere"
+              ]
+            },
+            {
+              "label": "完整内容与交互",
+              "aliases": [
+                "展开",
+                "省略",
+                "复制",
+                "完整"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "只缩小字号掩盖溢出",
+        "用 div 加 click 当按钮"
+      ]
+    },
+    {
+      "id": "iv-fullstack-junior-3",
+      "level": "junior",
+      "skills": [
+        "react-fundamentals",
+        "state-data-flow"
+      ],
+      "kind": "knowledge",
+      "prompt": "React 中一个计数器连续调用两次 setCount(count + 1) 只增加了 1。为什么？你会怎么修？还有哪些情况要特别注意 key 与 useEffect？",
+      "modelAnswer": "count 是本次渲染的快照，两次更新都基于同一个旧值，React 批处理后只增加 1。修复用函数式更新 setCount(prev => prev + 1)，让每次基于最新值。列表 key 要用稳定业务 id，删除中间项才不会串状态；useEffect 要声明真实依赖并在清理函数里取消订阅或请求。",
+      "keyPoints": [
+        {
+          "label": "state 快照与批处理",
+          "aliases": [
+            "快照",
+            "批处理",
+            "旧值",
+            "闭包"
+          ]
+        },
+        {
+          "label": "函数式更新",
+          "aliases": [
+            "函数式更新",
+            "prev",
+            "setCount",
+            "最新值"
+          ]
+        },
+        {
+          "label": "稳定 key",
+          "aliases": [
+            "key",
+            "业务 id",
+            "索引",
+            "复用"
+          ]
+        },
+        {
+          "label": "effect 依赖与清理",
+          "aliases": [
+            "useEffect",
+            "依赖",
+            "清理",
+            "取消"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "把请求放进 useEffect 后，切换页面时旧请求晚返回覆盖了新数据。你会怎么处理？",
+          "modelAnswer": "我会在 effect 的清理函数中取消请求，或使用 AbortController；如果底层不支持取消，就用请求序号或组件卸载标记忽略过期响应。更重要的是让状态更新只接受最新一次请求的结果，并在依赖变化时重新发起。",
+          "keyPoints": [
+            {
+              "label": "取消请求",
+              "aliases": [
+                "AbortController",
+                "取消",
+                "清理函数",
+                "unmount"
+              ]
+            },
+            {
+              "label": "忽略过期响应",
+              "aliases": [
+                "过期",
+                "请求序号",
+                "最新请求",
+                "覆盖"
+              ]
+            },
+            {
+              "label": "依赖正确重发",
+              "aliases": [
+                "依赖",
+                "重新发起",
+                "effect",
+                "切换"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "在渲染期间直接修改 state",
+        "用 index 作为可排序列表的 key"
+      ]
+    },
+    {
+      "id": "iv-fullstack-junior-4",
+      "level": "junior",
+      "skills": [
+        "http-api"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个提交订单接口收到错误参数时返回了 200，并在业务体里写 { success: false }，前端经常误判。你觉得这件接口设计有什么问题？",
+      "modelAnswer": "把参数错误放在 200 里会让缓存、监控、网关和客户端都难以区分成功与失败。参数校验失败应返回 400 并提供字段级错误；未登录 401、无权限 403、资源不存在 404、冲突 409、限流 429、服务端错误 5xx。业务失败若确实不是 HTTP 错误，也要有稳定错误码，并与 HTTP 语义保持一致。",
+      "keyPoints": [
+        {
+          "label": "状态码表达失败",
+          "aliases": [
+            "400",
+            "状态码",
+            "HTTP 语义",
+            "400"
+          ]
+        },
+        {
+          "label": "字段级校验错误",
+          "aliases": [
+            "字段",
+            "校验",
+            "错误信息",
+            "参数"
+          ]
+        },
+        {
+          "label": "认证与权限状态",
+          "aliases": [
+            "401",
+            "403",
+            "认证",
+            "权限"
+          ]
+        },
+        {
+          "label": "冲突/限流/服务错误",
+          "aliases": [
+            "409",
+            "429",
+            "5xx",
+            "冲突"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "错误响应里应该包含什么、不应该包含什么？如果前端要根据错误自动重试，你会给什么信号？",
+          "modelAnswer": "响应应包含稳定错误码、可读消息、必要的字段错误和 requestId，不应包含堆栈、SQL、内部地址或敏感数据。自动重试需要明确的 retryable 信号，并区分 429/5xx 等瞬时错误与 4xx 不可重试错误；写请求还必须有幂等键才能安全重试。",
+          "keyPoints": [
+            {
+              "label": "稳定错误码与 requestId",
+              "aliases": [
+                "错误码",
+                "requestId",
+                "消息",
+                "字段"
+              ]
+            },
+            {
+              "label": "不暴露内部细节",
+              "aliases": [
+                "堆栈",
+                "SQL",
+                "敏感",
+                "内部"
+              ]
+            },
+            {
+              "label": "可重试信号与幂等",
+              "aliases": [
+                "retryable",
+                "重试",
+                "幂等",
+                "5xx"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "所有响应都返回 200",
+        "把内部堆栈直接返回给客户端"
+      ]
+    },
+    {
+      "id": "iv-fullstack-junior-5",
+      "level": "junior",
+      "skills": [
+        "sql-database"
+      ],
+      "kind": "knowledge",
+      "prompt": "订单表按 user_id 查询最近订单很慢。你会怎么判断是否需要索引，以及索引应该怎么建？",
+      "modelAnswer": "先看查询模式与执行计划，确认是否全表扫描、回表或额外排序。高频查询是按 user_id 等值过滤、按 created_at 排序取最近 N 条，我会建立联合索引 (user_id, created_at)，让过滤与排序都能利用；用覆盖索引减少回表。索引会增加写入成本，不会给每个字段都单独建。",
+      "keyPoints": [
+        {
+          "label": "执行计划定位",
+          "aliases": [
+            "执行计划",
+            "EXPLAIN",
+            "全表扫描",
+            "回表"
+          ]
+        },
+        {
+          "label": "联合索引顺序",
+          "aliases": [
+            "联合索引",
+            "user_id",
+            "created_at",
+            "最左前缀"
+          ]
+        },
+        {
+          "label": "覆盖索引",
+          "aliases": [
+            "覆盖索引",
+            "回表",
+            "SELECT",
+            "I/O"
+          ]
+        },
+        {
+          "label": "写入成本",
+          "aliases": [
+            "写入成本",
+            "维护",
+            "索引数量",
+            "取舍"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果查询条件经常只有 created_at，没有 user_id，这个联合索引还有效吗？怎么调整？",
+          "modelAnswer": "联合索引 (user_id, created_at) 遵循最左前缀，只按 created_at 过滤通常无法高效使用它。需要根据真实查询单独建 created_at 索引，或重新设计索引顺序；如果两类查询都高频，要接受多个索引的写入成本，先用执行计划和大表数据验证收益。",
+          "keyPoints": [
+            {
+              "label": "最左前缀失效",
+              "aliases": [
+                "最左前缀",
+                "失效",
+                "user_id",
+                "无法利用"
+              ]
+            },
+            {
+              "label": "按查询建索引",
+              "aliases": [
+                "单独索引",
+                "created_at",
+                "查询模式",
+                "调整"
+              ]
+            },
+            {
+              "label": "多索引的成本",
+              "aliases": [
+                "写入成本",
+                "多个索引",
+                "验证",
+                "收益"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "给所有字段都建索引",
+        "在索引列上套函数导致无法命中"
+      ]
+    },
+    {
+      "id": "iv-fullstack-middle-1",
+      "level": "middle",
+      "skills": [
+        "typescript"
+      ],
+      "kind": "knowledge",
+      "prompt": "后端返回的 JSON 字段可能缺失或类型不对，前端 TypeScript 标注了接口却仍在线上崩。你会怎样在边界上设计类型安全？",
+      "modelAnswer": "编译期类型不会校验运行时数据，所以我会把外部响应视为 unknown，用 schema 校验或类型守卫做运行时验证，再转换成领域类型。接口用可辨识联合表达状态，避免一堆可选字段；泛型用于保持输入输出关系。任何 as 断言都不能替代校验，错误响应也要有明确分支。",
+      "keyPoints": [
+        {
+          "label": "外部数据视为 unknown",
+          "aliases": [
+            "unknown",
+            "外部数据",
+            "不可信",
+            "运行时"
+          ]
+        },
+        {
+          "label": "schema / 类型守卫校验",
+          "aliases": [
+            "schema",
+            "Zod",
+            "类型守卫",
+            "校验"
+          ]
+        },
+        {
+          "label": "可辨识联合表达状态",
+          "aliases": [
+            "可辨识联合",
+            "联合类型",
+            "状态",
+            "discriminated"
+          ]
+        },
+        {
+          "label": "断言不等于校验",
+          "aliases": [
+            "as",
+            "断言",
+            "不校验",
+            "运行时"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "校验通过后，TypeScript 类型就一定可靠吗？版本升级或后端字段变更时如何发现？",
+          "modelAnswer": "校验只保证当前规则覆盖的字段与类型，未声明的额外字段或业务语义变化仍可能出问题。我会把 schema 作为契约测试的一部分，在 CI 中用样例响应验证；后端变更走版本或契约审查，前端保留降级分支，而不是把类型定义当成永久保证。",
+          "keyPoints": [
+            {
+              "label": "契约测试",
+              "aliases": [
+                "契约测试",
+                "schema",
+                "CI",
+                "样例"
+              ]
+            },
+            {
+              "label": "后端变更管理",
+              "aliases": [
+                "版本",
+                "契约",
+                "变更",
+                "审查"
+              ]
+            },
+            {
+              "label": "降级分支",
+              "aliases": [
+                "降级",
+                "兜底",
+                "错误分支",
+                "容错"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "直接 as ApiResponse 跳过校验",
+        "用 any 接收外部数据"
+      ]
+    },
+    {
+      "id": "iv-fullstack-middle-2",
+      "level": "middle",
+      "skills": [
+        "node-runtime"
+      ],
+      "kind": "knowledge",
+      "prompt": "Node 服务在大文件上传和图片处理时出现所有接口变慢。你会怎么分析和解决？",
+      "modelAnswer": "先确认是否在主线程做同步文件处理或 CPU 密集图片计算，阻塞了事件循环。文件读写改用流并尊重背压，图片处理移到 worker_threads 或独立服务；请求侧加大小限制、超时与限流。用事件循环延迟、CPU、内存和慢请求分位指标验证，而不是只看单次耗时。",
+      "keyPoints": [
+        {
+          "label": "事件循环阻塞",
+          "aliases": [
+            "事件循环",
+            "主线程",
+            "阻塞",
+            "同步"
+          ]
+        },
+        {
+          "label": "流与背压",
+          "aliases": [
+            "流",
+            "stream",
+            "背压",
+            "pipeline"
+          ]
+        },
+        {
+          "label": "CPU 任务隔离",
+          "aliases": [
+            "worker_threads",
+            "Worker",
+            "CPU",
+            "独立服务"
+          ]
+        },
+        {
+          "label": "限流、超时与指标",
+          "aliases": [
+            "限流",
+            "超时",
+            "事件循环延迟",
+            "P95"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果图片处理不能移到独立服务，只能在同一个 Node 进程里做，你会如何限制它对正常请求的影响？",
+          "modelAnswer": "我会把处理放入有限并发的 worker 池，控制队列长度和单任务超时，超过容量直接拒绝或降级；上传接口做大小与类型限制。主线程只负责 I/O 与调度，并监控事件循环延迟、队列深度和失败率，避免后台任务把请求处理饿死。",
+          "keyPoints": [
+            {
+              "label": "有限并发 worker 池",
+              "aliases": [
+                "worker 池",
+                "并发",
+                "队列长度",
+                "隔离"
+              ]
+            },
+            {
+              "label": "容量与降级",
+              "aliases": [
+                "容量",
+                "拒绝",
+                "降级",
+                "超时"
+              ]
+            },
+            {
+              "label": "输入限制",
+              "aliases": [
+                "大小限制",
+                "类型限制",
+                "上传",
+                "校验"
+              ]
+            },
+            {
+              "label": "队列与延迟监控",
+              "aliases": [
+                "队列深度",
+                "事件循环延迟",
+                "监控",
+                "失败率"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "把所有请求都改成同步处理",
+        "忽略 write() 的背压信号"
+      ]
+    },
+    {
+      "id": "iv-fullstack-middle-3",
+      "level": "middle",
+      "skills": [
+        "sql-database"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个商品库存扣减接口在并发压测时出现负库存。你会怎么修复，并解释数据库层面发生了什么？",
+      "modelAnswer": "根因是「先查库存再更新」存在检查与写入之间的竞态。我会把扣减放进单条条件更新：UPDATE products SET stock = stock - ? WHERE id = ? AND stock >= ?，并根据影响行数判断成功；必要时在事务中配合行锁与唯一约束兜底。还要加幂等键防止重试重复扣减，避免长事务。",
+      "keyPoints": [
+        {
+          "label": "检查与写入竞态",
+          "aliases": [
+            "竞态",
+            "先查后改",
+            "并发",
+            "check-then-act"
+          ]
+        },
+        {
+          "label": "条件更新与影响行数",
+          "aliases": [
+            "条件更新",
+            "affected rows",
+            "stock >= ?",
+            "UPDATE"
+          ]
+        },
+        {
+          "label": "事务与约束",
+          "aliases": [
+            "事务",
+            "行锁",
+            "唯一约束",
+            "一致性"
+          ]
+        },
+        {
+          "label": "幂等与短事务",
+          "aliases": [
+            "幂等",
+            "重复扣减",
+            "长事务",
+            "重试"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果业务需要一次扣减多个商品的库存，如何保证要么全部成功要么全部失败？",
+          "modelAnswer": "我会把多商品扣减放在一个数据库事务里，按稳定顺序加锁避免死锁，逐条执行条件更新，任一失败就回滚；事务要尽量短，不要在事务内调用外部服务。还可以根据业务接受度预占库存、异步确认，并为跨服务场景设计补偿与幂等。",
+          "keyPoints": [
+            {
+              "label": "单事务原子性",
+              "aliases": [
+                "事务",
+                "回滚",
+                "原子性",
+                "全部成功"
+              ]
+            },
+            {
+              "label": "稳定顺序避免死锁",
+              "aliases": [
+                "顺序",
+                "锁",
+                "死锁",
+                "稳定"
+              ]
+            },
+            {
+              "label": "短事务边界",
+              "aliases": [
+                "短事务",
+                "外部服务",
+                "占用",
+                "锁"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "在应用层先查库存再无条件更新",
+        "把长事务当作一致性保障"
+      ]
+    },
+    {
+      "id": "iv-fullstack-middle-4",
+      "level": "middle",
+      "skills": [
+        "http-api",
+        "node-runtime"
+      ],
+      "kind": "knowledge",
+      "prompt": "支付回调接口被重复调用，导致订单重复发货。你会如何设计接口与数据层来保证幂等？",
+      "modelAnswer": "回调必须幂等：以支付平台提供的交易号或业务幂等键建立唯一约束，重复请求直接返回已处理结果。处理流程放在事务中，先检查订单状态机是否允许推进，再写发货任务，并用条件更新保证状态只前进一次。回调快速确认、异步执行重活，失败可安全重试并告警。",
+      "keyPoints": [
+        {
+          "label": "幂等键与唯一约束",
+          "aliases": [
+            "幂等",
+            "幂等键",
+            "唯一约束",
+            "交易号"
+          ]
+        },
+        {
+          "label": "状态机条件更新",
+          "aliases": [
+            "状态机",
+            "条件更新",
+            "只前进",
+            "状态"
+          ]
+        },
+        {
+          "label": "事务边界",
+          "aliases": [
+            "事务",
+            "原子",
+            "回滚",
+            "发货任务"
+          ]
+        },
+        {
+          "label": "快速确认与异步重试",
+          "aliases": [
+            "快速确认",
+            "异步",
+            "重试",
+            "告警"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果先返回成功、异步发货失败，用户会看到什么风险？怎么补偿？",
+          "modelAnswer": "用户可能看到已支付但迟迟未发货。异步任务要有持久化状态、失败重试与死信/人工处理入口，并把处理中/失败状态暴露给订单查询；对超时未完成的订单主动告警和补偿，保证最终一致而不是静默丢失。",
+          "keyPoints": [
+            {
+              "label": "持久化异步状态",
+              "aliases": [
+                "持久化",
+                "任务状态",
+                "队列",
+                "订单状态"
+              ]
+            },
+            {
+              "label": "重试与死信",
+              "aliases": [
+                "重试",
+                "死信",
+                "人工",
+                "补偿"
+              ]
+            },
+            {
+              "label": "用户可见状态",
+              "aliases": [
+                "用户",
+                "状态",
+                "查询",
+                "告警"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "只按回调次数做防抖",
+        "重复回调时继续推进订单状态"
+      ]
+    },
+    {
+      "id": "iv-fullstack-middle-5",
+      "level": "middle",
+      "skills": [
+        "state-data-flow",
+        "react-fundamentals"
+      ],
+      "kind": "knowledge",
+      "prompt": "React 应用页面之间经常出现数据不同步，用户修改后返回列表还是旧数据。你会如何规划状态与缓存？",
+      "modelAnswer": "我会区分组件本地状态、跨组件 UI 状态和服务端状态。服务端数据不复制进全局 store，而是交给请求缓存管理，用稳定的 query key 与失效策略；写操作成功后按依赖失效或乐观更新，并保留回滚路径。UI 状态只保留交互所需的最小部分，减少多份事实源。",
+      "keyPoints": [
+        {
+          "label": "状态分类",
+          "aliases": [
+            "本地状态",
+            "服务端状态",
+            "共享状态",
+            "分类"
+          ]
+        },
+        {
+          "label": "请求缓存与 query key",
+          "aliases": [
+            "query key",
+            "请求缓存",
+            "React Query",
+            "缓存"
+          ]
+        },
+        {
+          "label": "失效与重新请求",
+          "aliases": [
+            "失效",
+            "invalidate",
+            "重新请求",
+            "依赖"
+          ]
+        },
+        {
+          "label": "乐观更新与回滚",
+          "aliases": [
+            "乐观更新",
+            "回滚",
+            "失败",
+            "补偿"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "列表页删除了一个订单，详情页仍显示它。你会如何设计失效策略避免全站刷新？",
+          "modelAnswer": "我会让列表与详情共享同一实体的缓存标识，删除成功后失效列表 query 并更新/移除详情实体；如果详情仍在屏幕上，可以订阅同一缓存并在实体不存在时展示已删除状态。关键是按依赖精准失效，而不是粗暴刷新整个应用。",
+          "keyPoints": [
+            {
+              "label": "共享实体缓存",
+              "aliases": [
+                "实体",
+                "缓存标识",
+                "共享",
+                "同一"
+              ]
+            },
+            {
+              "label": "精准失效",
+              "aliases": [
+                "失效",
+                "依赖",
+                "列表",
+                "详情"
+              ]
+            },
+            {
+              "label": "删除后的 UI 状态",
+              "aliases": [
+                "已删除",
+                "不存在",
+                "订阅",
+                "状态"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "把服务端数据复制进多个全局 store",
+        "每次写操作都刷新整个页面"
+      ]
+    },
+    {
+      "id": "iv-fullstack-senior-1",
+      "level": "senior",
+      "skills": [
+        "auth-security"
+      ],
+      "kind": "knowledge",
+      "prompt": "设计一个 Web 登录态方案：需要支持多端、可主动踢出用户，并降低 XSS 与 CSRF 风险。你会怎么选 Session 还是 JWT？",
+      "modelAnswer": "我会以服务端可撤销会话为主：随机令牌存哈希，Cookie 设置 HttpOnly、Secure、SameSite，写接口校验 Origin 并配合 CSRF Token。若需要无状态扩展，可用短期 JWT + 可撤销刷新令牌，改密或踢出时升级会话版本/黑名单。两端都避免把令牌放 localStorage，并限制令牌权限与生命周期。",
+      "keyPoints": [
+        {
+          "label": "服务端可撤销会话",
+          "aliases": [
+            "可撤销",
+            "服务端会话",
+            "session",
+            "踢出"
+          ]
+        },
+        {
+          "label": "Cookie 安全属性",
+          "aliases": [
+            "HttpOnly",
+            "Secure",
+            "SameSite",
+            "Cookie"
+          ]
+        },
+        {
+          "label": "JWT 短期与刷新轮换",
+          "aliases": [
+            "JWT",
+            "短期",
+            "刷新令牌",
+            "轮换"
+          ]
+        },
+        {
+          "label": "CSRF 与存储边界",
+          "aliases": [
+            "CSRF",
+            "Origin",
+            "localStorage",
+            "XSS"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "用户点击“退出所有设备”后，数据库里已有会话和服务端签发的 JWT 分别如何失效？",
+          "modelAnswer": "数据库会话直接删除即可立即失效；JWT 需要额外机制，比如在用户表维护 tokenVersion，签发时写入 JWT，验证时比较版本，退出所有设备时递增版本使旧令牌全部失效。也可以维护短期黑名单，但要考虑存储与过期清理。",
+          "keyPoints": [
+            {
+              "label": "删除服务端会话",
+              "aliases": [
+                "删除会话",
+                "立即失效",
+                "session",
+                "数据库"
+              ]
+            },
+            {
+              "label": "tokenVersion 失效",
+              "aliases": [
+                "tokenVersion",
+                "版本",
+                "JWT",
+                "递增"
+              ]
+            },
+            {
+              "label": "黑名单与过期清理",
+              "aliases": [
+                "黑名单",
+                "过期",
+                "清理",
+                "存储"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "把 JWT 放 localStorage",
+        "JWT 有效期很长且无法撤销"
+      ]
+    },
+    {
+      "id": "iv-fullstack-senior-2",
+      "level": "senior",
+      "skills": [
+        "auth-security",
+        "sql-database"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个 SaaS 的面试记录接口按 id 查询，测试发现修改 id 就能读到别家公司的数据。你会如何修复并防止类似问题？",
+      "modelAnswer": "这是典型的对象级越权。服务端查询必须同时带资源 id、tenant_id 和当前用户权限条件，更新/删除使用条件更新并检查影响行数；外部统一返回 404，避免泄露资源是否存在。权限判断放在服务层，前端隐藏不算防护；测试覆盖水平越权（同租户他人）与垂直越权（低权限操作），并为所有资源查询建立套用 tenant 条件的 repository。",
+      "keyPoints": [
+        {
+          "label": "对象级授权",
+          "aliases": [
+            "对象级",
+            "越权",
+            "IDOR",
+            "tenant_id"
+          ]
+        },
+        {
+          "label": "查询带 tenant/user 条件",
+          "aliases": [
+            "user_id",
+            "tenant_id",
+            "归属",
+            "条件更新"
+          ]
+        },
+        {
+          "label": "统一 404 信息隐藏",
+          "aliases": [
+            "404",
+            "不泄露",
+            "枚举",
+            "存在性"
+          ]
+        },
+        {
+          "label": "越权测试与统一入口",
+          "aliases": [
+            "水平越权",
+            "垂直越权",
+            "repository",
+            "测试"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果同一个用户属于多个租户，请求应该怎么确定当前租户，服务端还要校验什么？",
+          "modelAnswer": "客户端可以传租户上下文，但服务端必须校验当前用户确实是该租户成员，并从可信的成员关系中取权限；不能只信请求头或路径里的 tenant_id。查询仍要带 tenant_id，切换租户需要重新签发上下文或显式校验，防止跨租户复用旧令牌。",
+          "keyPoints": [
+            {
+              "label": "多租户成员关系校验",
+              "aliases": [
+                "成员",
+                "租户",
+                "关系",
+                "权限"
+              ]
+            },
+            {
+              "label": "不信任客户端上下文",
+              "aliases": [
+                "请求头",
+                "tenant_id",
+                "不可信",
+                "校验"
+              ]
+            },
+            {
+              "label": "租户切换与令牌",
+              "aliases": [
+                "切换",
+                "令牌",
+                "重新签发",
+                "跨租户"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "按 id 查询后不在服务端校验归属",
+        "仅依靠 UUID 不可猜当授权"
+      ]
+    },
+    {
+      "id": "iv-fullstack-senior-3",
+      "level": "senior",
+      "skills": [
+        "performance-caching",
+        "system-design"
+      ],
+      "kind": "knowledge",
+      "prompt": "大促期间商品详情缓存出现热点键失效、数据库被打满。你会如何设计缓存策略并兼顾一致性？",
+      "modelAnswer": "先区分穿透、击穿与雪崩：不存在的数据缓存空值并限流；热点键失效用 singleflight/互斥重建，避免同时回源；TTL 加随机抖动、多级缓存与限流防雪崩。一致性上以数据库为事实源，更新后删缓存并做失败补偿；对强一致要求高的价格与库存，缩短缓存或直接读主库，并明确展示数据新鲜度。",
+      "keyPoints": [
+        {
+          "label": "穿透/击穿/雪崩",
+          "aliases": [
+            "穿透",
+            "击穿",
+            "雪崩",
+            "空值"
+          ]
+        },
+        {
+          "label": "热键互斥重建",
+          "aliases": [
+            "singleflight",
+            "互斥",
+            "重建",
+            "热点"
+          ]
+        },
+        {
+          "label": "TTL 抖动与限流",
+          "aliases": [
+            "抖动",
+            "TTL",
+            "限流",
+            "多级缓存"
+          ]
+        },
+        {
+          "label": "事实源与失效补偿",
+          "aliases": [
+            "事实源",
+            "删缓存",
+            "补偿",
+            "一致性"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "缓存更新选择先更新数据库再删缓存，删缓存失败怎么办？你能接受什么程度的不一致？",
+          "modelAnswer": "删除失败会产生旧缓存窗口，我会把删除操作放入可靠消息/重试队列，并在读取时用版本或短 TTL 降低影响。是否可接受取决于业务：商品描述可以容忍秒级旧数据，价格与库存必须读主库或走更强的并发控制。先和业务定义可接受的新鲜度，再选方案。",
+          "keyPoints": [
+            {
+              "label": "删除失败重试补偿",
+              "aliases": [
+                "重试",
+                "消息队列",
+                "补偿",
+                "删除失败"
+              ]
+            },
+            {
+              "label": "版本/短 TTL 降低窗口",
+              "aliases": [
+                "版本",
+                "短 TTL",
+                "旧数据",
+                "窗口"
+              ]
+            },
+            {
+              "label": "按业务定义新鲜度",
+              "aliases": [
+                "业务",
+                "新鲜度",
+                "价格",
+                "库存"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "所有键统一 TTL",
+        "缓存失效时无并发保护，全部回源"
+      ]
+    },
+    {
+      "id": "iv-fullstack-senior-4",
+      "level": "senior",
+      "skills": [
+        "system-design"
+      ],
+      "kind": "knowledge",
+      "prompt": "设计一个短链接服务，需要支持日 1 亿次跳转、创建接口和一定程度的统计。你会怎么开始，关键取舍是什么？",
+      "modelAnswer": "先澄清读取远多于写入、跳转延迟目标、统计精度与一致性要求。短码可用自增 id 做 base62 或哈希并处理冲突，读路径走缓存与 CDN，写路径持久化映射；统计异步采集，允许最终一致。容量上按读写 QPS、存储与缓存命中估算，限流与防滥用必不可少。当前阶段先单库加缓存，再考虑分片与多活。",
+      "keyPoints": [
+        {
+          "label": "澄清读写与延迟约束",
+          "aliases": [
+            "读多写少",
+            "延迟",
+            "约束",
+            "需求"
+          ]
+        },
+        {
+          "label": "短码生成与冲突",
+          "aliases": [
+            "base62",
+            "自增",
+            "冲突",
+            "id"
+          ]
+        },
+        {
+          "label": "缓存与异步统计",
+          "aliases": [
+            "缓存",
+            "CDN",
+            "异步",
+            "最终一致"
+          ]
+        },
+        {
+          "label": "容量、限流与演进",
+          "aliases": [
+            "QPS",
+            "容量",
+            "限流",
+            "分片"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果短码服务跨地域部署，如何保证同一个短码在不同区域解析到同一目标？",
+          "modelAnswer": "短码映射必须由全局唯一的写入路径或协调机制生成，避免各区域独立自增导致冲突；可以使用中心发号器、预分配号段或带区域前缀的编码方案。跨区域同步要接受延迟，并为读取提供失败回源与只读降级，同时在设计时监控冲突与同步延迟。",
+          "keyPoints": [
+            {
+              "label": "全局唯一生成",
+              "aliases": [
+                "全局唯一",
+                "发号器",
+                "号段",
+                "区域前缀"
+              ]
+            },
+            {
+              "label": "跨区同步延迟",
+              "aliases": [
+                "同步",
+                "延迟",
+                "最终一致",
+                "回源"
+              ]
+            },
+            {
+              "label": "冲突与降级监控",
+              "aliases": [
+                "冲突",
+                "降级",
+                "监控",
+                "只读"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "直接说用 Redis 缓存一切",
+        "没有容量估算就设计分片"
+      ]
+    },
+    {
+      "id": "iv-fullstack-senior-5",
+      "level": "senior",
+      "skills": [
+        "deployment-devops",
+        "testing",
+        "system-design"
+      ],
+      "kind": "knowledge",
+      "prompt": "一个核心服务要连续发布多次，还要保证随时能回滚且数据库变更不破坏旧版本。你会如何设计发布与可观测性？",
+      "modelAnswer": "数据库采用扩展/收缩式变更：先加兼容字段或新表，双写并回填，应用切换读取，最后再删除旧结构；客户端与服务端都不能出现单版本依赖。发布用金丝雀或蓝绿，按 SLO 观察错误率、P95/P99、饱和度与业务成功率，失败自动暂停并回滚应用，功能用开关隔离。每次发布保留可追溯版本、变更记录与回滚演练。",
+      "keyPoints": [
+        {
+          "label": "扩展-收缩数据库变更",
+          "aliases": [
+            "扩展收缩",
+            "双写",
+            "回填",
+            "兼容"
+          ]
+        },
+        {
+          "label": "金丝雀/蓝绿发布",
+          "aliases": [
+            "金丝雀",
+            "蓝绿",
+            "灰度",
+            "发布"
+          ]
+        },
+        {
+          "label": "SLO 与观测信号",
+          "aliases": [
+            "SLO",
+            "错误率",
+            "P95",
+            "饱和度"
+          ]
+        },
+        {
+          "label": "回滚、开关与演练",
+          "aliases": [
+            "回滚",
+            "开关",
+            "Feature Flag",
+            "演练"
+          ]
+        }
+      ],
+      "followUps": [
+        {
+          "prompt": "如果数据库回填任务失败了一半，但新版本已经全量，你会怎么安全处理？",
+          "modelAnswer": "我不会直接回滚应用，因为旧版本可能读不到新字段的部分数据。先让应用同时兼容新老字段并继续读取旧字段兜底，回填任务设计为幂等、可断点续跑，修复后补齐数据并统计缺口。只有确认数据完整且旧版本兼容，才允许收缩旧结构或做最终切换。",
+          "keyPoints": [
+            {
+              "label": "双读兼容",
+              "aliases": [
+                "兼容",
+                "旧字段",
+                "兜底",
+                "双读"
+              ]
+            },
+            {
+              "label": "幂等断点续跑",
+              "aliases": [
+                "幂等",
+                "断点",
+                "重跑",
+                "补齐"
+              ]
+            },
+            {
+              "label": "数据缺口统计",
+              "aliases": [
+                "缺口",
+                "统计",
+                "核对",
+                "完整"
+              ]
+            },
+            {
+              "label": "最后再收缩",
+              "aliases": [
+                "收缩",
+                "旧结构",
+                "确认",
+                "切换"
+              ]
+            }
+          ]
+        }
+      ],
+      "commonMistakes": [
+        "应用与数据库同时做不兼容变更",
+        "只监控 CPU 不监控用户成功率"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2177 @@
+{
+  "id": "mobile",
+  "name": "移动端开发",
+  "shortName": "移动端",
+  "tagline": "Android / Kotlin 为主线，补足 Compose、协程、性能与跨端判断。",
+  "description": "从 Kotlin 与 Android 基础，到协程、数据层与架构，再到性能稳定性、跨端与移动端系统设计。每个等级 3 章，每章 3 节微课、5 道练习和 1 道代码题。",
+  "landingPoints": [
+    "Android / Kotlin",
+    "Compose 与协程",
+    "性能与跨端"
+  ],
+  "levels": [
+    {
+      "id": "junior",
+      "name": "初级",
+      "summary": "能把 Kotlin 与 Android 基础写对，理解页面生命周期、Compose 状态与常见空安全边界。",
+      "focus": [
+        "Kotlin 空安全",
+        "Activity 生命周期",
+        "Compose 基础"
+      ]
+    },
+    {
+      "id": "middle",
+      "name": "中级",
+      "summary": "能设计可维护的数据层与单向数据流，定位并发、缓存与数据库的常见问题。",
+      "focus": [
+        "结构化并发",
+        "Room 与网络",
+        "MVVM 与依赖注入"
+      ]
+    },
+    {
+      "id": "senior",
+      "name": "高级",
+      "summary": "能治理性能与稳定性，做跨端、架构与发布取舍，并把移动端方案讲清楚。",
+      "focus": [
+        "性能与稳定性",
+        "跨端与工程化",
+        "移动端系统设计"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "kotlin-basics",
+      "name": "Kotlin 基础",
+      "aliases": [
+        "kotlin",
+        "kt",
+        "空安全",
+        "null safety",
+        "data class",
+        "高阶函数"
+      ]
+    },
+    {
+      "id": "android-lifecycle",
+      "name": "Android 生命周期",
+      "aliases": [
+        "activity",
+        "生命周期",
+        "lifecycle",
+        "fragment",
+        "savedstate",
+        "配置变更"
+      ]
+    },
+    {
+      "id": "compose-ui",
+      "name": "Jetpack Compose",
+      "aliases": [
+        "compose",
+        "jetpack compose",
+        "declarative ui",
+        "声明式 ui",
+        "重组",
+        "recomposition"
+      ]
+    },
+    {
+      "id": "state-management",
+      "name": "状态管理",
+      "aliases": [
+        "stateflow",
+        "mutableStateOf",
+        "单向数据流",
+        "udf",
+        "状态管理",
+        "state"
+      ]
+    },
+    {
+      "id": "coroutines",
+      "name": "Kotlin 协程",
+      "aliases": [
+        "协程",
+        "coroutine",
+        "coroutines",
+        "suspend",
+        "结构化并发",
+        "dispatchers",
+        "flow"
+      ]
+    },
+    {
+      "id": "networking",
+      "name": "网络层",
+      "aliases": [
+        "retrofit",
+        "okhttp",
+        "网络请求",
+        "http 客户端",
+        "拦截器",
+        "弱网",
+        "深链"
+      ]
+    },
+    {
+      "id": "local-storage",
+      "name": "本地数据",
+      "aliases": [
+        "room",
+        "sqlite",
+        "datastore",
+        "本地存储",
+        "数据库",
+        "离线缓存"
+      ]
+    },
+    {
+      "id": "app-architecture",
+      "name": "应用架构",
+      "aliases": [
+        "mvvm",
+        "mvi",
+        "架构",
+        "模块化",
+        "clean architecture",
+        "依赖注入",
+        "hilt",
+        "koin"
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "性能优化",
+      "aliases": [
+        "性能",
+        "卡顿",
+        "启动优化",
+        "内存泄漏",
+        "anr",
+        "帧率",
+        "leakcanary"
+      ]
+    },
+    {
+      "id": "testing",
+      "name": "移动端测试",
+      "aliases": [
+        "单元测试",
+        "ui 测试",
+        "junit",
+        "espresso",
+        "测试金字塔",
+        "automation"
+      ]
+    },
+    {
+      "id": "flutter-crossplatform",
+      "name": "跨端开发",
+      "aliases": [
+        "flutter",
+        "react native",
+        "rn",
+        "跨端",
+        "混合开发",
+        "跨平台"
+      ]
+    },
+    {
+      "id": "release-engineering",
+      "name": "构建与发布",
+      "aliases": [
+        "ci",
+        "cd",
+        "构建变体",
+        "灰度",
+        "r8",
+        "play store",
+        "feature flag",
+        "发布"
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "mob-j1-kotlin",
+      "trackId": "mobile",
+      "level": "junior",
+      "order": 1,
+      "title": "Kotlin 语言基本功",
+      "summary": "空安全、值语义与集合操作，先把代码写对再谈优雅。",
+      "atomIds": [
+        "mob-j1-kotlin-a1",
+        "mob-j1-kotlin-a2",
+        "mob-j1-kotlin-a3"
+      ],
+      "questionIds": [
+        "q-mob-j1-kotlin-1",
+        "q-mob-j1-kotlin-2",
+        "q-mob-j1-kotlin-3",
+        "q-mob-j1-kotlin-4",
+        "q-mob-j1-kotlin-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j1-kotlin"
+      ]
+    },
+    {
+      "id": "mob-j1-android",
+      "trackId": "mobile",
+      "level": "junior",
+      "order": 2,
+      "title": "Android 组件与生命周期",
+      "summary": "页面为何被创建、重建和销毁；状态与异步任务应绑在哪里。",
+      "atomIds": [
+        "mob-j1-android-a1",
+        "mob-j1-android-a2",
+        "mob-j1-android-a3"
+      ],
+      "questionIds": [
+        "q-mob-j1-android-1",
+        "q-mob-j1-android-2",
+        "q-mob-j1-android-3",
+        "q-mob-j1-android-4",
+        "q-mob-j1-android-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j1-android"
+      ]
+    },
+    {
+      "id": "mob-j1-compose",
+      "trackId": "mobile",
+      "level": "junior",
+      "order": 3,
+      "title": "Compose 声明式界面",
+      "summary": "用组合描述界面，用状态驱动更新，用稳定 key 保持列表行为。",
+      "atomIds": [
+        "mob-j1-compose-a1",
+        "mob-j1-compose-a2",
+        "mob-j1-compose-a3"
+      ],
+      "questionIds": [
+        "q-mob-j1-compose-1",
+        "q-mob-j1-compose-2",
+        "q-mob-j1-compose-3",
+        "q-mob-j1-compose-4",
+        "q-mob-j1-compose-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j1-compose"
+      ]
+    },
+    {
+      "id": "mob-j2-coroutines",
+      "trackId": "mobile",
+      "level": "middle",
+      "order": 1,
+      "title": "协程与并发控制",
+      "summary": "结构化并发、取消传播与异常边界，决定异步代码是否可预测。",
+      "atomIds": [
+        "mob-j2-coroutines-a1",
+        "mob-j2-coroutines-a2",
+        "mob-j2-coroutines-a3"
+      ],
+      "questionIds": [
+        "q-mob-j2-coroutines-1",
+        "q-mob-j2-coroutines-2",
+        "q-mob-j2-coroutines-3",
+        "q-mob-j2-coroutines-4",
+        "q-mob-j2-coroutines-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j2-coroutines"
+      ]
+    },
+    {
+      "id": "mob-j2-data",
+      "trackId": "mobile",
+      "level": "middle",
+      "order": 2,
+      "title": "网络与本地数据",
+      "summary": "把请求、缓存、迁移与错误分类设计成可解释的数据层。",
+      "atomIds": [
+        "mob-j2-data-a1",
+        "mob-j2-data-a2",
+        "mob-j2-data-a3"
+      ],
+      "questionIds": [
+        "q-mob-j2-data-1",
+        "q-mob-j2-data-2",
+        "q-mob-j2-data-3",
+        "q-mob-j2-data-4",
+        "q-mob-j2-data-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j2-data"
+      ]
+    },
+    {
+      "id": "mob-j2-arch",
+      "trackId": "mobile",
+      "level": "middle",
+      "order": 3,
+      "title": "架构与状态管理",
+      "summary": "用单向数据流收拢状态变更，用清晰边界隔离 UI、业务与数据。",
+      "atomIds": [
+        "mob-j2-arch-a1",
+        "mob-j2-arch-a2",
+        "mob-j2-arch-a3"
+      ],
+      "questionIds": [
+        "q-mob-j2-arch-1",
+        "q-mob-j2-arch-2",
+        "q-mob-j2-arch-3",
+        "q-mob-j2-arch-4",
+        "q-mob-j2-arch-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j2-arch"
+      ]
+    },
+    {
+      "id": "mob-j3-performance",
+      "trackId": "mobile",
+      "level": "senior",
+      "order": 1,
+      "title": "性能与稳定性治理",
+      "summary": "先定指标与基线，再定位启动、卡顿、内存与崩溃的系统性根因。",
+      "atomIds": [
+        "mob-j3-performance-a1",
+        "mob-j3-performance-a2",
+        "mob-j3-performance-a3"
+      ],
+      "questionIds": [
+        "q-mob-j3-performance-1",
+        "q-mob-j3-performance-2",
+        "q-mob-j3-performance-3",
+        "q-mob-j3-performance-4",
+        "q-mob-j3-performance-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j3-performance"
+      ]
+    },
+    {
+      "id": "mob-j3-cross",
+      "trackId": "mobile",
+      "level": "senior",
+      "order": 2,
+      "title": "跨端与工程化",
+      "summary": "跨端是组织与能力边界的选择；工程化决定发布是否可控、可回滚。",
+      "atomIds": [
+        "mob-j3-cross-a1",
+        "mob-j3-cross-a2",
+        "mob-j3-cross-a3"
+      ],
+      "questionIds": [
+        "q-mob-j3-cross-1",
+        "q-mob-j3-cross-2",
+        "q-mob-j3-cross-3",
+        "q-mob-j3-cross-4",
+        "q-mob-j3-cross-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j3-cross"
+      ]
+    },
+    {
+      "id": "mob-j3-system",
+      "trackId": "mobile",
+      "level": "senior",
+      "order": 3,
+      "title": "移动端系统设计",
+      "summary": "从离线、同步、推送与表达四件事，设计可解释的移动端系统。",
+      "atomIds": [
+        "mob-j3-system-a1",
+        "mob-j3-system-a2",
+        "mob-j3-system-a3"
+      ],
+      "questionIds": [
+        "q-mob-j3-system-1",
+        "q-mob-j3-system-2",
+        "q-mob-j3-system-3",
+        "q-mob-j3-system-4",
+        "q-mob-j3-system-5"
+      ],
+      "codeChallengeIds": [
+        "code-mob-j3-system"
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "title": "val/var 与空安全",
+      "summary": "val 是引用不可变；空安全把 NPE 从运行时前移到编译期。",
+      "minutes": 5,
+      "keyPoints": [
+        "val 只禁止重新赋值，不代表对象内部不可变；需要值语义时配合 data class 与不可变集合。",
+        "可空类型 String? 要用 ?.、?: 或显式判空处理，智能转换只在编译器能证明引用不变时生效。",
+        "!! 是非空断言，失败会抛 NPE；只在契约确实保证非空时使用，并写清为什么。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "用 Elvis 运算符处理缺失的昵称",
+        "code": "data class User(val name: String, val nickname: String?)\n\nfun displayName(user: User): String =\n    user.nickname?.takeIf { it.isNotBlank() } ?: user.name\n\nfun main() {\n    println(displayName(User(\"Ada\", null)))   // Ada\n    println(displayName(User(\"Ada\", \"A.\")))   // A.\n}"
+      },
+      "pitfalls": [
+        "把 val 当成深度不可变，对外暴露可变 List，调用方仍能修改内容。",
+        "在可空值上直接 !!，把本可在编译期处理的空值推到线上。"
+      ],
+      "interviewTip": "先说编译期空安全，再说 ?./?: 的短路语义，最后用业务里的默认值或错误分支说明取舍。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "mob-j1-kotlin-a1",
+      "chapterId": "mob-j1-kotlin"
+    },
+    {
+      "title": "data class 与集合",
+      "summary": "data class 为数据建模生成相等与复制能力；集合操作让转换保持声明式。",
+      "minutes": 5,
+      "keyPoints": [
+        "data class 基于主构造参数生成 equals/hashCode/toString/copy，适合值对象，不等于所有实体都该用。",
+        "对外暴露集合前用 toList() 或不可变集合切断修改；Kotlin 的 List 接口只读，但底层仍可能是可变集合。",
+        "associateBy、sumOf、filter 能减少手写循环；注意链式操作产生的中间集合与循环内查找的复杂度。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "按状态聚合订单，并建立索引",
+        "code": "data class Order(val id: String, val status: String, val amount: Int)\n\nfun paidTotal(orders: List<Order>): Int =\n    orders.filter { it.status == \"PAID\" }\n          .sumOf { it.amount }\n\nfun indexById(orders: List<Order>): Map<String, Order> =\n    orders.associateBy { it.id }"
+      },
+      "pitfalls": [
+        "把可变 List 放进 data class，修改内容后 hashCode 变化，Map 里再也查不到。",
+        "在循环里反复调用 first { } 查找，整体复杂度从 O(n) 退化成 O(n²)。"
+      ],
+      "interviewTip": "把 data class 说成值语义：相等看内容、copy 支持不可变更新；再补一次遍历与索引优化的例子。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "mob-j1-kotlin-a2",
+      "chapterId": "mob-j1-kotlin"
+    },
+    {
+      "title": "高阶函数与 Lambda",
+      "summary": "函数可以作参数和返回值；Lambda 让策略与回调表达得更轻。",
+      "minutes": 6,
+      "keyPoints": [
+        "函数类型 (T) -> R 可以像值一样传递；尾随 Lambda 只是最后一个函数参数的语法糖。",
+        "inline 能减少高阶函数的对象分配与调用开销，但会增大字节码；noinline/crossinline 控制 lambda 的传递与非本地返回。",
+        "性能敏感路径少用多层 sequence/集合链造成额外开销；先看数据规模再选择集合或序列。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "用一个可复用重试函数表达策略",
+        "code": "inline fun <T> List<T>.forEachSafely(action: (T) -> Unit) {\n    for (item in this) action(item)\n}\n\nfun retry(times: Int = 3, block: (attempt: Int) -> Boolean): Boolean {\n    repeat(times) { attempt ->\n        if (block(attempt)) return true\n    }\n    return false\n}"
+      },
+      "pitfalls": [
+        "在 inline 函数里把 lambda 保存到对象或异步回调，编译器无法内联，需要 noinline。",
+        "小集合也一律用 sequence，拆分与装箱开销可能比直接操作集合更大。"
+      ],
+      "interviewTip": "先讲函数类型与尾随 lambda，再讲 inline 的性能动机和限制，最后用集合链优化收尾。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "mob-j1-kotlin-a3",
+      "chapterId": "mob-j1-kotlin"
+    },
+    {
+      "title": "Activity 生命周期",
+      "summary": "生命周期决定资源何时创建、可见、可交互以及被回收。",
+      "minutes": 6,
+      "keyPoints": [
+        "onCreate 做一次性初始化，onStart 可见，onResume 可交互；onPause 应尽快释放会阻塞的资源。",
+        "旋转屏幕默认重建 Activity：用 onSaveInstanceState 保存轻量 UI 状态，不要把大对象塞进 Bundle。",
+        "不要在 onPause 后假设页面仍存活；异步回调要绑定生命周期或在 onDestroy 取消订阅。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "把页面级异步任务绑定到 lifecycleScope",
+        "code": "class DetailActivity : AppCompatActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        lifecycleScope.launch {\n            render(loadDetail(intent.getStringExtra(\"id\")))\n        }\n    }\n}"
+      },
+      "pitfalls": [
+        "每次 onStart 都重新注册监听却不注销，导致重复回调与泄漏。",
+        "把 Bitmap 或长列表写进 onSaveInstanceState，触发 TransactionTooLargeException。"
+      ],
+      "interviewTip": "按创建、可见、可交互、被回收四段讲生命周期，再补旋转重建与异步取消的具体处理。",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "id": "mob-j1-android-a1",
+      "chapterId": "mob-j1-android"
+    },
+    {
+      "title": "Intent 与组件通信",
+      "summary": "Intent 表达一次组件动作请求；参数与返回结果都需要可验证。",
+      "minutes": 5,
+      "keyPoints": [
+        "显式 Intent 指定目标组件，适合应用内页面；隐式 Intent 依赖 intent-filter，必须处理没有匹配应用的失败分支。",
+        "跨进程或外部输入都不可信：校验参数、限制大小，必要时用签名权限或只暴露内部组件。",
+        "返回结果优先用 Activity Result API；使用 launchMode 或 taskAffinity 前先想清楚返回栈。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "用显式 Intent 传参，用 Result API 接收价格",
+        "code": "val launcher = registerForActivityResult(\n    ActivityResultContracts.StartActivityForResult()\n) { result ->\n    val price = result.data?.getLongExtra(\"price\", -1L) ?: -1L\n    if (result.resultCode == RESULT_OK && price >= 0) {\n        renderPrice(price)\n    }\n}\n\nfun openDetail(id: String) {\n    startActivity(\n        Intent(this, DetailActivity::class.java).putExtra(\"id\", id)\n    )\n}"
+      },
+      "pitfalls": [
+        "隐式 Intent 未捕获 ActivityNotFoundException，设备缺少应用时直接崩溃。",
+        "把大量对象塞进 Intent extras，触发 Binder 传输大小限制。"
+      ],
+      "interviewTip": "用一次真实页面跳转说明显式/隐式选择、参数校验、Result API，再补任务栈影响。",
+      "skills": [
+        "android-lifecycle",
+        "kotlin-basics"
+      ],
+      "id": "mob-j1-android-a2",
+      "chapterId": "mob-j1-android"
+    },
+    {
+      "title": "配置变更与 Context 边界",
+      "summary": "配置变化会重建界面；作用域决定状态活多久、资源何时释放。",
+      "minutes": 5,
+      "keyPoints": [
+        "Activity Context 绑定界面生命周期，适合启动 Activity 和访问主题；Application Context 适合长生命周期单例，但不能弹 Dialog。",
+        "ViewModel 能在配置变化中保留状态，进程被回收后仍需 SavedStateHandle 或本地存储恢复关键数据。",
+        "避免单例长期持有 Activity/Fragment；需要上下文时传入 Application 或函数参数，而非字段长期保存。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "ViewModel + SavedStateHandle 恢复用户标识",
+        "code": "class ProfileViewModel(\n    repository: UserRepository,\n    savedState: SavedStateHandle\n) : ViewModel() {\n    private val userId: StateFlow<String> =\n        savedState.getStateFlow(\"userId\", \"\")\n\n    val profile = repository.observeProfile(userId)\n        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)\n}"
+      },
+      "pitfalls": [
+        "在 Application 单例里保存 Activity，页面销毁后内存无法回收。",
+        "把所有数据都塞进 SavedStateHandle，误以为它可以持久化任意大对象。"
+      ],
+      "interviewTip": "从作用域与生命周期匹配讲起：界面状态放 ViewModel/SavedState，长期对象用 Application 或依赖容器。",
+      "skills": [
+        "android-lifecycle",
+        "state-management"
+      ],
+      "id": "mob-j1-android-a3",
+      "chapterId": "mob-j1-android"
+    },
+    {
+      "title": "声明式 UI 与组合",
+      "summary": "Compose 用函数描述 UI，组合随状态变化重新执行，而不是手动改 View。",
+      "minutes": 5,
+      "keyPoints": [
+        "Composable 应该无副作用地描述 UI；网络、写库等副作用放 LaunchedEffect/DisposableEffect 并绑定 key。",
+        "组合是一次 UI 树构建，重组只重新调用读取了变化状态的 Composable。",
+        "不要依赖 Composable 的调用顺序之外的隐藏状态；它们可能被跳过、重排或并行执行。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "一个纯描述、可复用的 Composable",
+        "code": "@Composable\nfun Greeting(name: String, modifier: Modifier = Modifier) {\n    Text(\n        text = \"Hello, \" + name,\n        modifier = modifier,\n        style = MaterialTheme.typography.headlineSmall\n    )\n}"
+      },
+      "pitfalls": [
+        "在 Composable 内直接发起网络请求或写数据库，每次重组都可能重复执行。",
+        "用普通 var 保存界面状态，变化不会触发重组。"
+      ],
+      "interviewTip": "先讲声明式与命令式差异，再讲组合/重组，最后用副作用边界说明为什么不能直接发请求。",
+      "skills": [
+        "compose-ui"
+      ],
+      "id": "mob-j1-compose-a1",
+      "chapterId": "mob-j1-compose"
+    },
+    {
+      "title": "状态与重组",
+      "summary": "状态读取触发重组；状态提升让组件可复用，但也会扩大重组范围。",
+      "minutes": 6,
+      "keyPoints": [
+        "mutableStateOf 配合 remember 保存可观察状态；rememberSaveable 额外支持配置变化与轻量状态恢复。",
+        "状态提升到共同父级便于共享和校验，但提升过高会让更多组件读取变化状态而重组；按消费边界放置。",
+        "列表项使用稳定 key 与稳定数据类型，避免每次传新的 lambda 或对象导致整列重组。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "用可保存状态驱动计数器",
+        "code": "@Composable\nfun Counter() {\n    var count by rememberSaveable { mutableIntStateOf(0) }\n\n    Column {\n        Text(\"Count: \" + count)\n        Button(onClick = { count += 1 }) { Text(\"+1\") }\n    }\n}"
+      },
+      "pitfalls": [
+        "把状态放在页面顶层，任何输入变化都让整页读取状态并重组。",
+        "在 AppBar 里展示搜索词，却把状态放在最底层输入框，导致兄弟组件无法感知。"
+      ],
+      "interviewTip": "用「谁消费状态，就把状态放多近」总结状态提升；再补 rememberSaveable 与稳定 key 的作用。",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "id": "mob-j1-compose-a2",
+      "chapterId": "mob-j1-compose"
+    },
+    {
+      "title": "列表与输入交互",
+      "summary": "LazyColumn 只组合可见项；稳定 key、内容类型与输入状态决定滚动体验。",
+      "minutes": 5,
+      "keyPoints": [
+        "LazyColumn 的 items 要提供稳定 key，避免增删时错位；内容类型稳定有助于复用。",
+        "输入框使用 value + onValueChange 的单向数据流；状态放在最近的共同父级，避免整页重组丢焦点。",
+        "滚动位置用 rememberLazyListState 保存；分页要区分首次加载、追加与空状态。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "带稳定 key 的 LazyColumn",
+        "code": "@Composable\nfun UserList(users: List<User>, onClick: (String) -> Unit) {\n    LazyColumn {\n        items(users, key = { it.id }) { user ->\n            ListItem(\n                headlineContent = { Text(user.name) },\n                modifier = Modifier.clickable { onClick(user.id) }\n            )\n        }\n    }\n}"
+      },
+      "pitfalls": [
+        "用索引作 key，删除中间项后输入状态会串到错误的行。",
+        "在 onValueChange 中做重计算或发请求，输入卡顿且状态可能乱序。"
+      ],
+      "interviewTip": "从 Lazy 的按需组合切入，讲 key、状态提升与输入单向流，最后补分页与滚动位置恢复。",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "id": "mob-j1-compose-a3",
+      "chapterId": "mob-j1-compose"
+    },
+    {
+      "title": "suspend 与结构化并发",
+      "summary": "suspend 标记可挂起函数；结构化并发让子任务的生命周期跟随父作用域。",
+      "minutes": 6,
+      "keyPoints": [
+        "suspend 函数不是「自动切线程」，它只是可以在挂起点暂停；线程切换由调度器与 withContext 决定。",
+        "coroutineScope 会等待所有子协程完成，任一子任务失败会取消兄弟任务并向外传播，适合一个业务单元。",
+        "supervisorScope 隔离子任务失败，适合多个互不依赖的请求；取消异常必须继续抛出，不能被吞掉。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "并行加载且一个失败不影响另一个",
+        "code": "suspend fun loadDashboard(\n    loadOrders: suspend () -> List<Order>,\n    loadProfile: suspend () -> Profile\n): Dashboard = supervisorScope {\n    val orders = async { loadOrders() }\n    val profile = async { loadProfile() }\n    Dashboard(orders.await(), profile.await())\n}"
+      },
+      "pitfalls": [
+        "在业务代码里使用 GlobalScope 启动任务，页面销毁后仍继续运行且无法统一取消。",
+        "用 runCatching 包住所有异常，把 CancellationException 一起吞掉，破坏结构化并发。"
+      ],
+      "interviewTip": "先区分 suspend 与线程，再讲 coroutineScope 的失败传播、supervisorScope 的隔离，最后用取消异常说明边界。",
+      "skills": [
+        "coroutines",
+        "kotlin-basics"
+      ],
+      "id": "mob-j2-coroutines-a1",
+      "chapterId": "mob-j2-coroutines"
+    },
+    {
+      "title": "调度器与线程切换",
+      "summary": "Main 更新 UI，IO 处理阻塞请求，Default 做 CPU 计算；切换要显式且最小。",
+      "minutes": 5,
+      "keyPoints": [
+        "Dispatchers.Main 负责 UI；IO 适合文件/网络等阻塞调用；Default 适合 CPU 密集计算，避免在主线程做重活。",
+        "withContext 用于必要的线程切换；在挂起函数内部自己决定调度器会降低可测试性，通常由调用方或注入的 dispatcher 决定。",
+        "测量后再并行：launch/async 用在可独立的任务上，依赖串行关系时不要为了「看起来快」强行并发。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "把 CPU 计算切到 Default，结果回到调用上下文",
+        "code": "suspend fun parseLargeJson(raw: String): Report =\n    withContext(Dispatchers.Default) {\n        parser.parse(raw)\n    }\n\n// ViewModel 中\nviewModelScope.launch {\n    val report = parseLargeJson(raw)\n    _state.update { it.copy(report = report) }\n}"
+      },
+      "pitfalls": [
+        "在 Dispatchers.Main 上执行同步文件读取或大 JSON 解析，造成卡顿。",
+        "在 Repository 里硬编码 Dispatchers.IO，单元测试无法替换，线程行为不可控。"
+      ],
+      "interviewTip": "讲清 Main/IO/Default 的适用场景，再补 withContext 的最小切换原则与可测试性。",
+      "skills": [
+        "coroutines",
+        "performance"
+      ],
+      "id": "mob-j2-coroutines-a2",
+      "chapterId": "mob-j2-coroutines"
+    },
+    {
+      "title": "取消与异常处理",
+      "summary": "取消是协作式的；协程只有在挂起点响应取消，异常要按边界处理。",
+      "minutes": 6,
+      "keyPoints": [
+        "取消通过设置 Job 状态并抛 CancellationException 传播，挂起函数在取消点响应；阻塞调用需要可取消封装。",
+        "捕获异常时先重新抛出 CancellationException，再处理业务异常，否则会把取消误当失败。",
+        "清理逻辑放在 finally 或 NonCancellable 中，确保关闭资源；CoroutineExceptionHandler 只处理未捕获的根协程异常。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "区分取消与业务异常，并保证资源释放",
+        "code": "suspend fun <T> loadSafely(block: suspend () -> T): Result<T> =\n    try {\n        Result.success(block())\n    } catch (cancel: CancellationException) {\n        throw cancel\n    } catch (error: Exception) {\n        Result.failure(error)\n    } finally {\n        // 释放资源；必要时 withContext(NonCancellable)\n    }"
+      },
+      "pitfalls": [
+        "把 CancellationException 当成普通错误展示给用户，页面已退出却弹出失败提示。",
+        "在 finally 中执行可能被再次取消的挂起操作，资源无法清理。"
+      ],
+      "interviewTip": "从协作式取消、CancellationException 再抛出、NonCancellable 清理三点回答，再补充异常处理器边界。",
+      "skills": [
+        "coroutines",
+        "android-lifecycle"
+      ],
+      "id": "mob-j2-coroutines-a3",
+      "chapterId": "mob-j2-coroutines"
+    },
+    {
+      "title": "OkHttp/Retrofit 请求链路",
+      "summary": "拦截器负责横切能力，Retrofit 把 HTTP 语义映射成类型化接口。",
+      "minutes": 6,
+      "keyPoints": [
+        "OkHttp 的拦截器按链式顺序处理请求与响应，适合统一加头、日志、重试与缓存策略；重试只对幂等请求安全。",
+        "Retrofit 接口用注解表达方法、路径、查询与请求体；错误响应不抛异常，非 2xx 的 body 需要显式解析。",
+        "超时、连接复用与取消要成体系；用户离开页面时取消请求，避免无效流量与旧响应覆盖新状态。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "类型化接口与可取消的请求",
+        "code": "interface OrderApi {\n    @GET(\"orders/{id}\")\n    suspend fun getOrder(\n        @Path(\"id\") id: String,\n        @Header(\"Authorization\") token: String\n    ): OrderDto\n}\n\nval client = OkHttpClient.Builder()\n    .callTimeout(15, TimeUnit.SECONDS)\n    .addInterceptor(AuthInterceptor(tokenStore))\n    .build()"
+      },
+      "pitfalls": [
+        "对所有请求无条件重试，POST 重复执行造成重复下单。",
+        "只判断网络异常，不区分 HTTP 4xx/5xx，给用户展示错误的「网络不好」。"
+      ],
+      "interviewTip": "按拦截器 → Retrofit 接口 → 错误响应 → 取消与超时讲请求链路，再补幂等重试边界。",
+      "skills": [
+        "networking"
+      ],
+      "id": "mob-j2-data-a1",
+      "chapterId": "mob-j2-data"
+    },
+    {
+      "title": "Room 与数据库迁移",
+      "summary": "Room 用编译期校验换安全 SQL；迁移必须与实体版本同步。",
+      "minutes": 6,
+      "keyPoints": [
+        "实体索引、字段可空性与主键设计要匹配查询模式；Schema 导出到版本控制，迁移才有依据。",
+        "升级版本要提供 Migration，逐列/逐表演进；fallbackToDestructiveMigration 会清空用户数据，只能在可丢弃库使用。",
+        "DAO 返回 Flow 可观察数据变化；写操作放事务，避免多条语句部分成功。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "带索引与 Flow 查询的 DAO",
+        "code": "@Entity(tableName = \"orders\", indices = [Index(\"status\")])\ndata class OrderEntity(\n    @PrimaryKey val id: String,\n    val status: String,\n    val amount: Long\n)\n\n@Dao\ninterface OrderDao {\n    @Query(\"SELECT * FROM orders WHERE status = :status ORDER BY id\")\n    fun observeByStatus(status: String): Flow<List<OrderEntity>>\n}"
+      },
+      "pitfalls": [
+        "为了省事开启破坏性迁移，版本升级后用户本地数据全部丢失。",
+        "把大对象或二进制直接放主表，读列表时把整行拖慢。"
+      ],
+      "interviewTip": "从实体/索引、DAO、事务到迁移讲数据层，再说明破坏性迁移的适用边界。",
+      "skills": [
+        "local-storage"
+      ],
+      "id": "mob-j2-data-a2",
+      "chapterId": "mob-j2-data"
+    },
+    {
+      "title": "离线缓存与错误分类",
+      "summary": "先定义事实源，再决定网络与缓存的优先级；错误要能指导动作。",
+      "minutes": 5,
+      "keyPoints": [
+        "单一事实源通常是本地数据库；网络结果先落库再由 UI 观察，避免两套状态互相覆盖。",
+        "网络优先、缓存兜底或 stale-while-revalidate 取决于业务新鲜度；要标注数据时间与是否过期。",
+        "区分超时、断网、4xx、5xx 与解析失败；只有可恢复错误才提示重试，认证失败应引导重新登录。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "按错误类型映射用户动作",
+        "code": "sealed interface LoadError {\n    data object Offline : LoadError\n    data object Unauthorized : LoadError\n    data class Server(val code: Int) : LoadError\n    data class Parsing(val cause: Throwable) : LoadError\n}\n\nfun LoadError.message(): String = when (this) {\n    LoadError.Offline -> \"网络未连接，将展示缓存\"\n    LoadError.Unauthorized -> \"登录已过期，请重新登录\"\n    is LoadError.Server -> \"服务暂时不可用，请稍后重试\"\n    is LoadError.Parsing -> \"数据格式异常，请更新应用\"\n}"
+      },
+      "pitfalls": [
+        "把过期缓存当成实时数据展示，却不给任何时间提示。",
+        "所有错误都弹「网络异常」，用户无法区分登录失效与服务故障。"
+      ],
+      "interviewTip": "先讲本地为事实源与缓存新鲜度，再讲错误分类到用户动作的映射，最后补离线写回。",
+      "skills": [
+        "local-storage",
+        "networking"
+      ],
+      "id": "mob-j2-data-a3",
+      "chapterId": "mob-j2-data"
+    },
+    {
+      "title": "MVVM 与单向数据流",
+      "summary": "事件向上、状态向下；ViewModel 只暴露可观察状态与意图方法。",
+      "minutes": 6,
+      "keyPoints": [
+        "UI 发送意图（Intent/Action），ViewModel 处理并产出唯一 UiState，UI 只渲染状态，避免双向绑定造成隐式修改。",
+        "状态用不可变 data class 表达，更新通过 copy/reducer 生成新值，便于比较、回放与测试。",
+        "一次性事件（弹 Snackbar、跳转）不要塞进持久状态；用 Channel/SharedFlow 或事件队列消费一次。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "不可变 UiState 与意图方法",
+        "code": "data class OrderUiState(\n    val loading: Boolean = false,\n    val orders: List<Order> = emptyList(),\n    val error: String? = null\n)\n\nclass OrderViewModel(private val repo: OrderRepository) : ViewModel() {\n    private val _state = MutableStateFlow(OrderUiState())\n    val state: StateFlow<OrderUiState> = _state.asStateFlow()\n\n    fun refresh() = viewModelScope.launch {\n        _state.update { it.copy(loading = true, error = null) }\n        runCatching { repo.loadOrders() }\n            .onSuccess { list -> _state.update { it.copy(loading = false, orders = list) } }\n            .onFailure { e -> _state.update { it.copy(loading = false, error = e.message) } }\n    }\n}"
+      },
+      "pitfalls": [
+        "UI 直接修改 ViewModel 内部可变集合，状态变化绕过 reducer，难以追踪。",
+        "把导航等一次性事件放成 Boolean 状态，旋转屏幕后重复触发。"
+      ],
+      "interviewTip": "用「事件向上、状态向下」解释单向数据流，再讲不可变 UiState 与一次性事件的区分。",
+      "skills": [
+        "app-architecture",
+        "state-management"
+      ],
+      "id": "mob-j2-arch-a1",
+      "chapterId": "mob-j2-arch"
+    },
+    {
+      "title": "ViewModel 与 SavedState",
+      "summary": "ViewModel 跨配置变化保存状态，SavedState 负责进程重建后的最小恢复。",
+      "minutes": 6,
+      "keyPoints": [
+        "viewModelScope 随 ViewModel 清理；StateFlow 用 stateIn + WhileSubscribed 控制上游订阅与释放。",
+        "SavedStateHandle 适合页面参数和少量关键草稿，不适合大对象；进程死亡后其他内存状态会丢失。",
+        "避免在 ViewModel 持有 Activity/Fragment 或 View 引用；需要资源访问时注入 Application 级依赖或使用可注入的上下文包装。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "用 SavedStateHandle 恢复筛选条件",
+        "code": "class SearchViewModel(\n    savedState: SavedStateHandle,\n    private val repo: SearchRepository\n) : ViewModel() {\n    val query = savedState.getStateFlow(\"query\", \"\")\n\n    fun updateQuery(value: String) {\n        savedState[\"query\"] = value\n    }\n\n    val results = query\n        .debounce(300)\n        .flatMapLatest(repo::search)\n        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())\n}"
+      },
+      "pitfalls": [
+        "把网络返回的大列表写入 SavedStateHandle，造成序列化与大小问题。",
+        "在 ViewModel 构造时直接持有 Activity，配置变化后造成泄漏。"
+      ],
+      "interviewTip": "区分 ViewModel 与 SavedState 的存活范围，再讲 WhileSubscribed 的订阅生命周期。",
+      "skills": [
+        "app-architecture",
+        "state-management",
+        "android-lifecycle"
+      ],
+      "id": "mob-j2-arch-a2",
+      "chapterId": "mob-j2-arch"
+    },
+    {
+      "title": "依赖注入与模块边界",
+      "summary": "依赖注入把创建与使用分离；模块边界让功能可以独立演进。",
+      "minutes": 5,
+      "keyPoints": [
+        "面向接口注入 Repository，让 ViewModel 不依赖具体网络或数据库实现；构造注入比全局定位器更可测。",
+        "按功能拆模块（feature/data/domain/core），依赖方向单向：feature 依赖抽象，data 实现抽象，避免循环依赖。",
+        "依赖注入框架只是装配工具；作用域（Singleton/ViewModelScoped）要与对象生命周期匹配，避免过长持有。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "构造注入让测试可替换实现",
+        "code": "interface OrderRepository {\n    suspend fun loadOrders(): List<Order>\n}\n\nclass OrderViewModel(\n    private val repository: OrderRepository\n) : ViewModel() {\n    // 生产环境注入实现，测试注入 Fake\n}\n\n@Module\n@InstallIn(ViewModelComponent::class)\nobject OrderModule {\n    @Provides\n    fun provideRepository(\n        remote: OrderApi,\n        dao: OrderDao\n    ): OrderRepository = DefaultOrderRepository(remote, dao)\n}"
+      },
+      "pitfalls": [
+        "在 ViewModel 中直接 new Retrofit/数据库实例，测试无法替换且重复创建连接。",
+        "把依赖作用域设为 Singleton，却持有了界面相关资源，造成泄漏。"
+      ],
+      "interviewTip": "从可测试与依赖倒置讲 DI，再讲模块依赖方向和作用域匹配，最后补测试替换的具体收益。",
+      "skills": [
+        "app-architecture"
+      ],
+      "id": "mob-j2-arch-a3",
+      "chapterId": "mob-j2-arch"
+    },
+    {
+      "title": "启动与卡顿定位",
+      "summary": "优化从指标开始：区分冷/温/热启动，用分位数据与 trace 定位，而不是凭感觉。",
+      "minutes": 6,
+      "keyPoints": [
+        "冷启动关注首帧与可交互时间，拆分 Application、ContentProvider、首屏数据与布局成本；温/热启动看进程与页面恢复路径。",
+        "卡顿看帧耗时与掉帧分布，JankStats/Macrobenchmark 提供接近真实用户的样本；用 P50/P95 而非单次最好值。",
+        "优化只引入一个变量，固定设备与构建类型，多次采样对比；线上再用真实用户分位指标验证。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "启动阶段用 trace 标记关键区间",
+        "code": "class OrderApp : Application() {\n    override fun onCreate() {\n        super.onCreate()\n        trace(\"app_init\") {\n            initCrashReporting()\n            initNetwork()\n            // 首屏不依赖的 SDK 延迟到后台初始化\n        }\n    }\n}\n\ninline fun trace(name: String, block: () -> Unit) {\n    Trace.beginSection(name)\n    try {\n        block()\n    } finally {\n        Trace.endSection()\n    }\n}"
+      },
+      "pitfalls": [
+        "用 Debug 包或单次启动数据下结论，忽略构建类型与设备差异。",
+        "只看平均帧率，不关注 P95 与长帧，用户仍能感知到明显卡顿。"
+      ],
+      "interviewTip": "从指标定义、基线采样、trace 拆解到线上验证完整回答，再补「只改一个变量」的控制实验。",
+      "skills": [
+        "performance",
+        "android-lifecycle"
+      ],
+      "id": "mob-j3-performance-a1",
+      "chapterId": "mob-j3-performance"
+    },
+    {
+      "title": "内存与图片",
+      "summary": "泄漏是引用生命周期错配，图片是内存峰值的主要来源；两者都要证据。",
+      "minutes": 6,
+      "keyPoints": [
+        "常见泄漏来自单例持有 Activity、未注销监听、线程/协程持有 View、匿名内部类；用 LeakCanary 与 heap dump 验证引用链。",
+        "图片按显示尺寸采样，选择合适格式与缓存策略；列表复用避免为不可见项保留大 Bitmap。",
+        "内存压力下释放可重建缓存，避免在 onTrimMemory 中做重活；监控 OOM 与堆峰值要区分设备档位。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "按目标尺寸解码，避免整图进内存",
+        "code": "fun decodeSampled(\n    resolver: ContentResolver,\n    uri: Uri,\n    reqW: Int,\n    reqH: Int\n): Bitmap? {\n    val options = BitmapFactory.Options().apply {\n        inJustDecodeBounds = true\n    }\n    resolver.openInputStream(uri)?.use {\n        BitmapFactory.decodeStream(it, null, options)\n    }\n    options.inSampleSize = calculateInSampleSize(options, reqW, reqH)\n    options.inJustDecodeBounds = false\n    return resolver.openInputStream(uri)?.use {\n        BitmapFactory.decodeStream(it, null, options)\n    }\n}"
+      },
+      "pitfalls": [
+        "单例注册生命周期监听却不注销，页面销毁后仍被全局对象引用。",
+        "图片只设置宽高却不采样，解码阶段就产生数倍内存峰值。"
+      ],
+      "interviewTip": "先讲引用链与生命周期错配，再讲图片采样/缓存，最后用 heap dump 与线上指标证明修复有效。",
+      "skills": [
+        "performance"
+      ],
+      "id": "mob-j3-performance-a2",
+      "chapterId": "mob-j3-performance"
+    },
+    {
+      "title": "ANR 与崩溃治理",
+      "summary": "ANR 往往是主线程阻塞或锁等待；崩溃治理需要分层止损与可定位。",
+      "minutes": 6,
+      "keyPoints": [
+        "ANR 先看 traces 与主线程栈，区分 IO、锁等待、Binder 阻塞与广播超时；用 StrictMode 在开发期提前暴露主线程 IO。",
+        "崩溃上报要保留堆栈、设备、版本、前后台状态与自定义面包屑；混淆包用 mapping 文件还原。",
+        "治理按影响面排序：先止血（降级/开关/热修边界），再修复根因，最后用灰度与崩溃率验证。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "开发期用 StrictMode 暴露主线程 IO",
+        "code": "if (BuildConfig.DEBUG) {\n    StrictMode.setThreadPolicy(\n        StrictMode.ThreadPolicy.Builder()\n            .detectDiskReads()\n            .detectDiskWrites()\n            .detectNetwork()\n            .penaltyLog()\n            .build()\n    )\n}"
+      },
+      "pitfalls": [
+        "ANR 只看设备日志不看主线程栈，把问题误判为性能慢。",
+        "崩溃率下降但没有版本与场景维度，无法确认真实影响。"
+      ],
+      "interviewTip": "用 traces 定位 ANR 根因，用版本/场景分层崩溃指标，再讲止损、根治、灰度的完整闭环。",
+      "skills": [
+        "performance",
+        "release-engineering"
+      ],
+      "id": "mob-j3-performance-a3",
+      "chapterId": "mob-j3-performance"
+    },
+    {
+      "title": "Flutter/RN 选型与混合栈",
+      "summary": "选型不是性能单指标，而是团队能力、原生能力、插件生态与演进成本的综合取舍。",
+      "minutes": 6,
+      "keyPoints": [
+        "Flutter 自绘 UI 一致性强，适合高频交互；RN 更贴近前端心智与生态。两者都需要评估原生能力覆盖率与插件维护质量。",
+        "混合栈要定义导航、状态、鉴权、埋点与资源加载的边界；避免两套路由与状态互相踩踏。",
+        "跨端不是「一次写完全平台」：复杂相机、蓝牙、后台任务等仍可能要原生实现，用清晰的 channel/接口隔离。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "选型决策表的最小维度",
+        "code": "评估维度          Flutter              React Native\n团队技能          Dart / 原生           JS / React / 原生\nUI 一致性         自绘，一致性高        依赖原生控件\n原生能力          插件 + Channel        Native Module\n热更新/发布       受平台政策约束        受平台政策约束\n维护成本          双端一套 UI          前端人才复用\n结论              高频交互/一致 UI     前端团队/生态复用"
+      },
+      "pitfalls": [
+        "只拿一个页面的帧率做结论，不评估插件生态、长尾原生能力与团队维护成本。",
+        "混合栈中两套路由各自处理深链，返回栈与埋点数据互相冲突。"
+      ],
+      "interviewTip": "先讲业务与团队约束，再比较 Flutter/RN 的能力边界，最后用导航、状态与原生通道说明混合栈治理。",
+      "skills": [
+        "flutter-crossplatform",
+        "app-architecture"
+      ],
+      "id": "mob-j3-cross-a1",
+      "chapterId": "mob-j3-cross"
+    },
+    {
+      "title": "构建变体与 CI",
+      "summary": "构建变体隔离环境与签名；CI 把可重复构建、质量门禁与产物管理串起来。",
+      "minutes": 6,
+      "keyPoints": [
+        "用 productFlavors/buildTypes 区分环境、包名、签名与配置，敏感配置通过 CI 密钥注入，不写入仓库。",
+        "CI 缓存依赖与构建产物、并行任务、固定工具版本；每次构建产出可追溯的版本号与 mapping 文件。",
+        "发布前跑 lint、单测、关键 UI 测试与安全检查；失败阻断，不靠人工记忆。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "构建变体隔离环境配置",
+        "code": "android {\n    flavorDimensions += \"env\"\n    productFlavors {\n        create(\"dev\") {\n            dimension = \"env\"\n            applicationIdSuffix = \".dev\"\n            versionNameSuffix = \"-dev\"\n        }\n        create(\"prod\") {\n            dimension = \"env\"\n            signingConfig = signingConfigs.getByName(\"release\")\n        }\n    }\n    buildTypes {\n        release {\n            isMinifyEnabled = true\n            proguardFiles(getDefaultProguardFile(\"proguard-android-optimize.txt\"), \"proguard-rules.pro\")\n        }\n    }\n}"
+      },
+      "pitfalls": [
+        "把签名文件和 API Key 提交进仓库，泄露后只能紧急轮换。",
+        "CI 与本地构建使用不同 JDK/SDK 版本，产物不可复现。"
+      ],
+      "interviewTip": "从变体隔离、密钥注入、质量门禁、产物可追溯四块回答，再补失败阻断与回滚。",
+      "skills": [
+        "release-engineering",
+        "testing"
+      ],
+      "id": "mob-j3-cross-a2",
+      "chapterId": "mob-j3-cross"
+    },
+    {
+      "title": "测试与灰度发布",
+      "summary": "测试分层覆盖不同风险，灰度用真实用户反馈控制发布风险。",
+      "minutes": 5,
+      "keyPoints": [
+        "单元测试覆盖纯逻辑与 reducer，集成测试覆盖数据库/网络边界，UI 测试只覆盖关键路径；测试金字塔控制反馈速度与成本。",
+        "灰度按用户/地区/版本分层，监控崩溃率、ANR、核心转化与错误率；设置自动停止与回滚阈值。",
+        "Feature Flag 与灰度配合，让高风险功能可独立关闭；避免 flag 长期堆积形成组合爆炸。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "稳定的百分比灰度分流",
+        "code": "fun isInRollout(userId: String, percent: Int): Boolean {\n    if (percent <= 0) return false\n    if (percent >= 100) return true\n    val bucket = (userId.hashCode().toLong() and 0x7fffffffL) % 100\n    return bucket < percent\n}"
+      },
+      "pitfalls": [
+        "只按设备随机分流，同一用户在不同请求中忽隐忽现，难以复现问题。",
+        "灰度只看崩溃率，不看核心业务指标，功能「不崩但没人用」。"
+      ],
+      "interviewTip": "测试金字塔说明覆盖策略，灰度说明分流稳定性、监控指标与回滚阈值，再补 Feature Flag 的生命周期。",
+      "skills": [
+        "testing",
+        "release-engineering"
+      ],
+      "id": "mob-j3-cross-a3",
+      "chapterId": "mob-j3-cross"
+    },
+    {
+      "title": "离线优先与同步",
+      "summary": "先写本地、可重放同步、幂等与冲突策略，才能让弱网体验可控。",
+      "minutes": 6,
+      "keyPoints": [
+        "本地数据库是事实源，用户操作先落本地形成待同步队列；UI 立即响应，后台按网络恢复重放。",
+        "同步请求必须幂等（客户端生成幂等键/操作 id），失败可安全重试；批量同步要可断点续传。",
+        "冲突策略要按业务选择：服务端权威、版本号比较、字段级合并或人工确认；冲突必须对用户可见且可解释。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "可重放的待同步操作",
+        "code": "@Entity(tableName = \"pending_ops\")\ndata class PendingOp(\n    @PrimaryKey val opId: String,\n    val entityId: String,\n    val payload: String,\n    val createdAt: Long,\n    val retryCount: Int = 0\n)\n\n// 同步成功后删除 op；服务端以 opId 做幂等去重\n// 失败按退避策略重试，超过阈值进入可见的失败状态"
+      },
+      "pitfalls": [
+        "本地与服务端各自维护最后修改时间，时钟漂移导致冲突策略失效。",
+        "失败队列无限静默重试，用户不知道数据尚未同步。"
+      ],
+      "interviewTip": "用「本地事实源 + 幂等操作队列 + 冲突策略 + 可见同步状态」四步回答，再补弱网与时钟漂移。",
+      "skills": [
+        "local-storage",
+        "app-architecture",
+        "networking"
+      ],
+      "id": "mob-j3-system-a1",
+      "chapterId": "mob-j3-system"
+    },
+    {
+      "title": "推送与深链",
+      "summary": "推送负责唤醒，深链负责到达；两者都要校验、可追踪且尊重用户选择。",
+      "minutes": 6,
+      "keyPoints": [
+        "推送 token 会轮换，服务端要按用户/设备维护有效 token 并清理失效；推送载荷避免携带敏感信息。",
+        "深链参数来自外部，必须校验路由白名单与参数，登录态缺失时先保存目标再引导登录。",
+        "通知权限与小语种/免打扰要尊重系统设置；点击、到达、转化分别埋点，避免只看发送量。"
+      ],
+      "example": {
+        "language": "kotlin",
+        "caption": "深链只接受白名单路由",
+        "code": "private val allowedHosts = setOf(\"app.example.com\")\n\nfun routeFrom(uri: Uri?): Route? {\n    val host = uri?.host ?: return null\n    if (host !in allowedHosts) return null\n\n    return when (uri.pathSegments.firstOrNull()) {\n        \"order\" -> uri.pathSegments.getOrNull(1)\n            ?.takeIf { it.matches(Regex(\"[A-Za-z0-9_-]{1,32}\")) }\n            ?.let(Route::OrderDetail)\n        \"profile\" -> Route.Profile\n        else -> null\n    }\n}"
+      },
+      "pitfalls": [
+        "深链直接按外部 URL 拼接页面参数，未校验 host 与 id，导致越权或崩溃。",
+        "推送载荷包含手机号/订单金额，在锁屏与日志中泄露。"
+      ],
+      "interviewTip": "把推送 token 生命周期、深链白名单与登录态衔接讲清，再补到达/点击/转化的指标闭环。",
+      "skills": [
+        "networking",
+        "release-engineering"
+      ],
+      "id": "mob-j3-system-a2",
+      "chapterId": "mob-j3-system"
+    },
+    {
+      "title": "移动端方案表达",
+      "summary": "面试中的系统设计不是画大图，而是从约束推导选择，并说明失败与指标。",
+      "minutes": 6,
+      "keyPoints": [
+        "先复述目标用户、核心场景、规模与约束（团队、端能力、离线、合规），再给高层架构，避免一上来堆组件。",
+        "按数据流讲：入口/深链 → 缓存与本地事实源 → 网络同步 → 页面渲染；标出失败点、重试与降级。",
+        "用指标闭环收尾：启动/首屏、成功率、P95、崩溃/ANR、同步时延；说明当前阶段的取舍与后续演进。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "移动端方案表达骨架（信息流场景）",
+        "code": "1. 目标与约束：日活、弱网比例、内容时效、团队端能力\n2. 高层架构：UI → ViewModel → Repository → 本地 DB / API\n3. 关键链路：冷启动预取 → 分页缓存 → 图片解码 → 曝光埋点\n4. 失败与降级：缓存过期提示、分页重试、灰度 kill switch\n5. 指标：首屏 P95、分页成功率、卡顿率、崩溃率\n6. 取舍：先做单库缓存，不做多端实时同步；后续按需求演进"
+      },
+      "pitfalls": [
+        "只罗列 Jetpack 组件与框架名，不解释数据怎么流、失败怎么办。",
+        "没有规模与约束就开始设计，方案无法比较优劣。"
+      ],
+      "interviewTip": "用「目标与约束 → 架构 → 关键链路 → 失败与降级 → 指标 → 取舍」六段式表达，主动说出当前阶段不做什么。",
+      "skills": [
+        "app-architecture",
+        "performance",
+        "networking"
+      ],
+      "id": "mob-j3-system-a3",
+      "chapterId": "mob-j3-system"
+    }
+  ],
+  "questions": [
+    {
+      "prompt": "下面代码的输出是什么？\n\nval name: String? = null\nval display = name?.length ?: 0\nprintln(display)",
+      "options": [
+        "0",
+        "null",
+        "抛出 NullPointerException",
+        "编译失败，因为 name 可能为空"
+      ],
+      "answerIndex": 0,
+      "explanation": "安全调用 name?.length 在 name 为 null 时返回 null，Elvis 运算符再回退到 0；整个过程不会触发 NPE。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "q-mob-j1-kotlin-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "level": "junior"
+    },
+    {
+      "prompt": "关于 Kotlin 的 val，哪一项描述是正确的？",
+      "options": [
+        "val 修饰的对象内部永远不可修改",
+        "val 只能赋值一次，但对象内部仍可能可变",
+        "val 等价于 Java 的 const",
+        "val 只能修饰基本类型"
+      ],
+      "answerIndex": 1,
+      "explanation": "val 保证引用不可重新赋值，不保证对象深度不可变；要得到不可变数据，需要不可变类型与不可变集合共同保证。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "q-mob-j1-kotlin-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "level": "junior"
+    },
+    {
+      "prompt": "两个分别创建的 data class 实例参数完全相同，使用 == 比较时结果是？",
+      "options": [
+        "false，因为是两个不同对象",
+        "true，data class 按主构造参数生成 equals",
+        "编译错误，data class 不能比较",
+        "取决于是否调用了 copy"
+      ],
+      "answerIndex": 1,
+      "explanation": "data class 根据主构造参数生成 equals/hashCode，参数内容相同则相等；这是值语义，identity 语义要用引用比较 ===。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "q-mob-j1-kotlin-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "level": "junior"
+    },
+    {
+      "prompt": "需要在订单列表中频繁按 id 查询订单，哪种写法更合适？",
+      "options": [
+        "每次查询都 orders.first { it.id == id }",
+        "先 orders.associateBy { it.id } 建索引再查询",
+        "把订单放进 var 全局变量后遍历",
+        "用 for 循环嵌套两层查找"
+      ],
+      "answerIndex": 1,
+      "explanation": "associateBy 用一次遍历建立 id 到订单的 Map，后续查询接近 O(1)；在循环里反复 first 查找会退化为 O(n²)。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "q-mob-j1-kotlin-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "level": "junior"
+    },
+    {
+      "prompt": "关于 Kotlin 的 inline 高阶函数，哪项说法正确？",
+      "options": [
+        "inline 会让 lambda 变成异步执行",
+        "inline 能减少 lambda 对象与调用开销，但可能增加字节码体积",
+        "inline 函数中的 lambda 永远不能返回",
+        "inline 只能用于无参数的函数"
+      ],
+      "answerIndex": 1,
+      "explanation": "inline 把函数体与 lambda 内联到调用处，降低对象分配与调用成本；代价是字节码膨胀，并且对 lambda 的保存/传递有额外限制。",
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "q-mob-j1-kotlin-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "level": "junior"
+    },
+    {
+      "prompt": "Activity 从创建到可与用户交互，正常生命周期的顺序是？",
+      "options": [
+        "onStart → onCreate → onResume",
+        "onCreate → onStart → onResume",
+        "onCreate → onResume → onStart",
+        "onResume → onCreate → onStart"
+      ],
+      "answerIndex": 1,
+      "explanation": "标准顺序是 onCreate（创建）→ onStart（可见）→ onResume（可交互）；销毁时对称地经过 onPause、onStop、onDestroy。",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "id": "q-mob-j1-android-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "level": "junior"
+    },
+    {
+      "prompt": "用户正在订单页输入备注，此时旋转屏幕。哪类状态最应该放入 onSaveInstanceState 或 SavedStateHandle？",
+      "options": [
+        "从网络加载的整页订单列表",
+        "用户尚未提交的备注草稿",
+        "Activity 的 this 引用",
+        "单例 Repository 对象"
+      ],
+      "answerIndex": 1,
+      "explanation": "SavedState 适合轻量、与界面直接相关的临时状态；大列表应重新请求或放缓存，对象引用不应持久化，避免内存与大小问题。",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "id": "q-mob-j1-android-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "level": "junior"
+    },
+    {
+      "prompt": "以下哪种操作不适合使用 Application Context？",
+      "options": [
+        "读取应用级 SharedPreferences",
+        "启动一个新的 Activity",
+        "访问应用资源",
+        "注册全局生命周期监听"
+      ],
+      "answerIndex": 1,
+      "explanation": "启动 Activity 需要任务栈与界面上下文，应使用 Activity Context；Application Context 缺少对应能力，也无法正确呈现主题与任务行为。",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "id": "q-mob-j1-android-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "level": "junior"
+    },
+    {
+      "prompt": "使用 Activity Result API 接收页面返回值，哪种做法更稳妥？",
+      "options": [
+        "在 onCreate 之后、STARTED 之前注册 launcher，并对 resultCode 与参数做校验",
+        "直接假设 resultCode 一定是 RESULT_OK",
+        "用静态变量传递结果，忽略页面重建",
+        "在 onResume 中每次重新注册一个新的 launcher"
+      ],
+      "answerIndex": 0,
+      "explanation": "launcher 应在生命周期安全时机注册；结果可能被取消，参数也可能缺失，因此要检查 resultCode 与默认值，静态变量会在重建后失真。",
+      "skills": [
+        "android-lifecycle"
+      ],
+      "id": "q-mob-j1-android-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "level": "junior"
+    },
+    {
+      "prompt": "页面在 onDestroy 时取消 lifecycleScope 中的请求，主要解决了什么问题？",
+      "options": [
+        "提升网络带宽",
+        "避免页面销毁后回调更新已不存在的 UI 或持有引用造成泄漏",
+        "自动重试失败请求",
+        "让请求在主线程执行"
+      ],
+      "answerIndex": 1,
+      "explanation": "lifecycleScope 随生命周期取消协程，避免任务继续占用资源或在已销毁页面上更新 UI；它不负责重试，也不会改变请求线程。",
+      "skills": [
+        "android-lifecycle",
+        "kotlin-basics"
+      ],
+      "id": "q-mob-j1-android-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "level": "junior"
+    },
+    {
+      "prompt": "Compose 中，一个 Composable 为什么会发生重组？",
+      "options": [
+        "只要父组件调用它就会无条件重组",
+        "它读取了某个发生变化的状态",
+        "设备每次绘制屏幕都会重组全部 UI",
+        "只有 Activity 重建时才会重组"
+      ],
+      "answerIndex": 1,
+      "explanation": "Compose 通过状态读取建立依赖，只有读取了变化状态的可组合项才会被标记重组；父级重组也可能带来子项重组，但不是无条件全量。",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "id": "q-mob-j1-compose-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "level": "junior"
+    },
+    {
+      "prompt": "remember 与 rememberSaveable 的关键区别是？",
+      "options": [
+        "rememberSaveable 能在配置变化或轻量保存恢复时保留状态",
+        "remember 支持网络请求",
+        "rememberSaveable 只能保存对象引用",
+        "两者完全等价"
+      ],
+      "answerIndex": 0,
+      "explanation": "remember 只活在当前 composition/宿主存续期间；rememberSaveable 把可序列化的轻量状态放入保存机制，能跨配置变化恢复。",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "id": "q-mob-j1-compose-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "level": "junior"
+    },
+    {
+      "prompt": "搜索框和结果列表都需要读取同一个查询词，状态应放在哪里？",
+      "options": [
+        "输入框内部，列表通过网络读取",
+        "两者最近的共同父级，通过参数与回调共享",
+        "放在单例对象里，永远不清理",
+        "放在列表项里"
+      ],
+      "answerIndex": 1,
+      "explanation": "状态应提升到共同消费者最近的父级：既能共享单一事实源，也避免提升到页面顶层导致无关区域重组。",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "id": "q-mob-j1-compose-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "level": "junior"
+    },
+    {
+      "prompt": "LazyColumn 中列表项使用索引作为 key，删除中间项后最可能出现什么问题？",
+      "options": [
+        "网络请求自动取消",
+        "列表项内部状态（如展开、输入内容）错位到其他数据上",
+        "Compose 无法渲染超过 10 项",
+        "所有项都会强制重新请求数据"
+      ],
+      "answerIndex": 1,
+      "explanation": "索引 key 在数据位置变化时不再稳定，Compose 可能复用错误位置的项状态；用业务 id 作为 key 能保持身份。",
+      "skills": [
+        "compose-ui"
+      ],
+      "id": "q-mob-j1-compose-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "level": "junior"
+    },
+    {
+      "prompt": "在 Composable 中使用普通 var 保存输入内容，输入后界面不更新。最可能的原因是？",
+      "options": [
+        "Compose 不支持文本输入",
+        "普通变量不是可观察状态，变化不会触发重组",
+        "必须使用 Java 的 EditText",
+        "输入框只能由 Activity 控制"
+      ],
+      "answerIndex": 1,
+      "explanation": "普通变量变化不会通知 Compose；应使用 mutableStateOf + remember（或 rememberSaveable）并通过 value/onValueChange 建立单向数据流。",
+      "skills": [
+        "compose-ui",
+        "state-management"
+      ],
+      "id": "q-mob-j1-compose-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "level": "junior"
+    },
+    {
+      "prompt": "关于 suspend 函数，哪项描述最准确？",
+      "options": [
+        "suspend 会自动把函数放到后台线程执行",
+        "suspend 表示函数可挂起，线程切换仍由调度器与 withContext 决定",
+        "suspend 函数只能被 launch 调用",
+        "suspend 会让函数变成同步阻塞"
+      ],
+      "answerIndex": 1,
+      "explanation": "suspend 仅表示可在挂起点暂停并恢复，不保证线程；实际线程由 CoroutineContext 的调度器决定，切换需要显式或由上下文提供。",
+      "skills": [
+        "coroutines"
+      ],
+      "id": "q-mob-j2-coroutines-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "level": "middle"
+    },
+    {
+      "prompt": "coroutineScope 内一个子协程抛异常，通常会发生什么？",
+      "options": [
+        "其他子协程继续运行，父作用域正常返回",
+        "异常取消同级子协程并传播到父作用域",
+        "异常被自动忽略",
+        "所有协程暂停但不会取消"
+      ],
+      "answerIndex": 1,
+      "explanation": "coroutineScope 采用结构化并发：子任务失败会取消同级的兄弟任务并把异常向外传播；若需隔离单个失败，应使用 supervisorScope 或独立作用域。",
+      "skills": [
+        "coroutines"
+      ],
+      "id": "q-mob-j2-coroutines-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "level": "middle"
+    },
+    {
+      "prompt": "解析大 JSON 属于 CPU 密集任务，应优先使用哪个调度器？",
+      "options": [
+        "Dispatchers.Main",
+        "Dispatchers.IO",
+        "Dispatchers.Default",
+        "Dispatchers.Unconfined"
+      ],
+      "answerIndex": 2,
+      "explanation": "Dispatchers.Default 面向 CPU 密集计算；IO 适合阻塞式输入输出。Main 会阻塞界面，Unconfined 不适合作为默认选择。",
+      "skills": [
+        "coroutines",
+        "performance"
+      ],
+      "id": "q-mob-j2-coroutines-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "level": "middle"
+    },
+    {
+      "prompt": "捕获协程异常时，为什么必须先重新抛出 CancellationException？",
+      "options": [
+        "因为它是编译错误，不抛无法运行",
+        "它代表正常取消流程，吞掉会破坏取消传播并可能误报业务失败",
+        "它会自动打印日志，必须抛出才能关闭资源",
+        "它只会在主线程出现"
+      ],
+      "answerIndex": 1,
+      "explanation": "CancellationException 是协作式取消的机制；如果被普通 catch 吞掉，上层无法感知取消，清理与传播都会异常。处理业务异常后应继续抛出取消异常。",
+      "skills": [
+        "coroutines"
+      ],
+      "id": "q-mob-j2-coroutines-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "level": "middle"
+    },
+    {
+      "prompt": "在 finally 中需要执行清理操作，但协程可能已经取消。哪种处理更稳妥？",
+      "options": [
+        "直接执行任意 suspend 清理，取消后会自动恢复",
+        "使用 withContext(NonCancellable) 包裹必要的清理",
+        "使用 GlobalScope.launch 执行清理",
+        "忽略清理，依赖进程退出"
+      ],
+      "answerIndex": 1,
+      "explanation": "已取消的协程在挂起点会立刻再次取消；NonCancellable 让必要的清理（如关闭文件/提交事务）完成，但仍应保持短小，避免长时间占用。",
+      "skills": [
+        "coroutines"
+      ],
+      "id": "q-mob-j2-coroutines-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "level": "middle"
+    },
+    {
+      "prompt": "OkHttp 拦截器链中，关于重试策略哪项更安全？",
+      "options": [
+        "所有请求失败都立即重试 3 次",
+        "只对幂等请求在超时或 5xx 时做有限退避重试",
+        "对 401 响应自动无限重试",
+        "在拦截器里吞掉所有异常，返回空响应"
+      ],
+      "answerIndex": 1,
+      "explanation": "重试要考虑幂等性与错误类型：POST 重试可能重复下单；401 需要重新认证而不是重试。对幂等请求做有限退避，并设置总预算。",
+      "skills": [
+        "networking"
+      ],
+      "id": "q-mob-j2-data-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "level": "middle"
+    },
+    {
+      "prompt": "Room 数据库版本升级时，fallbackToDestructiveMigration 的主要风险是？",
+      "options": [
+        "数据库无法读取",
+        "升级时清空本地用户数据",
+        "索引会自动失效",
+        "DAO 无法编译"
+      ],
+      "answerIndex": 1,
+      "explanation": "破坏性迁移在缺少迁移路径时直接重建数据库，用户数据会丢失；它只适合可丢弃的缓存库，正式业务应提供 Migration 并测试升级路径。",
+      "skills": [
+        "local-storage"
+      ],
+      "id": "q-mob-j2-data-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "level": "middle"
+    },
+    {
+      "prompt": "采用「本地数据库为单一事实源」的离线优先架构，典型流程是？",
+      "options": [
+        "UI 直接分别请求网络与数据库并随机展示",
+        "网络结果先写本地，再由 UI 观察本地数据；缓存作为可恢复的基础",
+        "只在网络失败时才创建数据库",
+        "把网络响应缓存在静态变量里"
+      ],
+      "answerIndex": 1,
+      "explanation": "单一事实源避免双写状态互相覆盖：网络成功后更新数据库，UI 只订阅数据库；离线时继续用已有数据，并标注同步状态。",
+      "skills": [
+        "local-storage",
+        "networking"
+      ],
+      "id": "q-mob-j2-data-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "level": "middle"
+    },
+    {
+      "prompt": "服务端返回 401 时，最合适的客户端处理是？",
+      "options": [
+        "当成普通网络错误，无限重试",
+        "清理失效会话并引导重新登录或刷新令牌",
+        "把响应缓存起来以后展示",
+        "自动把请求改成 GET"
+      ],
+      "answerIndex": 1,
+      "explanation": "401 表示认证失效，重试同一个凭证没有意义。应走会话刷新或重新登录流程，并避免把用户数据展示给未授权状态。",
+      "skills": [
+        "networking"
+      ],
+      "id": "q-mob-j2-data-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "level": "middle"
+    },
+    {
+      "prompt": "下列哪种错误分类最能指导用户动作？",
+      "options": [
+        "全部显示「出错了」",
+        "区分断网、登录失效、服务 5xx 与数据解析失败，并给出对应操作",
+        "只记录日志，不向用户提示",
+        "把所有错误都当成 404"
+      ],
+      "answerIndex": 1,
+      "explanation": "错误分类要能映射到恢复动作：断网提示离线、401 引导登录、5xx 提示稍后重试、解析失败引导更新或反馈。统一提示会让用户无从处理。",
+      "skills": [
+        "networking",
+        "local-storage"
+      ],
+      "id": "q-mob-j2-data-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "level": "middle"
+    },
+    {
+      "prompt": "MVVM 中「单向数据流」的核心约束是？",
+      "options": [
+        "UI 可以直接修改 Repository 的任何字段",
+        "UI 发送意图，ViewModel 生成新状态，UI 只渲染状态",
+        "ViewModel 直接操作 TextView",
+        "状态必须使用可变全局对象"
+      ],
+      "answerIndex": 1,
+      "explanation": "单向数据流让状态变更集中、可追踪：事件向上，状态向下；UI 不绕过 ViewModel 改数据，ViewModel 也不直接操作 View。",
+      "skills": [
+        "app-architecture",
+        "state-management"
+      ],
+      "id": "q-mob-j2-arch-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "level": "middle"
+    },
+    {
+      "prompt": "旋转屏幕后，哪类数据最适合放 SavedStateHandle？",
+      "options": [
+        "页面参数的 id 与尚未提交的筛选条件",
+        "从服务器获取的完整商品列表",
+        "Activity 的引用",
+        "OkHttpClient 实例"
+      ],
+      "answerIndex": 0,
+      "explanation": "SavedStateHandle 用于小、关键、可序列化的状态；大列表可通过缓存/重新请求恢复，对象实例与引用不应放入。",
+      "skills": [
+        "app-architecture",
+        "android-lifecycle"
+      ],
+      "id": "q-mob-j2-arch-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "level": "middle"
+    },
+    {
+      "prompt": "StateFlow 使用 stateIn(..., SharingStarted.WhileSubscribed(5000), ...) 的主要收益是？",
+      "options": [
+        "让所有协程永久运行",
+        "在无订阅者时释放上游，短暂转后台时延迟取消以减少重复请求",
+        "自动把异常转换为空列表",
+        "保证状态一定不会重复"
+      ],
+      "answerIndex": 1,
+      "explanation": "WhileSubscribed 根据订阅者数量管理上游生命周期，参数提供停止超时；它不会吞掉异常，也不等同于去重。",
+      "skills": [
+        "app-architecture",
+        "coroutines"
+      ],
+      "id": "q-mob-j2-arch-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "level": "middle"
+    },
+    {
+      "prompt": "在 ViewModel 中直接 new 出具体 Repository 实现，最直接的代价是？",
+      "options": [
+        "代码无法编译",
+        "难以替换依赖与编写快速单元测试，容易重复创建资源",
+        "ViewModel 不能使用 StateFlow",
+        "页面生命周期会失效"
+      ],
+      "answerIndex": 1,
+      "explanation": "直接构造具体实现造成强耦合：测试需要真实网络/数据库，复用与替换困难。构造注入接口可让测试注入 Fake，并集中管理作用域。",
+      "skills": [
+        "app-architecture"
+      ],
+      "id": "q-mob-j2-arch-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "level": "middle"
+    },
+    {
+      "prompt": "一次性事件（如页面跳转）为什么不适合用 Boolean 状态表达？",
+      "options": [
+        "Boolean 不能保存",
+        "状态会持续存在，重建/重复收集时可能再次触发同一个事件",
+        "Compose 不支持 Boolean",
+        "ViewModel 无法修改 Boolean"
+      ],
+      "answerIndex": 1,
+      "explanation": "事件描述「发生过一次」，状态描述「当前是什么」。用 Boolean 表示事件，会在配置变化或重新订阅时重放；应使用 Channel/SharedFlow 等一次性事件机制。",
+      "skills": [
+        "app-architecture",
+        "state-management"
+      ],
+      "id": "q-mob-j2-arch-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "level": "middle"
+    },
+    {
+      "prompt": "评估启动优化是否有效，哪组指标更可信？",
+      "options": [
+        "一次 Debug 包启动的总耗时",
+        "固定构建与设备、多次采样的首帧与可交互时间 P50/P95，以及线上真实用户分位数据",
+        "应用安装包大小",
+        "开发者主观感受"
+      ],
+      "answerIndex": 1,
+      "explanation": "性能结论需要可复现的基线与分位指标；Debug 包、单次采样和主观感受噪声大。线上真实用户数据能验证优化是否具有外部有效性。",
+      "skills": [
+        "performance"
+      ],
+      "id": "q-mob-j3-performance-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "level": "senior"
+    },
+    {
+      "prompt": "下列哪种情况最容易造成 Activity 内存泄漏？",
+      "options": [
+        "使用局部变量保存临时数据",
+        "单例中保存 Activity 引用并注册监听后未注销",
+        "在 onDestroy 中取消协程",
+        "用 data class 传递订单"
+      ],
+      "answerIndex": 1,
+      "explanation": "长生命周期单例持有短生命周期 Activity，且监听未注销，会让页面无法回收；局部变量、data class 值对象和正确取消协程不构成此类泄漏。",
+      "skills": [
+        "performance",
+        "android-lifecycle"
+      ],
+      "id": "q-mob-j3-performance-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "level": "senior"
+    },
+    {
+      "prompt": "列表展示大图时，控制内存峰值最直接的措施是？",
+      "options": [
+        "把所有图片预加载到内存",
+        "按显示尺寸采样解码，并限制缓存与复用范围",
+        "只把图片质量调到 100",
+        "把 Bitmap 存进静态集合"
+      ],
+      "answerIndex": 1,
+      "explanation": "采样解码从源头降低单图内存；合理缓存与复用控制总量。高画质、预加载和静态集合都可能推高内存峰值。",
+      "skills": [
+        "performance",
+        "compose-ui"
+      ],
+      "id": "q-mob-j3-performance-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "level": "senior"
+    },
+    {
+      "prompt": "定位 ANR 时，最先应该查看什么？",
+      "options": [
+        "应用图标资源",
+        "ANR traces 中主线程的调用栈与锁等待",
+        "数据库表数量",
+        "APK 签名算法"
+      ],
+      "answerIndex": 1,
+      "explanation": "ANR 表示主线程在限定时间内无法响应；traces 能显示主线程阻塞在 IO、锁、Binder 还是长计算，是区分根因的第一手证据。",
+      "skills": [
+        "performance"
+      ],
+      "id": "q-mob-j3-performance-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "level": "senior"
+    },
+    {
+      "prompt": "灰度期间崩溃率上升，最合理的处置顺序是？",
+      "options": [
+        "继续扩大灰度，等待更多样本",
+        "先止损（暂停灰度/降级开关），定位版本与场景，修复后用受控灰度验证",
+        "直接关闭所有崩溃上报",
+        "删除崩溃日志后重新发布"
+      ],
+      "answerIndex": 1,
+      "explanation": "先控制影响面，再定位与修复，最后用灰度验证；继续放量会扩大事故，关闭上报或删日志则让问题不可见。",
+      "skills": [
+        "performance",
+        "release-engineering"
+      ],
+      "id": "q-mob-j3-performance-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "level": "senior"
+    },
+    {
+      "prompt": "评估 Flutter 与 RN 的跨端选型，哪项最不应该是唯一依据？",
+      "options": [
+        "团队现有技能与维护成本",
+        "原生能力覆盖率与插件生态",
+        "单个 Demo 页面的帧率",
+        "导航、状态与发布边界"
+      ],
+      "answerIndex": 2,
+      "explanation": "单个 Demo 无法代表长尾原生能力、复杂页面、插件维护与团队协作成本；选型应综合业务约束、团队技能和演进成本。",
+      "skills": [
+        "flutter-crossplatform",
+        "app-architecture"
+      ],
+      "id": "q-mob-j3-cross-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "level": "senior"
+    },
+    {
+      "prompt": "在 Android 构建脚本中，productFlavors 的主要用途是？",
+      "options": [
+        "替代所有单元测试",
+        "按环境/渠道生成不同的包名、配置与签名等构建变体",
+        "自动修复崩溃",
+        "压缩图片资源"
+      ],
+      "answerIndex": 1,
+      "explanation": "productFlavors 定义构建变体维度，可组合 buildTypes 产生不同环境、包名与签名配置；它不负责测试或运行时修复。",
+      "skills": [
+        "release-engineering"
+      ],
+      "id": "q-mob-j3-cross-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "level": "senior"
+    },
+    {
+      "prompt": "CI 中把签名文件与 API Key 提交到仓库的主要问题是？",
+      "options": [
+        "导致编译变慢",
+        "秘密泄露后任何人可伪造发布包或调用受限接口",
+        "会增加 APK 体积",
+        "会让 R8 失效"
+      ],
+      "answerIndex": 1,
+      "explanation": "凭据进入版本历史后难以彻底清除，攻击者可滥用或伪造发布；应通过 CI Secret 注入并限制权限，发现泄露要轮换。",
+      "skills": [
+        "release-engineering"
+      ],
+      "id": "q-mob-j3-cross-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "level": "senior"
+    },
+    {
+      "prompt": "灰度分流时，为保证同一用户体验稳定，应优先使用什么作为分桶依据？",
+      "options": [
+        "每次请求的随机数",
+        "稳定的业务用户标识，并保证相同输入映射到同一桶",
+        "设备电量",
+        "当前网络延迟"
+      ],
+      "answerIndex": 1,
+      "explanation": "按稳定用户 id 计算确定性桶，保证同一用户始终进入相同实验组；每次随机分桶会造成体验抖动与问题难复现。",
+      "skills": [
+        "release-engineering",
+        "testing"
+      ],
+      "id": "q-mob-j3-cross-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "level": "senior"
+    },
+    {
+      "prompt": "关于测试金字塔，哪项更符合成本与反馈速度的取舍？",
+      "options": [
+        "大量端到端 UI 测试，少写单元测试",
+        "以单元测试覆盖纯逻辑，集成测试覆盖边界，UI 测试聚焦关键路径",
+        "只做手工测试",
+        "所有测试都访问真实生产环境"
+      ],
+      "answerIndex": 1,
+      "explanation": "单元测试快且稳定，适合大量逻辑；集成测试覆盖真实边界；UI 测试慢且脆弱，应聚焦关键路径。生产环境不应作为常规测试环境。",
+      "skills": [
+        "testing",
+        "release-engineering"
+      ],
+      "id": "q-mob-j3-cross-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "level": "senior"
+    },
+    {
+      "prompt": "离线优先架构中，用户操作先写本地再异步同步的核心收益是？",
+      "options": [
+        "永远不需要网络",
+        "UI 立即响应弱网，操作可重放，网络恢复后仍能完成",
+        "可以忽略服务端校验",
+        "自动解决所有冲突"
+      ],
+      "answerIndex": 1,
+      "explanation": "本地先写提供即时反馈并保留操作；同步队列负责网络恢复后重放。仍需服务端校验与冲突策略，冲突不会自动消失。",
+      "skills": [
+        "local-storage",
+        "app-architecture"
+      ],
+      "id": "q-mob-j3-system-1",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "同步队列为什么要给每个操作生成客户端幂等键？",
+      "options": [
+        "为了让 UI 更好看",
+        "网络重试或超时后，服务端可识别同一操作，避免重复执行",
+        "为了减少本地存储",
+        "为了绕过鉴权"
+      ],
+      "answerIndex": 1,
+      "explanation": "超时并不代表服务端没执行；客户端幂等键让重试成为安全操作，服务端可基于唯一约束或去重表返回同一结果。",
+      "skills": [
+        "local-storage",
+        "networking"
+      ],
+      "id": "q-mob-j3-system-2",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "处理深链时，哪项是必要的安全边界？",
+      "options": [
+        "信任所有 host 并直接跳转",
+        "校验 host/路由白名单与参数格式，登录态缺失时先保存目标",
+        "把 token 放在深链参数里传递",
+        "忽略系统通知权限设置"
+      ],
+      "answerIndex": 1,
+      "explanation": "深链来自外部，必须限制可路由目标并校验参数；敏感凭证不应出现在 URL，权限与登录流程也要按用户状态处理。",
+      "skills": [
+        "networking",
+        "release-engineering"
+      ],
+      "id": "q-mob-j3-system-3",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "推送 token 的生命周期管理，哪种做法更稳妥？",
+      "options": [
+        "永久保存首次 token，从不更新",
+        "按用户与设备维护最新 token，处理轮换并清理失效 token",
+        "把 token 写进公开的远程配置",
+        "同一 token 用于所有用户"
+      ],
+      "answerIndex": 1,
+      "explanation": "token 会因重装、清理数据或系统刷新而轮换；服务端需按用户/设备维护并清理失效记录，避免推送丢失或串号。",
+      "skills": [
+        "networking",
+        "release-engineering"
+      ],
+      "id": "q-mob-j3-system-4",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "level": "senior"
+    },
+    {
+      "prompt": "移动端系统设计面试中，最应该先说明什么？",
+      "options": [
+        "使用的所有开源库版本",
+        "目标场景、规模与约束，以及当前阶段不做什么",
+        "全部代码细节",
+        "自己最喜欢的框架"
+      ],
+      "answerIndex": 1,
+      "explanation": "约束决定架构：用户规模、弱网、时效、团队能力和合规都会改变选择；先说明边界与非目标，再展开链路与取舍，方案才可被评估。",
+      "skills": [
+        "app-architecture",
+        "performance"
+      ],
+      "id": "q-mob-j3-system-5",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "level": "senior"
+    }
+  ],
+  "codeChallenges": [
+    {
+      "title": "实现安全的年龄解析",
+      "prompt": "用户资料里的年龄来自不可信输入。实现 parseAge(input: String?): Int?：空白、非数字、负数、超过 150 都返回 null；允许首尾空格，小数视为非法。",
+      "requirements": [
+        "使用空安全处理 input，不使用 !!",
+        "只接受纯数字字符，拒绝小数与正负号",
+        "最终范围限定在 0..150"
+      ],
+      "starterCode": "fun parseAge(input: String?): Int? {\n    // TODO: 先 trim，再校验字符，最后解析并检查范围\n    return null\n}",
+      "solutionCode": "fun parseAge(input: String?): Int? {\n    val raw = input?.trim() ?: return null\n    if (raw.isEmpty() || !raw.all { it.isDigit() }) return null\n\n    val age = raw.toIntOrNull() ?: return null\n    return age.takeIf { it in 0..150 }\n}",
+      "rubric": [
+        "是否正确处理 null、空白与首尾空格",
+        "是否拒绝小数、符号与非数字字符",
+        "是否检查 0..150 的边界，而不是只判断负数",
+        "代码是否避免 !!，可读性是否清楚"
+      ],
+      "skills": [
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j1-kotlin",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-kotlin",
+      "level": "junior",
+      "language": "kotlin"
+    },
+    {
+      "title": "构建安全的详情页路由参数",
+      "prompt": "实现 buildDetailRoute(rawId, source)：id 只允许字母、数字、下划线和中划线，长度 1..32；source 去空格后为空则使用 unknown。任一非法输入返回 null。",
+      "requirements": [
+        "使用 trim 处理首尾空格",
+        "id 用正则限制字符与长度",
+        "source 为空时提供默认值，不做 !! 断言"
+      ],
+      "starterCode": "data class DetailRoute(val id: String, val source: String)\n\nfun buildDetailRoute(rawId: String?, source: String?): DetailRoute? {\n    // TODO: 校验 id，处理 source 默认值\n    return null\n}",
+      "solutionCode": "data class DetailRoute(val id: String, val source: String)\n\nfun buildDetailRoute(rawId: String?, source: String?): DetailRoute? {\n    val id = rawId?.trim()\n        ?.takeIf { it.matches(Regex(\"[A-Za-z0-9_-]{1,32}\")) }\n        ?: return null\n\n    val safeSource = source?.trim()?.takeIf { it.isNotEmpty() } ?: \"unknown\"\n    return DetailRoute(id, safeSource)\n}",
+      "rubric": [
+        "是否正确校验 id 的字符集与长度",
+        "是否处理 null、空白与 source 默认值",
+        "是否避免把原始输入直接拼进路由造成注入或崩溃",
+        "命名与函数边界是否清晰"
+      ],
+      "skills": [
+        "android-lifecycle",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j1-android",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-android",
+      "level": "junior",
+      "language": "kotlin"
+    },
+    {
+      "title": "实现列表过滤逻辑",
+      "prompt": "实现 visibleTasks(tasks, query, hideDone)：按标题进行不区分大小写的包含匹配；query 去空格后为空则不过滤；hideDone 为 true 时隐藏已完成项；保持原顺序。",
+      "requirements": [
+        "query 与标题都做大小写归一，query 先 trim",
+        "hideDone 为 true 时过滤 done 项",
+        "不修改原列表，保持稳定顺序"
+      ],
+      "starterCode": "data class TaskItem(val id: String, val title: String, val done: Boolean)\n\nfun visibleTasks(\n    tasks: List<TaskItem>,\n    query: String,\n    hideDone: Boolean\n): List<TaskItem> {\n    // TODO: 组合关键词与完成状态两个条件\n    return emptyList()\n}",
+      "solutionCode": "data class TaskItem(val id: String, val title: String, val done: Boolean)\n\nfun visibleTasks(\n    tasks: List<TaskItem>,\n    query: String,\n    hideDone: Boolean\n): List<TaskItem> {\n    val keyword = query.trim().lowercase()\n    return tasks.filter { task ->\n        (!hideDone || !task.done) &&\n            (keyword.isEmpty() || task.title.lowercase().contains(keyword))\n    }\n}",
+      "rubric": [
+        "是否正确处理空查询与首尾空格",
+        "是否同时应用 hideDone 与关键词条件",
+        "是否保持原顺序且不修改入参",
+        "是否选择声明式过滤而非手写可变列表"
+      ],
+      "skills": [
+        "compose-ui",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j1-compose",
+      "trackId": "mobile",
+      "chapterId": "mob-j1-compose",
+      "level": "junior",
+      "language": "kotlin"
+    },
+    {
+      "title": "远程优先、缓存兜底的加载策略",
+      "prompt": "实现 suspend 函数 loadProfile(remote, cache)：并行触发远程与缓存；远程成功则返回远程结果，远程失败则回退缓存，两者都无数据返回 null。不要让远程失败取消缓存任务，也不要吞掉 CancellationException。",
+      "requirements": [
+        "使用结构化并发组织两个挂起调用",
+        "业务异常可回退缓存，取消异常必须继续传播",
+        "避免在函数内部硬编码 Dispatchers.IO"
+      ],
+      "starterCode": "data class Profile(val id: String, val name: String)\n\nsuspend fun loadProfile(\n    remote: suspend () -> Profile,\n    cache: suspend () -> Profile?\n): Profile? {\n    // TODO: 让远程失败可回退缓存，同时保留取消语义\n    return null\n}",
+      "solutionCode": "data class Profile(val id: String, val name: String)\n\nsuspend fun loadProfile(\n    remote: suspend () -> Profile,\n    cache: suspend () -> Profile?\n): Profile? = coroutineScope {\n    val remoteResult = async {\n        try {\n            Result.success(remote())\n        } catch (cancel: CancellationException) {\n            throw cancel\n        } catch (error: Exception) {\n            Result.failure(error)\n        }\n    }\n    val cached = cache()\n    remoteResult.await().getOrNull() ?: cached\n}",
+      "rubric": [
+        "是否用结构化并发组织远程与缓存任务",
+        "是否正确区分 CancellationException 与业务异常",
+        "远程失败是否真正回退到缓存而非直接返回 null",
+        "是否有清晰的返回类型与可测试边界"
+      ],
+      "skills": [
+        "coroutines",
+        "local-storage"
+      ],
+      "id": "code-mob-j2-coroutines",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-coroutines",
+      "level": "middle",
+      "language": "kotlin"
+    },
+    {
+      "title": "设计可解释的数据加载结果",
+      "prompt": "实现 describeLoadResult(error: LoadError?): String。没有错误返回「数据已更新」；断网返回带缓存的提示；未授权引导登录；5xx 提示稍后重试；解析失败提示更新应用。用 sealed interface 建模并通过 when 穷举。",
+      "requirements": [
+        "定义 LoadError 的密封层级，至少覆盖断网、未授权、服务端、解析失败",
+        "使用 when 穷举所有分支，不写 else 兜底",
+        "返回文案能直接指导用户下一步动作"
+      ],
+      "starterCode": "sealed interface LoadError {\n    data object Offline : LoadError\n    data object Unauthorized : LoadError\n    data class Server(val code: Int) : LoadError\n    data class Parsing(val cause: Throwable) : LoadError\n}\n\nfun describeLoadResult(error: LoadError?): String {\n    // TODO: 穷举错误类型并给出可执行文案\n    return \"\"\n}",
+      "solutionCode": "sealed interface LoadError {\n    data object Offline : LoadError\n    data object Unauthorized : LoadError\n    data class Server(val code: Int) : LoadError\n    data class Parsing(val cause: Throwable) : LoadError\n}\n\nfun describeLoadResult(error: LoadError?): String = when (error) {\n    null -> \"数据已更新\"\n    LoadError.Offline -> \"网络未连接，正在展示上次缓存\"\n    LoadError.Unauthorized -> \"登录已过期，请重新登录\"\n    is LoadError.Server -> \"服务暂时不可用，请稍后重试\"\n    is LoadError.Parsing -> \"数据格式异常，请更新应用或反馈问题\"\n}",
+      "rubric": [
+        "是否用密封类型表达互斥错误状态",
+        "when 是否穷举且没有用 else 掩盖新增分支",
+        "文案是否与用户可执行动作对应",
+        "是否避免在 UI 层重新判断状态码"
+      ],
+      "skills": [
+        "local-storage",
+        "networking",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j2-data",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-data",
+      "level": "middle",
+      "language": "kotlin"
+    },
+    {
+      "title": "实现 UiState reducer",
+      "prompt": "为订单页实现纯函数 reduce(state, action)：Load 清空错误并置 loading；Success 写入列表并结束加载；Failure 写入错误并结束加载。状态必须不可变，未知组合保持原状。",
+      "requirements": [
+        "定义 UiState 与密封 Action 类型",
+        "所有分支用 copy 生成新状态",
+        "成功时清理旧错误，失败时保留已有列表"
+      ],
+      "starterCode": "data class UiState(\n    val loading: Boolean = false,\n    val orders: List<String> = emptyList(),\n    val error: String? = null\n)\n\nsealed interface Action {\n    data object Load : Action\n    data class Success(val orders: List<String>) : Action\n    data class Failure(val message: String) : Action\n}\n\nfun reduce(state: UiState, action: Action): UiState {\n    // TODO: 用 when 穷举并保持不可变\n    return state\n}",
+      "solutionCode": "data class UiState(\n    val loading: Boolean = false,\n    val orders: List<String> = emptyList(),\n    val error: String? = null\n)\n\nsealed interface Action {\n    data object Load : Action\n    data class Success(val orders: List<String>) : Action\n    data class Failure(val message: String) : Action\n}\n\nfun reduce(state: UiState, action: Action): UiState = when (action) {\n    Action.Load -> state.copy(loading = true, error = null)\n    is Action.Success -> state.copy(loading = false, orders = action.orders, error = null)\n    is Action.Failure -> state.copy(loading = false, error = action.message)\n}",
+      "rubric": [
+        "Action 是否穷举覆盖加载、成功、失败",
+        "状态更新是否完全不可变",
+        "成功/失败时 loading 与 error 是否正确重置或保留",
+        "函数是否无副作用、可直接单元测试"
+      ],
+      "skills": [
+        "app-architecture",
+        "state-management",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j2-arch",
+      "trackId": "mobile",
+      "chapterId": "mob-j2-arch",
+      "level": "middle",
+      "language": "kotlin"
+    },
+    {
+      "title": "计算帧统计指标",
+      "prompt": "实现 summarizeFrames(framesMs, budgetMs)：返回 jankCount（超过预算的帧数）、p95（升序第 95 百分位，使用向上取整位置）、total。空列表的 p95 为 0。输入不得修改。",
+      "requirements": [
+        "正确计算超过 budgetMs 的帧数",
+        "p95 使用 ceil(n * 0.95) 的位置（1-based）",
+        "不修改原列表，空输入安全返回"
+      ],
+      "starterCode": "data class FrameStats(val jankCount: Int, val p95: Long, val total: Int)\n\nfun summarizeFrames(framesMs: List<Long>, budgetMs: Long): FrameStats {\n    // TODO: 统计长帧并计算 p95\n    return FrameStats(0, 0, framesMs.size)\n}",
+      "solutionCode": "import kotlin.math.ceil\n\ndata class FrameStats(val jankCount: Int, val p95: Long, val total: Int)\n\nfun summarizeFrames(framesMs: List<Long>, budgetMs: Long): FrameStats {\n    if (framesMs.isEmpty()) return FrameStats(0, 0, 0)\n\n    val sorted = framesMs.sorted()\n    val index = (ceil(sorted.size * 0.95).toInt() - 1)\n        .coerceIn(0, sorted.lastIndex)\n    val jank = framesMs.count { it > budgetMs }\n    return FrameStats(jank, sorted[index], framesMs.size)\n}",
+      "rubric": [
+        "长帧统计是否与预算比较一致",
+        "p95 的索引计算在边界样本上是否正确",
+        "空输入是否安全，输入是否未被修改",
+        "是否避免不必要的重复排序或多次遍历"
+      ],
+      "skills": [
+        "performance",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j3-performance",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-performance",
+      "level": "senior",
+      "language": "kotlin"
+    },
+    {
+      "title": "实现稳定的灰度分流",
+      "prompt": "实现 isInRollout(userId, percent)：percent ≤ 0 永远 false，≥ 100 永远 true；其余根据 userId 的稳定哈希映射到 0..99 的桶，桶号小于 percent 则命中。相同用户结果稳定。",
+      "requirements": [
+        "处理 0 与 100 的边界",
+        "使用确定性哈希，不使用随机数",
+        "把哈希值规范为非负桶号（0..99）"
+      ],
+      "starterCode": "fun isInRollout(userId: String, percent: Int): Boolean {\n    // TODO: 稳定分桶，处理边界\n    return false\n}",
+      "solutionCode": "fun isInRollout(userId: String, percent: Int): Boolean {\n    if (percent <= 0) return false\n    if (percent >= 100) return true\n\n    val bucket = (userId.hashCode().toLong() and 0x7fffffffL) % 100\n    return bucket < percent\n}",
+      "rubric": [
+        "0/100 边界是否安全",
+        "相同 userId 是否稳定命中同一桶",
+        "是否避免随机数导致体验抖动",
+        "哈希非负处理是否正确，注释是否说明分桶口径"
+      ],
+      "skills": [
+        "release-engineering",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j3-cross",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-cross",
+      "level": "senior",
+      "language": "kotlin"
+    },
+    {
+      "title": "实现离线记录冲突选择",
+      "prompt": "实现 chooseDraft(local, remote)：版本号高者胜；版本相同则 updatedAt 较新者胜（相等取 remote）；服务端删除标记 deleted 优先保留。返回应采用的记录，不修改入参。",
+      "requirements": [
+        "比较 version，再比较 updatedAt，规则明确",
+        "deleted 为 true 时优先采用该记录",
+        "返回新引用或原对象均可，但不得修改入参"
+      ],
+      "starterCode": "data class Draft(\n    val id: String,\n    val version: Int,\n    val updatedAt: Long,\n    val deleted: Boolean,\n    val content: String\n)\n\nfun chooseDraft(local: Draft, remote: Draft): Draft {\n    // TODO: 按删除优先、版本、更新时间决策\n    return local\n}",
+      "solutionCode": "data class Draft(\n    val id: String,\n    val version: Int,\n    val updatedAt: Long,\n    val deleted: Boolean,\n    val content: String\n)\n\nfun chooseDraft(local: Draft, remote: Draft): Draft = when {\n    remote.deleted != local.deleted -> if (remote.deleted) remote else local\n    remote.version > local.version -> remote\n    remote.version < local.version -> local\n    remote.updatedAt >= local.updatedAt -> remote\n    else -> local\n}",
+      "rubric": [
+        "删除优先规则是否先于版本比较",
+        "版本相同时是否正确使用 updatedAt 且相等取 remote",
+        "是否保持入参不可变",
+        "规则是否能向用户解释（冲突策略透明）"
+      ],
+      "skills": [
+        "local-storage",
+        "app-architecture",
+        "kotlin-basics"
+      ],
+      "id": "code-mob-j3-system",
+      "trackId": "mobile",
+      "chapterId": "mob-j3-system",
+      "level": "senior",
+      "language": "kotlin"
+    }
+  ]
+}
