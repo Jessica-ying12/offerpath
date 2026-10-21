@@ -74,7 +74,7 @@ export function AuthForm({
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      <form method="post" onSubmit={handleSubmit} className="space-y-4" noValidate>
         {mode === "register" ? (
           <Input
             label="昵称"

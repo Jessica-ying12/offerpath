@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.github
+artifacts
+data
+docs
+scripts
+tests
+coverage
+*.db
+*.db-*
+.env
+.env.*
+*.md

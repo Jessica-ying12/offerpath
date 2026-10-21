@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    image: offerpath:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_PATH: /app/data/offerpath.db
+    volumes:
+      - offerpath-data:/app/data
+
+volumes:
+  offerpath-data:

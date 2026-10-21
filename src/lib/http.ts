@@ -8,11 +8,24 @@ export function jsonError(message: string, status = 400): NextResponse {
   return NextResponse.json({ error: message }, { status });
 }
 
+function firstHeader(value: string | null): string | null {
+  return value?.split(",")[0]?.trim() || null;
+}
+
 export function assertSameOrigin(request: Request): boolean {
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite === "same-origin") return true;
+  if (fetchSite === "cross-site" || fetchSite === "same-site") return false;
+
   const origin = request.headers.get("origin");
   if (!origin) return true;
   try {
-    return new URL(origin).origin === new URL(request.url).origin;
+    const parsed = new URL(origin);
+    const forwardedHost = firstHeader(request.headers.get("x-forwarded-host"));
+    const host = forwardedHost ?? request.headers.get("host") ?? new URL(request.url).host;
+    if (parsed.host !== host) return false;
+    const forwardedProto = firstHeader(request.headers.get("x-forwarded-proto"));
+    return forwardedProto ? parsed.protocol === `${forwardedProto}:` : true;
   } catch {
     return false;
   }
