@@ -34,7 +34,7 @@
 ### 示例
 ```
 feat(auth): 增加注册登录与会话隔离
-feat(learn): 实现微课阅读与章节进度
+feat(learn): 实现知识点精讲与章节进度
 fix(practice): 修复错题重做后未清除错题状态
 docs(rules): 补充 AI 开发与提交规范
 ```

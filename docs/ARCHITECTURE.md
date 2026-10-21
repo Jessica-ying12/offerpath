@@ -51,10 +51,14 @@ Next.js App Router
 | `users` | id, email(unique), name, password_hash, created_at | 身份 |
 | `sessions` | token_hash(pk), user_id, expires_at | 可撤销会话 |
 | `profiles` | user_id(pk), track_id, level, target_role, target_company, resume_text, jd_text, onboarded | 单一用户画像，当前方向/等级唯一归属 |
-| `lesson_progress` | user_id, atom_id, chapter_id, track_id, completed_at, PK(user_id, atom_id) | 微课完成 |
+| `lesson_progress` | user_id, atom_id, chapter_id, track_id, completed_at, PK(user_id, atom_id) | 知识点完成 |
 | `quiz_attempts` | id, user_id, source_type, source_id, score, total, details_json | 每次练习快照 |
 | `mistakes` | user_id, question_id, wrong_count, last_wrong_at, resolved_at | 错题状态 |
-| `code_attempts` | id, user_id, challenge_id, code, passed, total | 代码提交与结果 |
+| `code_attempts` | id, user_id, challenge_id, code, passed, total | 代码提交与结果（language 含 sql） |
+| `chapter_mastery` | user_id, chapter_id, track_id, stage(1–5), review_count, next_review_at, last_review_at | 章节掌握度与复习排期 |
+| `review_attempts` | id, user_id, chapter_id, track_id, level, score, total, details_json | 周期复习成绩 |
+| `bank_attempts` | id, user_id, scope_json, score, total, duration_seconds, details_json | 题库筛选练习记录 |
+| `exam_attempts` | id, user_id, track_id, level, score, total, duration_seconds, details_json | 模拟笔试记录 |
 | `plans` | id, user_id, kind(sprint/career), track_id, level, input_json, plan_json | 急冲/规划快照，可回看 |
 | `interview_sessions` | id, user_id, track_id, level, mode, plan_json, status, summary_json | 面试会话 |
 | `interview_turns` | id, session_id, seq, question_id, kind, answer, score, feedback_json | 逐轮记录 |
@@ -65,24 +69,26 @@ Next.js App Router
 数据事实唯一归属：进度看 `lesson_progress`、错题看 `mistakes`、成绩看 attempts、面试看 sessions/turns；`activities` 仅为时间线，不重复定义状态。
 
 ### 派生规则
-- 计划任务完成状态由真实进度派生（微课完成、章节练习达标、代码通过、面试完成），不额外维护一份会漂移的勾选表。
+- 计划任务完成状态由真实进度派生（知识点完成、章节练习达标、代码通过、面试完成），不额外维护一份会漂移的勾选表。
 - 练习提交服务端判分：答对清除该题未解决错题；答错累计 `wrong_count`。重做使用同一逻辑，来源区分 `chapter/sprint/mistake`。
+- 掌握度唯一由 `chapter_mastery` 定义：章节 3 个知识点完成 + 章节练习 ≥60% 后进入 D+1；每次复习 ≥80% 才累计，三次后 stage=5；答错保持阶段并回到 D+1。题库练习与模拟笔试只记录成绩，不改变掌握度。
 
 ## 5. 内容与智能引擎
 
-- `data/curriculum/*.json`：每方向 9 章 / 27 微课 / 45 单选题 / 9 代码题；`data/interviews/*.json`：每方向 15 道面试题。
-- `schema.ts` 定义 Zod 契约与深度校验（引用、数量、等级一致），`npm run content:validate` 与单测双重把关。
+- `data/curriculum/*.json`：5 门课程共 30 章 / 90 知识点 / 210 单选题 / 30 代码题（移动端、全栈各 9/27/63/9；Java 后端 6/18/48/6；MySQL 3/9/18/3；计算机基础与 AI 3/9/18/3）；`data/interviews/*.json`：移动端、全栈、Java 后端各 15 道面试题。
+- 章节带 1–5 条官方参考来源；知识点带目标、机制讲解与分步骤说明，不使用视频。
+- `schema.ts` 定义 Zod 契约与深度校验（引用、数量、等级一致、课程规格），`npm run content:validate` 与单测双重把关。
 - 技能词典（每方向 12/14 个技能及别名）驱动简历/JD 解析、计划优先级与面试选题。
 - 计划引擎：抽取技能 → 结合等级选知识点 → 依据缺口排序 → 按周期分日/分阶段 → 生成可执行任务；输出匹配证据，前端明确标注可解释规则。
 - 面试引擎：项目题（解析简历中的项目/技术线索）+ 知识题（按等级与技能缺口）；评分 = 要点覆盖（别名词匹配）+ 表达完整度；低分给提示/允许重答，高分插入追问；结束生成报告。
 - 所有引擎为纯函数，输入输出可序列化，必须单测。
 
-## 6. 代码沙箱（全栈代码题）
+## 6. 代码执行与自评（代码题）
 
 - 生成带 `sandbox="allow-scripts"` 的 iframe（`srcdoc`，CSP `default-src 'none'; script-src 'unsafe-inline' blob:; worker-src blob:`）。
 - iframe 内用 Blob Worker 执行用户函数与测试用例；opaque origin 无 Cookie 权限，CSP 禁止外联。
 - 主线程 3 秒超时直接销毁 iframe，防止死循环；仅接收 JSON 序列化结果。
-- 移动端 Kotlin 代码题不在浏览器执行：展示参考实现 + 自查维度，用户选择「通过/需再练」，结果入记录。
+- 移动端 Kotlin、数据库 SQL 代码题不在浏览器执行：展示参考实现 + 自查维度/检查清单，用户选择「通过/需再练」，结果入记录，不伪装成自动判分。
 
 ## 7. 环境与运行
 
