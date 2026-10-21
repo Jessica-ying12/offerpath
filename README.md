@@ -6,7 +6,23 @@ OfferPath 面向三类真实场景：基础薄弱需要系统补课、时间紧�
 
 公开仓库：https://github.com/Jessica-ying12/offerpath
 
-## 当前能力（v2）
+## 两个入口
+
+### 1. 公开深度学习站（已上线，永久公网）
+
+**https://offerpath-deep-q1f1nhycwc5.qoder.website/**
+
+- 21 篇移动前端深度精读（约 3.5 万行原稿）、21 份问答分册、380 道带两层追问的面试问答、210 道练习题。
+- 全文搜索、目录、清单、笔记、问答自测、D+1 / D+3 / D+7 复习、学习路径、按岗位/JD 重排、学习进度。
+- 无登录、无 tunnel；阅读进度与笔记保存在本机浏览器，支持导出/导入 JSON。
+- 源码在 [`public-site/`](public-site/)，内容来自你的移动前端学习包；含个人经历的「简历定制」文档未公开。
+
+### 2. 完整训练版（本仓库根目录）
+
+- 5 门课程、账号体系、SQLite 记录、章节练习、技术库、题库/笔试、周期复习、报告、急冲、规划、模拟面试。
+- 适合自托管：Docker + 持久磁盘 + HTTPS，见 [部署文档](docs/DEPLOYMENT.md)。
+
+## 完整训练版能力（v2）
 
 - **知识点精讲（无视频）**：5 门课程共 30 章 / 90 个知识点；每个知识点有本节目标、机制讲解、分步骤说明、示例、易错点、面试表达与官方参考来源。
 - **五门课程**：移动端开发（Kotlin/Android/Compose）、全栈开发（TS/React/Node）、Java 后端（Java/Spring/JVM/MySQL/Redis/高并发）、MySQL 数据库（建模/查询/事务/复制）、计算机基础与 AI 前沿（HTTP/OS/LLM 工程与安全）。
@@ -22,7 +38,9 @@ OfferPath 面向三类真实场景：基础薄弱需要系统补课、时间紧�
 
 ## 技术栈
 
-Next.js 15（App Router）/ React 19 / TypeScript / Tailwind CSS / SQLite（better-sqlite3）/ Zod / Vitest。
+完整训练版：Next.js 15（App Router）/ React 19 / TypeScript / Tailwind CSS / SQLite（better-sqlite3）/ Zod / Vitest。
+
+公开学习站：Vite / React 19 / TypeScript / Tailwind CSS / React Markdown / 静态部署（Qoder Sites）。
 
 ## 快速开始
 
@@ -45,15 +63,24 @@ npm run build
 
 数据库默认写入 `data/offerpath.db`（已被 git 忽略），可通过 `DATABASE_PATH` 覆盖。
 
+公开学习站：
+
+```bash
+cd public-site
+npm install
+npm run content:validate   # 21 篇 / 21 份 / 380 题 / 个人数据扫描
+npm run dev                # http://127.0.0.1:5173
+npm run build              # 输出 public-site/dist
+```
+
 ## 公网访问与部署
 
-本项目是 Next.js SSR + SQLite 单实例应用，不能用静态托管。当前已通过临时隧道在公网验证；长期运行请按 [部署文档](docs/DEPLOYMENT.md) 使用 Docker + 持久磁盘 + HTTPS：
+- **公开学习站**：已发布在 Qoder Sites，公网永久地址见上，不再使用临时隧道。静态构建、无后端依赖，重建后可通过 Qoder Sites 发布新版本。
+- **完整训练版**：Next.js SSR + SQLite 单实例，需要持久磁盘，不能用静态托管。按 [部署文档](docs/DEPLOYMENT.md) 使用 Docker + 持久磁盘 + HTTPS：
 
 ```bash
 docker compose up -d --build
 ```
-
-临时预览地址会随进程结束失效，以交付消息中的最新地址为准，不作为长期托管。
 
 ## 目录
 
@@ -65,6 +92,7 @@ src/lib/services/ 业务编排（鉴权后读写 + 记录）
 src/lib/db/       SQLite 连接、迁移、repository
 src/lib/content/  内容契约与只读加载
 data/             课程与面试题库 JSON（可校验、可审校）
+public-site/      公开深度学习站（21 篇精读 + 380 问答 + 210 题，静态部署）
 docs/             产品、设计、架构、规范、逐需求方案、来源与部署
 tests/            Vitest 测试
 ```
@@ -80,16 +108,17 @@ tests/            Vitest 测试
 - [内容规范](docs/CONTENT_SPEC.md)
 - [权威来源与题库调研](docs/SOURCES.md)
 - [公网部署](docs/DEPLOYMENT.md)
+- [深度内容与公开站方案](docs/requirements/REQ-017-deep-content-and-public-site.md)
 - [需求索引](docs/requirements/README.md)
 - [后续方向规划](docs/ROADMAP.md)
 
 ## 验证状态（2026-10-22）
 
-- `npm run typecheck`、`npm test`（50/50）、`npm run content:validate`（5 门课程、210 题、全部来源与结构校验）、`npm run build` 均通过。
-- 真实 Chromium 走通：注册登录 → 技术库筛选 → 技术路径 → 知识点精讲 → 章节练习 → 掌握度 D+1 → 周期复习 → 学习报告 → 题库筛选练习 → 模拟笔试 → 记录/设置。
-- 公网临时隧道实测：登录、总览、技术库、技术路径、知识点、题库、复习、报告、来源、模拟笔试均可打开；390px 视口无横向溢出，控制台 0 错误。
-- 已复核：未登录页面重定向、未登录 API 401、跨源写请求 403、登录限流 429、A 账号访问 B 计划/面试 404、反向代理下的 Origin 校验、跨用户掌握度/复习/题库/笔试记录隔离。
-- 未覆盖：长期公网托管（需要主机/平台账号）、CI、密码找回、真实大模型。SQL 与 Kotlin 代码题不执行，只提供参考实现与自评。
+- 完整训练版：`npm run typecheck`、`npm test`（50/50）、`npm run content:validate`（5 门课程、210 题）、`npm run build` 均通过；真实 Chromium 走通登录 → 技术库 → 精读 → 章节练习 → 周期复习 → 报告 → 题库 → 笔试。
+- 公开学习站：`npm run content:validate` 通过（21 篇精读 / 21 份问答 / 380 题 / 758 层追问 / 379 个陷阱提示，且个人数据扫描为 0）；`npm run build` 通过；公网实测总览、精读、目录跳转、清单、笔记、精读标记、问答、题库、移动端 390px，控制台 0 错误。
+- 公网地址已验证为公开访问，不使用隧道；静态站点刷新、哈希深链与移动端均可用。
+- 已复核：完整训练版未登录重定向/401、跨源 403、登录限流、跨用户隔离；公开站问答首次自测后安排 D+1，三次通过标记掌握。
+- 未覆盖：公开站本机数据不跨设备同步（提供导出/导入）；完整训练版长期托管需自己的主机或平台账号；CI、密码找回、真实大模型不在本轮范围。
 
 ## 说明与边界
 
