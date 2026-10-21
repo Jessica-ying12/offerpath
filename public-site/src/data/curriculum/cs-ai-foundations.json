@@ -1,0 +1,1278 @@
+{
+  "id": "cs-ai-foundations",
+  "name": "计算机基础与 AI 前沿",
+  "shortName": "CS / AI",
+  "direction": "foundations",
+  "roles": [
+    "计算机基础",
+    "AI 应用开发入门"
+  ],
+  "tagline": "HTTP、操作系统、性能与 LLM 应用工程，补齐长期受用的底层能力。",
+  "description": "三个跨岗位必修主题：一次 HTTP 请求的完整链路与缓存、操作系统的线程/内存/IO 性能、LLM 应用的 RAG/评测/提示注入与工具边界。1 章/级别，共 3 章，每章 6 道练习与 1 道可执行代码题。",
+  "landingPoints": [
+    "HTTP 链路与缓存",
+    "OS/性能",
+    "LLM 评测与安全"
+  ],
+  "levels": [
+    {
+      "id": "junior",
+      "name": "初级",
+      "summary": "理解一次网页请求经过哪些阶段，以及缓存与幂等的基本语义。",
+      "focus": [
+        "HTTP 链路",
+        "缓存",
+        "幂等"
+      ]
+    },
+    {
+      "id": "middle",
+      "name": "中级",
+      "summary": "理解线程、虚拟内存、IO 模型与性能瓶颈。",
+      "focus": [
+        "线程/进程",
+        "内存",
+        "IO 模型"
+      ]
+    },
+    {
+      "id": "senior",
+      "name": "高级",
+      "summary": "理解 RAG、评测、成本与提示注入/工具调用的安全边界。",
+      "focus": [
+        "RAG",
+        "评测与成本",
+        "LLM 安全"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "computer-networks",
+      "name": "计算机网络",
+      "aliases": [
+        "http",
+        "dns",
+        "https",
+        "tls",
+        "缓存",
+        "cdn"
+      ],
+      "category": "cs"
+    },
+    {
+      "id": "operating-systems",
+      "name": "操作系统",
+      "aliases": [
+        "进程",
+        "线程",
+        "虚拟内存",
+        "页缓存",
+        "io",
+        "上下文切换"
+      ],
+      "category": "cs"
+    },
+    {
+      "id": "algorithms",
+      "name": "算法与数据结构",
+      "aliases": [
+        "算法",
+        "复杂度",
+        "lru",
+        "哈希",
+        "排序"
+      ],
+      "category": "cs"
+    },
+    {
+      "id": "ai-engineering",
+      "name": "AI 应用工程",
+      "aliases": [
+        "llm",
+        "rag",
+        "检索",
+        "评测",
+        "prompt",
+        "agent"
+      ],
+      "category": "ai"
+    },
+    {
+      "id": "llm-security",
+      "name": "LLM 安全",
+      "aliases": [
+        "提示注入",
+        "prompt injection",
+        "工具调用",
+        "越权",
+        "安全边界"
+      ],
+      "category": "ai"
+    },
+    {
+      "id": "auth-security",
+      "name": "认证与安全",
+      "aliases": [
+        "认证",
+        "鉴权",
+        "越权",
+        "csrf",
+        "安全"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "performance-caching",
+      "name": "性能与缓存",
+      "aliases": [
+        "缓存",
+        "性能",
+        "p95",
+        "限流"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "node-runtime",
+      "name": "Node.js",
+      "aliases": [
+        "node",
+        "事件循环",
+        "stream"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "jvm-concurrency",
+      "name": "JVM 与并发",
+      "aliases": [
+        "jvm",
+        "线程",
+        "并发"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "observability",
+      "name": "可观测性",
+      "aliases": [
+        "监控",
+        "指标",
+        "trace",
+        "日志"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "http-api",
+      "name": "HTTP 与 API",
+      "aliases": [
+        "http",
+        "rest",
+        "api",
+        "状态码"
+      ],
+      "category": "backend"
+    },
+    {
+      "id": "system-design",
+      "name": "系统设计",
+      "aliases": [
+        "系统设计",
+        "架构",
+        "容量",
+        "降级"
+      ],
+      "category": "backend"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "cs-j1-network",
+      "trackId": "cs-ai-foundations",
+      "level": "junior",
+      "order": 1,
+      "title": "HTTP、DNS 与 HTTPS",
+      "summary": "一次网页请求经过 DNS、连接、TLS 与 HTTP；理解链路才能定位超时与缓存问题。",
+      "atomIds": [
+        "cs-j1-network-a1",
+        "cs-j1-network-a2",
+        "cs-j1-network-a3"
+      ],
+      "questionIds": [
+        "q-cs-j1-network-1",
+        "q-cs-j1-network-2",
+        "q-cs-j1-network-3",
+        "q-cs-j1-network-4",
+        "q-cs-j1-network-5",
+        "q-cs-j1-network-6"
+      ],
+      "codeChallengeIds": [
+        "code-cs-j1-network"
+      ],
+      "references": [
+        {
+          "title": "MDN HTTP",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "publisher": "MDN"
+        },
+        {
+          "title": "Cloudflare Learning Center",
+          "url": "https://www.cloudflare.com/learning/",
+          "publisher": "Cloudflare"
+        },
+        {
+          "title": "MDN HTTP Caching",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching",
+          "publisher": "MDN"
+        }
+      ]
+    },
+    {
+      "id": "cs-j2-os",
+      "trackId": "cs-ai-foundations",
+      "level": "middle",
+      "order": 1,
+      "title": "操作系统与性能基础",
+      "summary": "进程、线程、内存与 IO 模型解释服务端资源瓶颈；性能问题常常不是“CPU 不够”。",
+      "atomIds": [
+        "cs-j2-os-a1",
+        "cs-j2-os-a2",
+        "cs-j2-os-a3"
+      ],
+      "questionIds": [
+        "q-cs-j2-os-1",
+        "q-cs-j2-os-2",
+        "q-cs-j2-os-3",
+        "q-cs-j2-os-4",
+        "q-cs-j2-os-5",
+        "q-cs-j2-os-6"
+      ],
+      "codeChallengeIds": [
+        "code-cs-j2-os"
+      ],
+      "references": [
+        {
+          "title": "OSTEP — Operating Systems: Three Easy Pieces",
+          "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+          "publisher": "University of Wisconsin"
+        },
+        {
+          "title": "MIT Missing Semester",
+          "url": "https://missing.csail.mit.edu/",
+          "publisher": "MIT"
+        },
+        {
+          "title": "Google SRE Book",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "publisher": "Google"
+        }
+      ]
+    },
+    {
+      "id": "cs-j3-ai",
+      "trackId": "cs-ai-foundations",
+      "level": "senior",
+      "order": 1,
+      "title": "LLM 应用工程、评测与安全",
+      "summary": "把大模型当不可靠依赖：检索、评测、工具边界、成本与安全必须工程化。",
+      "atomIds": [
+        "cs-j3-ai-a1",
+        "cs-j3-ai-a2",
+        "cs-j3-ai-a3"
+      ],
+      "questionIds": [
+        "q-cs-j3-ai-1",
+        "q-cs-j3-ai-2",
+        "q-cs-j3-ai-3",
+        "q-cs-j3-ai-4",
+        "q-cs-j3-ai-5",
+        "q-cs-j3-ai-6"
+      ],
+      "codeChallengeIds": [
+        "code-cs-j3-ai"
+      ],
+      "references": [
+        {
+          "title": "OWASP GenAI LLM Top 10 2026",
+          "url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+          "publisher": "OWASP"
+        },
+        {
+          "title": "OWASP Top 10 for LLM Applications",
+          "url": "https://owasp.org/projects/top-10-for-large-language-model-applications",
+          "publisher": "OWASP"
+        },
+        {
+          "title": "OpenTelemetry Documentation",
+          "url": "https://opentelemetry.io/docs/",
+          "publisher": "CNCF"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "title": "一次请求的完整链路",
+      "summary": "DNS 找地址、TCP/TLS 建连接、HTTP 传语义，任何一段都能成为超时源。",
+      "minutes": 7,
+      "objective": "能按 DNS、连接、TLS、HTTP、渲染的顺序解释一次请求，并区分连接超时与响应超时。",
+      "explanation": "浏览器先解析域名得到 IP，再建立 TCP 连接；HTTPS 还要完成 TLS 握手验证证书与协商密钥。随后发送 HTTP 请求，服务端经负载均衡、应用与数据库处理后返回响应。连接超时通常卡在 DNS/TCP/TLS，响应超时可能是服务处理或下游慢；只看到“请求失败”无法定位根因，需要分段观测。",
+      "teachingSteps": [
+        {
+          "title": "先拆链路",
+          "detail": "DNS → TCP → TLS → HTTP → 服务处理 → 响应。"
+        },
+        {
+          "title": "再区分超时阶段",
+          "detail": "连接超时、TLS 失败、首包超时、整体响应超时。"
+        },
+        {
+          "title": "最后用观测验证",
+          "detail": "DNS 解析时间、连接时间、TTFB、服务端 trace。"
+        }
+      ],
+      "keyPoints": [
+        "DNS 解析与 TCP/TLS 握手发生在 HTTP 之前，失败原因与业务错误不同。",
+        "TTFB 反映首字节时间，不能区分服务计算与下游等待，需要 trace 补充。",
+        "HTTPS 同时提供加密、完整性与证书身份验证，不等于服务端业务安全。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "浏览器请求的分段观测",
+        "code": "DNS lookup    → 域名解析耗时\nTCP connect   → SYN/SYN-ACK，连接是否可达\nTLS handshake → 证书、协议、密钥协商\nRequest sent  → 请求头/体\nTTFB          → 服务端首字节，含后端处理\nContent download → 传输与渲染"
+      },
+      "pitfalls": [
+        "把 DNS 失败、证书过期都当成“接口 500”。",
+        "只看 HTTP 状态码，不看连接阶段和服务端 trace。"
+      ],
+      "interviewTip": "按 DNS→TCP→TLS→HTTP→服务处理顺序讲，再区分连接/首包/整体超时及各自的观测手段。",
+      "skills": [
+        "computer-networks"
+      ],
+      "id": "cs-j1-network-a1",
+      "chapterId": "cs-j1-network"
+    },
+    {
+      "title": "HTTP 缓存与条件请求",
+      "summary": "缓存策略由响应头与请求头协商；强缓存与协商缓存解决不同延迟问题。",
+      "minutes": 7,
+      "objective": "能解释 Cache-Control、ETag/If-None-Match 与 304，并避免缓存用户私有数据。",
+      "explanation": "Cache-Control 的 max-age 控制强缓存，浏览器可直接复用而不请求；no-cache 允许缓存但每次要验证，no-store 不存储。ETag/Last-Modified 配合 If-None-Match/If-Modified-Since 做协商缓存，未变化返回 304。私有接口必须区分 public/private、Cookie 与 Vary，避免把 A 用户数据缓存给 B 用户。",
+      "teachingSteps": [
+        {
+          "title": "先分资源类型",
+          "detail": "静态指纹资源可长期缓存，用户数据默认私有/不缓存。"
+        },
+        {
+          "title": "再选强缓存或协商",
+          "detail": "max-age 复用，ETag/Last-Modified 验证。"
+        },
+        {
+          "title": "最后检查变体",
+          "detail": "Vary 与 Cookie/Authorization，防止串用户。"
+        }
+      ],
+      "keyPoints": [
+        "Cache-Control: no-store 才是不存储；no-cache 仍可缓存但需验证。",
+        "带指纹的静态资源可长缓存，HTML/接口需明确缓存策略。",
+        "共享缓存必须考虑 private、Vary 与 Authorization，避免跨用户泄露。"
+      ],
+      "example": {
+        "language": "http",
+        "caption": "静态资源与私有接口的缓存差异",
+        "code": "# 带内容指纹的静态资源\nCache-Control: public, max-age=31536000, immutable\n\n# 用户私有接口\nCache-Control: private, no-store\n\n# 可协商的用户页面\nCache-Control: no-cache\nETag: \"v42\"\n\n# 请求验证\nIf-None-Match: \"v42\"  → 304 Not Modified"
+      },
+      "pitfalls": [
+        "把带用户信息的接口设置 public 长缓存，造成数据串号。",
+        "以为 no-cache 等于完全不缓存，混淆 no-store。"
+      ],
+      "interviewTip": "先讲强缓存与协商缓存的差异，再讲 304 流程，最后用 private/Vary 说明用户数据安全。",
+      "skills": [
+        "computer-networks"
+      ],
+      "id": "cs-j1-network-a2",
+      "chapterId": "cs-j1-network"
+    },
+    {
+      "title": "HTTP 语义、幂等与重试",
+      "summary": "方法语义与状态码是客户端、网关和缓存共同依赖的契约；重试必须安全。",
+      "minutes": 7,
+      "objective": "能区分安全/幂等方法，设计幂等键和可重试错误，并说明 4xx/5xx 的处理差异。",
+      "explanation": "GET/HEAD 应为安全方法，PUT/DELETE 通常幂等，POST 通常不幂等；幂等不等于无副作用，而是重复执行结果一致。重试只针对瞬时、可恢复、允许重试的错误，写请求要配合幂等键。400 参数错误重试无意义，401 需重新认证，429/5xx 可退避重试，且要限制总预算。",
+      "teachingSteps": [
+        {
+          "title": "先看方法与副作用",
+          "detail": "是否修改资源、重复执行是否等价。"
+        },
+        {
+          "title": "再分类错误",
+          "detail": "4xx 客户端错误、5xx/429 瞬时错误、超时语义。"
+        },
+        {
+          "title": "最后做有限重试",
+          "detail": "幂等键 + 退避 + 抖动 + 总预算 + 可观测。"
+        }
+      ],
+      "keyPoints": [
+        "POST 默认不幂等，重复提交要服务端幂等键/唯一约束，而不是客户端防抖。",
+        "重试只对瞬时错误，且要有次数/预算；4xx 通常不应盲目重试。",
+        "状态码是契约：200 包业务失败会破坏监控、缓存与网关重试语义。"
+      ],
+      "example": {
+        "language": "http",
+        "caption": "可重试错误示例",
+        "code": "POST /orders\nIdempotency-Key: 7f0d...\n\n429 Too Many Requests\nRetry-After: 2\n→ 退避后有限重试\n\n503 Service Unavailable\n→ 短暂重试或降级\n\n400 Bad Request\n→ 修正参数，不重试\n\n409 Conflict\n→ 拉取最新状态，用户决策"
+      },
+      "pitfalls": [
+        "对未幂等的 POST 直接重试，造成重复订单。",
+        "所有错误都重试，故障时放大流量。"
+      ],
+      "interviewTip": "先讲安全/幂等语义，再讲错误分类与有限重试，最后用幂等键和唯一约束说明重复写安全。",
+      "skills": [
+        "computer-networks",
+        "http-api"
+      ],
+      "id": "cs-j1-network-a3",
+      "chapterId": "cs-j1-network"
+    },
+    {
+      "title": "进程、线程与上下文切换",
+      "summary": "进程隔离地址空间，线程共享地址空间；切换有成本，线程不是越多越好。",
+      "minutes": 7,
+      "objective": "能解释进程/线程差异、上下文切换成本与线程池容量的关系。",
+      "explanation": "进程拥有独立虚拟地址空间，线程共享进程资源但有自己的栈和寄存器上下文。线程切换需要保存/恢复上下文并可能影响缓存局部性；过多线程会增加调度与内存开销。服务端线程/协程数量应由任务类型、下游并发和延迟预算决定，而不是盲目开大。",
+      "teachingSteps": [
+        {
+          "title": "先区分隔离层次",
+          "detail": "进程隔离内存，线程共享堆、独立栈。"
+        },
+        {
+          "title": "再看切换成本",
+          "detail": "寄存器/栈切换、内核调度、缓存失效。"
+        },
+        {
+          "title": "最后定并发模型",
+          "detail": "CPU 密集接近核数，IO 密集结合下游容量与超时。"
+        }
+      ],
+      "keyPoints": [
+        "线程共享进程地址空间，数据竞争需要同步；进程隔离更强但通信成本更高。",
+        "线程过多会导致调度、栈内存与缓存抖动，吞吐不一定上升。",
+        "并发上限要结合下游连接池、CPU、内存和超时预算。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "排查线程过多",
+        "code": "现象：请求变慢、CPU 抖动、RSS 上升\n证据：线程数持续增长，RUNNABLE 与 BLOCKED 混合\n原因：下游变慢 → 线程池扩容/无界队列 → 线程堆积\n处理：有界队列、超时、限流、隔离下游、降级"
+      },
+      "pitfalls": [
+        "通过不断加线程解决下游慢，最终把内存和调度压垮。",
+        "共享可变对象无同步，出现只在并发下复现的脏数据。"
+      ],
+      "interviewTip": "先讲进程/线程的内存与调度差异，再讲切换成本，最后用下游容量与超时预算解释并发上限。",
+      "skills": [
+        "operating-systems",
+        "jvm-concurrency"
+      ],
+      "id": "cs-j2-os-a1",
+      "chapterId": "cs-j2-os"
+    },
+    {
+      "title": "虚拟内存、页缓存与内存压力",
+      "summary": "虚拟内存隔离地址空间；页缓存加速文件 IO，但内存压力会带来回收与抖动。",
+      "minutes": 8,
+      "objective": "能解释虚拟内存、缺页、页缓存与 OOM/交换的关系，判断内存瓶颈。",
+      "explanation": "每个进程看到独立虚拟地址空间，由页表映射到物理页；访问未映射页触发缺页异常。文件读写先经过页缓存，内存不足时内核回收缓存甚至换出匿名页。频繁换页会造成抖动，容器内存超限可能触发 OOM kill；RSS、缺页率、swap、cgroup 限制需要一起看。",
+      "teachingSteps": [
+        {
+          "title": "先理解地址映射",
+          "detail": "虚拟页 → 页表 → 物理页，缺页时加载。"
+        },
+        {
+          "title": "再看缓存与回收",
+          "detail": "页缓存提高 IO，内存压力触发回收/swap。"
+        },
+        {
+          "title": "最后看容器边界",
+          "detail": "cgroup 限制、RSS、OOM 事件与页错误。"
+        }
+      ],
+      "keyPoints": [
+        "虚拟内存让进程隔离地址空间，不等于实际占用同样多物理内存。",
+        "页缓存是可回收内存；RSS/匿名内存持续上涨更值得警惕。",
+        "容器内存限额下，OOM kill 可能不是 JVM 堆溢出而是整容器超限。"
+      ],
+      "example": {
+        "language": "bash",
+        "caption": "观察内存与换页",
+        "code": "free -h          # available/buff/cache/swap\nvmstat 1         # si/so 换入换出、runnable、wa\ncat /proc/meminfo\ncat /sys/fs/cgroup/memory.max   # cgroup v2 限额\n# JVM 容器内需关注 MaxRAMPercentage 与 native 内存"
+      },
+      "pitfalls": [
+        "看到 free 很小就认为内存不足，忽略可回收的页缓存。",
+        "只调 JVM 堆，忽略线程栈、直接内存、native 库与容器限额。"
+      ],
+      "interviewTip": "先讲虚拟内存/缺页，再讲页缓存可回收，最后用 RSS/swap/cgroup OOM 区分堆内与容器级问题。",
+      "skills": [
+        "operating-systems",
+        "observability"
+      ],
+      "id": "cs-j2-os-a2",
+      "chapterId": "cs-j2-os"
+    },
+    {
+      "title": "阻塞 IO、非阻塞与事件驱动",
+      "summary": "IO 模型决定等待发生在哪里；事件循环适合高并发 IO，但不能解决 CPU 密集。",
+      "minutes": 7,
+      "objective": "能比较阻塞/非阻塞/IO 多路复用，解释事件循环为什么怕同步阻塞。",
+      "explanation": "阻塞 IO 让线程等待数据就绪；非阻塞 IO 立即返回并轮询；IO 多路复用（epoll/kqueue）由内核通知就绪，单线程可管理大量连接。事件驱动适合 IO 密集，但同步 CPU 计算或阻塞库会卡住整个事件循环。多线程/协程是另一种并发表达，仍要受下游容量约束。",
+      "teachingSteps": [
+        {
+          "title": "先看等待位置",
+          "detail": "数据未就绪时，线程是睡着、轮询还是被事件通知。"
+        },
+        {
+          "title": "再匹配工作负载",
+          "detail": "IO 密集可事件驱动，CPU 密集需 worker/独立服务。"
+        },
+        {
+          "title": "最后防阻塞",
+          "detail": "识别同步库、日志、JSON/压缩等隐藏 CPU/阻塞点。"
+        }
+      ],
+      "keyPoints": [
+        "事件循环不是“无限并发”，同步阻塞会冻结所有连接。",
+        "IO 多路复用减少线程等待开销，但业务仍受下游与 CPU 限制。",
+        "CPU 密集任务应隔离到 worker 或独立服务，不能挤占事件循环。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "Node 事件循环阻塞的典型来源",
+        "code": "危险：\n- 同步 fs.readFileSync / 同步 DNS\n- 大 JSON.parse 或图片压缩\n- 加密/正则回溯等 CPU 密集\n- 在请求路径中执行同步日志/zip\n\n处理：\n- 异步 IO + 流\n- worker_threads / 独立服务\n- 限流、超时、任务队列"
+      },
+      "pitfalls": [
+        "以为用了 Node/Redis 就自动高并发，忽略同步计算。",
+        "无界 Promise.all 打满下游，造成超时雪崩。"
+      ],
+      "interviewTip": "从等待位置比较 IO 模型，再讲事件循环怕阻塞，最后用 worker/限流说明 CPU 密集任务的边界。",
+      "skills": [
+        "operating-systems",
+        "node-runtime"
+      ],
+      "id": "cs-j2-os-a3",
+      "chapterId": "cs-j2-os"
+    },
+    {
+      "title": "RAG 检索与上下文构建",
+      "summary": "RAG 不是“接个向量库”：切块、召回、重排与上下文预算共同决定答案质量。",
+      "minutes": 8,
+      "objective": "能说明 RAG 链路、切块与召回取舍，并解释为何需要引用与拒答。",
+      "explanation": "RAG 将私有知识切块、建立索引，按问题召回相关片段并放入上下文。切块过大引入噪声与 token 成本，过小丢失上下文；召回要兼顾语义与关键词，必要时重排。模型回答应引用来源，证据不足时明确拒答。检索质量、上下文噪声与权限过滤是主要失效点。",
+      "teachingSteps": [
+        {
+          "title": "先定义知识边界",
+          "detail": "哪些文档、是否按用户/租户隔离、更新频率。"
+        },
+        {
+          "title": "再做切块与召回",
+          "detail": "保留结构/标题，混合召回，重排与去重。"
+        },
+        {
+          "title": "最后控上下文与引用",
+          "detail": "token 预算、引用片段、证据不足拒答。"
+        }
+      ],
+      "keyPoints": [
+        "切块要保留语义边界与元数据；过大噪声/过小丢上下文都是问题。",
+        "检索必须带权限过滤，避免把他人/受限文档送入模型上下文。",
+        "回答应引用证据，证据不足明确拒答，不能用流畅度掩盖无依据。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "RAG 最小链路",
+        "code": "文档 → 解析/清洗 → 按标题与长度切块 → 元数据(来源/权限)\n     → 向量/关键词索引\n问题 → 查询改写 → 混合召回 TopN → 重排 → 上下文预算\n     → 模型生成（带引用/拒答策略） → 记录来源与评测"
+      },
+      "pitfalls": [
+        "把整篇文档塞进上下文，token 成本高且关键信息被稀释。",
+        "召回不做权限过滤，导致模型泄露其他租户数据。"
+      ],
+      "interviewTip": "按切块、召回、重排、上下文预算与引用/拒答讲链路，再补权限过滤与更新策略。",
+      "skills": [
+        "ai-engineering"
+      ],
+      "id": "cs-j3-ai-a1",
+      "chapterId": "cs-j3-ai"
+    },
+    {
+      "title": "评测、成本与延迟",
+      "summary": "LLM 应用需要离线评测集与线上指标；成本、延迟和质量是三方权衡。",
+      "minutes": 8,
+      "objective": "能设计 RAG/Agent 的离线评测与线上指标，并说明缓存、模型分级与降级。",
+      "explanation": "没有评测集就无法判断改动是否有效。离线用代表性问题和标准证据/要点评估召回与答案正确性，线上看成功率、引用命中、人工反馈、成本与延迟分位。优化可使用缓存、更小模型、减少上下文、并行工具调用与超时降级，但必须防止缓存串用户、模型降级导致质量崩塌。",
+      "teachingSteps": [
+        {
+          "title": "先建评测集",
+          "detail": "覆盖高频、边界、无法回答与对抗问题。"
+        },
+        {
+          "title": "再定指标",
+          "detail": "召回率、答案正确性、引用率、拒绝率、P95、成本。"
+        },
+        {
+          "title": "最后做优化与降级",
+          "detail": "缓存、模型分级、上下文裁剪、超时兜底。"
+        }
+      ],
+      "keyPoints": [
+        "离线评测集要包含无法回答/对抗问题，不能只测“能答”的样本。",
+        "成本与延迟看分位和单次 token，不只看平均；设置预算与超时。",
+        "缓存键要包含用户/权限/知识版本，避免跨用户或旧知识污染。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "LLM 应用指标最小集",
+        "code": "离线：召回 Recall@K、证据命中、答案要点覆盖、引用正确率、拒答正确率\n线上：请求成功率、P95 延迟、单次成本、缓存命中、用户反馈、转人工率\n安全：越权召回、注入命中、敏感信息输出、工具误调用\n降级：小模型/仅检索/静态答复，并保留来源提示"
+      },
+      "pitfalls": [
+        "只调提示词不看评测集，改动感觉更好但整体退化。",
+        "缓存不带用户/权限/知识版本，造成数据串号或旧答案。"
+      ],
+      "interviewTip": "从离线评测集、线上分位指标与成本预算回答，再讲缓存键与安全过滤，最后用模型分级/降级收尾。",
+      "skills": [
+        "ai-engineering",
+        "observability",
+        "system-design"
+      ],
+      "id": "cs-j3-ai-a2",
+      "chapterId": "cs-j3-ai"
+    },
+    {
+      "title": "提示注入、工具调用与安全边界",
+      "summary": "模型输入不可信；工具调用必须最小权限、可审计、可回滚。",
+      "minutes": 8,
+      "objective": "能识别直接/间接提示注入，设计检索隔离、工具白名单与人工确认边界。",
+      "explanation": "用户输入与检索文档都可能包含恶意指令；模型无法可靠区分“数据”和“指令”。工具调用要把模型输出当不可信参数：服务端重新校验权限与参数，使用最小权限令牌、白名单与速率限制；高风险动作（转账、删除、发送外部消息）需要人工确认。日志记录调用链但脱敏。",
+      "teachingSteps": [
+        {
+          "title": "先标记不可信输入",
+          "detail": "用户、检索文档、网页、工具返回都可能含指令。"
+        },
+        {
+          "title": "再限制工具能力",
+          "detail": "白名单、最小权限、参数校验、速率与审批。"
+        },
+        {
+          "title": "最后审计与回滚",
+          "detail": "记录调用、输出与来源，提供撤销/人工确认。"
+        }
+      ],
+      "keyPoints": [
+        "提示注入无法靠一句“忽略恶意指令”彻底解决；要在权限与工具层设边界。",
+        "模型生成的工具参数必须经服务端校验与授权，不能直接执行。",
+        "高风险操作需要人工确认与可回滚设计，日志脱敏并保留审计。"
+      ],
+      "example": {
+        "language": "text",
+        "caption": "工具调用安全清单",
+        "code": "- 工具白名单 + 每个工具最小权限 Token\n- 参数 schema 校验；服务端再次检查资源归属\n- 读写分离；高风险写操作要求人工确认\n- 速率限制、预算与超时\n- 记录 tool_name/参数摘要/结果/审批人，敏感字段脱敏\n- 可撤销：软删除、幂等键、操作流水"
+      },
+      "pitfalls": [
+        "把检索到的网页内容当可信系统指令。",
+        "给模型一个拥有全库/全云权限的 token，并直接执行其参数。"
+      ],
+      "interviewTip": "先区分直接/间接注入，再讲服务端参数校验、最小权限与人工确认，最后用审计和回滚说明闭环。",
+      "skills": [
+        "ai-engineering",
+        "llm-security",
+        "auth-security"
+      ],
+      "id": "cs-j3-ai-a3",
+      "chapterId": "cs-j3-ai"
+    }
+  ],
+  "questions": [
+    {
+      "prompt": "浏览器打开 HTTPS 页面，通常最先发生的是？",
+      "options": [
+        "TLS 握手",
+        "DNS 解析域名",
+        "发送 HTTP 请求",
+        "渲染页面"
+      ],
+      "answerIndex": 1,
+      "explanation": "先通过 DNS 获取 IP，再建立 TCP 连接并进行 TLS 握手，之后才发送 HTTP 请求。",
+      "skills": [
+        "computer-networks"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-cs-j1-network-1",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior"
+    },
+    {
+      "prompt": "Cache-Control: no-store 的含义是？",
+      "options": [
+        "可以缓存但要验证",
+        "不允许存储响应",
+        "只缓存 HTML",
+        "缓存一年"
+      ],
+      "answerIndex": 1,
+      "explanation": "no-store 明确不存储；no-cache 可以缓存但每次使用前要验证；max-age 控制强缓存时长。",
+      "skills": [
+        "computer-networks"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-cs-j1-network-2",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior"
+    },
+    {
+      "prompt": "ETag 与 If-None-Match 配合时，资源未变化通常返回？",
+      "options": [
+        "200 + 全量响应",
+        "304 Not Modified",
+        "500",
+        "101"
+      ],
+      "answerIndex": 1,
+      "explanation": "客户端带 If-None-Match，服务端比较 ETag；未变化返回 304，客户端使用本地副本，减少传输。",
+      "skills": [
+        "computer-networks"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-cs-j1-network-3",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior"
+    },
+    {
+      "prompt": "以下哪种请求通常不应直接重试？",
+      "options": [
+        "GET 超时",
+        "未带幂等键的 POST 下单请求",
+        "429 限流",
+        "503 短暂不可用"
+      ],
+      "answerIndex": 1,
+      "explanation": "未幂等的 POST 重试可能重复创建订单；应先通过幂等键/唯一约束保证重复安全，再有限重试。GET 通常安全，429/503 可退避重试。",
+      "skills": [
+        "computer-networks",
+        "http-api"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-cs-j1-network-4",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior"
+    },
+    {
+      "prompt": "用户私有接口被 CDN 长缓存，最可能导致？",
+      "options": [
+        "用户数据串号泄露",
+        "接口变慢",
+        "DNS 无法解析",
+        "TLS 握手失败"
+      ],
+      "answerIndex": 0,
+      "explanation": "共享缓存若未区分用户/Authorization 且设置 public，会把 A 的响应给 B；应使用 private/no-store 与正确的 Vary。",
+      "skills": [
+        "computer-networks",
+        "auth-security"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-cs-j1-network-5",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior"
+    },
+    {
+      "prompt": "TTFB 很高但 DNS/TCP 很快，最应该查看什么？",
+      "options": [
+        "域名注册商",
+        "服务端处理链路与下游依赖 trace",
+        "浏览器主题",
+        "键盘布局"
+      ],
+      "answerIndex": 1,
+      "explanation": "TTFB 是首字节时间，包含服务端处理与下游等待；DNS/TCP 已快时，应看应用 trace、数据库/下游耗时与队列。",
+      "skills": [
+        "computer-networks",
+        "observability"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-cs-j1-network-6",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior"
+    },
+    {
+      "prompt": "进程与线程的主要区别是？",
+      "options": [
+        "线程有独立地址空间，进程没有",
+        "进程有独立地址空间，线程共享进程资源",
+        "两者完全相同",
+        "线程不能并发"
+      ],
+      "answerIndex": 1,
+      "explanation": "进程隔离虚拟地址空间；线程共享进程的堆等资源，各自有栈与寄存器上下文。共享带来效率也带来数据竞争。",
+      "skills": [
+        "operating-systems"
+      ],
+      "difficulty": 1,
+      "kind": "concept",
+      "id": "q-cs-j2-os-1",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle"
+    },
+    {
+      "prompt": "页缓存在内存压力下通常？",
+      "options": [
+        "永远不会回收",
+        "可以被内核回收，属于可缓存内存",
+        "只能通过重启释放",
+        "等同于 swap"
+      ],
+      "answerIndex": 1,
+      "explanation": "页缓存加速文件 IO，内存压力下可回收；free 显示内存少不一定有问题，应看 available、swap 与匿名内存。",
+      "skills": [
+        "operating-systems"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-cs-j2-os-2",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle"
+    },
+    {
+      "prompt": "容器内应用被 OOM kill，但 JVM 堆远未达到 Xmx，可能原因是？",
+      "options": [
+        "线程池太小",
+        "容器总内存包含了堆外/栈/元空间等，超过 cgroup 限额",
+        "DNS 配置错误",
+        "日志级别过高"
+      ],
+      "answerIndex": 1,
+      "explanation": "容器 OOM 看整体 RSS/内存限额，包括堆外直接内存、线程栈、元空间、native 库；只调堆参数可能仍超限。",
+      "skills": [
+        "operating-systems",
+        "jvm-concurrency"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-cs-j2-os-3",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle"
+    },
+    {
+      "prompt": "事件循环架构下，最需要避免的是？",
+      "options": [
+        "异步 IO",
+        "同步阻塞或重 CPU 计算占用主线程",
+        "使用连接池",
+        "设置超时"
+      ],
+      "answerIndex": 1,
+      "explanation": "事件循环依赖主线程快速返回；同步阻塞/重计算会让所有连接无法推进，应使用异步 IO、worker 或独立服务。",
+      "skills": [
+        "operating-systems",
+        "node-runtime"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-cs-j2-os-4",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle"
+    },
+    {
+      "prompt": "线程数不断增加但吞吐不再上升，最可能的解释是？",
+      "options": [
+        "线程越多越好",
+        "调度、栈内存与缓存抖动加剧，下游已饱和",
+        "CPU 核心会自动增加",
+        "数据库不需要连接池"
+      ],
+      "answerIndex": 1,
+      "explanation": "上下文切换和缓存抖动有成本，下游容量也有限；应通过限流、队列、超时与隔离控制并发，而非无限加线程。",
+      "skills": [
+        "operating-systems",
+        "jvm-concurrency"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-cs-j2-os-5",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle"
+    },
+    {
+      "prompt": "IO 多路复用（如 epoll）的核心价值是？",
+      "options": [
+        "让 CPU 计算更快",
+        "由内核通知大量连接的就绪事件，减少线程阻塞等待",
+        "替代数据库索引",
+        "自动压缩图片"
+      ],
+      "answerIndex": 1,
+      "explanation": "多路复用让少量线程监控大量文件描述符，只有就绪时处理，降低线程等待成本；它不加速 CPU 计算，也不解决下游容量。",
+      "skills": [
+        "operating-systems"
+      ],
+      "difficulty": 3,
+      "kind": "concept",
+      "id": "q-cs-j2-os-6",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle"
+    },
+    {
+      "prompt": "RAG 中切块（chunking）过大的主要问题是？",
+      "options": [
+        "召回更精确",
+        "引入噪声、增加 token 成本，关键信息被稀释",
+        "模型无法生成",
+        "自动提升权限"
+      ],
+      "answerIndex": 1,
+      "explanation": "过大的块包含无关内容，占用上下文预算并降低信噪比；过小则丢失上下文。应按语义/结构切分并保留元数据。",
+      "skills": [
+        "ai-engineering"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-cs-j3-ai-1",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior"
+    },
+    {
+      "prompt": "RAG 检索阶段的权限过滤应在哪里做？",
+      "options": [
+        "只在模型回答后检查",
+        "检索查询/索引层按用户/租户过滤",
+        "不需要，模型会自觉",
+        "只在前端隐藏"
+      ],
+      "answerIndex": 1,
+      "explanation": "必须在召回前过滤权限，避免受限文档进入上下文并被模型泄露；模型层的“自觉”不是安全边界。",
+      "skills": [
+        "ai-engineering",
+        "auth-security"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-cs-j3-ai-2",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior"
+    },
+    {
+      "prompt": "评估 RAG 应用时，必须覆盖哪类样本？",
+      "options": [
+        "只覆盖能回答的问题",
+        "包含无法回答、边界与对抗输入",
+        "只需要英文",
+        "只测平均延迟"
+      ],
+      "answerIndex": 1,
+      "explanation": "无法回答/对抗样本能检验拒答与安全边界；只测能答样本会高估质量并掩盖幻觉、越权与注入风险。",
+      "skills": [
+        "ai-engineering"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-cs-j3-ai-3",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior"
+    },
+    {
+      "prompt": "LLM 应用缓存最需要避免的错误是？",
+      "options": [
+        "缓存键包含权限与知识版本",
+        "缓存键过粗导致跨用户/旧知识污染",
+        "设置 TTL",
+        "记录缓存命中率"
+      ],
+      "answerIndex": 1,
+      "explanation": "缓存键必须包含用户/租户、权限上下文与知识版本；否则 A 的答案可能返回给 B，或旧知识长期覆盖新文档。",
+      "skills": [
+        "ai-engineering",
+        "performance-caching"
+      ],
+      "difficulty": 3,
+      "kind": "scenario",
+      "id": "q-cs-j3-ai-4",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior"
+    },
+    {
+      "prompt": "对模型生成的工具调用参数，正确做法是？",
+      "options": [
+        "直接执行以保持流畅",
+        "服务端按 schema 校验并重新检查权限",
+        "只在前端校验",
+        "完全禁止工具"
+      ],
+      "answerIndex": 1,
+      "explanation": "模型输出不可信；工具参数必须服务端校验、鉴权与服务端资源归属检查，必要时人工确认。前端校验可被绕过。",
+      "skills": [
+        "llm-security",
+        "ai-engineering"
+      ],
+      "difficulty": 2,
+      "kind": "scenario",
+      "id": "q-cs-j3-ai-5",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior"
+    },
+    {
+      "prompt": "间接提示注入的典型来源是？",
+      "options": [
+        "用户直接输入",
+        "检索到的文档或网页中包含恶意指令",
+        "服务器 CPU",
+        "数据库索引"
+      ],
+      "answerIndex": 1,
+      "explanation": "间接注入藏在模型读取的文档、网页或工具返回中；需要把外部内容视为数据、限制工具权限并在服务端校验。",
+      "skills": [
+        "llm-security"
+      ],
+      "difficulty": 2,
+      "kind": "concept",
+      "id": "q-cs-j3-ai-6",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior"
+    }
+  ],
+  "codeChallenges": [
+    {
+      "title": "解析 Cache-Control 指令",
+      "prompt": "实现 parseCacheControl(header)：解析以逗号分隔的指令，返回对象；有值的指令如 max-age=31536000 转为数字，布尔指令如 no-store 为 true；键小写，忽略空白与空项。",
+      "requirements": [
+        "支持 max-age=数字与布尔指令",
+        "键统一小写，去除首尾空白",
+        "空/非法输入返回空对象"
+      ],
+      "starterCode": "function parseCacheControl(header) {\n  // TODO: 解析缓存指令\n  return {};\n}",
+      "solutionCode": "function parseCacheControl(header) {\n  if (typeof header !== \"string\" || !header.trim()) return {};\n  const result = {};\n  for (const part of header.split(\",\")) {\n    const item = part.trim();\n    if (!item) continue;\n    const index = item.indexOf(\"=\");\n    if (index === -1) {\n      result[item.toLowerCase()] = true;\n    } else {\n      const key = item.slice(0, index).trim().toLowerCase();\n      const raw = item.slice(index + 1).trim().replace(/^\"|\"$/g, \"\");\n      result[key] = /^-?\\d+$/.test(raw) ? Number(raw) : raw;\n    }\n  }\n  return result;\n}",
+      "functionName": "parseCacheControl",
+      "tests": [
+        {
+          "name": "数字与布尔",
+          "args": [
+            "public, max-age=31536000, immutable"
+          ],
+          "expected": {
+            "public": true,
+            "max-age": 31536000,
+            "immutable": true
+          }
+        },
+        {
+          "name": "私有不存储",
+          "args": [
+            "private, no-store"
+          ],
+          "expected": {
+            "private": true,
+            "no-store": true
+          }
+        },
+        {
+          "name": "空输入",
+          "args": [
+            null
+          ],
+          "expected": {}
+        },
+        {
+          "name": "带空项",
+          "args": [
+            " no-cache , , must-revalidate "
+          ],
+          "expected": {
+            "no-cache": true,
+            "must-revalidate": true
+          }
+        }
+      ],
+      "rubric": [
+        "逗号与空白处理",
+        "数值与布尔区分",
+        "键统一小写",
+        "空输入安全"
+      ],
+      "skills": [
+        "computer-networks"
+      ],
+      "id": "code-cs-j1-network",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j1-network",
+      "level": "junior",
+      "language": "javascript"
+    },
+    {
+      "title": "模拟 LRU 页面置换",
+      "prompt": "实现 lruPageFaults(pages, capacity)：按 LRU 规则处理页面访问序列，返回缺页次数；命中时刷新最近使用顺序；capacity 非法按 1 处理；不修改输入。",
+      "requirements": [
+        "命中刷新 LRU 顺序",
+        "未命中替换最久未使用页",
+        "capacity<=0 按 1 处理"
+      ],
+      "starterCode": "function lruPageFaults(pages, capacity) {\n  // TODO: 模拟页面置换\n  return 0;\n}",
+      "solutionCode": "function lruPageFaults(pages, capacity) {\n  const limit = Number.isInteger(capacity) && capacity > 0 ? capacity : 1;\n  const frames = new Map();\n  let faults = 0;\n  for (const page of Array.isArray(pages) ? pages : []) {\n    if (frames.has(page)) {\n      frames.delete(page);\n      frames.set(page, true);\n      continue;\n    }\n    faults += 1;\n    if (frames.size >= limit) {\n      const oldest = frames.keys().next().value;\n      frames.delete(oldest);\n    }\n    frames.set(page, true);\n  }\n  return faults;\n}",
+      "functionName": "lruPageFaults",
+      "tests": [
+        {
+          "name": "经典序列",
+          "args": [
+            [
+              1,
+              2,
+              3,
+              2,
+              4,
+              1
+            ],
+            2
+          ],
+          "expected": 5
+        },
+        {
+          "name": "全部命中",
+          "args": [
+            [
+              1,
+              1,
+              1
+            ],
+            2
+          ],
+          "expected": 1
+        },
+        {
+          "name": "容量为零按一",
+          "args": [
+            [
+              1,
+              2,
+              1
+            ],
+            0
+          ],
+          "expected": 3
+        },
+        {
+          "name": "空序列",
+          "args": [
+            [],
+            3
+          ],
+          "expected": 0
+        }
+      ],
+      "rubric": [
+        "命中刷新顺序",
+        "正确淘汰最久未使用",
+        "缺页计数准确",
+        "容量/空输入安全"
+      ],
+      "skills": [
+        "operating-systems",
+        "algorithms"
+      ],
+      "id": "code-cs-j2-os",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j2-os",
+      "level": "middle",
+      "language": "javascript"
+    },
+    {
+      "title": "实现 RAG 文本切块",
+      "prompt": "实现 chunkText(text, maxWords)：按空白切分为单词，保留顺序，每块最多 maxWords 个单词，块之间用单个空格连接；maxWords 非法按 200 处理；空文本返回空数组。",
+      "requirements": [
+        "按单词切分，不丢词、不重复",
+        "每块不超过 maxWords",
+        "非法 maxWords 回退 200，空文本返回空数组"
+      ],
+      "starterCode": "function chunkText(text, maxWords) {\n  // TODO: 切块\n  return [];\n}",
+      "solutionCode": "function chunkText(text, maxWords) {\n  if (typeof text !== \"string\" || !text.trim()) return [];\n  const limit = Number.isInteger(maxWords) && maxWords > 0 ? maxWords : 200;\n  const words = text.trim().split(/\\s+/);\n  const chunks = [];\n  for (let i = 0; i < words.length; i += limit) {\n    chunks.push(words.slice(i, i + limit).join(\" \"));\n  }\n  return chunks;\n}",
+      "functionName": "chunkText",
+      "tests": [
+        {
+          "name": "两块",
+          "args": [
+            "one two three four five",
+            2
+          ],
+          "expected": [
+            "one two",
+            "three four",
+            "five"
+          ]
+        },
+        {
+          "name": "单块",
+          "args": [
+            "a b c",
+            10
+          ],
+          "expected": [
+            "a b c"
+          ]
+        },
+        {
+          "name": "空文本",
+          "args": [
+            "   ",
+            3
+          ],
+          "expected": []
+        },
+        {
+          "name": "非法上限",
+          "args": [
+            "a b",
+            0
+          ],
+          "expected": [
+            "a b"
+          ]
+        }
+      ],
+      "rubric": [
+        "词序与边界正确",
+        "块大小约束",
+        "空文本/非法参数安全",
+        "不丢词不重复"
+      ],
+      "skills": [
+        "ai-engineering",
+        "algorithms"
+      ],
+      "id": "code-cs-j3-ai",
+      "trackId": "cs-ai-foundations",
+      "chapterId": "cs-j3-ai",
+      "level": "senior",
+      "language": "javascript"
+    }
+  ]
+}
