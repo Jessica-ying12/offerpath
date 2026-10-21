@@ -22,7 +22,7 @@ export type ChallengeViewData = {
   id: string;
   title: string;
   prompt: string;
-  language: "javascript" | "kotlin";
+  language: "javascript" | "kotlin" | "sql";
   functionName: string | null;
   requirements: string[];
   starterCode: string;
@@ -47,6 +47,7 @@ export function CodeChallengeView({
   trackName: string;
 }) {
   const isJavaScript = challenge.language === "javascript";
+  const isSql = challenge.language === "sql";
   const [code, setCode] = useState(challenge.starterCode);
   const [results, setResults] = useState<SandboxTestResult[]>([]);
   const [runError, setRunError] = useState("");
@@ -192,7 +193,7 @@ export function CodeChallengeView({
                 <Code2 className="h-3.5 w-3.5" />
               </span>
               <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                {challenge.language === "javascript" ? "JavaScript" : "Kotlin"}
+                {challenge.language === "javascript" ? "JavaScript" : challenge.language === "sql" ? "SQL" : "Kotlin"}
               </span>
               {challenge.functionName ? (
                 <span className="font-mono text-[10px] text-muted/40">

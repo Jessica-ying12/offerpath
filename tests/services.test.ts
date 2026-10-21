@@ -97,7 +97,7 @@ describe("learning and practice records", () => {
   it("grades a chapter, records mistakes, then resolves them on redo", () => {
     const chapter = fullstack.chapters[0];
     const questions = getChapterQuestions(fullstack, chapter);
-    expect(questions).toHaveLength(5);
+    expect(questions.length).toBeGreaterThanOrEqual(7);
 
     const allCorrect = submitQuizForUser(
       userA.id,
@@ -112,7 +112,7 @@ describe("learning and practice records", () => {
       },
       db,
     );
-    expect(allCorrect.correct).toBe(5);
+    expect(allCorrect.correct).toBe(questions.length);
     expect(allCorrect.resolvedMistakes).toBe(0);
 
     const allWrong = submitQuizForUser(
@@ -130,7 +130,7 @@ describe("learning and practice records", () => {
     );
     expect(allWrong.correct).toBe(0);
     const review = getReviewPageData(userA.id, db);
-    expect(review.items).toHaveLength(5);
+    expect(review.items).toHaveLength(questions.length);
     expect(getReviewPageData(userB.id, db).items).toHaveLength(0);
 
     const redoQuestions = getReviewPageData(userA.id, db).questions;
@@ -148,7 +148,7 @@ describe("learning and practice records", () => {
       db,
     );
     expect(redo.correct).toBe(redo.total);
-    expect(redo.resolvedMistakes).toBe(5);
+    expect(redo.resolvedMistakes).toBe(questions.length);
     expect(getReviewPageData(userA.id, db).items).toHaveLength(0);
   });
 
@@ -214,7 +214,7 @@ describe("code challenge access", () => {
     expect(() => getChallengeSolution(userB.id, challenge.id, db)).toThrow(AppError);
     expect(getCodePageData(userA.id, challenge.id, db).latestAttempt?.total).toBe(tests.length);
     const practice = getPracticePageData(userA.id, challenge.chapterId, db);
-    expect(practice.questions.length).toBe(5);
+    expect(practice.questions.length).toBeGreaterThanOrEqual(7);
   });
 });
 
@@ -259,7 +259,7 @@ describe("adaptive interview end-to-end", () => {
     );
     const page = getInterviewPageData(userA.id, id, db);
     const pending = page.state.pending!;
-    const bank = getInterviewBank("mobile");
+    const bank = getInterviewBank("mobile")!;
     const bankQuestion = bank.questions.find((question) => question.id === pending.question.id);
     expect(bankQuestion).toBeDefined();
     submitInterviewTurn(

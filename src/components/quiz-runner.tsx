@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { Badge, Button, buttonClass, Progress } from "@/components/ui/primitives";
+import { formatDate } from "@/lib/utils";
 import type { QuizResult } from "@/lib/types";
 import { cn, percent } from "@/lib/utils";
 
@@ -36,14 +37,22 @@ export function QuizRunner({
   challenge = null,
   backHref,
   priorAttempt,
+  mode = "chapter",
+  scope,
+  examTrackId,
+  examLevel,
 }: {
   questions: QuizQuestion[];
-  sourceType: "chapter" | "mistake";
-  sourceId: string;
+  mode?: "chapter" | "mistake" | "review" | "bank" | "exam";
+  sourceType?: "chapter" | "mistake";
+  sourceId?: string;
   contextLabel: string;
   challenge?: { id: string; title: string; language: string } | null;
   backHref: string;
   priorAttempt?: { score: number; total: number } | null;
+  scope?: Record<string, unknown>;
+  examTrackId?: string;
+  examLevel?: string;
 }) {
   const router = useRouter();
   const [index, setIndex] = useState(0);
@@ -51,6 +60,11 @@ export function QuizRunner({
   const [current, setCurrent] = useState<number | null>(null);
   const [result, setResult] = useState<QuizResult | null>(null);
   const [resolvedMistakes, setResolvedMistakes] = useState(0);
+  const [reviewInfo, setReviewInfo] = useState<{
+    passed: boolean;
+    label: string;
+    nextReviewAt: string | null;
+  } | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const startTime = useRef(Date.now());
@@ -100,29 +114,50 @@ export function QuizRunner({
         7200,
         Math.max(1, Math.round((Date.now() - startTime.current) / 1000)),
       );
-      const response = await fetch("/api/practice/quiz", {
+      const answerList = Object.entries(finalAnswers).map(([questionId, selectedIndex]) => ({
+        questionId,
+        selectedIndex,
+      }));
+      const endpoint =
+        mode === "bank"
+          ? "/api/bank/quiz"
+          : mode === "exam"
+            ? "/api/exam"
+            : mode === "review"
+              ? "/api/review"
+              : "/api/practice/quiz";
+      const body =
+        mode === "bank"
+          ? { answers: answerList, scope: scope ?? {}, durationSeconds }
+          : mode === "exam"
+            ? { answers: answerList, trackId: examTrackId, level: examLevel, durationSeconds }
+            : mode === "review"
+              ? { chapterId: sourceId, answers: answerList }
+              : {
+                  sourceType: sourceType ?? "chapter",
+                  sourceId,
+                  durationSeconds,
+                  answers: answerList,
+                };
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          sourceType,
-          sourceId,
-          durationSeconds,
-          answers: Object.entries(finalAnswers).map(([questionId, selectedIndex]) => ({
-            questionId,
-            selectedIndex,
-          })),
-        }),
+        body: JSON.stringify(body),
       });
       const data = (await response.json()) as {
         error?: string;
-        result?: QuizResult & { resolvedMistakes: number };
+        result?: QuizResult & {
+          resolvedMistakes?: number;
+          review?: { passed: boolean; label: string; nextReviewAt: string | null };
+        };
       };
       if (!response.ok || !data.result) {
         setError(data.error ?? "提交失败，请稍后重试");
         return;
       }
       setResult(data.result);
-      setResolvedMistakes(data.result.resolvedMistakes);
+      setResolvedMistakes(data.result.resolvedMistakes ?? 0);
+      setReviewInfo(data.result.review ?? null);
       router.refresh();
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
@@ -158,6 +193,21 @@ export function QuizRunner({
                 答对 {result.score}/{result.total} 题 · 正确率 {scorePercent}%
                 {resolvedMistakes > 0 ? ` · 解决 ${resolvedMistakes} 道历史错题` : ""}
               </p>
+              {reviewInfo ? (
+                <div
+                  className={
+                    reviewInfo.passed
+                      ? "mt-3 rounded-lg border border-mint/20 bg-mint/[0.05] px-3 py-2 text-[11px] text-mint"
+                      : "mt-3 rounded-lg border border-amber/20 bg-amber/[0.05] px-3 py-2 text-[11px] text-amber"
+                  }
+                >
+                  {reviewInfo.passed ? "复习通过" : "本次未通过，明天再复习一次"} · 当前状态：
+                  {reviewInfo.label}
+                  {reviewInfo.nextReviewAt
+                    ? ` · 下次复习：${formatDate(reviewInfo.nextReviewAt)}`
+                    : " · 已掌握"}
+                </div>
+              ) : null}
               {wrong.length > 0 ? (
                 <p className="mt-1 text-[11px] text-amber/80">
                   {wrong.length} 道题已进入错题队列，稍后重做，答对即清除。
@@ -190,7 +240,7 @@ export function QuizRunner({
               </Link>
             ) : (
               <Link href={backHref} className={buttonClass("primary", "md")}>
-                返回学习
+                {mode === "bank" ? "返回题库" : mode === "review" ? "返回复习计划" : mode === "exam" ? "返回笔试入口" : "返回学习"}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             )}

@@ -97,7 +97,7 @@ export default async function ChapterPracticePage({
                   {data.completedAtoms}
                   <span className="text-sm text-muted">/{data.totalAtoms}</span>
                 </p>
-                <p className="mt-0.5 text-[11px] text-muted">微课已完成</p>
+                <p className="mt-0.5 text-[11px] text-muted">知识点已完成</p>
               </div>
               <Badge tone={data.completedAtoms === data.totalAtoms ? "mint" : "amber"}>
                 {data.completedAtoms === data.totalAtoms ? "准备充分" : "可先补课"}
@@ -110,7 +110,7 @@ export default async function ChapterPracticePage({
               tone={data.completedAtoms === data.totalAtoms ? "mint" : "amber"}
             />
             <p className="mt-3 text-[11px] leading-5 text-muted">
-              没学完也能练，但错题会暴露理解缝隙。做完后再回到对应微课，效率更高。
+              没学完也能练，但错题会暴露理解缝隙。做完后再回到对应知识点，效率更高。
             </p>
           </Panel>
 

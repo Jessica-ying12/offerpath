@@ -220,7 +220,7 @@ export function recordCodeAttempt(
     userId: string;
     challengeId: string;
     trackId: TrackId;
-    language: "javascript" | "kotlin";
+    language: "javascript" | "kotlin" | "sql";
     code: string;
     passed: number;
     total: number;

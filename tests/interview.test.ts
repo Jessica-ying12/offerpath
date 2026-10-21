@@ -9,7 +9,7 @@ import {
 import type { InterviewTurn } from "@/lib/types";
 
 const track = getTracks().find((item) => item.id === "fullstack")!;
-const bank = getInterviewBank(track.id);
+const bank = getInterviewBank(track.id)!;
 const resume = `全栈工程师，负责订单履约平台。
 项目：使用 React + TypeScript + Node.js + PostgreSQL 重构订单后台，接口 P95 从 420ms 降到 180ms，支撑日均 10 万单。`;
 const now = "2026-10-21T00:00:00.000Z";

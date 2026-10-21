@@ -39,7 +39,7 @@ export default async function RecordsPage() {
       />
 
       <div className="mb-4 grid grid-cols-2 gap-x-4 gap-y-5 rounded-card border border-white/[0.07] bg-ink-800/55 p-5 sm:grid-cols-4">
-        <Stat label="完成微课" value={stats.lessonsCompleted} hint="所有方向累计" />
+        <Stat label="完成知识点" value={stats.lessonsCompleted} hint="所有方向累计" />
         <Stat
           label="练习正确率"
           value={`${stats.accuracy}%`}

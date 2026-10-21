@@ -164,7 +164,7 @@ export default async function InterviewSessionPage({
                     完成 {summary.answeredCount}/{summary.mainCount} 道主问题
                   </h2>
                   <p className="mt-2 text-[12px] leading-6 text-muted">
-                    评分来自要点覆盖与表达完整度；追问和重答都保留了过程记录。把遗漏要点带回微课，再看一遍原始问题。
+                    评分来自要点覆盖与表达完整度；追问和重答都保留了过程记录。把遗漏要点带回知识点，再看一遍原始问题。
                   </p>
                 </div>
                 <div className="flex shrink-0 items-center gap-4">
@@ -306,7 +306,7 @@ export default async function InterviewSessionPage({
               <ol className="mt-3 space-y-2.5 text-[10px] leading-5 text-muted/65">
                 <li>1. 挑一个最低分问题，合上参考回答，用自己的话重讲一遍。</li>
                 <li>2. 把遗漏要点写成三条「结论 + 原因 + 代价」。</li>
-                <li>3. 回到对应微课补机制，再开一场同类面试。</li>
+                <li>3. 回到对应知识点补机制，再开一场同类面试。</li>
               </ol>
               <div className="mt-4 flex items-center gap-2 border-t border-white/[0.06] pt-3 text-[9px] text-muted/35">
                 <CheckCircle2 className="h-3 w-3" />
