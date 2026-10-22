@@ -40,6 +40,7 @@
 - 技术：JavaScript、TypeScript、React、Node.js、SQL/MySQL、Git/GitHub、计算机基础、系统设计、测试、Hybrid、DevOps。
 - 每个节点给出为什么学、学完能做什么、精读/自测/题库入口和官方资料；路线参考 roadmap.sh，并附官方文档链接。
 - 后端路线覆盖 Java、Spring、Redis、MySQL、测试、监控和系统设计；公开站提供课程题库与官方资料，后端深度精读保留在完整训练版。
+- 路线图索引额外提供 roadmap.sh 官方完整目录外链（Absolute Beginners / Role-Based / Skill-Based），本地精编 21 条独立路线，避免把“平台未精编”误认为“路线不存在”。
 - 深度文档库改为 L0–L4 + 面试实战分组，减少筛选标签堆叠。
 - 主导航分组为：学习（总览/路线图/文档/自测）、训练（题库/复习）、成长（计划/进度/更多）。
 - 一级页面统一增加返回上一级；题库练习可返回题库并恢复原滚动位置。

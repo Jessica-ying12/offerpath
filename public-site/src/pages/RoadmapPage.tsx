@@ -240,8 +240,37 @@ export function RoadmapIndexPage() {
         )}
       </div>
 
-      <div className="mt-7 rounded-2xl border border-line/10 bg-raised/30 px-4 py-3 text-[10px] leading-5 text-muted">
-        说明：路线分类参考 roadmap.sh 的 Role-Based / Skill-Based / Absolute Beginners 结构；本页节点说明、资源映射和学习顺序由本平台独立编写。官方完整交互图请通过各路线右上角链接打开。
+      <section className="mt-8 rounded-2xl border border-line/10 bg-surface p-5">
+        <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="eyebrow mb-1">OFFICIAL DIRECTORY</p>
+            <h2 className="text-[16px] font-bold text-ink">官方完整路线目录</h2>
+            <p className="mt-1 text-[10px] text-muted">本平台精编 21 条；以下是 roadmap.sh 官方目录中更多可打开的路线，避免把“平台没精编”误认为“路线不存在”。</p>
+          </div>
+          <a href="https://roadmap.sh/roadmaps/?g=Absolute+Beginners" target="_blank" rel="noreferrer noopener" className="text-[10px] text-accent">打开完整目录 ↗</a>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {[
+            { group: "Absolute Beginners", links: [["Frontend Beginner","frontend-beginner"],["Backend Beginner","backend-beginner"],["DevOps Beginner","devops-beginner"],["Git & GitHub Beginner","git-github-beginner"]] },
+            { group: "Role-Based", links: [["Frontend","frontend"],["Backend","backend"],["Full Stack","full-stack"],["Android","android"],["iOS","ios"],["DevOps","devops"],["AI Engineer","ai-engineer"],["Data Analyst","data-analyst"],["QA","qa"],["Software Architect","software-architect"]] },
+            { group: "Skill-Based", links: [["JavaScript","javascript"],["TypeScript","typescript"],["React","react"],["React Native","react-native"],["Node.js","nodejs"],["Java","java"],["Spring Boot","spring-boot"],["SQL","sql"],["PostgreSQL","postgresql-dba"],["Redis","redis"],["Docker","docker"],["Kubernetes","kubernetes"],["System Design","system-design"],["Computer Science","computer-science"],["Git & GitHub","git-github"]] },
+          ].map((group) => (
+            <div key={group.group} className="rounded-xl border border-line/10 bg-paper/40 p-3">
+              <p className="mb-2 text-[10px] font-semibold text-ink">{group.group}</p>
+              <div className="flex flex-wrap gap-1">
+                {group.links.map(([label, slug]) => (
+                  <a key={slug} href={`https://roadmap.sh/${slug}`} target="_blank" rel="noreferrer noopener" className="rounded-md border border-line/10 bg-surface px-2 py-1 text-[8.5px] text-muted transition hover:border-accent/30 hover:text-accent">
+                    {label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-5 rounded-2xl border border-line/10 bg-raised/30 px-4 py-3 text-[10px] leading-5 text-muted">
+        说明：路线分类参考 roadmap.sh 的 Role-Based / Skill-Based / Absolute Beginners 结构；本页节点说明、资源映射和学习顺序由本平台独立编写。官方完整交互图请通过各路线或上方目录打开。
       </div>
     </PageContainer>
   );
