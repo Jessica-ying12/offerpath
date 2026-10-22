@@ -2,7 +2,7 @@
 
 公网地址：**https://offerpath-deep-q1f1nhycwc5.qoder.website/**
 
-这是平台的公开内容层：21 篇移动前端深度精读、21 份问答原稿（380 道带追问的题）、2276 道多题型练习题（简答/填空/判断/多选/单选），以及 21 条按入门/职业/技术分类的路线图、可增删任务的普通/十周/面试/基础/项目/JD/日常计划。无登录、无后端依赖；支持本机多用户，每个用户独立保存进度，可导出 JSON 备份。
+这是平台的公开内容层：21 篇移动前端深度精读、21 份问答原稿（380 道带追问的题）、2276 道多题型练习题（简答/填空/判断/多选/单选），以及 26 条按入门/职业/技术分类的路线图、可增删任务的普通/十周/面试/基础/项目/JD/日常计划。无登录、无后端依赖；支持本机多用户，每个用户独立保存进度，可导出 JSON 备份。
 
 ## 开发
 
@@ -17,7 +17,7 @@ npm run preview
 
 - 内容：`content/docs/`（21 篇）与 `content/qa/`（21 份）。
 - 题库：`scripts/generate-questions.mjs` 从问答与课程题库生成 `src/data/question-bank.json`（2276 题，5 种题型）。
-- 路线图：`src/data/roadmaps.ts`（21 条入门/职业/技术路线）与 `src/data/official-coverage.json`（官方节点名称覆盖清单）。
+- 路线图：`src/data/roadmaps.ts`（26 条入门/职业/技术路线，后端先选 Java/Go/Python/Node 语言）与 `src/data/official-coverage.json`（约 2265 个官方节点名称覆盖清单）。
 - 计划：`src/lib/plan.ts`（普通/十周/面试/基础/项目/JD/日常模板与任务生成）。
 - 元数据与解析：`src/lib/content.ts`。
 - 学习路径/岗位 JD：`src/lib/jd.ts`。
