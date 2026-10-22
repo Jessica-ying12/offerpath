@@ -118,3 +118,10 @@
 - 范围：96 条 All Roadmaps 目录路线、16 个分类计数、分类子分组、99 条可访问路线共 12,254 个官方主题名称。
 - 存储：`public-site/src/data/roadmap-catalog.json` 与 `official-roadmap-nodes.json`。
 - 边界：只保存路线名、分类关系、主题名称和官方链接；不复制官方说明正文、图片或视频。站内阶段顺序和计划由平台重新编排。
+
+## 知识点学习内容（REQ-021 迭代）
+
+- 21 篇精编按章节拆成单知识点页面；每个知识点保留原文结构、代码和示例。
+- 非精编技术路线的学习要点参考公开技术文档与入门教程整理为中文摘要，包括 MDN、React、Node.js、Java、Spring、PostgreSQL、Redis、Docker、Kubernetes、Go、Python 文档，以及 W3School SQL 入门和菜鸟教程 Java 入门。
+- 平台不复制整段教程正文；只保留概念要点、最小示例、练习和自测，示例按通用业务场景重新编写。
+- 页面不提供第三方路线图跳转；来源仅用于内容校对与边界说明。
