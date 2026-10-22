@@ -62,7 +62,9 @@ export function HomePage() {
   const nextPlanTask = planBuilt?.allTasks.find((task) => !completedTaskIds.has(task.id));
   const plannedDocId =
     nextPlanTask?.docIds?.[0] ??
-    (nextPlanTask?.href?.startsWith("/doc/") ? nextPlanTask.href.split("/")[2] : null);
+    (nextPlanTask?.href?.startsWith("/doc/") || nextPlanTask?.href?.startsWith("/learn/")
+      ? nextPlanTask.href.split("/")[2]
+      : null);
   const lastDoc = DOCS.filter((doc) => state.docs[doc.id]?.lastReadAt).sort(
     (a, b) =>
       new Date(state.docs[b.id]?.lastReadAt ?? 0).getTime() -
@@ -73,10 +75,7 @@ export function HomePage() {
     (plannedDocId ? DOCS.find((doc) => doc.id === plannedDocId) : null) ??
     lastDoc ??
     DOCS[0];
-  const nextHeading = nextDoc ? state.docs[nextDoc.id]?.lastHeading : null;
-  const continueHref = nextDoc
-    ? `/doc/${nextDoc.id}${nextHeading ? `?h=${encodeURIComponent(nextHeading)}` : ""}`
-    : "/docs";
+  const continueHref = nextDoc ? `/learn/${nextDoc.id}` : "/docs";
   const planModules = planBuilt?.modules ?? [];
   const currentModule = planModules.find((module) => module.done < module.total) ?? planModules[planModules.length - 1];
   const dueQuestions = ALL_QA.filter(
@@ -90,7 +89,7 @@ export function HomePage() {
         .filter((task) => !completedTaskIds.has(task.id))
         .flatMap((task) => [
           ...(task.docIds ?? []),
-          ...(task.href?.startsWith("/doc/") ? [task.href.split("/")[2]] : []),
+          ...(task.href?.startsWith("/doc/") || task.href?.startsWith("/learn/") ? [task.href.split("/")[2]] : []),
         ]))]
         .filter((id) => DOC_MAP.has(id) && !state.docs[id]?.completed)
         .map((id) => DOC_MAP.get(id))
@@ -200,7 +199,7 @@ export function HomePage() {
                       <span className="eyebrow">01</span>
                     </div>
                     <p className="mt-3 text-[12px] font-semibold text-ink">精读一个知识点</p>
-                    <p className="mt-1 text-[9.5px] leading-4 text-muted">{nextDoc?.shortTitle ?? "打开深度文档库"}</p>
+                    <p className="mt-1 text-[9.5px] leading-4 text-muted">{nextDoc?.shortTitle ?? "打开知识库"}</p>
                   </Link>
                   <Link to="/quiz" className="rounded-2xl border border-line/10 bg-surface p-4 transition hover:border-accent/30">
                     <div className="flex items-center justify-between">

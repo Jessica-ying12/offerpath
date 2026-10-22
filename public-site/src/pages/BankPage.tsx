@@ -303,7 +303,7 @@ export function BankPage() {
               <span className={`chip border ${TYPE_COLOR[current.type]}`}>{displayQuestionType(current)}</span>
               {current.courseName ? <span className="chip">{current.courseName}</span> : null}
               {current.docId ? (
-                <Link to={`/doc/${current.docId}`} className="chip hover:border-accent/30">
+                <Link to={`/learn/${current.docId}`} className="chip hover:border-accent/30">
                   <BookOpen className="h-2.5 w-2.5" /> {current.docTitle}
                 </Link>
               ) : null}
@@ -516,7 +516,7 @@ export function BankPage() {
                       </p>
                       <p className="mt-1 text-[10px] leading-5 text-muted">{item.question.explanation}</p>
                       {item.question.docId ? (
-                        <Link to={`/doc/${item.question.docId}`} className="mt-1 inline-flex items-center gap-1 text-[9.5px] text-accent">
+                        <Link to={`/learn/${item.question.docId}`} className="mt-1 inline-flex items-center gap-1 text-[9.5px] text-accent">
                           回到知识点 <ArrowRight className="h-2.5 w-2.5" />
                         </Link>
                       ) : null}
@@ -633,14 +633,14 @@ export function BankPage() {
             <div className="card p-4 sm:p-5">
               <div className="flex flex-wrap items-start gap-2">
                 <div className="min-w-0 flex-1">
-                  <p className="eyebrow mb-1">{selectedDoc ? `${selectedDoc.id} · ${moduleForDoc(selectedDoc.id)?.title ?? selectedDoc.layer}` : "ALL KNOWLEDGE POINTS"}</p>
+                  <p className="eyebrow mb-1">{selectedDoc ? `${selectedDoc.id} · ${moduleForDoc(selectedDoc.id)?.title ?? selectedDoc.layer}` : "全部知识点"}</p>
                   <h2 className="text-[18px] font-bold text-ink">{selectedDoc?.title ?? "全部知识点混合练习"}</h2>
                   <p className="mt-1 text-[11px] leading-5 text-muted">
                     {selectedDoc?.description ?? "按题型随机抽题；先作答，再看逐题纠正。"}
                   </p>
                 </div>
                 {selectedDoc ? (
-                  <Link to={`/doc/${selectedDoc.id}`} className="chip hover:border-accent/30">
+                  <Link to={`/learn/${selectedDoc.id}`} className="chip hover:border-accent/30">
                     <BookOpen className="h-2.5 w-2.5" /> 回到精读
                   </Link>
                 ) : null}
@@ -815,7 +815,7 @@ export function BankPage() {
                     <p className="mt-0.5 text-[9px] text-muted">{question.docTitle ?? question.courseName} · 错 {state.quizMistakes[question.id]?.wrongCount ?? 1} 次</p>
                   </div>
                   {question.docId ? (
-                    <Link to={`/doc/${question.docId}`} className="shrink-0 text-[9px] text-accent">回看</Link>
+                    <Link to={`/learn/${question.docId}`} className="shrink-0 text-[9px] text-accent">回看</Link>
                   ) : null}
                 </div>
               ))}
@@ -937,7 +937,7 @@ function Correction({
       )}
 
       {question.docId ? (
-        <Link to={`/doc/${question.docId}`} className="mt-3 inline-flex items-center gap-1 text-[10px] text-accent">
+        <Link to={`/learn/${question.docId}`} className="mt-3 inline-flex items-center gap-1 text-[10px] text-accent">
           <BookOpen className="h-3 w-3" /> 回到对应知识点
         </Link>
       ) : null}

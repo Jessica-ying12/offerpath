@@ -138,7 +138,7 @@ export function QaSessionPage() {
               <Link to={`/qa/${doc.id}`} className="btn-primary">
                 回到分册 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
-              <Link to={`/doc/${doc.id}`} className="btn-ghost">回到精读</Link>
+              <Link to={`/learn/${doc.id}`} className="btn-ghost">逐个学知识点</Link>
               <Link to="/review" className="btn-ghost">
                 <RotateCcw className="h-3.5 w-3.5" /> 复习队列
               </Link>

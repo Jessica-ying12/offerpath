@@ -13,7 +13,7 @@ import {
   Plus,
   Printer,
 } from "lucide-react";
-import { DOC_MAP, QA_MAP } from "../lib/content";
+import { DOC_MAP, QA_MAP, knowledgePointsForDoc } from "../lib/content";
 import { getQaBankProgress, useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
 import { Breadcrumbs, DocSwitcher, MasteryBadge, NotesPanel, Toc } from "../components/ui";
@@ -136,7 +136,7 @@ export function DocPage() {
         <Breadcrumbs
           items={[
             { label: "总览", to: "/" },
-            { label: "深度文档", to: "/docs" },
+            { label: "知识库", to: "/docs" },
             ...(module ? [{ label: module.title, to: docsModuleHref(module.id) }] : []),
             { label: `${doc.id} · ${doc.title}` },
           ]}
@@ -154,6 +154,13 @@ export function DocPage() {
           </button>
         </div>
       </div>
+
+      <Link to={`/learn/${doc.id}`} className="mb-4 flex flex-col gap-2 rounded-xl border border-accent/20 bg-accent/[0.045] px-4 py-3 transition hover:border-accent/40 sm:flex-row sm:items-center">
+        <span className="flex-1 text-[10.5px] text-muted">
+          <strong className="text-ink">按知识点学习</strong> · 这篇文档已拆成 {knowledgePointsForDoc(doc).length} 个独立知识点，每页只学一节。
+        </span>
+        <span className="inline-flex items-center gap-1 text-[10px] text-accent">开始逐点学习 <ArrowRight className="h-3 w-3" /></span>
+      </Link>
 
       <div
         className={

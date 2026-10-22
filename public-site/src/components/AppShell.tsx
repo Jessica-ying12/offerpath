@@ -44,7 +44,7 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
     items: [
       { href: "/", label: "总览", icon: Home, exact: true },
       { href: "/roadmap", label: "路线图库", icon: MapIcon },
-      { href: "/docs", label: "深度文档", icon: BookOpen, badge: `${DOCS.length}` },
+      { href: "/docs", label: "知识库", icon: BookOpen, badge: `${DOCS.length}` },
       { href: "/qa", label: "面试自测", icon: MessageSquareQuote, badge: `${TOTAL_QA}` },
     ],
   },
@@ -77,8 +77,9 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/$/, "总览"],
   [/^\/plan/, "学习计划"],
   [/^\/roadmap/, "路线图库"],
-  [/^\/docs/, "深度文档"],
-  [/^\/doc\//, "精读"],
+  [/^\/docs/, "知识库"],
+  [/^\/learn\//, "知识点"],
+  [/^\/doc\//, "整篇参考"],
   [/^\/qa/, "面试自测"],
   [/^\/quiz/, "题库练习"],
   [/^\/review/, "周期复习"],
@@ -186,7 +187,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
     <div className="flex h-full flex-col">
       {lastDoc ? (
         <Link
-          to={`/doc/${lastDoc.id}`}
+          to={`/learn/${lastDoc.id}`}
           onClick={onNavigate}
           className="mb-5 block rounded-2xl border border-accent/20 bg-accent/[0.055] p-3.5 transition hover:border-accent/40"
         >

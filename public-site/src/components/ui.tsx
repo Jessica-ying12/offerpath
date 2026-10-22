@@ -178,7 +178,7 @@ export function DocCard({
 
   return (
     <Link
-      to={`/doc/${doc.id}`}
+      to={`/learn/${doc.id}`}
       className="group flex flex-col rounded-2xl border border-line/10 bg-surface p-4 shadow-card transition hover:-translate-y-0.5 hover:border-accent/30 sm:p-5"
     >
       <div className="flex items-start gap-3">

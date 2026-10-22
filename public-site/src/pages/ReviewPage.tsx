@@ -152,7 +152,7 @@ export function ReviewPage() {
               {reread.map((doc) => (
                 <Link
                   key={doc.id}
-                  to={`/doc/${doc.id}`}
+                  to={`/learn/${doc.id}`}
                   className="flex items-center gap-2 rounded-lg px-2 py-2 transition hover:bg-raised/60"
                 >
                   <span className="font-mono text-[9px] text-muted/60">{doc.id}</span>

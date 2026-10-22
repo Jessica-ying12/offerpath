@@ -18,6 +18,8 @@ import { DOC_MAP, QA_MAP } from "../lib/content";
 import { plainInline } from "../lib/text";
 import { useStore } from "../lib/store";
 import questionMeta from "../data/question-meta.json";
+import { docsForRoute } from "../lib/knowledge";
+import { knowledgePointsForDoc } from "../lib/content";
 import {
   OFFICIAL_NODE_TOTAL,
   ROADMAP_CATALOG,
@@ -73,7 +75,7 @@ function ResourceLinks({ node }: { node: RoadmapNode }) {
   const bankCount = node.bankDoc ? questionMeta.byDoc[node.bankDoc as keyof typeof questionMeta.byDoc]?.total ?? 0 : 0;
   const qa = node.qaDoc ? QA_MAP.get(node.qaDoc) : null;
   const resources = [
-    ...docs.map((id) => ({ label: `精读 ${id}`, to: `/doc/${id}`, icon: BookOpen })),
+    ...docs.map((id) => ({ label: `知识点 ${id}`, to: `/learn/${id}`, icon: BookOpen })),
     ...(qa ? [{ label: `自测 ${qa.items.length}`, to: `/qa/${node.qaDoc}`, icon: MessageSquareQuote }] : []),
     ...(bankCount ? [{ label: `练题 ${bankCount}`, to: `/quiz?doc=${node.bankDoc}`, icon: Layers3 }] : []),
     ...(node.courseIds ?? []).map((id) => ({ label: "课程题库", to: `/quiz?tab=course&course=${id}`, icon: Layers3 })),
@@ -352,6 +354,7 @@ export function RoadmapDetailPage() {
   const stats = roadmapStats(roadmap, completed);
   const currentDoc = roadmap.stages.flatMap((stage) => stage.nodes.flatMap((node) => node.docs ?? [])).find((id) => !state.docs[id]?.completed);
   const relatedModules = relatedRoutesFor(roadmap, 8);
+  const routeDocs = docsForRoute(roadmap.id);
   const currentDocMeta = currentDoc ? DOC_MAP.get(currentDoc) : null;
   const filteredTopics = roadmap.officialTopics.filter((name) =>
     coverageQuery.trim() ? name.toLowerCase().includes(coverageQuery.trim().toLowerCase()) : true,
@@ -410,7 +413,7 @@ export function RoadmapDetailPage() {
             <Route className="h-3.5 w-3.5" /> {currentPlan ? "当前计划 · 打开计划" : "用此路线做计划"}
           </Link>
           {currentDoc ? (
-            <Link to={`/doc/${currentDoc}`} className="btn-ghost">
+            <Link to={`/learn/${currentDoc}`} className="btn-ghost">
               <Play className="h-3.5 w-3.5" /> 继续 {currentDocMeta?.shortTitle ?? currentDoc}
             </Link>
           ) : null}
@@ -422,6 +425,29 @@ export function RoadmapDetailPage() {
           <Sparkles className="h-3.5 w-3.5 text-sky" />
           这条路线收录了 {stats.officialTopics} 个主题节点，并按基础 / 核心 / 进阶 / 工程重排成站内学习路径。点开任一主题可看学习目标、示例和自测；也可以直接加入计划。
         </div>
+      ) : null}
+
+      {roadmap.curated && routeDocs.length > 0 ? (
+        <section className="mb-4 card p-4">
+          <div className="mb-2 flex flex-wrap items-end justify-between gap-2">
+            <div>
+              <p className="eyebrow mb-1">精编知识点</p>
+              <h2 className="text-[13px] font-bold text-ink">按知识点逐个学习 · {routeDocs.reduce((sum, doc) => sum + knowledgePointsForDoc(doc).length, 0)} 个</h2>
+            </div>
+            <Link to={`/learn/${routeDocs[0].id}`} className="btn-primary py-1.5 text-[10px]">从第一个知识点开始</Link>
+          </div>
+          <div className="grid gap-1.5 sm:grid-cols-2 xl:grid-cols-3">
+            {routeDocs.slice(0, 6).map((doc) => {
+              const points = knowledgePointsForDoc(doc);
+              return (
+                <Link key={doc.id} to={`/learn/${doc.id}`} className="rounded-lg border border-line/10 bg-surface px-3 py-2.5 transition hover:border-accent/30">
+                  <span className="block text-[10.5px] font-medium text-ink">{doc.title}</span>
+                  <span className="mt-0.5 block text-[8.5px] text-muted/60">{points.length} 个知识点 · 点击开始</span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
       ) : null}
 
       <div className="mb-5 flex gap-1 overflow-x-auto rounded-2xl border border-line/10 bg-surface p-1.5">

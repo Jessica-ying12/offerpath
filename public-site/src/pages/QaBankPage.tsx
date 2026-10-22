@@ -86,7 +86,7 @@ export function QaBankPage() {
             <span className="chip">已掌握 {progress.mastered}</span>
             <span className="chip text-coral">待复习 {progress.due}</span>
             <span className="chip">未开始 {progress.total - progress.mastered - progress.learning}</span>
-            <Link to={`/doc/${doc.id}`} className="chip hover:border-accent/30">
+            <Link to={`/learn/${doc.id}`} className="chip hover:border-accent/30">
               回到精读 <ArrowRight className="h-2.5 w-2.5" />
             </Link>
           </div>

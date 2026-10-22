@@ -78,13 +78,24 @@ export function TopicPage() {
               <Link to={`/plan?roadmap=${roadmap.id}`} className="btn-primary">
                 <Route className="h-3.5 w-3.5" /> 加入学习计划
               </Link>
-              <Link to={`/roadmap/${roadmap.id}`} className="btn-ghost">
-                <BookOpen className="h-3.5 w-3.5" /> 回到完整路线
-              </Link>
+              <a href="#topic-example" className="btn-ghost">
+                <BookOpen className="h-3.5 w-3.5" /> 开始学习
+              </a>
             </div>
           </header>
 
-          <section className="card mt-4 p-5">
+          <nav className="mt-4 flex flex-wrap items-center gap-1 text-[9.5px] text-muted">
+            {[
+              ["#topic-goals", "1 目标"],
+              ["#topic-example", "2 示例"],
+              ["#topic-practice", "3 练习"],
+              ["#topic-checks", "4 自测"],
+            ].map(([href, label]) => (
+              <a key={href} href={href} className="rounded-lg border border-line/10 bg-surface px-2.5 py-1.5 transition hover:border-accent/30 hover:text-accent">{label}</a>
+            ))}
+          </nav>
+
+          <section id="topic-goals" className="card mt-4 scroll-mt-24 p-5">
             <p className="eyebrow mb-2">学完要能回答</p>
             <div className="space-y-2">
               {guide.goals.map((goal, goalIndex) => (
@@ -96,7 +107,21 @@ export function TopicPage() {
             </div>
           </section>
 
-          <section className="card mt-4 overflow-hidden">
+          {guide.notes.length > 0 ? (
+            <section className="card mt-4 p-5">
+              <p className="eyebrow mb-2">先理解这几点</p>
+              <div className="space-y-2">
+                {guide.notes.map((note) => (
+                  <div key={note} className="flex items-start gap-2 text-[11px] leading-5 text-ink/80">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                    {note}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <section id="topic-example" className="card mt-4 scroll-mt-24 overflow-hidden">
             <div className="border-b border-line/10 px-5 py-4">
               <p className="eyebrow mb-1">示例 · 最小可验证</p>
               <h2 className="text-[15px] font-bold text-ink">{guide.example.title}</h2>
@@ -108,7 +133,7 @@ export function TopicPage() {
             </div>
           </section>
 
-          <section className="card mt-4 p-5">
+          <section id="topic-practice" className="card mt-4 scroll-mt-24 p-5">
             <p className="eyebrow mb-2">动手练习</p>
             <div className="space-y-2">
               {guide.practice.map((item) => (
@@ -120,7 +145,7 @@ export function TopicPage() {
             </div>
           </section>
 
-          <section className="card mt-4 p-5">
+          <section id="topic-checks" className="card mt-4 scroll-mt-24 p-5">
             <p className="eyebrow mb-2">自测问题</p>
             <div className="space-y-2">
               {guide.checks.map((item) => (
@@ -130,6 +155,7 @@ export function TopicPage() {
               ))}
             </div>
             <p className="mt-3 text-[9px] leading-5 text-muted/60">回答时先给结论，再解释原因和项目场景；答不上来的点回到示例和练习。</p>
+            {next ? <Link to={`/roadmap/${roadmap.id}/topic/${index + 1}`} className="btn-primary mt-3 py-1.5 text-[10px]">学完，进入下一主题 <ArrowRight className="h-3 w-3" /></Link> : null}
           </section>
 
           {relatedRoutes.length > 0 ? (

@@ -36,6 +36,7 @@ const DEFAULT_STATE: AppState = {
   qa: {},
   checklists: {},
   notes: {},
+  lessons: {},
   quizAttempts: [],
   quizMistakes: {},
   activity: [],
@@ -50,6 +51,7 @@ function normalizeState(parsed: Partial<AppState>): AppState {
     qa: parsed.qa ?? {},
     checklists: parsed.checklists ?? {},
     notes: parsed.notes ?? {},
+    lessons: parsed.lessons ?? {},
     quizAttempts: parsed.quizAttempts ?? [],
     quizMistakes: parsed.quizMistakes ?? {},
     activity: parsed.activity ?? [],
@@ -152,6 +154,7 @@ type Store = {
   savePlan: (goal: Omit<LearningGoal, "createdAt" | "updatedAt">, resetProgress?: boolean) => void;
   togglePlanTask: (taskId: string) => void;
   excludePlanTask: (taskId: string) => void;
+  toggleLesson: (docId: string, slug: string) => void;
   addCustomPlanTask: (dayIndex: number, title: string, module?: string) => void;
   removeCustomPlanTask: (taskId: string) => void;
   clearPlan: () => void;
@@ -412,6 +415,33 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const toggleLesson = useCallback((docId: string, slug: string) => {
+    const key = `${docId}:${slug}`;
+    setState((current) => {
+      const previous = current.lessons[key];
+      const completed = !previous?.completed;
+      const doc = DOCS.find((item) => item.id === docId);
+      return {
+        ...current,
+        lessons: {
+          ...current.lessons,
+          [key]: {
+            completed,
+            completedAt: completed ? new Date().toISOString() : null,
+            lastReadAt: new Date().toISOString(),
+          },
+        },
+        activity: completed
+          ? pushActivity(current.activity, {
+              type: "complete",
+              label: `完成知识点 · ${doc?.title ?? docId} / ${slug}`,
+              href: `/learn/${docId}/${slug}`,
+            })
+          : current.activity,
+      };
+    });
+  }, []);
+
   const addCustomPlanTask = useCallback((dayIndex: number, title: string, module?: string) => {
     const clean = title.trim().slice(0, 80);
     if (!clean) return;
@@ -553,6 +583,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     savePlan,
     togglePlanTask,
     excludePlanTask,
+    toggleLesson,
     addCustomPlanTask,
     removeCustomPlanTask,
     clearPlan,

@@ -22,7 +22,7 @@ const LINKS = [
   { href: "/plan", label: "学习计划", desc: "按目标生成模块、任务与进度", icon: Route },
   { href: "/review", label: "周期复习", desc: "D+1 / D+3 / D+7 到期问答", icon: RotateCcw },
   { href: "/progress", label: "学习进度与备份", desc: "掌握度、记录、导出 JSON", icon: BarChart3 },
-  { href: "/docs", label: "深度文档", desc: "21 篇精读与全文检索", icon: BookOpen },
+  { href: "/docs", label: "知识库", desc: "按路线分类的逐点知识与全文检索", icon: BookOpen },
   { href: "/qa", label: "面试自测", desc: `${TOTAL_QA} 道直接回答 + 追问`, icon: MessageSquareQuote },
   { href: "/quiz", label: "题库练习", desc: `${meta.total} 道五种题型与逐题纠正`, icon: Layers3 },
   { href: "/profile", label: "用户与数据", desc: "本机多用户、目标岗位与备份", icon: Route },

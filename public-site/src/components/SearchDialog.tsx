@@ -117,7 +117,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                 recent.map((doc) => (
                   <button
                     key={doc.id}
-                    onClick={() => go(`/doc/${doc.id}`)}
+                    onClick={() => go(`/learn/${doc.id}`)}
                     className="flex w-full items-center gap-3 rounded-xl px-2.5 py-2.5 text-left transition hover:bg-raised/60"
                   >
                     <BookOpen className="h-4 w-4 text-accent" />

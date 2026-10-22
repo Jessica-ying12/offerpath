@@ -1,5 +1,5 @@
 import GithubSlugger from "github-slugger";
-import type { DocHeading, DocMeta, QaBank, QaItem, RoleId } from "./types";
+import type { DocHeading, DocMeta, KnowledgePoint, QaBank, QaItem, RoleId } from "./types";
 
 const docFiles = import.meta.glob("../../content/docs/*.md", {
   query: "?raw",
@@ -526,3 +526,54 @@ export const PLAN_WEEKS = [
     daily: "每天 30 分钟：数据结构、网络、索引与事务",
   },
 ];
+
+
+const KNOWLEDGE_CACHE = new Map<string, KnowledgePoint[]>();
+
+export function knowledgePointsForDoc(doc: DocMeta): KnowledgePoint[] {
+  const cached = KNOWLEDGE_CACHE.get(doc.id);
+  if (cached) return cached;
+  const lines = doc.markdown.split(/\r?\n/);
+  const h2Headings = doc.headings.filter((heading) => heading.depth === 2);
+  const marks: Array<{ line: number; heading: DocHeading }> = [];
+  let inFence = false;
+  let headingIndex = 0;
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex];
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence || !/^##\s+/.test(line)) continue;
+    const heading = h2Headings[headingIndex] ?? {
+      depth: 2 as const,
+      text: line.replace(/^##\s+/, "").replace(/[*_`~]/g, "").trim(),
+      slug: `section-${headingIndex + 1}`,
+    };
+    marks.push({ line: lineIndex, heading });
+    headingIndex += 1;
+  }
+  const points = marks.map((mark, index) => {
+    const sectionLines = lines.slice(mark.line, marks[index + 1]?.line ?? lines.length);
+    return {
+      docId: doc.id,
+      index,
+      total: marks.length,
+      slug: mark.heading.slug,
+      title: mark.heading.text,
+      markdown: (sectionLines.length > 1 ? sectionLines.slice(1) : sectionLines).join("\n").trim(),
+    };
+  });
+  const result = points.length > 0
+    ? points
+    : [{
+        docId: doc.id,
+        index: 0,
+        total: 1,
+        slug: "overview",
+        title: doc.title,
+        markdown: doc.markdown,
+      }];
+  KNOWLEDGE_CACHE.set(doc.id, result);
+  return result;
+}

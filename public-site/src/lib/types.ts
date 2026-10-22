@@ -54,6 +54,21 @@ export type DocHeading = {
   slug: string;
 };
 
+export type KnowledgePoint = {
+  docId: string;
+  index: number;
+  total: number;
+  slug: string;
+  title: string;
+  markdown: string;
+};
+
+export type LessonProgress = {
+  completed: boolean;
+  completedAt: string | null;
+  lastReadAt: string | null;
+};
+
 export type DocMeta = {
   id: string;
   number: string;
@@ -146,6 +161,7 @@ export type AppState = {
   qa: Record<string, QaProgress>;
   checklists: Record<string, boolean>;
   notes: Record<string, string>;
+  lessons: Record<string, LessonProgress>;
   quizAttempts: QuizAttempt[];
   quizMistakes: Record<string, { wrongCount: number; lastWrongAt: string }>;
   activity: ActivityItem[];

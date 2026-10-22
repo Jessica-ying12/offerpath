@@ -7,6 +7,7 @@ import { TopicPage } from "./pages/TopicPage";
 import { PlanPage } from "./pages/PlanPage";
 import { DocsPage } from "./pages/DocsPage";
 import { DocPage } from "./pages/DocPage";
+import { LearnPage } from "./pages/LearnPage";
 import { QaIndexPage } from "./pages/QaIndexPage";
 import { QaBankPage } from "./pages/QaBankPage";
 import { QaSessionPage } from "./pages/QaSessionPage";
@@ -30,6 +31,8 @@ export default function App() {
             <Route path="/plan" element={<PlanPage />} />
             <Route path="/docs" element={<DocsPage />} />
             <Route path="/doc/:docId" element={<DocPage />} />
+            <Route path="/learn/:docId" element={<LearnPage />} />
+            <Route path="/learn/:docId/:slug" element={<LearnPage />} />
             <Route path="/qa" element={<QaIndexPage />} />
             <Route path="/qa/:docId" element={<QaBankPage />} />
             <Route path="/qa/:docId/session" element={<QaSessionPage />} />
