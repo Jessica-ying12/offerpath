@@ -263,7 +263,7 @@ export function RoadmapIndexPage() {
           <p className="eyebrow">路线分类</p>
           <span className="text-[8.5px] text-muted/60">{ROADMAP_TOTAL} 条 · {ROADMAP_SCRAPED_AT} 同步</span>
         </div>
-        <div className="flex gap-1 overflow-x-auto pb-1">
+        <div className="flex flex-wrap gap-1 pb-1">
           {TYPE_TABS.map((tab) => {
             const active = typeMeta.id === tab.id;
             return (
