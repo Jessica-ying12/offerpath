@@ -27,6 +27,7 @@ import {
   categoryLabelZh,
   groupLabelZh,
   relatedRoutesFor,
+  roadmapContextCategory,
   roadmapDisplayName,
   roadmapStats,
   type Roadmap,
@@ -132,26 +133,13 @@ function dedupeGroups(groups: Array<{ heading: string; routes: Array<{ slug: str
   })).filter((group) => group.routes.length > 0);
 }
 
-const TYPE_TABS = [
-  { id: "all", label: "全部路线", group: null as string | null, count: ROADMAP_TOTAL },
-  { id: "role", label: "职业路线", group: "Role Based Roadmaps", count: ROADMAP_CATALOG.allGroups.find((group) => group.heading === "Role Based Roadmaps")?.routes.length ?? 0 },
-  { id: "skill", label: "技术路线", group: "Skill Based Roadmaps", count: ROADMAP_CATALOG.allGroups.find((group) => group.heading === "Skill Based Roadmaps")?.routes.length ?? 0 },
-  { id: "beginner", label: "入门路线", group: "Absolute Beginners", count: ROADMAP_CATALOG.allGroups.find((group) => group.heading === "Absolute Beginners")?.routes.length ?? 0 },
-  { id: "best", label: "最佳实践", group: "Best Practices", count: ROADMAP_CATALOG.allGroups.find((group) => group.heading === "Best Practices")?.routes.length ?? 0 },
+const ROLE_ROUTES = ROADMAP_CATALOG.allGroups.find((group) => group.heading === "Role Based Roadmaps")?.routes ?? [];
+
+const CATEGORY_TABS = [
+  { id: "all", label: "全部路线", count: ROADMAP_TOTAL },
+  { id: "role", label: "职业路线", count: ROLE_ROUTES.length },
+  ...ROADMAP_CATALOG_CATEGORIES.filter((item) => item.id !== "all").map((item) => ({ id: item.id, label: categoryLabelZh(item.id), count: item.count })),
 ];
-
-function routesForType(group: string | null): Array<{ slug: string; title: string }> {
-  if (!group) return [];
-  return ROADMAP_CATALOG.allGroups.find((item) => item.heading === group)?.routes ?? [];
-}
-
-function typeTabForGroup(group: string): string | null {
-  if (group === "Role Based Roadmaps") return "role";
-  if (group === "Skill Based Roadmaps") return "skill";
-  if (group === "Absolute Beginners") return "beginner";
-  if (group === "Best Practices") return "best";
-  return null;
-}
 
 function uniqueRoadmaps(): Roadmap[] {
   return [...new Map([...ROADMAP_MAP.values()].map((roadmap) => [roadmap.id, roadmap])).values()];
@@ -161,13 +149,13 @@ export function RoadmapIndexPage() {
   const { state } = useStore();
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
-  const rawType = searchParams.get("type") ?? "all";
-  const typeMeta = TYPE_TABS.find((item) => item.id === rawType) ?? TYPE_TABS[0];
+  const rawCategory = searchParams.get("category") ?? "all";
+  const categoryMeta = CATEGORY_TABS.find((item) => item.id === rawCategory) ?? CATEGORY_TABS[0];
   const currentGoal = state.plan ? ROADMAP_MAP.get(state.plan.goal.roadmapId) : null;
 
-  const chooseType = (id: string) => {
+  const chooseCategory = (id: string) => {
     const params = new URLSearchParams();
-    if (id !== "all") params.set("type", id);
+    if (id !== "all") params.set("category", id);
     setSearchParams(params, { replace: true });
     setQuery("");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -193,28 +181,20 @@ export function RoadmapIndexPage() {
 
   const groups = useMemo(() => {
     if (query.trim()) {
-      return [{
-        heading: `搜索结果 · ${searchResults.length} 条`,
-        routes: searchResults.map((roadmap) => ({ slug: roadmap.id, title: roadmap.name })),
-      }];
+      return [{ heading: `搜索结果 · ${searchResults.length} 条`, routes: searchResults.map((roadmap) => ({ slug: roadmap.id, title: roadmap.name })) }];
     }
-    if (typeMeta.id === "all") {
-      return dedupeGroups(ROADMAP_CATALOG.allGroups);
-    }
-    const routes = routesForType(typeMeta.group);
-    return routes.length > 0
-      ? [{ heading: `${typeMeta.label} · ${routes.length} 条`, routes }]
-      : [];
-  }, [query, searchResults, typeMeta]);
+    if (categoryMeta.id === "all") return dedupeGroups(ROADMAP_CATALOG.allGroups);
+    if (categoryMeta.id === "role") return [{ heading: `职业路线 · ${ROLE_ROUTES.length} 条`, routes: ROLE_ROUTES }];
+    return dedupeGroups(ROADMAP_CATALOG.categoryGroups[categoryMeta.id] ?? []);
+  }, [categoryMeta, query, searchResults]);
 
   const resultCount = searchResults.length || new Set(groups.flatMap((group) => group.routes.map((route) => route.slug))).size;
-  const supplementalRoutes = !query.trim() && typeMeta.id === "all"
-    ? ROADMAP_CATALOG.routes
-        .filter((route) => !route.inDirectory)
+  const supplementalRoutes = !query.trim() && categoryMeta.id === "all"
+    ? ROADMAP_CATALOG.routes.filter((route) => !route.inDirectory)
         .map((route) => ROADMAP_MAP.get(route.slug))
         .filter((route): route is Roadmap => Boolean(route))
     : [];
-  const extras = !query.trim() && typeMeta.id === "all"
+  const extras = !query.trim() && categoryMeta.id === "all"
     ? [...ROADMAP_MAP.values()]
         .filter((route) => route.groupLabel === "平台精编补充")
         .filter((route, index, list) => list.findIndex((item) => item.id === route.id) === index)
@@ -228,7 +208,7 @@ export function RoadmapIndexPage() {
         <p className="eyebrow mb-1.5">开发者路线图 · {ROADMAP_TOTAL} 条</p>
         <h1 className="font-display text-[30px] font-bold leading-tight tracking-tight text-ink sm:text-[38px]">路线图库</h1>
         <p className="mt-2 max-w-2xl text-[12px] leading-6 text-muted">
-          {ROADMAP_TOTAL} 条路线，先选路线类型，结果在下方展示。搜索会跨全部路线名称、技术名和主题关键词，不受当前分类限制。
+          {ROADMAP_TOTAL} 条路线，沿用技术方向分类并增加“职业路线”。先选一个分类，结果在下方展示；搜索会跨全部路线、技术名和主题关键词。
         </p>
       </div>
 
@@ -244,34 +224,34 @@ export function RoadmapIndexPage() {
       ) : null}
 
       <section className="card mb-4 p-3 sm:p-4">
-        <div className="mb-2 flex items-center justify-between gap-2">
-          <p className="eyebrow">路线类型</p>
-          <span className="text-[8.5px] text-muted/60">{ROADMAP_TOTAL} 条</span>
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+          <p className="eyebrow">路线分类</p>
+          <span className="text-[8.5px] text-muted/60">职业路线 + {ROADMAP_TOTAL} 条技术方向</span>
         </div>
-        <div className="flex flex-wrap gap-1 pb-1">
-          {TYPE_TABS.map((tab) => {
-            const active = !searching && typeMeta.id === tab.id;
+        <div className="flex flex-wrap gap-1.5">
+          {CATEGORY_TABS.map((tab) => {
+            const active = !searching && categoryMeta.id === tab.id;
             return (
               <button
                 key={tab.id}
-                onClick={() => chooseType(tab.id)}
-                className={`flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-2 text-[10.5px] transition ${
+                onClick={() => chooseCategory(tab.id)}
+                className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-[10px] transition ${
                   active ? "border-accent/35 bg-accent/[0.07] font-semibold text-accent" : "border-line/10 bg-surface text-muted hover:border-accent/25 hover:text-ink"
                 }`}
               >
                 {tab.label}
-                <span className={`font-mono text-[8.5px] ${active ? "text-accent/70" : "text-muted/50"}`}>{tab.count}</span>
+                <span className={`font-mono text-[8px] ${active ? "text-accent/70" : "text-muted/50"}`}>{tab.count}</span>
               </button>
             );
           })}
         </div>
-        <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center">
+        <div className="mt-3 flex flex-col gap-2 border-t border-line/10 pt-3 sm:flex-row sm:items-center">
           <div className="relative min-w-0 flex-1">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索路线、技术名或主题关键词，例如 React / 数据库 / 性能…"
+              placeholder="搜索全部路线、技术名或主题关键词，例如 React / 数据库 / 性能…"
               className="input py-2 pl-9 text-[11.5px]"
             />
             {query ? (
@@ -282,8 +262,8 @@ export function RoadmapIndexPage() {
           </div>
           <span className="font-mono text-[9px] text-muted/60">{resultCount} 条</span>
         </div>
-        <div className="mt-2 flex flex-wrap items-center gap-2 border-t border-line/10 pt-2 text-[8.5px] text-muted/70">
-          <span>{searching ? "全站搜索" : `当前：${typeMeta.label}`}</span>
+        <div className="mt-2 flex flex-wrap items-center gap-2 text-[8.5px] text-muted/70">
+          <span>{searching ? "全站搜索" : `当前：${categoryMeta.label}`}</span>
           <span className="chip border-accent/20 text-accent">分类计数已校验</span>
           <span>{ROADMAP_TOTAL}/{ROADMAP_TOTAL} 条有站内详情 · {OFFICIAL_NODE_TOTAL.toLocaleString("zh-CN")} 个主题</span>
         </div>
@@ -291,7 +271,7 @@ export function RoadmapIndexPage() {
 
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
-          <p className="text-[11px] font-semibold text-ink">{searching ? "搜索结果" : typeMeta.label}</p>
+          <p className="text-[11px] font-semibold text-ink">{searching ? "搜索结果" : categoryMeta.label}</p>
           <p className="mt-0.5 text-[8.5px] text-muted/60">
             {searching ? "搜索会匹配路线名称、中文名、技术名和全部主题关键词。" : "点击卡片打开站内详情，或直接加入学习计划。"}
           </p>
@@ -303,11 +283,11 @@ export function RoadmapIndexPage() {
         {groups.length === 0 ? (
           <div className="rounded-xl border border-dashed border-line/20 py-12 text-center text-[12px] text-muted">
             没有匹配的路线或主题。
-            <button onClick={() => { setQuery(""); chooseType("all"); }} className="btn-ghost mt-3">查看全部路线</button>
+            <button onClick={() => { setQuery(""); chooseCategory("all"); }} className="btn-ghost mt-3">查看全部路线</button>
           </div>
         ) : (
           groups.map((group) => (
-            <section key={`${typeMeta.id}-${group.heading}`}>
+            <section key={`${categoryMeta.id}-${group.heading}`}>
               <h2 className="mb-2 text-[11px] font-semibold tracking-[0.06em] text-muted/70">{groupLabelZh(group.heading)}</h2>
               <div className="grid gap-1.5 sm:grid-cols-2">
                 {group.routes.map((item) => {
@@ -347,7 +327,7 @@ export function RoadmapIndexPage() {
       ) : null}
 
       <div className="mt-5 rounded-xl bg-raised/30 px-3.5 py-2.5 text-[9px] leading-4 text-muted/70">
-        路线按职业 / 技术 / 入门 / 最佳实践分类；共 {ROADMAP_TOTAL} 条目录路线，全部分类计数已校验。搜索覆盖路线名称、技术名和全部主题关键词。
+        分类沿用技术方向并增加“职业路线”；共 {ROADMAP_TOTAL} 条目录路线，所有分类计数已校验。搜索覆盖路线名称、技术名和全部主题关键词。
       </div>
     </PageContainer>
   );
@@ -378,7 +358,7 @@ export function RoadmapDetailPage() {
   );
   const currentPlan = state.plan?.goal.roadmapId === roadmap.id;
   const groupName = groupLabelZh(roadmap.groupLabel);
-  const groupType = typeTabForGroup(roadmap.groupLabel);
+  const contextCategory = roadmapContextCategory(roadmap);
   const categoryLabels = [...new Set(
     roadmap.catalogCategories
       .map((id) => ROADMAP_CATALOG_CATEGORIES.find((item) => item.id === id))
@@ -392,7 +372,7 @@ export function RoadmapDetailPage() {
         items={[
           { label: "总览", to: "/" },
           { label: "路线图库", to: "/roadmap" },
-          ...(groupType ? [{ label: groupName, to: `/roadmap?type=${groupType}` }] : []),
+          ...(contextCategory ? [{ label: contextCategory.label, to: `/roadmap?category=${contextCategory.id}` }] : []),
           { label: roadmapDisplayName(roadmap) },
         ]}
         className="mb-4"

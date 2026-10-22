@@ -9,17 +9,9 @@ import {
   Route,
   Sparkles,
 } from "lucide-react";
-import { ROADMAPS, ROADMAP_CATALOG_CATEGORIES, ROADMAP_MAP, categoryLabelZh, groupLabelZh, roadmapDisplayName } from "../data/roadmaps";
+import { ROADMAPS, ROADMAP_CATALOG_CATEGORIES, ROADMAP_MAP, categoryLabelZh, groupLabelZh, roadmapContextCategory, roadmapDisplayName } from "../data/roadmaps";
 import { buildTopicGuide } from "../lib/topic-guide";
 import { Breadcrumbs, PageContainer } from "../components/ui";
-
-function typeForGroup(group: string): string | null {
-  if (group === "Role Based Roadmaps") return "role";
-  if (group === "Skill Based Roadmaps") return "skill";
-  if (group === "Absolute Beginners") return "beginner";
-  if (group === "Best Practices") return "best";
-  return null;
-}
 
 export function TopicPage() {
   const { roadmapId = "", topicIndex = "" } = useParams();
@@ -41,7 +33,7 @@ export function TopicPage() {
     );
   }
 
-  const type = typeForGroup(roadmap.groupLabel);
+  const contextCategory = roadmapContextCategory(roadmap);
   const guide = buildTopicGuide(roadmapDisplayName(roadmap), roadmap, topic, stage?.title ?? "路线节点");
   const relatedRoutes = ROADMAPS.filter((candidate) => candidate.id !== roadmap.id)
     .filter((candidate) => {
@@ -64,7 +56,7 @@ export function TopicPage() {
         items={[
           { label: "总览", to: "/" },
           { label: "路线图库", to: "/roadmap" },
-          ...(type ? [{ label: groupLabelZh(roadmap.groupLabel), to: `/roadmap?type=${type}` }] : []),
+          ...(contextCategory ? [{ label: contextCategory.label, to: `/roadmap?category=${contextCategory.id}` }] : []),
           { label: roadmapDisplayName(roadmap), to: `/roadmap/${roadmap.id}` },
           { label: topic },
         ]}

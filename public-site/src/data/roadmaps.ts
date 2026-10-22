@@ -1329,3 +1329,11 @@ export function relatedRoutesFor(roadmap: Roadmap, limit = 8): Roadmap[] {
     .slice(0, limit)
     .map((item) => item.candidate);
 }
+
+export function roadmapContextCategory(roadmap: Roadmap): { id: string; label: string } | null {
+  if (roadmap.groupLabel === "Role Based Roadmaps") return { id: "role", label: "职业路线" };
+  if (roadmap.groupLabel === "Absolute Beginners") return { id: "beginner", label: "零基础入门" };
+  if (roadmap.groupLabel === "Best Practices") return { id: "best", label: "最佳实践" };
+  const first = roadmap.catalogCategories[0];
+  return first ? { id: first, label: categoryLabelZh(first) } : null;
+}
