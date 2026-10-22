@@ -166,7 +166,7 @@ const CATEGORY_LABELS_ZH: Record<string, string> = {
 
 const GROUP_LABELS_ZH: Record<string, string> = {
   "New Roadmaps": "最新路线",
-  "Role Based Roadmaps": "角色路线",
+  "Role Based Roadmaps": "职业路线",
   "Skill Based Roadmaps": "技术路线",
   "Absolute Beginners": "零基础入门",
   "Best Practices": "最佳实践",
@@ -202,7 +202,7 @@ export function roadmapDisplayName(roadmap: { name: string; nameZh?: string }): 
 
 const PLAN_GROUP_LABELS: Record<string, string> = {
   "New Roadmaps": "最新路线",
-  "Role Based Roadmaps": "角色路线",
+  "Role Based Roadmaps": "职业路线",
   "Skill Based Roadmaps": "技术路线",
   "Absolute Beginners": "零基础路线",
   "Best Practices": "最佳实践",
