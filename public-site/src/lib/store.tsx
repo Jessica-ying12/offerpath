@@ -9,9 +9,19 @@ import {
 } from "react";
 import { ALL_QA, DOCS, QA_MAP } from "./content";
 import { initialQaProgress, isDue, nextQaProgress } from "./srs";
-import type { ActivityItem, AppState, DocProgress, QaProgress, QuizAttempt, RoleId } from "./types";
+import type {
+  ActivityItem,
+  AppState,
+  DocProgress,
+  LocalProfile,
+  QaProgress,
+  QuizAttempt,
+  RoleId,
+} from "./types";
 
 const STORAGE_KEY = "offerpath-deep-v1";
+const PROFILE_STORE_KEY = "offerpath-profiles-v1";
+const PROFILE_STATE_PREFIX = "offerpath-deep-v1:";
 
 const DEFAULT_STATE: AppState = {
   version: 1,
@@ -29,34 +39,85 @@ const DEFAULT_STATE: AppState = {
   activity: [],
 };
 
-function loadState(): AppState {
+function normalizeState(parsed: Partial<AppState>): AppState {
+  return {
+    ...DEFAULT_STATE,
+    ...parsed,
+    docs: parsed.docs ?? {},
+    qa: parsed.qa ?? {},
+    checklists: parsed.checklists ?? {},
+    notes: parsed.notes ?? {},
+    quizAttempts: parsed.quizAttempts ?? [],
+    quizMistakes: parsed.quizMistakes ?? {},
+    activity: parsed.activity ?? [],
+  };
+}
+
+function profileStateKey(profileId: string): string {
+  return `${PROFILE_STATE_PREFIX}${profileId}`;
+}
+
+function loadStateFor(profileId: string): AppState {
   if (typeof window === "undefined") return DEFAULT_STATE;
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
+    const raw =
+      window.localStorage.getItem(profileStateKey(profileId)) ??
+      (profileId === "default" ? window.localStorage.getItem(STORAGE_KEY) : null);
     if (!raw) return DEFAULT_STATE;
     const parsed = JSON.parse(raw) as Partial<AppState>;
     if (parsed.version !== 1) return DEFAULT_STATE;
-    return {
-      ...DEFAULT_STATE,
-      ...parsed,
-      docs: parsed.docs ?? {},
-      qa: parsed.qa ?? {},
-      checklists: parsed.checklists ?? {},
-      notes: parsed.notes ?? {},
-      quizAttempts: parsed.quizAttempts ?? [],
-      quizMistakes: parsed.quizMistakes ?? {},
-      activity: parsed.activity ?? [],
-    };
+    return normalizeState(parsed);
   } catch {
     return DEFAULT_STATE;
   }
+}
+
+function createProfileId(): string {
+  return `p-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+}
+
+function loadProfiles(): { profiles: LocalProfile[]; activeId: string } {
+  if (typeof window === "undefined") {
+    return {
+      profiles: [{ id: "default", name: "学习者", createdAt: new Date().toISOString() }],
+      activeId: "default",
+    };
+  }
+  try {
+    const raw = window.localStorage.getItem(PROFILE_STORE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw) as { profiles?: LocalProfile[]; activeId?: string };
+      const profiles = (parsed.profiles ?? []).filter((profile) => profile.id && profile.name);
+      if (profiles.length > 0) {
+        const activeId = profiles.some((profile) => profile.id === parsed.activeId)
+          ? parsed.activeId!
+          : profiles[0].id;
+        return { profiles, activeId };
+      }
+    }
+  } catch {
+    // Fall through to legacy migration.
+  }
+  const legacy = window.localStorage.getItem(STORAGE_KEY);
+  const profile: LocalProfile = {
+    id: "default",
+    name: "学习者",
+    createdAt: new Date().toISOString(),
+  };
+  if (legacy) window.localStorage.setItem(profileStateKey(profile.id), legacy);
+  const result = { profiles: [profile], activeId: profile.id };
+  window.localStorage.setItem(PROFILE_STORE_KEY, JSON.stringify(result));
+  return result;
 }
 
 function activityId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
-function pushActivity(activity: ActivityItem[], item: Omit<ActivityItem, "id" | "at">): ActivityItem[] {
+function pushActivity(
+  activity: ActivityItem[],
+  item: Omit<ActivityItem, "id" | "at">,
+): ActivityItem[] {
   return [
     { ...item, id: activityId(), at: new Date().toISOString() },
     ...activity,
@@ -69,17 +130,27 @@ type Store = {
   masteredQa: number;
   completedDocs: number;
   streak: number;
+  profiles: LocalProfile[];
+  activeProfile: LocalProfile;
   setTheme: (theme: "light" | "dark") => void;
   setFontSize: (size: number) => void;
   setLineHeight: (height: number) => void;
   setRole: (role: RoleId) => void;
   setJd: (jd: string) => void;
+  switchProfile: (profileId: string) => void;
+  createProfile: (name: string) => void;
+  renameProfile: (profileId: string, name: string) => void;
+  deleteProfile: (profileId: string) => void;
   updateDocProgress: (docId: string, percent: number, heading: string | null) => void;
   markDocComplete: (docId: string) => void;
   toggleChecklist: (key: string, checked: boolean) => void;
   saveNote: (docId: string, note: string) => void;
   reviewQa: (qaId: string, good: boolean) => QaProgress;
-  recordQuiz: (attempt: Omit<QuizAttempt, "id" | "at">, wrongIds: string[], correctIds: string[]) => void;
+  recordQuiz: (
+    attempt: Omit<QuizAttempt, "id" | "at">,
+    wrongIds: string[],
+    correctIds: string[],
+  ) => void;
   exportState: () => string;
   importState: (json: string) => void;
   resetState: () => void;
@@ -88,11 +159,24 @@ type Store = {
 const StoreContext = createContext<Store | null>(null);
 
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<AppState>(loadState);
+  const initial = useMemo(() => {
+    const profileStore = loadProfiles();
+    return { ...profileStore, state: loadStateFor(profileStore.activeId) };
+  }, []);
+  const [profiles, setProfiles] = useState<LocalProfile[]>(initial.profiles);
+  const [activeProfileId, setActiveProfileId] = useState(initial.activeId);
+  const [state, setState] = useState<AppState>(initial.state);
 
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [state]);
+    window.localStorage.setItem(profileStateKey(activeProfileId), JSON.stringify(state));
+  }, [state, activeProfileId]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      PROFILE_STORE_KEY,
+      JSON.stringify({ profiles, activeId: activeProfileId }),
+    );
+  }, [profiles, activeProfileId]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", state.theme === "dark");
@@ -121,6 +205,53 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const setJd = useCallback((jd: string) => {
     setState((current) => ({ ...current, jd }));
   }, []);
+
+  const switchProfile = useCallback(
+    (profileId: string) => {
+      if (profileId === activeProfileId) return;
+      if (!profiles.some((profile) => profile.id === profileId)) return;
+      setState(loadStateFor(profileId));
+      setActiveProfileId(profileId);
+    },
+    [activeProfileId, profiles],
+  );
+
+  const createProfile = useCallback((name: string) => {
+    const trimmed = name.trim().slice(0, 24);
+    if (!trimmed) return;
+    const profile: LocalProfile = {
+      id: createProfileId(),
+      name: trimmed,
+      createdAt: new Date().toISOString(),
+    };
+    setProfiles((current) => [...current, profile]);
+    setState(DEFAULT_STATE);
+    setActiveProfileId(profile.id);
+  }, []);
+
+  const renameProfile = useCallback((profileId: string, name: string) => {
+    const trimmed = name.trim().slice(0, 24);
+    if (!trimmed) return;
+    setProfiles((current) =>
+      current.map((profile) => (profile.id === profileId ? { ...profile, name: trimmed } : profile)),
+    );
+  }, []);
+
+  const deleteProfile = useCallback(
+    (profileId: string) => {
+      if (profiles.length <= 1) return;
+      const remaining = profiles.filter((profile) => profile.id !== profileId);
+      if (remaining.length === 0) return;
+      window.localStorage.removeItem(profileStateKey(profileId));
+      setProfiles(remaining);
+      if (profileId === activeProfileId) {
+        const next = remaining[0];
+        setState(loadStateFor(next.id));
+        setActiveProfileId(next.id);
+      }
+    },
+    [activeProfileId, profiles],
+  );
 
   const updateDocProgress = useCallback((docId: string, percent: number, heading: string | null) => {
     setState((current) => {
@@ -191,23 +322,26 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
-  const reviewQa = useCallback((qaId: string, good: boolean) => {
-    const current = state.qa[qaId] ?? initialQaProgress();
-    const next = nextQaProgress(current, good);
-    setState((previous) => {
-      const item = ALL_QA.find((question) => question.id === qaId);
-      return {
-        ...previous,
-        qa: { ...previous.qa, [qaId]: next },
-        activity: pushActivity(previous.activity, {
-          type: "qa",
-          label: `${good ? "答上来" : "需再练"} · ${item?.bankTitle ?? qaId} Q${item?.number ?? ""}`,
-          href: `/qa/${item?.docId ?? ""}`,
-        }),
-      };
-    });
-    return next;
-  }, [state.qa]);
+  const reviewQa = useCallback(
+    (qaId: string, good: boolean) => {
+      const current = state.qa[qaId] ?? initialQaProgress();
+      const next = nextQaProgress(current, good);
+      setState((previous) => {
+        const item = ALL_QA.find((question) => question.id === qaId);
+        return {
+          ...previous,
+          qa: { ...previous.qa, [qaId]: next },
+          activity: pushActivity(previous.activity, {
+            type: "qa",
+            label: `${good ? "答上来" : "需再练"} · ${item?.bankTitle ?? qaId} Q${item?.number ?? ""}`,
+            href: `/qa/${item?.docId ?? ""}`,
+          }),
+        };
+      });
+      return next;
+    },
+    [state.qa],
+  );
 
   const recordQuiz = useCallback(
     (attempt: Omit<QuizAttempt, "id" | "at">, wrongIds: string[], correctIds: string[]) => {
@@ -244,23 +378,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const importState = useCallback((json: string) => {
     const parsed = JSON.parse(json) as Partial<AppState>;
     if (parsed.version !== 1) throw new Error("备份版本不兼容");
-    setState({
-      ...DEFAULT_STATE,
-      ...parsed,
-      docs: parsed.docs ?? {},
-      qa: parsed.qa ?? {},
-      checklists: parsed.checklists ?? {},
-      notes: parsed.notes ?? {},
-      quizAttempts: parsed.quizAttempts ?? [],
-      quizMistakes: parsed.quizMistakes ?? {},
-      activity: parsed.activity ?? [],
-    });
+    setState(normalizeState(parsed));
   }, []);
 
   const resetState = useCallback(() => {
-    window.localStorage.removeItem(STORAGE_KEY);
+    window.localStorage.removeItem(profileStateKey(activeProfileId));
     setState(DEFAULT_STATE);
-  }, []);
+  }, [activeProfileId]);
 
   const derived = useMemo(() => {
     let dueQa = 0;
@@ -290,9 +414,17 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return { dueQa, masteredQa, completedDocs, streak };
   }, [state.qa, state.docs, state.activity]);
 
+  const activeProfile =
+    profiles.find((profile) => profile.id === activeProfileId) ?? profiles[0];
   const value: Store = {
     state,
     ...derived,
+    profiles,
+    activeProfile,
+    switchProfile,
+    createProfile,
+    renameProfile,
+    deleteProfile,
     setTheme,
     setFontSize,
     setLineHeight,

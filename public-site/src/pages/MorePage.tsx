@@ -14,14 +14,17 @@ import {
 import { DOCS, TOTAL_QA } from "../lib/content";
 import { useStore } from "../lib/store";
 import { PageContainer, PageHeader } from "../components/ui";
+import meta from "../data/question-meta.json";
 
 const LINKS = [
-  { href: "/plan", label: "学习路径", desc: "按岗位和 JD 重排 10 周路线", icon: Route },
+  { href: "/roadmap", label: "完整路线图", desc: "从准备到面试的全部知识节点", icon: Route },
+  { href: "/plan", label: "10 周计划", desc: "按岗位和 JD 重排学习计划", icon: Route },
   { href: "/review", label: "周期复习", desc: "D+1 / D+3 / D+7 到期问答", icon: RotateCcw },
   { href: "/progress", label: "学习进度与备份", desc: "掌握度、记录、导出 JSON", icon: BarChart3 },
   { href: "/docs", label: "深度文档", desc: "21 篇精读与全文检索", icon: BookOpen },
   { href: "/qa", label: "面试自测", desc: `${TOTAL_QA} 道直接回答 + 追问`, icon: MessageSquareQuote },
-  { href: "/quiz", label: "题库练习", desc: "210 道单选与错题重练", icon: Layers3 },
+  { href: "/quiz", label: "题库练习", desc: `${meta.total} 道五种题型与逐题纠正`, icon: Layers3 },
+  { href: "/profile", label: "用户与数据", desc: "本机多用户、目标岗位与备份", icon: Route },
 ];
 
 export function MorePage() {
@@ -29,6 +32,7 @@ export function MorePage() {
   return (
     <PageContainer>
       <PageHeader
+        back={{ to: "/", label: "返回总览" }}
         eyebrow="MORE · SETTINGS"
         title="更多"
         description="学习入口、阅读设置与本机数据。平台不登录、不收集阅读记录。"
@@ -109,6 +113,31 @@ export function MorePage() {
           </Link>
         </section>
       </div>
+
+      <section className="mt-6 rounded-2xl border border-line/10 bg-surface p-5">
+        <p className="eyebrow mb-2">路线与资料来源</p>
+        <p className="text-[10px] leading-5 text-muted">
+          路线阶段参考 roadmap.sh，具体知识边界以官方文档为准；题目和精读为本平台基于你的学习包重新编排。
+        </p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {[
+            ["roadmap.sh Frontend", "https://roadmap.sh/frontend"],
+            ["roadmap.sh React Native", "https://roadmap.sh/react-native"],
+            ["roadmap.sh Backend", "https://roadmap.sh/backend"],
+            ["MDN", "https://developer.mozilla.org/zh-CN/docs/Web"],
+            ["React", "https://react.dev/learn"],
+            ["React Native", "https://reactnative.dev/docs/getting-started"],
+            ["微信小程序", "https://developers.weixin.qq.com/miniprogram/dev/framework/"],
+            ["TypeScript", "https://www.typescriptlang.org/docs/"],
+            ["Spring", "https://spring.io/guides"],
+            ["MySQL", "https://dev.mysql.com/doc/refman/8.4/en/"],
+          ].map(([label, url]) => (
+            <a key={url} href={url} target="_blank" rel="noreferrer noopener" className="chip hover:border-accent/30">
+              {label} ↗
+            </a>
+          ))}
+        </div>
+      </section>
 
       <section className="mt-6 rounded-2xl border border-line/10 bg-raised/25 p-5">
         <div className="flex items-start gap-3">

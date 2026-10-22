@@ -45,6 +45,7 @@ export function ReviewPage() {
   return (
     <PageContainer>
       <PageHeader
+        back={{ to: "/", label: "返回总览" }}
         eyebrow="SPACED REVIEW · D+1 / D+3 / D+7"
         title="周期复习"
         description="先遮住答案，用自己的话回答。答上来进入下一轮，答错回到 D+1；三次通过才标记「已掌握」。"

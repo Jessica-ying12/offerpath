@@ -35,6 +35,7 @@ export function PlanPage() {
   return (
     <PageContainer>
       <PageHeader
+        back={{ to: "/roadmap", label: "返回完整路线图" }}
         eyebrow="TARGET → PATH → EVIDENCE"
         title="学习路径"
         description="先选目标岗位，再粘贴 JD。平台按命中技术重排 21 篇精读，并给出 10 周路径、产出和验收标准。"

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import {
   ArrowUpRight,
   BookOpen,
@@ -34,14 +35,22 @@ export function PageHeader({
   title,
   description,
   actions,
+  back,
 }: {
   eyebrow: string;
   title: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
+  back?: { to: string; label: string };
 }) {
   return (
-    <div className="mb-7 flex flex-col gap-4 sm:mb-9 sm:flex-row sm:items-end sm:justify-between">
+    <div className="mb-7">
+      {back ? (
+        <Link to={back.to} className="mb-3 inline-flex items-center gap-1 text-[10.5px] text-muted transition hover:text-ink">
+          <ArrowLeft className="h-3 w-3" /> {back.label}
+        </Link>
+      ) : null}
+    <div className="flex flex-col gap-4 sm:mb-0 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
         <p className="eyebrow mb-2">{eyebrow}</p>
         <h1 className="font-display text-[30px] font-bold leading-[1.15] tracking-tight text-ink sm:text-[38px]">
@@ -54,6 +63,7 @@ export function PageHeader({
         ) : null}
       </div>
       {actions ? <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div> : null}
+    </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
   Flame,
   Home,
   Layers3,
+  Map as MapIcon,
   Menu,
   MessageSquareQuote,
   Moon,
@@ -24,6 +25,7 @@ import {
 import { DOCS, ROLES, TOTAL_QA } from "../lib/content";
 import { useStore } from "../lib/store";
 import { SearchDialog } from "./SearchDialog";
+import { ProfileMenu } from "./ProfileMenu";
 
 type NavItem = {
   href: string;
@@ -40,7 +42,7 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
     label: "学习",
     items: [
       { href: "/", label: "总览", icon: Home, exact: true },
-      { href: "/plan", label: "学习路径", icon: Route },
+      { href: "/roadmap", label: "完整路线图", icon: MapIcon },
       { href: "/docs", label: "深度文档", icon: BookOpen, badge: `${DOCS.length}` },
       { href: "/qa", label: "面试自测", icon: MessageSquareQuote, badge: `${TOTAL_QA}` },
     ],
@@ -55,6 +57,7 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
   {
     label: "成长",
     items: [
+      { href: "/plan", label: "10 周计划", icon: Route },
       { href: "/progress", label: "学习进度", icon: BarChart3 },
       { href: "/more", label: "更多", icon: MoreHorizontal, hideDesktop: true },
     ],
@@ -63,15 +66,16 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
 
 const MOBILE_NAV = [
   { href: "/", label: "总览", icon: Home, exact: true },
-  { href: "/docs", label: "文档", icon: BookOpen },
-  { href: "/qa", label: "自测", icon: MessageSquareQuote },
+  { href: "/roadmap", label: "路线", icon: MapIcon },
   { href: "/quiz", label: "题库", icon: Layers3 },
+  { href: "/review", label: "复习", icon: RotateCcw },
   { href: "/more", label: "更多", icon: MoreHorizontal },
 ];
 
 const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/$/, "总览"],
-  [/^\/plan/, "学习路径"],
+  [/^\/plan/, "10 周计划"],
+  [/^\/roadmap/, "完整路线图"],
   [/^\/docs/, "深度文档"],
   [/^\/doc\//, "精读"],
   [/^\/qa/, "面试自测"],
@@ -79,6 +83,7 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/review/, "周期复习"],
   [/^\/progress/, "学习进度"],
   [/^\/more/, "更多"],
+  [/^\/profile/, "用户与数据"],
 ];
 
 function isActive(pathname: string, href: string, exact?: boolean) {
@@ -247,7 +252,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b border-line/10 bg-paper/108 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-line/10 bg-paper/90 backdrop-blur-xl">
         <div className="mx-auto flex h-[60px] max-w-[1500px] items-center gap-4 px-4 sm:px-6">
           <div className="flex w-auto shrink-0 items-center gap-3 lg:w-[252px]">
             <button
@@ -302,6 +307,12 @@ export function AppShell({ children }: { children: ReactNode }) {
                 </span>
               </Link>
             ) : null}
+            <div className="hidden sm:block">
+              <ProfileMenu />
+            </div>
+            <div className="sm:hidden">
+              <ProfileMenu compact />
+            </div>
             <button
               onClick={() => setTheme(state.theme === "light" ? "dark" : "light")}
               className="flex h-8 w-8 items-center justify-center rounded-lg text-muted transition hover:bg-raised hover:text-ink"
@@ -364,6 +375,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                 ) : null}
                 <Icon className="h-[19px] w-[19px]" strokeWidth={active ? 2.2 : 1.7} />
                 {item.label}
+                {item.href === "/review" && dueQa > 0 ? (
+                  <span className="absolute right-1/4 top-1.5 h-1.5 w-1.5 rounded-full bg-coral" />
+                ) : null}
               </NavLink>
             );
           })}

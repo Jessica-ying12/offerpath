@@ -1,10 +1,5 @@
 import GithubSlugger from "github-slugger";
-import type { DocHeading, DocMeta, QaBank, QaItem, QuizQuestion, RoleId } from "./types";
-import mobile from "../data/curriculum/mobile.json";
-import fullstack from "../data/curriculum/fullstack.json";
-import backend from "../data/curriculum/backend-java.json";
-import database from "../data/curriculum/database-mysql.json";
-import csAi from "../data/curriculum/cs-ai-foundations.json";
+import type { DocHeading, DocMeta, QaBank, QaItem, RoleId } from "./types";
 
 const docFiles = import.meta.glob("../../content/docs/*.md", {
   query: "?raw",
@@ -457,53 +452,6 @@ export const ROLES: Array<{ id: RoleId; label: string; desc: string }> = [
   { id: "mini", label: "微信小程序", desc: "双线程、分包、登录支付与进阶能力" },
   { id: "web", label: "Web 前端", desc: "HTML/CSS/JS、工程化、测试与 Node" },
   { id: "flutter", label: "Flutter", desc: "Dart、三棵树、状态管理与原生通道" },
-];
-
-type RawTrack = {
-  id: string;
-  shortName: string;
-  chapters: Array<{ id: string; title: string; level: string }>;
-  questions: Array<{
-    id: string;
-    prompt: string;
-    options: string[];
-    answerIndex: number;
-    explanation: string;
-    skills: string[];
-    level: string;
-    chapterId: string;
-  }>;
-};
-
-const TRACKS = [mobile, fullstack, backend, database, csAi] as unknown as RawTrack[];
-
-export const QUIZ_QUESTIONS: QuizQuestion[] = TRACKS.flatMap((track) =>
-  track.questions.map((question) => ({
-    id: question.id,
-    prompt: question.prompt,
-    options: question.options,
-    answerIndex: question.answerIndex,
-    explanation: question.explanation,
-    skills: question.skills,
-    level: question.level,
-    chapterId: question.chapterId,
-    courseId: track.id,
-    courseName: track.shortName,
-    chapterTitle:
-      track.chapters.find((chapter) => chapter.id === question.chapterId)?.title ?? "",
-  })),
-);
-
-export const QUIZ_COURSES = TRACKS.map((track) => ({
-  id: track.id,
-  name: track.shortName,
-  count: track.questions.length,
-}));
-
-export const QUIZ_LEVELS = [
-  { id: "junior", label: "初级" },
-  { id: "middle", label: "中级" },
-  { id: "senior", label: "高级" },
 ];
 
 export const PLAN_WEEKS = [

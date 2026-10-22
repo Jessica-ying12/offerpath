@@ -15,6 +15,7 @@ export default {
         lime: "rgb(var(--lime) / <alpha-value>)",
         coral: "rgb(var(--coral) / <alpha-value>)",
         sky: "rgb(var(--sky) / <alpha-value>)",
+        lilac: "rgb(var(--lilac) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],

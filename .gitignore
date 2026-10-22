@@ -19,3 +19,5 @@ test-results/
 artifacts/
 
 .publish-state.json
+
+*.qoder.site

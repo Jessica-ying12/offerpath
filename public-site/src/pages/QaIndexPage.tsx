@@ -41,6 +41,7 @@ export function QaIndexPage() {
   return (
     <PageContainer>
       <PageHeader
+        back={{ to: "/", label: "返回总览" }}
         eyebrow={`INTERVIEW SELF-TEST · ${TOTAL_QA} QUESTIONS`}
         title="面试自测"
         description="每道题包含：先自己回答 → 直接回答 → 两层追问 → 陷阱/加分。答上来的题按 D+1 / D+3 / D+7 回到复习队列，三次通过才算掌握。"

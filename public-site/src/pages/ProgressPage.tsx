@@ -114,6 +114,7 @@ export function ProgressPage() {
   return (
     <PageContainer>
       <PageHeader
+        back={{ to: "/", label: "返回总览" }}
         eyebrow="EVIDENCE · LOCAL FIRST"
         title="学习进度"
         description="不统计“看了多久”，只看精读完成、问答掌握、到期复习和练习正确率。所有数据保存在本机浏览器。"

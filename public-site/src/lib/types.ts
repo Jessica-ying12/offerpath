@@ -1,5 +1,11 @@
 export type RoleId = "mobile" | "rn" | "mini" | "web" | "flutter";
 
+export type LocalProfile = {
+  id: string;
+  name: string;
+  createdAt: string;
+};
+
 export type DocHeading = {
   depth: 2 | 3;
   text: string;
