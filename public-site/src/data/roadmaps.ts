@@ -15,6 +15,7 @@ export type RoadmapNode = {
   bankDoc?: string;
   courseIds?: string[];
   external?: RoadmapLink[];
+  topicIndex?: number;
 };
 export type RoadmapStage = {
   id: string;
@@ -1162,7 +1163,7 @@ function officialNodes(slug: string): string[] {
   return OFFICIAL_NODE_MAP[slug]?.nodes ?? [];
 }
 
-function generatedStages(slug: string, officialUrl: string, topics: string[]): RoadmapStage[] {
+function generatedStages(slug: string, topics: string[]): RoadmapStage[] {
   const stageMeta = [
     { id: "map", title: "基础与路线地图", subtitle: "先知道这条路线包含什么" },
     { id: "core", title: "核心能力", subtitle: "必须掌握的高频主题" },
@@ -1172,30 +1173,22 @@ function generatedStages(slug: string, officialUrl: string, topics: string[]): R
   if (topics.length === 0) {
     return [{
       id: "official",
-      title: "官方完整路线",
-      subtitle: "打开官方图查看最新节点",
-      nodes: [{ title: "查看官方完整路线", external: [{ label: "官方路线", url: officialUrl }], priority: "核心" }],
+      title: "完整主题范围",
+      subtitle: "查看站内学习阶段",
+      nodes: [{ title: "查看完整主题范围", priority: "核心" }],
     }];
   }
-  const seen = new Set<string>();
   const size = Math.ceil(topics.length / stageMeta.length);
   return stageMeta.map((stage, index) => {
     const start = index * size;
     const end = index === stageMeta.length - 1 ? topics.length : start + size;
     const nodes = topics
       .slice(start, end)
-      .filter((title) => {
-        const key = title.toLowerCase();
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      })
-      .slice(0, 14)
-      .map((title) => ({
+      .map((title, offset) => ({
         title,
-        description: "官方路线主题。打开官方完整图查看最新资料与前后关系。",
+        description: "主题节点。点开学习指引，按目标、示例和自测逐步完成。",
         priority: index < 2 ? "核心" as const : "进阶" as const,
-        external: [{ label: "官方路线", url: officialUrl }],
+        topicIndex: start + offset,
       }));
     return {
       id: `${slug}-${stage.id}`,
@@ -1213,8 +1206,8 @@ const OFFICIAL_ROADMAPS: Roadmap[] = ROADMAP_CATALOG.routes.map((route) => {
   const group = primaryGroup(route.slug);
   const categoryTags = route.categories.map((id) => CATEGORY_ZH[id]).filter(Boolean);
   const description = categoryTags.length > 0
-    ? `roadmap.sh 官方路线，收录 ${topics.length} 个主题节点，覆盖 ${categoryTags.slice(0, 3).join(" / ")}。平台提供完整节点清单、学习计划与进度记录。`
-    : `roadmap.sh 官方路线，收录 ${topics.length} 个主题节点。平台提供完整节点清单、学习计划与进度记录。`;
+    ? `收录 ${topics.length} 个主题节点，覆盖 ${categoryTags.slice(0, 3).join(" / ")}。平台提供完整主题清单、学习计划与进度记录。`
+    : `收录 ${topics.length} 个主题节点。平台提供完整主题清单、学习计划与进度记录。`;
   if (curated) {
     return {
       ...curated,
@@ -1234,10 +1227,10 @@ const OFFICIAL_ROADMAPS: Roadmap[] = ROADMAP_CATALOG.routes.map((route) => {
     name: route.title,
     nameZh: ROADMAP_TITLE_ZH[route.slug],
     category: categoryForGroup(group),
-    audience: `官方路线 · ${topics.length} 个主题节点`,
+    audience: `完整节点 · ${topics.length} 个主题`,
     description,
     officialUrl,
-    stages: generatedStages(route.slug, officialUrl, topics),
+    stages: generatedStages(route.slug, topics),
     curated: false,
     groupLabel: group,
     catalogCategories: route.categories,
@@ -1313,4 +1306,26 @@ export function roadmapStats(roadmap: Roadmap, completedDocs: Set<string>): {
     stages: roadmap.stages.length,
     officialTopics: roadmap.officialTopics.length,
   };
+}
+
+export function relatedRoutesFor(roadmap: Roadmap, limit = 8): Roadmap[] {
+  const topics = roadmap.officialTopics.map((topic) => topic.toLowerCase());
+  if (topics.length === 0) return [];
+  return ROADMAPS
+    .filter((candidate) => candidate.id !== roadmap.id)
+    .map((candidate) => {
+      const names = [candidate.name, candidate.nameZh].filter((name): name is string => Boolean(name)).map((name) => name.toLowerCase());
+      const hits = names.reduce((sum, name) => {
+        if (name.length < 2) return sum;
+        const matched = name.length <= 3
+          ? topics.some((topic) => topic === name || topic.startsWith(`${name} `) || topic.includes(` ${name}`))
+          : topics.some((topic) => topic.includes(name));
+        return sum + (matched ? 1 : 0);
+      }, 0);
+      return { candidate, hits };
+    })
+    .filter((item) => item.hits > 0)
+    .sort((a, b) => b.hits - a.hits)
+    .slice(0, limit)
+    .map((item) => item.candidate);
 }

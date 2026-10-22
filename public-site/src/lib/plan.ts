@@ -241,7 +241,10 @@ function tasksForNode(
     actions.push({ label: "课程题库", href: `/quiz?tab=course&course=${node.courseIds[0]}`, minutes: 20, type: "quiz" });
   }
   if (actions.length === 0) {
-    actions.push({ label: "外部资料", href: roadmap.officialUrl, minutes: 30, type: "read" });
+    const href = node.topicIndex !== undefined
+      ? `/roadmap/${roadmap.id}/topic/${node.topicIndex}`
+      : `/roadmap/${roadmap.id}`;
+    actions.push({ label: "学习指引", href, minutes: 30, type: "read" });
   }
   const primary = actions[0];
   return [{

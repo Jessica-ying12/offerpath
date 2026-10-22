@@ -3,6 +3,7 @@ import { AppShell } from "./components/AppShell";
 import { StoreProvider } from "./lib/store";
 import { HomePage } from "./pages/HomePage";
 import { RoadmapIndexPage, RoadmapDetailPage } from "./pages/RoadmapPage";
+import { TopicPage } from "./pages/TopicPage";
 import { PlanPage } from "./pages/PlanPage";
 import { DocsPage } from "./pages/DocsPage";
 import { DocPage } from "./pages/DocPage";
@@ -25,6 +26,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/roadmap" element={<RoadmapIndexPage />} />
             <Route path="/roadmap/:roadmapId" element={<RoadmapDetailPage />} />
+            <Route path="/roadmap/:roadmapId/topic/:topicIndex" element={<TopicPage />} />
             <Route path="/plan" element={<PlanPage />} />
             <Route path="/docs" element={<DocsPage />} />
             <Route path="/doc/:docId" element={<DocPage />} />

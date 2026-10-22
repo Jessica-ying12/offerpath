@@ -18,7 +18,7 @@ import { PageContainer, PageHeader } from "../components/ui";
 import meta from "../data/question-meta.json";
 
 const LINKS = [
-  { href: "/roadmap", label: "路线图库", desc: "96 条官方路线、分类与完整节点", icon: Route },
+  { href: "/roadmap", label: "路线图库", desc: "96 条路线、分类与完整节点", icon: Route },
   { href: "/plan", label: "学习计划", desc: "按目标生成模块、任务与进度", icon: Route },
   { href: "/review", label: "周期复习", desc: "D+1 / D+3 / D+7 到期问答", icon: RotateCcw },
   { href: "/progress", label: "学习进度与备份", desc: "掌握度、记录、导出 JSON", icon: BarChart3 },
@@ -115,15 +115,12 @@ export function MorePage() {
       </div>
 
       <section className="mt-6 rounded-2xl border border-line/10 bg-surface p-5">
-        <p className="eyebrow mb-2">路线与资料来源</p>
+        <p className="eyebrow mb-2">技术资料来源</p>
         <p className="text-[10px] leading-5 text-muted">
-          路线阶段参考 roadmap.sh，具体知识边界以官方文档为准；题目和精读为本平台基于你的学习包重新编排。
+          路线与题目由平台整理；具体技术知识边界以各技术文档为准。
         </p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {[
-            ["roadmap.sh Frontend", "https://roadmap.sh/frontend"],
-            ["roadmap.sh React Native", "https://roadmap.sh/react-native"],
-            ["roadmap.sh Backend", "https://roadmap.sh/backend"],
             ["MDN", "https://developer.mozilla.org/zh-CN/docs/Web"],
             ["React", "https://react.dev/learn"],
             ["React Native", "https://reactnative.dev/docs/getting-started"],

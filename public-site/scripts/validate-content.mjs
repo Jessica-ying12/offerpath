@@ -87,7 +87,7 @@ for (const docId of docs.map((file) => file.slice(0, 2))) {
 console.log(`精读：${docs.length} 篇`);
 console.log(`问答：${qa.length} 份 / ${questions} 道 / ${followUps} 层追问 / ${traps} 个陷阱提示`);
 console.log(`题库：${bankTotal} 道 / ${requiredTypes.map((type) => `${type} ${bankCounts[type] ?? 0}`).join(" / ")}`);
-console.log(`路线：${catalog.total} 条目录 / 职业 ${groupCount("Role Based Roadmaps")} 条 / 技术 ${groupCount("Skill Based Roadmaps")} 条 / ${officialTopicTotal} 个官方主题`);
+console.log(`路线：${catalog.total} 条目录 / 职业 ${groupCount("Role Based Roadmaps")} 条 / 技术 ${groupCount("Skill Based Roadmaps")} 条 / ${officialTopicTotal} 个主题节点`);
 if (errors.length > 0) {
   console.error("\n校验失败：");
   for (const error of errors) console.error(`- ${error}`);
