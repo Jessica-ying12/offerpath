@@ -22,6 +22,7 @@
 | [REQ-015](REQ-015-public-deployment.md) | 公网可访问与生产运行 | done | Docker、部署文档、临时公网预览 |
 | [REQ-016](REQ-016-v2-qa-release.md) | v2 质量验收与发布 | done | 全量测试、浏览器走查、增量提交 |
 | [REQ-017](REQ-017-deep-content-and-public-site.md) | 深度内容、阅读器与公网学习站 | done | 21 篇精读、380 问答、公开站与 UI 重构 |
+| [REQ-018](REQ-018-multi-type-bank-roadmap-and-profiles.md) | 多题型题库、完整路线图与本机用户 | done | 2276 题、纠错、6 条路线、本机用户 |
 
 > 公开仓库：[Jessica-ying12/offerpath](https://github.com/Jessica-ying12/offerpath)；`main` 分支已推送并通过远程一致性校验。
 
@@ -31,7 +32,7 @@
 REQ-000 → REQ-001 → REQ-002 → REQ-003 → REQ-004
                                      └→ REQ-005 → REQ-006
 REQ-004/005 → REQ-007 → REQ-008 → REQ-009 → REQ-010
-REQ-003/004 → REQ-011 → REQ-012 → REQ-013 → REQ-014 → REQ-015 → REQ-016 → REQ-017
+REQ-003/004 → REQ-011 → REQ-012 → REQ-013 → REQ-014 → REQ-015 → REQ-016 → REQ-017 → REQ-018
 ```
 
 ## 约定

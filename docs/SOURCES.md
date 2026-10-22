@@ -72,3 +72,41 @@
 3. **可执行题必须真跑**：JavaScript 代码题参考答案在 Node 中执行并校验全部测试；Kotlin/SQL/Java 题在当前运行时无法安全执行时，明确标注“参考实现 + 自评/对照”，不伪装自动判分。
 4. **难度分层**：初级问“是什么、怎么用、边界”；中级问“机制、异常、取舍”；高级问“架构、容量、故障与成本”。
 5. **更新来源**：课程改版时同步更新章节参考链接；每年至少复核一次外链有效性。
+
+## 路线图与题型扩展（REQ-018）
+
+公开学习站的完整路线图参考 roadmap.sh 的角色路线，并重新编排为平台的精读、问答、题库和产出节点：
+
+- Frontend：https://roadmap.sh/frontend
+- JavaScript：https://roadmap.sh/javascript
+- TypeScript：https://roadmap.sh/typescript
+- React：https://roadmap.sh/react
+- React Native：https://roadmap.sh/react-native
+- Node.js：https://roadmap.sh/nodejs
+- Backend：https://roadmap.sh/backend
+- Java：https://roadmap.sh/java
+- Spring Boot：https://roadmap.sh/spring-boot
+- MySQL：https://roadmap.sh/mysql
+- Redis：https://roadmap.sh/redis
+- Computer Science：https://roadmap.sh/computer-science
+- System Design：https://roadmap.sh/system-design
+
+官方参考入口：
+
+- MDN Web Docs：https://developer.mozilla.org/zh-CN/docs/Web
+- React：https://react.dev/learn
+- React Native：https://reactnative.dev/docs/getting-started
+- 微信小程序：https://developers.weixin.qq.com/miniprogram/dev/framework/
+- TypeScript：https://www.typescriptlang.org/docs/
+- Node.js：https://nodejs.org/en/learn
+- Dev.java：https://dev.java/learn/
+- Spring Guides：https://spring.io/guides
+- MySQL 8.4 Reference：https://dev.mysql.com/doc/refman/8.4/en/
+- Redis Docs：https://redis.io/docs/latest/
+- OWASP Top 10：https://owasp.org/www-project-top-ten/
+
+题型与题目来源：
+
+- 选择题中的 210 道来自本仓库五门课程的自有题库。
+- 简答、填空、判断、多选和知识点单选由 `public-site/scripts/generate-questions.mjs` 基于 380 道原创问答生成/编排，解释与参考答案保留原问答内容。
+- 未抓取或复制第三方商业题库；外部练习站点仅作为资料链接。生成题会明确标注，自动纠错为本地关键词/精确匹配，不宣称语义评分。
