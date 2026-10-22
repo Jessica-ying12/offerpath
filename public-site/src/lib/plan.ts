@@ -176,6 +176,7 @@ function tasksForNode(
   stage: RoadmapStage,
   node: RoadmapNode,
   nodeIndex: number,
+  includeQa = true,
 ): PlanTask[] {
   const base = `generated-${roadmap.id}-${stage.id}-${nodeIndex}`;
   const actions: Array<{ label: string; href: string; minutes: number; type: PlanTaskType }> = [];
@@ -183,7 +184,7 @@ function tasksForNode(
   if (docs.length > 0) {
     actions.push({ label: "精读", href: `/doc/${docs[0]}`, minutes: 30, type: "read" });
   }
-  if (node.qaDoc && QA_MAP.has(node.qaDoc)) {
+  if (includeQa && node.qaDoc && QA_MAP.has(node.qaDoc)) {
     actions.push({ label: "自测", href: `/qa/${node.qaDoc}`, minutes: 20, type: "qa" });
   }
   const bankCount = node.bankDoc
@@ -213,18 +214,143 @@ function tasksForNode(
   }];
 }
 
-export function buildPlan(
-  planState: LearningPlanState,
+function uniqueDocs(ids: string[]): string[] {
+  return [...new Set(ids)].filter((id) => DOC_MAP.has(id));
+}
+
+function makeDocTask(
+  id: string,
+  docId: string,
+  type: "read" | "qa" | "quiz",
+  minutes: number,
+): PlanTask {
+  const doc = DOC_MAP.get(docId);
+  const title = doc?.title ?? docId;
+  if (type === "read") {
+    return {
+      id,
+      dayIndex: 0,
+      title: `补短板 · ${title}`,
+      type: "read",
+      href: `/doc/${docId}`,
+      nodeTitle: title,
+      docIds: [docId],
+      minutes,
+      source: "generated",
+    };
+  }
+  if (type === "qa") {
+    return {
+      id,
+      dayIndex: 0,
+      title: `面试问答 · ${title}`,
+      type: "qa",
+      href: `/qa/${docId}`,
+      nodeTitle: title,
+      minutes,
+      source: "generated",
+    };
+  }
+  return {
+    id,
+    dayIndex: 0,
+    title: `笔试题 · ${title}`,
+    type: "quiz",
+    href: `/quiz?doc=${docId}`,
+    nodeTitle: title,
+    minutes,
+    source: "generated",
+  };
+}
+
+function bankCountFor(docId: string): number {
+  return questionMeta.byDoc[docId as keyof typeof questionMeta.byDoc]?.total ?? 0;
+}
+
+function buildInterviewTasks(roadmap: Roadmap, goal: LearningPlanState["goal"]): PlanTask[] {
+  const analysis = analyzeJd(goal.resumeText ?? "");
+  const focus = uniqueDocs([...analysis.docIds, "09", "08", "12", "13"]).slice(0, 8);
+  const tasks: PlanTask[] = [
+    {
+      id: `resume-${roadmap.id}-project`,
+      dayIndex: 0,
+      title: "简历项目追问 · 用自己的项目回答",
+      type: "qa",
+      href: "/qa/08",
+      minutes: 30,
+      source: "generated",
+    },
+    {
+      id: `resume-${roadmap.id}-mock`,
+      dayIndex: 0,
+      title: "模拟面试 · 完整流程",
+      type: "qa",
+      href: "/qa",
+      minutes: 30,
+      source: "generated",
+    },
+  ];
+  for (const docId of focus) {
+    if (QA_MAP.has(docId)) tasks.push(makeDocTask(`resume-${docId}-qa`, docId, "qa", 20));
+    if (bankCountFor(docId) > 0) tasks.push(makeDocTask(`resume-${docId}-quiz`, docId, "quiz", 20));
+  }
+  const weak = analysis.missingCore.filter((doc) => !focus.includes(doc.id)).slice(0, 3);
+  for (const doc of weak) tasks.push(makeDocTask(`resume-${doc.id}-read`, doc.id, "read", 30));
+  return tasks;
+}
+
+function buildJdTasks(roadmap: Roadmap, goal: LearningPlanState["goal"]): PlanTask[] {
+  const analysis = analyzeJd(goal.jdText ?? "");
+  const focus = uniqueDocs([
+    ...analysis.docIds,
+    ...analysis.missingCore.slice(0, 3).map((doc) => doc.id),
+  ]).slice(0, 8);
+  const tasks: PlanTask[] = [];
+  for (const docId of focus) {
+    tasks.push(makeDocTask(`jd-${docId}-read`, docId, "read", 30));
+    if (QA_MAP.has(docId)) tasks.push(makeDocTask(`jd-${docId}-qa`, docId, "qa", 20));
+    if (bankCountFor(docId) > 0) tasks.push(makeDocTask(`jd-${docId}-quiz`, docId, "quiz", 20));
+  }
+  tasks.push({
+    id: `jd-${roadmap.id}-project`,
+    dayIndex: 0,
+    title: "JD 项目追问 · 对照岗位要求讲项目",
+    type: "qa",
+    href: "/qa/08",
+    minutes: 30,
+    source: "generated",
+  });
+  return tasks;
+}
+
+function buildProjectTasks(roadmap: Roadmap): PlanTask[] {
+  const focus = uniqueDocs(["08", "09", "12", "13", "19"]);
+  const tasks: PlanTask[] = [];
+  for (const docId of focus) {
+    tasks.push(makeDocTask(`project-${docId}-read`, docId, "read", 30));
+    if (QA_MAP.has(docId)) tasks.push(makeDocTask(`project-${docId}-qa`, docId, "qa", 20));
+    if (bankCountFor(docId) > 0) tasks.push(makeDocTask(`project-${docId}-quiz`, docId, "quiz", 20));
+  }
+  tasks.push({
+    id: `project-${roadmap.id}-retro`,
+    dayIndex: 0,
+    title: "项目复盘 · 难点、取舍、指标、失败方案",
+    type: "project",
+    href: `/roadmap/${roadmap.id}`,
+    minutes: 30,
+    source: "generated",
+  });
+  return tasks;
+}
+
+function buildNodeTasks(
   roadmap: Roadmap,
-): BuiltPlan {
-  const { goal, progress } = planState;
-  const included = new Set(goal.includedStageIds.length > 0 ? goal.includedStageIds : roadmap.stages.map((stage) => stage.id));
+  goal: LearningPlanState["goal"],
+  included: Set<string>,
+): PlanTask[] {
+  const generated: PlanTask[] = [];
   const jd = goal.jdText ? analyzeJd(goal.jdText) : null;
   const jdDocs = new Set(jd?.docIds ?? []);
-  const excluded = new Set(progress.excludedTaskIds);
-  const completed = new Set(progress.completedTaskIds);
-  const generated: PlanTask[] = [];
-
   for (const stage of roadmap.stages) {
     if (!included.has(stage.id)) continue;
     const nodes = stage.nodes
@@ -237,9 +363,12 @@ export function buildPlan(
         return a.index - b.index;
       });
     for (const { node, index } of nodes) {
-      generated.push(...tasksForNode(roadmap, stage, node, index));
+      generated.push(...tasksForNode(roadmap, stage, node, index, goal.templateId !== "foundation"));
     }
-    if (goal.templateId === "ten-week") {
+  }
+  if (goal.templateId === "ten-week") {
+    for (const stage of roadmap.stages) {
+      if (!included.has(stage.id)) continue;
       generated.push({
         id: `generated-${roadmap.id}-${stage.id}-milestone`,
         dayIndex: 0,
@@ -252,6 +381,25 @@ export function buildPlan(
       });
     }
   }
+  return generated;
+}
+
+export function buildPlan(
+  planState: LearningPlanState,
+  roadmap: Roadmap,
+): BuiltPlan {
+  const { goal, progress } = planState;
+  const included = new Set(goal.includedStageIds.length > 0 ? goal.includedStageIds : roadmap.stages.map((stage) => stage.id));
+  const excluded = new Set(progress.excludedTaskIds);
+  const completed = new Set(progress.completedTaskIds);
+  const generated =
+    goal.templateId === "interview"
+      ? buildInterviewTasks(roadmap, goal)
+      : goal.templateId === "jd"
+        ? buildJdTasks(roadmap, goal)
+        : goal.templateId === "project"
+          ? buildProjectTasks(roadmap)
+          : buildNodeTasks(roadmap, goal, included);
 
   const filtered = generated.filter((task) => !excluded.has(task.id));
   const tasksPerDay = Math.max(1, Math.ceil(filtered.length / Math.max(1, goal.days)));

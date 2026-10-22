@@ -18,6 +18,7 @@ export type PlanTemplateId =
 export type LearningGoal = {
   roadmapId: string;
   templateId: PlanTemplateId;
+  name: string;
   title: string;
   days: number;
   dailyMinutes: number;
@@ -25,6 +26,7 @@ export type LearningGoal = {
   includedStageIds: string[];
   includeOptional: boolean;
   jdText: string;
+  resumeText: string;
   createdAt: string;
   updatedAt: string;
 };

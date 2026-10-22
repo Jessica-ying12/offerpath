@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { ROADMAPS, ROADMAP_MAP, ROADMAP_CATEGORIES } from "../data/roadmaps";
 import { buildPlan, defaultStageIds, PLAN_CATEGORIES, PLAN_TEMPLATES, templateById, type PlanTask } from "../lib/plan";
+import { analyzeJd } from "../lib/jd";
 import { useStore } from "../lib/store";
 import type { PlanTemplateId } from "../lib/types";
 import { PageContainer, PageHeader, ProgressRing } from "../components/ui";
@@ -85,6 +86,10 @@ export function PlanPage() {
   );
   const [includeOptional, setIncludeOptional] = useState(existing?.goal.includeOptional ?? false);
   const [jdText, setJdText] = useState(existing?.goal.jdText ?? "");
+  const [resumeText, setResumeText] = useState(existing?.goal.resumeText ?? "");
+  const [planName, setPlanName] = useState(
+    existing?.goal.name ?? existing?.goal.title ?? `${templateById(initialTemplate).name} · ${initialRoadmap.name}`,
+  );
   const [customDay, setCustomDay] = useState(1);
   const [customTitle, setCustomTitle] = useState("");
   const [error, setError] = useState("");
@@ -95,6 +100,14 @@ export function PlanPage() {
   const built = useMemo(() => (plan && planRoadmap ? buildPlan(plan, planRoadmap) : null), [plan, planRoadmap]);
   const completedIds = new Set(plan?.progress.completedTaskIds ?? []);
   const firstUndone = built?.allTasks.find((task) => !completedIds.has(task.id));
+  const stageBased = ["normal", "ten-week", "foundation", "daily"].includes(templateId);
+  const planAnalysis = plan
+    ? plan.goal.templateId === "interview"
+      ? analyzeJd(plan.goal.resumeText ?? "")
+      : plan.goal.templateId === "jd"
+        ? analyzeJd(plan.goal.jdText ?? "")
+        : null
+    : null;
 
   useEffect(() => {
     if (!queryRoadmap || !ROADMAP_MAP.has(queryRoadmap)) return;
@@ -102,6 +115,7 @@ export function PlanPage() {
     setRoadmapId(queryRoadmap);
     setEditing(true);
     setStageIds(defaultStageIds(ROADMAP_MAP.get(queryRoadmap)!, templateId));
+    setPlanName(`${templateById(templateId).name} · ${ROADMAP_MAP.get(queryRoadmap)!.name}`);
   }, [queryRoadmap, existing?.goal.roadmapId, templateId]);
 
   const chooseTemplate = (id: PlanTemplateId) => {
@@ -111,6 +125,7 @@ export function PlanPage() {
     setDailyMinutes(template.dailyMinutes);
     setIncludeOptional(template.includeOptional);
     setStageIds(defaultStageIds(roadmap, id));
+    setPlanName(`${template.name} · ${roadmap.name}`);
     setEditing(true);
     setError("");
   };
@@ -120,6 +135,7 @@ export function PlanPage() {
     if (!next) return;
     setRoadmapId(id);
     setStageIds(defaultStageIds(next, templateId));
+    setPlanName(`${templateById(templateId).name} · ${next.name}`);
   };
 
   const toggleStage = (id: string) => {
@@ -141,18 +157,24 @@ export function PlanPage() {
       setError("JD 定向计划需要粘贴至少 20 个字符的岗位 JD。");
       return;
     }
+    if (templateId === "interview" && resumeText.trim().length < 20) {
+      setError("面试冲刺计划需要粘贴至少 20 个字符的简历/项目描述。");
+      return;
+    }
     const template = templateById(templateId);
     savePlan(
       {
         roadmapId,
         templateId,
+        name: planName.trim() || `${template.name} · ${roadmap.name}`,
         title: `${template.name} · ${roadmap.name}`,
         days,
         dailyMinutes,
         startDate,
-        includedStageIds: stageIds,
+        includedStageIds: stageBased ? stageIds : roadmap.stages.map((stage) => stage.id),
         includeOptional,
         jdText,
+        resumeText,
       },
       true,
     );
@@ -171,6 +193,8 @@ export function PlanPage() {
       setStageIds(plan.goal.includedStageIds);
       setIncludeOptional(plan.goal.includeOptional);
       setJdText(plan.goal.jdText);
+      setResumeText(plan.goal.resumeText ?? "");
+      setPlanName(plan.goal.name ?? plan.goal.title);
     }
     setEditing(true);
     setError("");
@@ -207,6 +231,11 @@ export function PlanPage() {
 
       {editing ? (
         <div className="space-y-5">
+          {plan ? (
+            <div className="rounded-xl border border-accent/20 bg-accent/[0.045] px-4 py-3 text-[10px] leading-5 text-muted">
+              当前计划「<strong className="text-ink">{plan.goal.name || plan.goal.title}</strong>」仍然有效。选择新的路线/类型后，只有点击“生成计划/重新生成计划”才会替换；不会因为点选而立即覆盖。
+            </div>
+          ) : null}
           <section className="card p-5 sm:p-6">
             <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
               <div>
@@ -260,6 +289,10 @@ export function PlanPage() {
                 </select>
                 <p className="mt-1.5 text-[9px] text-muted">{roadmap.description} · <Link to={`/roadmap/${roadmap.id}`} className="text-accent">查看路线</Link></p>
               </div>
+              <div>
+                <label className="mb-1.5 block text-[10px] font-medium text-muted">计划名称</label>
+                <input value={planName} onChange={(event) => setPlanName(event.target.value)} maxLength={60} placeholder="给这个计划起个名字" className="input" />
+              </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="mb-1.5 block text-[10px] font-medium text-muted">天数</label>
@@ -289,12 +322,17 @@ export function PlanPage() {
           <section className="card p-5 sm:p-6">
             <div className="flex items-center justify-between gap-2">
               <div>
-                <p className="eyebrow mb-1">3 · 选择阶段（可少学，不必全选）</p>
-                <h2 className="text-[15px] font-bold text-ink">计划范围</h2>
+                <p className="eyebrow mb-1">3 · {stageBased ? "选择阶段（可少学，不必全选）" : "任务来源"}</p>
+                <h2 className="text-[15px] font-bold text-ink">{stageBased ? "计划范围" : "按你的描述生成"}</h2>
               </div>
-              <button onClick={() => setStageIds(roadmap.stages.map((stage) => stage.id))} className="btn-quiet text-[10px]">全选</button>
+              {stageBased ? <button onClick={() => setStageIds(roadmap.stages.map((stage) => stage.id))} className="btn-quiet text-[10px]">全选</button> : null}
             </div>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+            {!stageBased ? (
+              <p className="mt-3 rounded-lg bg-accent/[0.045] px-3 py-2 text-[9.5px] leading-5 text-muted">
+                这个计划不按阶段铺量，而是按{templateId === "interview" ? "简历中的技术栈和项目经历" : templateId === "jd" ? "岗位 JD 命中的技术" : "项目/调试/代码题/表达重点"}生成任务；下方只保留必要的学习、面试问答和笔试题。
+              </p>
+            ) : null}
+            <div className={`mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-3 ${stageBased ? "" : "hidden"}`}>
               {roadmap.stages.map((stage) => {
                 const selected = stageIds.includes(stage.id);
                 return (
@@ -316,6 +354,12 @@ export function PlanPage() {
               <div className="mt-4">
                 <label className="mb-1.5 block text-[10px] font-medium text-muted">岗位 JD（JD 定向计划必填）</label>
                 <textarea value={jdText} onChange={(event) => setJdText(event.target.value)} rows={5} placeholder="粘贴目标岗位职责与要求，系统会优先安排命中的技术节点。" className="w-full resize-y rounded-xl border border-line/10 bg-paper/45 px-3.5 py-3 text-[12px] leading-6 text-ink outline-none placeholder:text-muted/50 focus:border-accent/40" />
+              </div>
+            ) : null}
+            {templateId === "interview" ? (
+              <div className="mt-4">
+                <label className="mb-1.5 block text-[10px] font-medium text-muted">简历 / 项目描述（面试冲刺计划必填）</label>
+                <textarea value={resumeText} onChange={(event) => setResumeText(event.target.value)} rows={6} placeholder="粘贴简历或项目经历：技术栈、职责、难点、指标。计划会优先安排简历技术相关的面试问答和笔试题。" className="w-full resize-y rounded-xl border border-line/12 bg-paper/45 px-3.5 py-3 text-[12px] leading-6 text-ink outline-none placeholder:text-muted/50 focus:border-accent/40" />
               </div>
             ) : null}
             {error ? <p className="mt-3 rounded-lg bg-coral/[0.06] px-3 py-2 text-[10px] text-coral">{error}</p> : null}
@@ -351,10 +395,17 @@ export function PlanPage() {
                   <span className="chip">{plan.goal.days} 天</span>
                   <span className="chip">每天 {plan.goal.dailyMinutes} 分钟</span>
                 </div>
-                <h2 className="mt-1 font-display text-[22px] font-bold text-ink">{plan.goal.title}</h2>
+                <h2 className="mt-1 font-display text-[22px] font-bold text-ink">{plan.goal.name || plan.goal.title}</h2>
                 <p className="mt-1 text-[10.5px] text-muted">
                   {planRoadmap?.description} · 从 {plan.goal.startDate} 开始 · {plan.goal.includedStageIds.length}/{planRoadmap?.stages.length ?? 0} 个阶段
                 </p>
+                {planAnalysis && (planAnalysis.matched.length > 0 || plan.goal.templateId === "interview") ? (
+                  <div className="mt-2 flex flex-wrap items-center gap-1">
+                    <span className="text-[9px] text-muted">{plan.goal.templateId === "interview" ? "简历命中" : "JD 命中"}：</span>
+                    {planAnalysis.matched.slice(0, 8).map((item) => <span key={item.label} className="chip bg-surface text-[8.5px] text-accent">{item.label}</span>)}
+                    {planAnalysis.matched.length === 0 ? <span className="text-[9px] text-coral">未识别到词表技术，已按通用面试重点生成；建议补充项目技术栈。</span> : null}
+                  </div>
+                ) : null}
                 {built.warning ? <p className="mt-2 rounded-lg bg-coral/[0.05] px-2.5 py-1.5 text-[9.5px] text-coral">{built.warning}</p> : null}
               </div>
               <div className="flex shrink-0 flex-wrap gap-2">

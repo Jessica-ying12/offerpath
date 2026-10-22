@@ -257,7 +257,7 @@ export function RoadmapIndexPage() {
           {[
             { group: "Absolute Beginners", links: [["Frontend Beginner","frontend-beginner"],["Backend Beginner","backend-beginner"],["DevOps Beginner","devops-beginner"],["Git & GitHub Beginner","git-github-beginner"]] },
             { group: "Role-Based", links: [["Frontend","frontend"],["Backend","backend"],["Full Stack","full-stack"],["Android","android"],["iOS","ios"],["DevOps","devops"],["AI Engineer","ai-engineer"],["Data Analyst","data-analyst"],["QA","qa"],["Software Architect","software-architect"]] },
-            { group: "Skill-Based", links: [["JavaScript","javascript"],["TypeScript","typescript"],["React","react"],["React Native","react-native"],["Node.js","nodejs"],["Java","java"],["Spring Boot","spring-boot"],["SQL","sql"],["PostgreSQL","postgresql-dba"],["Redis","redis"],["Docker","docker"],["Kubernetes","kubernetes"],["System Design","system-design"],["Computer Science","computer-science"],["Git & GitHub","git-github"]] },
+            { group: "Skill-Based", links: [["JavaScript","javascript"],["TypeScript","typescript"],["React","react"],["React Native","react-native"],["Node.js","nodejs"],["Java","java"],["Go","golang"],["Python","python"],["Spring Boot","spring-boot"],["API Design","api-design"],["SQL","sql"],["PostgreSQL","postgresql-dba"],["Redis","redis"],["Docker","docker"],["Kubernetes","kubernetes"],["System Design","system-design"],["Computer Science","computer-science"],["Git & GitHub","git-github"]] },
           ].map((group) => (
             <div key={group.group} className="rounded-xl border border-line/10 bg-paper/40 p-3">
               <p className="mb-2 text-[10px] font-semibold text-ink">{group.group}</p>
@@ -349,7 +349,7 @@ export function RoadmapDetailPage() {
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
           <Link to={`/plan?roadmap=${roadmap.id}`} className="btn-primary">
-            <Route className="h-3.5 w-3.5" /> {state.plan?.goal.roadmapId === roadmap.id ? "当前目标 · 打开计划" : "设为目标"}
+            <Route className="h-3.5 w-3.5" /> {state.plan?.goal.roadmapId === roadmap.id ? "当前目标 · 打开计划" : "用此路线做计划"}
           </Link>
           {currentDoc ? (
             <Link to={`/doc/${currentDoc}`} className="btn-primary">

@@ -110,7 +110,12 @@ export const OFFICIAL_SLUGS: Record<string, string> = {
   "git-github-beginner": "git-github-beginner",
   "devops-beginner": "devops-beginner",
   frontend: "frontend",
-  "backend-java": "backend",
+  backend: "backend",
+  java: "java",
+  golang: "golang",
+  python: "python",
+  "api-design": "api-design",
+  "backend-java": "java",
   "full-stack": "full-stack",
   "react-native": "react-native",
   flutter: "flutter",
@@ -285,6 +290,50 @@ export const ROADMAPS: Roadmap[] = [
         d("项目实战与复盘", ["08"], { priority: "核心" }),
         d("代码题与手写题", ["13"], { priority: "核心" }),
         d("面试表达与追问", ["09"], { priority: "核心" }),
+      ]),
+    ],
+  },
+  {
+    id: "backend",
+    name: "后端工程师（语言无关）",
+    category: "career",
+    audience: "先选语言，再学后端通用能力",
+    description: "不把后端等同于某一门语言：先选择 Java / Go / Python / Node.js，再补齐网络、API、数据、异步、部署和系统设计。",
+    officialUrl: ROADMAP_OFFICIAL.backend,
+    stages: [
+      s("language", "先选语言", "Java / Go / Python / Node.js", [
+        t("Java", ["类型", "集合", "并发", "Spring"], { courseIds: ["backend-java"], external: OFFICIAL.devJava, priority: "核心" }),
+        t("Go", ["goroutine", "channel", "context", "接口"], { external: [{ label: "Go 官方文档", url: "https://go.dev/doc/" }, { label: "roadmap.sh Go", url: "https://roadmap.sh/golang" }], priority: "核心" }),
+        t("Python", ["类型", "异步", "FastAPI", "虚拟环境"], { external: [{ label: "Python 文档", url: "https://docs.python.org/3/" }, { label: "roadmap.sh Python", url: "https://roadmap.sh/python" }], priority: "核心" }),
+        d("Node.js", ["18"], { priority: "核心" }),
+      ]),
+      s("foundation", "计算机基础", "网络、OS、Linux、Git", [
+        d("网络、操作系统与数据结构", ["11"], { priority: "核心" }),
+        d("Linux、命令行与 Git", ["07"], { priority: "核心" }),
+      ]),
+      s("api", "Web 与 API", "HTTP、REST、鉴权、校验", [
+        t("HTTP 与 REST 语义", ["方法/状态码", "幂等", "缓存", "错误结构"], { courseIds: ["backend-java", "cs-ai-foundations"], external: OFFICIAL.mdn, priority: "核心" }),
+        t("API 设计", ["资源建模", "分页", "版本", "OpenAPI"], { external: [{ label: "roadmap.sh API Design", url: "https://roadmap.sh/api-design" }], priority: "核心" }),
+        t("登录、鉴权与权限", ["Session/JWT", "OAuth", "RBAC", "限流"], { courseIds: ["backend-java"], priority: "核心" }),
+      ]),
+      s("data", "数据", "SQL、建模、事务、缓存", [
+        t("SQL、表设计与索引", ["JOIN", "索引", "执行计划", "迁移"], { courseIds: ["database-mysql", "backend-java"], external: OFFICIAL.mysql, priority: "核心" }),
+        t("事务、并发与一致性", ["ACID", "隔离级别", "锁", "幂等"], { courseIds: ["database-mysql"], priority: "核心" }),
+        t("Redis 与缓存", ["数据结构", "过期", "穿透", "一致性"], { courseIds: ["backend-java"], external: OFFICIAL.redis, priority: "核心" }),
+      ]),
+      s("async", "异步与扩展", "消息、限流、解耦", [
+        t("消息队列与异步任务", ["MQ", "重试", "死信", "幂等消费"], { courseIds: ["backend-java"], priority: "进阶" }),
+        t("限流、降级与熔断", ["令牌桶", "隔离", "降级", "超时"], { priority: "进阶" }),
+        t("缓存、分片与扩展", ["读写分离", "分库分表", "热点", "容量"], { courseIds: ["backend-java", "database-mysql"], priority: "进阶" }),
+      ]),
+      s("production", "生产", "测试、容器、监控", [
+        t("测试与质量", ["单元", "集成", "契约", "压测"], { courseIds: ["backend-java"], priority: "核心" }),
+        t("Docker、CI/CD 与部署", ["镜像", "环境", "回滚", "灰度"], { external: OFFICIAL.docker, priority: "核心" }),
+        t("日志、指标、追踪与告警", ["结构化日志", "metrics", "trace", "SLO"], { courseIds: ["backend-java", "cs-ai-foundations"], priority: "进阶" }),
+      ]),
+      s("design", "系统设计与项目", "架构、取舍、表达", [
+        t("系统设计基础", ["需求", "容量", "存储", "缓存", "可用性"], { external: [{ label: "roadmap.sh System Design", url: "https://roadmap.sh/system-design" }], priority: "进阶" }),
+        t("后端项目与面试", ["接口", "数据模型", "故障复盘", "STAR"], { courseIds: ["backend-java", "database-mysql"], priority: "核心" }),
       ]),
     ],
   },
@@ -585,6 +634,115 @@ export const ROADMAPS: Roadmap[] = [
       ]),
       s("quality", "质量", "测试与调试", [
         d("React 测试与调试", ["16", "12"], { priority: "核心" }),
+      ]),
+    ],
+  },
+  {
+    id: "java",
+    name: "Java",
+    category: "skill",
+    audience: "语言专项",
+    description: "Java 语法、集合、泛型、异常、并发、JVM、Spring 与项目实践。",
+    officialUrl: ROADMAP_OFFICIAL.java,
+    stages: [
+      s("language", "语言", "语法、对象、集合、泛型", [
+        t("Java 语法与面向对象", ["类型", "对象", "接口", "继承"], { courseIds: ["backend-java"], external: OFFICIAL.devJava, priority: "核心" }),
+        t("集合、泛型与异常", ["List/Map/Set", "泛型", "异常边界", "Stream"], { courseIds: ["backend-java"], priority: "核心" }),
+      ]),
+      s("concurrency", "并发与 JVM", "线程、锁、内存、GC", [
+        t("线程、线程池与锁", ["线程池", "synchronized", "CAS", "死锁"], { courseIds: ["backend-java"], priority: "核心" }),
+        t("JVM、内存与 GC", ["堆/栈", "GC", "类加载", "排查"], { courseIds: ["backend-java"], priority: "核心" }),
+      ]),
+      s("framework", "框架", "Spring、ORM、构建", [
+        t("Maven/Gradle 与工程结构", ["依赖", "多模块", "profile", "打包"], { courseIds: ["backend-java"], priority: "核心" }),
+        t("Spring Boot 与 MVC", ["IoC", "依赖注入", "Controller", "校验"], { courseIds: ["backend-java"], external: OFFICIAL.spring, priority: "核心" }),
+        t("MyBatis/JPA 与事务", ["映射", "N+1", "事务边界", "分页"], { courseIds: ["backend-java", "database-mysql"], priority: "核心" }),
+      ]),
+      s("data", "数据", "SQL、索引、Redis", [
+        t("SQL、索引与事务", ["JOIN", "联合索引", "隔离级别", "锁"], { courseIds: ["database-mysql"], external: OFFICIAL.mysql, priority: "核心" }),
+        t("Redis 与缓存", ["数据结构", "过期", "穿透", "一致性"], { courseIds: ["backend-java"], external: OFFICIAL.redis, priority: "进阶" }),
+      ]),
+      s("quality", "质量与交付", "测试、容器、监控", [
+        t("测试与质量", ["单元测试", "集成测试", "契约"], { courseIds: ["backend-java"], priority: "核心" }),
+        t("Docker、CI 与监控", ["镜像", "流水线", "日志", "指标"], { courseIds: ["backend-java"], external: OFFICIAL.docker, priority: "核心" }),
+      ]),
+    ],
+  },
+  {
+    id: "golang",
+    name: "Go",
+    category: "skill",
+    audience: "语言专项",
+    description: "Go 类型、接口、goroutine/channel、context、HTTP、数据库、测试与部署。",
+    officialUrl: "https://roadmap.sh/golang",
+    stages: [
+      s("basics", "语言基础", "类型、接口、错误", [
+        t("Go 工具链与类型系统", ["go mod", "类型", "结构体", "接口"], { external: [{ label: "Go 官方文档", url: "https://go.dev/doc/" }], priority: "核心" }),
+        t("错误处理与包组织", ["error", "panic/recover", "package", "依赖"], { external: [{ label: "Go 官方文档", url: "https://go.dev/doc/" }], priority: "核心" }),
+      ]),
+      s("concurrency", "并发", "goroutine、channel、context", [
+        t("Goroutine 与 Channel", ["goroutine", "channel", "select", "同步"], { priority: "核心" }),
+        t("Context、超时与取消", ["context", "timeout", "cancel", "泄漏"], { priority: "核心" }),
+      ]),
+      s("web", "Web 与数据", "HTTP、数据库、缓存", [
+        t("HTTP 服务与中间件", ["net/http", "路由", "中间件", "错误"], { priority: "核心" }),
+        t("SQL、事务与 Redis", ["database/sql", "事务", "连接池", "缓存"], { priority: "核心" }),
+      ]),
+      s("quality", "质量与部署", "测试、性能、发布", [
+        t("测试、基准与竞态检测", ["testing", "benchmark", "race", "mock"], { priority: "核心" }),
+        t("性能分析、Docker 与部署", ["pprof", "内存", "镜像", "发布"], { priority: "进阶" }),
+      ]),
+    ],
+  },
+  {
+    id: "python",
+    name: "Python",
+    category: "skill",
+    audience: "语言专项 / 数据与 AI 基础",
+    description: "Python 类型、函数、模块、异步、Web、数据库、测试与部署。",
+    officialUrl: "https://roadmap.sh/python",
+    stages: [
+      s("basics", "语言基础", "类型、函数、模块", [
+        t("类型、容器与函数", ["list/dict", "类型注解", "函数", "推导式"], { external: [{ label: "Python 文档", url: "https://docs.python.org/3/" }], priority: "核心" }),
+        t("模块、包与虚拟环境", ["import", "package", "venv", "依赖"], { priority: "核心" }),
+      ]),
+      s("advanced", "进阶", "OOP、异步、错误", [
+        t("面向对象与异常", ["class", "继承", "异常", "上下文管理器"], { priority: "核心" }),
+        t("异步与并发", ["asyncio", "线程/进程", "锁", "超时"], { priority: "进阶" }),
+      ]),
+      s("web", "Web 与数据", "API、数据库、缓存", [
+        t("HTTP、FastAPI 与校验", ["路由", "Pydantic", "鉴权", "错误"], { priority: "核心" }),
+        t("SQL、ORM 与 Redis", ["SQLAlchemy", "事务", "索引", "缓存"], { priority: "核心" }),
+      ]),
+      s("quality", "质量与交付", "测试、打包、部署", [
+        t("测试与质量", ["pytest", "mock", "覆盖率", "类型检查"], { priority: "核心" }),
+        t("打包、Docker 与部署", ["wheel", "镜像", "环境", "发布"], { priority: "进阶" }),
+      ]),
+    ],
+  },
+  {
+    id: "api-design",
+    name: "API 设计",
+    category: "skill",
+    audience: "前后端协作 / 后端面试",
+    description: "资源建模、HTTP 语义、版本、分页、错误、鉴权、幂等、OpenAPI 与测试。",
+    officialUrl: "https://roadmap.sh/api-design",
+    stages: [
+      s("basics", "基础", "HTTP 与资源", [
+        t("HTTP 方法与状态码", ["GET/POST", "2xx/4xx/5xx", "幂等", "缓存头"], { external: OFFICIAL.mdn, priority: "核心" }),
+        t("资源建模与命名", ["资源", "路径", "关联", "批量"], { priority: "核心" }),
+      ]),
+      s("contract", "契约", "版本、分页、错误", [
+        t("版本、分页与过滤", ["版本", "游标", "limit/offset", "排序"], { priority: "核心" }),
+        t("错误结构与幂等", ["error code", "request-id", "幂等键", "重试"], { priority: "核心" }),
+      ]),
+      s("security", "安全", "鉴权、限流、权限", [
+        t("认证、授权与权限模型", ["JWT/OAuth", "RBAC", "资源权限", "401/403"], { priority: "核心" }),
+        t("限流、审计与安全", ["限流", "审计", "输入校验", "敏感字段"], { priority: "进阶" }),
+      ]),
+      s("quality", "质量", "文档、契约、测试", [
+        t("OpenAPI 与契约测试", ["OpenAPI", "schema", "mock server", "兼容"], { priority: "核心" }),
+        t("可观测性与演进", ["日志", "指标", "弃用", "灰度"], { priority: "进阶" }),
       ]),
     ],
   },
