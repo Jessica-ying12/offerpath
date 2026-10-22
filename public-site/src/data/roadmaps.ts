@@ -1,4 +1,6 @@
 import type { RoleId } from "../lib/types";
+import catalogJson from "./roadmap-catalog.json";
+import officialNodesJson from "./official-roadmap-nodes.json";
 
 export type RoadmapCategory = "beginner" | "career" | "skill";
 export type RoadmapLink = { label: string; url: string };
@@ -23,58 +25,89 @@ export type RoadmapStage = {
 export type Roadmap = {
   id: string;
   name: string;
+  nameZh?: string;
   category: RoadmapCategory;
   audience: string;
   description: string;
   officialUrl: string;
   stages: RoadmapStage[];
+  curated: boolean;
+  groupLabel: string;
+  catalogCategories: string[];
+  officialTopics: string[];
 };
 
-export const ROADMAP_CATEGORIES: Array<{
-  id: RoadmapCategory;
-  label: string;
-  shortLabel: string;
-  description: string;
-}> = [
-  { id: "beginner", label: "入门路线", shortLabel: "入门", description: "零基础先按这些顺序建立完整闭环" },
-  { id: "career", label: "职业路线", shortLabel: "职业", description: "按岗位组织能力，不等于单一技术" },
-  { id: "skill", label: "技术路线", shortLabel: "技术", description: "选一门技术纵向深挖，不混入岗位杂项" },
+export type CatalogRoute = {
+  slug: string;
+  title: string;
+  categories: string[];
+  inDirectory: boolean;
+};
+export type CatalogGroup = {
+  heading: string;
+  routes: Array<{ slug: string; title: string }>;
+};
+type CatalogData = {
+  source: string;
+  scrapedAt: string;
+  total: number;
+  categories: Array<{ id: string; label: string; count: number }>;
+  allGroups: CatalogGroup[];
+  categoryGroups: Record<string, CatalogGroup[]>;
+  routes: CatalogRoute[];
+};
+
+export const ROADMAP_CATALOG = catalogJson as CatalogData;
+export const ROADMAP_CATALOG_CATEGORIES = ROADMAP_CATALOG.categories;
+export const ROADMAP_TOTAL = ROADMAP_CATALOG.total;
+export const ROADMAP_SOURCE = ROADMAP_CATALOG.source;
+export const ROADMAP_SCRAPED_AT = ROADMAP_CATALOG.scrapedAt;
+export const ROADMAP_OFFICIAL_DIRECTORY = "https://roadmap.sh/roadmaps";
+
+export const OFFICIAL_NODE_MAP = officialNodesJson as Record<string, { nodes: string[] }>;
+export const OFFICIAL_NODE_TOTAL = Object.values(OFFICIAL_NODE_MAP).reduce((sum, item) => sum + item.nodes.length, 0);
+
+const CATEGORY_ZH: Record<string, string> = {
+  beginner: "零基础入门",
+  web: "Web 开发",
+  frameworks: "框架专项",
+  languages: "语言与平台",
+  ai: "AI 与机器学习",
+  devops: "DevOps",
+  mobile: "移动开发",
+  databases: "数据库",
+  cs: "计算机科学",
+  management: "管理",
+  game: "游戏开发",
+  design: "设计",
+  blockchain: "区块链",
+  security: "网络安全",
+  best: "最佳实践",
+};
+
+const PLAN_GROUP_LABELS: Record<string, string> = {
+  "New Roadmaps": "最新路线",
+  "Role Based Roadmaps": "角色路线",
+  "Skill Based Roadmaps": "技术路线",
+  "Absolute Beginners": "零基础路线",
+  "Best Practices": "最佳实践",
+  "平台精编补充": "平台精编补充",
+};
+
+const GROUP_ORDER = [
+  "New Roadmaps",
+  "Role Based Roadmaps",
+  "Skill Based Roadmaps",
+  "Absolute Beginners",
+  "Best Practices",
 ];
 
-export const ROADMAP_TRACKS = ["前端", "后端", "移动端", "全栈", "语言", "数据与系统", "DevOps", "通用"] as const;
-export type RoadmapTrack = (typeof ROADMAP_TRACKS)[number];
-
-const ROADMAP_TRACK_MAP: Record<string, RoadmapTrack> = {
-  "frontend-beginner": "前端",
-  "backend-beginner": "后端",
-  "git-github-beginner": "通用",
-  "devops-beginner": "DevOps",
-  frontend: "前端",
-  backend: "后端",
-  "backend-java": "后端",
-  "full-stack": "全栈",
-  "react-native": "移动端",
-  "mini-program": "移动端",
-  flutter: "移动端",
-  javascript: "语言",
-  typescript: "语言",
-  react: "前端",
-  java: "语言",
-  golang: "语言",
-  python: "语言",
-  "api-design": "后端",
-  nodejs: "后端",
-  sql: "数据与系统",
-  git: "通用",
-  "computer-science": "数据与系统",
-  "system-design": "数据与系统",
-  testing: "通用",
-  hybrid: "移动端",
-  devops: "DevOps",
-};
-
-export function roadmapTrack(id: string): RoadmapTrack {
-  return ROADMAP_TRACK_MAP[id] ?? "通用";
+const DIRECTORY_GROUP = new Map<string, string>();
+for (const heading of GROUP_ORDER) {
+  const group = ROADMAP_CATALOG.allGroups.find((item) => item.heading === heading);
+  for (const route of group?.routes ?? []) {
+    if (!DIRECTORY_GROUP.has(route.slug)) DIRECTORY_GROUP.set(route.slug, heading);
+  }
 }
 
 export const ROADMAP_OFFICIAL = {
@@ -145,34 +178,12 @@ function s(
   return { id, title, subtitle, nodes };
 }
 
-export const OFFICIAL_SLUGS: Record<string, string> = {
-  "frontend-beginner": "frontend-beginner",
-  "backend-beginner": "backend-beginner",
-  "git-github-beginner": "git-github-beginner",
-  "devops-beginner": "devops-beginner",
-  frontend: "frontend",
-  backend: "backend",
-  java: "java",
-  golang: "golang",
-  python: "python",
-  "api-design": "api-design",
-  "backend-java": "java",
-  "full-stack": "full-stack",
-  "react-native": "react-native",
-  flutter: "flutter",
-  javascript: "javascript",
-  typescript: "typescript",
-  react: "react",
-  nodejs: "nodejs",
-  sql: "sql",
-  git: "git-github",
-  "computer-science": "computer-science",
-  "system-design": "system-design",
-  testing: "qa",
-  devops: "devops",
-};
+type CuratedRoadmap = Omit<
+  Roadmap,
+  "curated" | "groupLabel" | "catalogCategories" | "officialTopics" | "nameZh"
+>;
 
-export const ROADMAPS: Roadmap[] = [
+const CURATED_ROADMAPS: CuratedRoadmap[] = [
   {
     id: "frontend-beginner",
     name: "前端入门",
@@ -1016,7 +1027,144 @@ export const ROADMAPS: Roadmap[] = [
   },
 ];
 
-export const ROADMAP_MAP = new Map(ROADMAPS.map((roadmap) => [roadmap.id, roadmap]));
+const CURATED_BY_ID = new Map(CURATED_ROADMAPS.map((roadmap) => [roadmap.id, roadmap]));
+const CATALOG_ALIASES: Record<string, string> = {
+  "git-github": "git",
+  qa: "testing",
+};
+
+function categoryForGroup(group: string): RoadmapCategory {
+  if (group === "Absolute Beginners") return "beginner";
+  if (group === "Role Based Roadmaps") return "career";
+  return "skill";
+}
+
+function primaryGroup(slug: string): string {
+  return DIRECTORY_GROUP.get(slug) ?? "Skill Based Roadmaps";
+}
+
+function officialNodes(slug: string): string[] {
+  return OFFICIAL_NODE_MAP[slug]?.nodes ?? [];
+}
+
+function generatedStages(slug: string, officialUrl: string, topics: string[]): RoadmapStage[] {
+  const stageMeta = [
+    { id: "map", title: "基础与路线地图", subtitle: "先知道这条路线包含什么" },
+    { id: "core", title: "核心能力", subtitle: "必须掌握的高频主题" },
+    { id: "advanced", title: "进阶专题", subtitle: "拉开差距的专题与取舍" },
+    { id: "production", title: "工程与扩展", subtitle: "把知识放进真实项目" },
+  ];
+  if (topics.length === 0) {
+    return [{
+      id: "official",
+      title: "官方完整路线",
+      subtitle: "打开官方图查看最新节点",
+      nodes: [{ title: "查看官方完整路线", external: [{ label: "官方路线", url: officialUrl }], priority: "核心" }],
+    }];
+  }
+  const seen = new Set<string>();
+  const size = Math.ceil(topics.length / stageMeta.length);
+  return stageMeta.map((stage, index) => {
+    const start = index * size;
+    const end = index === stageMeta.length - 1 ? topics.length : start + size;
+    const nodes = topics
+      .slice(start, end)
+      .filter((title) => {
+        const key = title.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .slice(0, 14)
+      .map((title) => ({
+        title,
+        description: "官方路线主题。打开官方完整图查看最新资料与前后关系。",
+        priority: index < 2 ? "核心" as const : "进阶" as const,
+        external: [{ label: "官方路线", url: officialUrl }],
+      }));
+    return {
+      id: `${slug}-${stage.id}`,
+      title: stage.title,
+      subtitle: stage.subtitle,
+      nodes,
+    };
+  }).filter((stage) => stage.nodes.length > 0);
+}
+
+const OFFICIAL_ROADMAPS: Roadmap[] = ROADMAP_CATALOG.routes.map((route) => {
+  const curated = CURATED_BY_ID.get(CATALOG_ALIASES[route.slug] ?? route.slug);
+  const officialUrl = `https://roadmap.sh/${route.slug}`;
+  const topics = officialNodes(route.slug);
+  const group = primaryGroup(route.slug);
+  const categoryTags = route.categories.map((id) => CATEGORY_ZH[id]).filter(Boolean);
+  const description = categoryTags.length > 0
+    ? `roadmap.sh 官方路线，收录 ${topics.length} 个主题节点，覆盖 ${categoryTags.slice(0, 3).join(" / ")}。平台提供完整节点清单、学习计划与进度记录。`
+    : `roadmap.sh 官方路线，收录 ${topics.length} 个主题节点。平台提供完整节点清单、学习计划与进度记录。`;
+  if (curated) {
+    return {
+      ...curated,
+      id: route.slug,
+      name: route.title,
+      nameZh: curated.name,
+      category: categoryForGroup(group),
+      officialUrl,
+      curated: true,
+      groupLabel: group,
+      catalogCategories: route.categories,
+      officialTopics: topics,
+    };
+  }
+  return {
+    id: route.slug,
+    name: route.title,
+    category: categoryForGroup(group),
+    audience: `官方路线 · ${topics.length} 个主题节点`,
+    description,
+    officialUrl,
+    stages: generatedStages(route.slug, officialUrl, topics),
+    curated: false,
+    groupLabel: group,
+    catalogCategories: route.categories,
+    officialTopics: topics,
+  };
+});
+
+const DIRECTORY_CURATED_IDS = new Set(
+  ROADMAP_CATALOG.routes
+    .map((route) => CATALOG_ALIASES[route.slug] ?? route.slug)
+    .filter((id) => CURATED_BY_ID.has(id)),
+);
+const EXTRA_ROADMAPS: Roadmap[] = CURATED_ROADMAPS
+  .filter((roadmap) => !DIRECTORY_CURATED_IDS.has(roadmap.id))
+  .map((roadmap) => ({
+    ...roadmap,
+    curated: true,
+    groupLabel: "平台精编补充",
+    catalogCategories: [],
+    officialTopics: officialNodes(roadmap.id),
+  }));
+
+export const ROADMAPS: Roadmap[] = [...OFFICIAL_ROADMAPS, ...EXTRA_ROADMAPS];
+
+export const ROADMAP_MAP = new Map<string, Roadmap>();
+for (const roadmap of ROADMAPS) ROADMAP_MAP.set(roadmap.id, roadmap);
+for (const [catalogSlug, curatedId] of Object.entries(CATALOG_ALIASES)) {
+  const roadmap = ROADMAP_MAP.get(catalogSlug);
+  if (roadmap) ROADMAP_MAP.set(curatedId, roadmap);
+}
+
+export const ROADMAP_PLAN_GROUPS = [...GROUP_ORDER, "平台精编补充"]
+  .map((group) => ({
+    id: group,
+    label: PLAN_GROUP_LABELS[group] ?? group,
+    routes: ROADMAPS.filter((roadmap) => roadmap.groupLabel === group),
+  }))
+  .filter((group) => group.routes.length > 0);
+
+export function roadmapCatalogCategory(roadmap: Roadmap) {
+  const id = roadmap.catalogCategories[0] ?? "all";
+  return ROADMAP_CATALOG_CATEGORIES.find((category) => category.id === id) ?? ROADMAP_CATALOG_CATEGORIES[0];
+}
 
 export function roadmapForRole(role: RoleId): string {
   if (role === "rn") return "react-native";
@@ -1031,6 +1179,7 @@ export function roadmapStats(roadmap: Roadmap, completedDocs: Set<string>): {
   completed: number;
   nodes: number;
   stages: number;
+  officialTopics: number;
 } {
   const docs = new Set<string>();
   let nodes = 0;
@@ -1041,5 +1190,11 @@ export function roadmapStats(roadmap: Roadmap, completedDocs: Set<string>): {
     }
   }
   const completed = [...docs].filter((doc) => completedDocs.has(doc)).length;
-  return { docs: docs.size, completed, nodes, stages: roadmap.stages.length };
+  return {
+    docs: docs.size,
+    completed,
+    nodes,
+    stages: roadmap.stages.length,
+    officialTopics: roadmap.officialTopics.length,
+  };
 }

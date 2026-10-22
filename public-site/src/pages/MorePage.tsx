@@ -18,7 +18,7 @@ import { PageContainer, PageHeader } from "../components/ui";
 import meta from "../data/question-meta.json";
 
 const LINKS = [
-  { href: "/roadmap", label: "路线图库", desc: "入门 / 职业 / 技术路线与完整节点", icon: Route },
+  { href: "/roadmap", label: "路线图库", desc: "96 条官方路线、分类与完整节点", icon: Route },
   { href: "/plan", label: "学习计划", desc: "按目标生成模块、任务与进度", icon: Route },
   { href: "/review", label: "周期复习", desc: "D+1 / D+3 / D+7 到期问答", icon: RotateCcw },
   { href: "/progress", label: "学习进度与备份", desc: "掌握度、记录、导出 JSON", icon: BarChart3 },

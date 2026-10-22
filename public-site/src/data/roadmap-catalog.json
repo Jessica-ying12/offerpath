@@ -1,0 +1,3460 @@
+{
+  "source": "https://roadmap.sh/roadmaps",
+  "scrapedAt": "2026-10-22",
+  "total": 96,
+  "categories": [
+    {
+      "id": "all",
+      "label": "All Roadmaps",
+      "count": 96
+    },
+    {
+      "id": "beginner",
+      "label": "Absolute Beginners",
+      "count": 34
+    },
+    {
+      "id": "web",
+      "label": "Web Development",
+      "count": 70
+    },
+    {
+      "id": "frameworks",
+      "label": "Frameworks",
+      "count": 9
+    },
+    {
+      "id": "languages",
+      "label": "Languages / Platforms",
+      "count": 23
+    },
+    {
+      "id": "ai",
+      "label": "AI & Machine Learning",
+      "count": 26
+    },
+    {
+      "id": "devops",
+      "label": "DevOps",
+      "count": 50
+    },
+    {
+      "id": "mobile",
+      "label": "Mobile Development",
+      "count": 9
+    },
+    {
+      "id": "databases",
+      "label": "Databases",
+      "count": 26
+    },
+    {
+      "id": "cs",
+      "label": "Computer Science",
+      "count": 31
+    },
+    {
+      "id": "management",
+      "label": "Management",
+      "count": 10
+    },
+    {
+      "id": "game",
+      "label": "Game Development",
+      "count": 7
+    },
+    {
+      "id": "design",
+      "label": "Design",
+      "count": 4
+    },
+    {
+      "id": "blockchain",
+      "label": "Blockchain",
+      "count": 4
+    },
+    {
+      "id": "security",
+      "label": "Cyber Security",
+      "count": 11
+    },
+    {
+      "id": "best",
+      "label": "Best Practices",
+      "count": 5
+    }
+  ],
+  "allGroups": [
+    {
+      "heading": "New Roadmaps",
+      "routes": [
+        {
+          "slug": "seo",
+          "title": "SEO"
+        },
+        {
+          "slug": "inference-engineering",
+          "title": "Inference Engineering"
+        }
+      ]
+    },
+    {
+      "heading": "Role Based Roadmaps",
+      "routes": [
+        {
+          "slug": "frontend",
+          "title": "Frontend"
+        },
+        {
+          "slug": "backend",
+          "title": "Backend"
+        },
+        {
+          "slug": "full-stack",
+          "title": "Full Stack"
+        },
+        {
+          "slug": "android",
+          "title": "Android"
+        },
+        {
+          "slug": "devops",
+          "title": "DevOps"
+        },
+        {
+          "slug": "devsecops",
+          "title": "DevSecOps"
+        },
+        {
+          "slug": "data-analyst",
+          "title": "Data Analyst"
+        },
+        {
+          "slug": "seo",
+          "title": "SEO"
+        },
+        {
+          "slug": "inference-engineering",
+          "title": "Inference Engineering"
+        },
+        {
+          "slug": "ai-engineer",
+          "title": "AI Engineer"
+        },
+        {
+          "slug": "ai-data-scientist",
+          "title": "AI and Data Scientist"
+        },
+        {
+          "slug": "data-engineer",
+          "title": "Data Engineer"
+        },
+        {
+          "slug": "machine-learning",
+          "title": "Machine Learning"
+        },
+        {
+          "slug": "postgresql-dba",
+          "title": "PostgreSQL"
+        },
+        {
+          "slug": "ios",
+          "title": "iOS"
+        },
+        {
+          "slug": "blockchain",
+          "title": "Blockchain"
+        },
+        {
+          "slug": "qa",
+          "title": "QA"
+        },
+        {
+          "slug": "software-architect",
+          "title": "Software Architect"
+        },
+        {
+          "slug": "api-design",
+          "title": "API Design"
+        },
+        {
+          "slug": "cyber-security",
+          "title": "Cyber Security"
+        },
+        {
+          "slug": "ux-design",
+          "title": "UX Design"
+        },
+        {
+          "slug": "technical-writer",
+          "title": "Technical Writer"
+        },
+        {
+          "slug": "game-developer",
+          "title": "Game Developer"
+        },
+        {
+          "slug": "server-side-game-developer",
+          "title": "Server Side Game Developer"
+        },
+        {
+          "slug": "mlops",
+          "title": "MLOps"
+        },
+        {
+          "slug": "product-manager",
+          "title": "Product Manager"
+        },
+        {
+          "slug": "engineering-manager",
+          "title": "Engineering Manager"
+        },
+        {
+          "slug": "devrel",
+          "title": "Developer Relations"
+        },
+        {
+          "slug": "bi-analyst",
+          "title": "BI Analyst"
+        },
+        {
+          "slug": "ai-red-teaming",
+          "title": "AI Red Teaming"
+        },
+        {
+          "slug": "network-engineer",
+          "title": "Network Engineer"
+        },
+        {
+          "slug": "forward-deployed-engineer",
+          "title": "Forward Deployed Engineer"
+        }
+      ]
+    },
+    {
+      "heading": "Skill Based Roadmaps",
+      "routes": [
+        {
+          "slug": "claude-code",
+          "title": "Claude Code"
+        },
+        {
+          "slug": "vibe-coding",
+          "title": "Vibe Coding"
+        },
+        {
+          "slug": "python",
+          "title": "Python"
+        },
+        {
+          "slug": "python-data-analysis",
+          "title": "Python for Data Analysis"
+        },
+        {
+          "slug": "r-programming",
+          "title": "R Programming"
+        },
+        {
+          "slug": "computer-science",
+          "title": "Computer Science"
+        },
+        {
+          "slug": "sql",
+          "title": "SQL"
+        },
+        {
+          "slug": "openclaw",
+          "title": "OpenClaw"
+        },
+        {
+          "slug": "react",
+          "title": "React"
+        },
+        {
+          "slug": "vue",
+          "title": "Vue"
+        },
+        {
+          "slug": "angular",
+          "title": "Angular"
+        },
+        {
+          "slug": "javascript",
+          "title": "JavaScript"
+        },
+        {
+          "slug": "typescript",
+          "title": "TypeScript"
+        },
+        {
+          "slug": "nodejs",
+          "title": "Node.js"
+        },
+        {
+          "slug": "system-design",
+          "title": "System Design"
+        },
+        {
+          "slug": "leetcode",
+          "title": "LeetCode"
+        },
+        {
+          "slug": "java",
+          "title": "Java"
+        },
+        {
+          "slug": "aspnet-core",
+          "title": "ASP.NET Core"
+        },
+        {
+          "slug": "power-bi",
+          "title": "Power BI"
+        },
+        {
+          "slug": "spring-boot",
+          "title": "Spring Boot"
+        },
+        {
+          "slug": "flutter",
+          "title": "Flutter"
+        },
+        {
+          "slug": "c",
+          "title": "C Programming"
+        },
+        {
+          "slug": "cpp",
+          "title": "C++"
+        },
+        {
+          "slug": "rust",
+          "title": "Rust"
+        },
+        {
+          "slug": "golang",
+          "title": "Go"
+        },
+        {
+          "slug": "ai-product-builder",
+          "title": "AI Product Builders"
+        },
+        {
+          "slug": "software-design-architecture",
+          "title": "Design Architecture"
+        },
+        {
+          "slug": "react-native",
+          "title": "React Native"
+        },
+        {
+          "slug": "design-system",
+          "title": "Design System"
+        },
+        {
+          "slug": "prompt-engineering",
+          "title": "Prompt Engineering"
+        },
+        {
+          "slug": "mongodb",
+          "title": "MongoDB"
+        },
+        {
+          "slug": "linux",
+          "title": "Linux"
+        },
+        {
+          "slug": "kubernetes",
+          "title": "Kubernetes"
+        },
+        {
+          "slug": "docker",
+          "title": "Docker"
+        },
+        {
+          "slug": "aws",
+          "title": "AWS"
+        },
+        {
+          "slug": "terraform",
+          "title": "Terraform"
+        },
+        {
+          "slug": "datastructures-and-algorithms",
+          "title": "Data Structures & Algorithms"
+        },
+        {
+          "slug": "redis",
+          "title": "Redis"
+        },
+        {
+          "slug": "git-github",
+          "title": "Git and GitHub"
+        },
+        {
+          "slug": "php",
+          "title": "PHP"
+        },
+        {
+          "slug": "cloudflare",
+          "title": "Cloudflare"
+        },
+        {
+          "slug": "ai-agents",
+          "title": "AI Agents"
+        },
+        {
+          "slug": "nextjs",
+          "title": "Next.js"
+        },
+        {
+          "slug": "kotlin",
+          "title": "Kotlin"
+        },
+        {
+          "slug": "html",
+          "title": "HTML"
+        },
+        {
+          "slug": "css",
+          "title": "CSS"
+        },
+        {
+          "slug": "swift-ui",
+          "title": "Swift & Swift UI"
+        },
+        {
+          "slug": "shell-bash",
+          "title": "Shell / Bash"
+        },
+        {
+          "slug": "laravel",
+          "title": "Laravel"
+        },
+        {
+          "slug": "elasticsearch",
+          "title": "Elasticsearch"
+        },
+        {
+          "slug": "wordpress",
+          "title": "WordPress"
+        },
+        {
+          "slug": "django",
+          "title": "Django"
+        },
+        {
+          "slug": "ruby",
+          "title": "Ruby"
+        },
+        {
+          "slug": "ruby-on-rails",
+          "title": "Ruby on Rails"
+        },
+        {
+          "slug": "scala",
+          "title": "Scala"
+        }
+      ]
+    },
+    {
+      "heading": "Absolute Beginners",
+      "routes": [
+        {
+          "slug": "frontend-beginner",
+          "title": "Frontend Beginner"
+        },
+        {
+          "slug": "backend-beginner",
+          "title": "Backend Beginner"
+        },
+        {
+          "slug": "devops-beginner",
+          "title": "DevOps Beginner"
+        },
+        {
+          "slug": "git-github-beginner",
+          "title": "Git and GitHub Beginner"
+        }
+      ]
+    },
+    {
+      "heading": "Best Practices",
+      "routes": [
+        {
+          "slug": "aws-best-practices",
+          "title": "AWS"
+        },
+        {
+          "slug": "api-security-best-practices",
+          "title": "API Security"
+        },
+        {
+          "slug": "backend-performance-best-practices",
+          "title": "Backend Performance"
+        },
+        {
+          "slug": "frontend-performance-best-practices",
+          "title": "Frontend Performance"
+        },
+        {
+          "slug": "code-review-best-practices",
+          "title": "Code Review"
+        }
+      ]
+    }
+  ],
+  "categoryGroups": {
+    "all": [
+      {
+        "heading": "New Roadmaps",
+        "routes": [
+          {
+            "slug": "seo",
+            "title": "SEO"
+          },
+          {
+            "slug": "inference-engineering",
+            "title": "Inference Engineering"
+          }
+        ]
+      },
+      {
+        "heading": "Role Based Roadmaps",
+        "routes": [
+          {
+            "slug": "frontend",
+            "title": "Frontend"
+          },
+          {
+            "slug": "backend",
+            "title": "Backend"
+          },
+          {
+            "slug": "full-stack",
+            "title": "Full Stack"
+          },
+          {
+            "slug": "android",
+            "title": "Android"
+          },
+          {
+            "slug": "devops",
+            "title": "DevOps"
+          },
+          {
+            "slug": "devsecops",
+            "title": "DevSecOps"
+          },
+          {
+            "slug": "data-analyst",
+            "title": "Data Analyst"
+          },
+          {
+            "slug": "seo",
+            "title": "SEO"
+          },
+          {
+            "slug": "inference-engineering",
+            "title": "Inference Engineering"
+          },
+          {
+            "slug": "ai-engineer",
+            "title": "AI Engineer"
+          },
+          {
+            "slug": "ai-data-scientist",
+            "title": "AI and Data Scientist"
+          },
+          {
+            "slug": "data-engineer",
+            "title": "Data Engineer"
+          },
+          {
+            "slug": "machine-learning",
+            "title": "Machine Learning"
+          },
+          {
+            "slug": "postgresql-dba",
+            "title": "PostgreSQL"
+          },
+          {
+            "slug": "ios",
+            "title": "iOS"
+          },
+          {
+            "slug": "blockchain",
+            "title": "Blockchain"
+          },
+          {
+            "slug": "qa",
+            "title": "QA"
+          },
+          {
+            "slug": "software-architect",
+            "title": "Software Architect"
+          },
+          {
+            "slug": "api-design",
+            "title": "API Design"
+          },
+          {
+            "slug": "cyber-security",
+            "title": "Cyber Security"
+          },
+          {
+            "slug": "ux-design",
+            "title": "UX Design"
+          },
+          {
+            "slug": "technical-writer",
+            "title": "Technical Writer"
+          },
+          {
+            "slug": "game-developer",
+            "title": "Game Developer"
+          },
+          {
+            "slug": "server-side-game-developer",
+            "title": "Server Side Game Developer"
+          },
+          {
+            "slug": "mlops",
+            "title": "MLOps"
+          },
+          {
+            "slug": "product-manager",
+            "title": "Product Manager"
+          },
+          {
+            "slug": "engineering-manager",
+            "title": "Engineering Manager"
+          },
+          {
+            "slug": "devrel",
+            "title": "Developer Relations"
+          },
+          {
+            "slug": "bi-analyst",
+            "title": "BI Analyst"
+          },
+          {
+            "slug": "ai-red-teaming",
+            "title": "AI Red Teaming"
+          },
+          {
+            "slug": "network-engineer",
+            "title": "Network Engineer"
+          },
+          {
+            "slug": "forward-deployed-engineer",
+            "title": "Forward Deployed Engineer"
+          }
+        ]
+      },
+      {
+        "heading": "Skill Based Roadmaps",
+        "routes": [
+          {
+            "slug": "claude-code",
+            "title": "Claude Code"
+          },
+          {
+            "slug": "vibe-coding",
+            "title": "Vibe Coding"
+          },
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "python-data-analysis",
+            "title": "Python for Data Analysis"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "computer-science",
+            "title": "Computer Science"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "openclaw",
+            "title": "OpenClaw"
+          },
+          {
+            "slug": "react",
+            "title": "React"
+          },
+          {
+            "slug": "vue",
+            "title": "Vue"
+          },
+          {
+            "slug": "angular",
+            "title": "Angular"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "system-design",
+            "title": "System Design"
+          },
+          {
+            "slug": "leetcode",
+            "title": "LeetCode"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "aspnet-core",
+            "title": "ASP.NET Core"
+          },
+          {
+            "slug": "power-bi",
+            "title": "Power BI"
+          },
+          {
+            "slug": "spring-boot",
+            "title": "Spring Boot"
+          },
+          {
+            "slug": "flutter",
+            "title": "Flutter"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "ai-product-builder",
+            "title": "AI Product Builders"
+          },
+          {
+            "slug": "software-design-architecture",
+            "title": "Design Architecture"
+          },
+          {
+            "slug": "react-native",
+            "title": "React Native"
+          },
+          {
+            "slug": "design-system",
+            "title": "Design System"
+          },
+          {
+            "slug": "prompt-engineering",
+            "title": "Prompt Engineering"
+          },
+          {
+            "slug": "mongodb",
+            "title": "MongoDB"
+          },
+          {
+            "slug": "linux",
+            "title": "Linux"
+          },
+          {
+            "slug": "kubernetes",
+            "title": "Kubernetes"
+          },
+          {
+            "slug": "docker",
+            "title": "Docker"
+          },
+          {
+            "slug": "aws",
+            "title": "AWS"
+          },
+          {
+            "slug": "terraform",
+            "title": "Terraform"
+          },
+          {
+            "slug": "datastructures-and-algorithms",
+            "title": "Data Structures & Algorithms"
+          },
+          {
+            "slug": "redis",
+            "title": "Redis"
+          },
+          {
+            "slug": "git-github",
+            "title": "Git and GitHub"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "cloudflare",
+            "title": "Cloudflare"
+          },
+          {
+            "slug": "ai-agents",
+            "title": "AI Agents"
+          },
+          {
+            "slug": "nextjs",
+            "title": "Next.js"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "elasticsearch",
+            "title": "Elasticsearch"
+          },
+          {
+            "slug": "wordpress",
+            "title": "WordPress"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      },
+      {
+        "heading": "Absolute Beginners",
+        "routes": [
+          {
+            "slug": "frontend-beginner",
+            "title": "Frontend Beginner"
+          },
+          {
+            "slug": "backend-beginner",
+            "title": "Backend Beginner"
+          },
+          {
+            "slug": "devops-beginner",
+            "title": "DevOps Beginner"
+          },
+          {
+            "slug": "git-github-beginner",
+            "title": "Git and GitHub Beginner"
+          }
+        ]
+      },
+      {
+        "heading": "Best Practices",
+        "routes": [
+          {
+            "slug": "aws-best-practices",
+            "title": "AWS"
+          },
+          {
+            "slug": "api-security-best-practices",
+            "title": "API Security"
+          },
+          {
+            "slug": "backend-performance-best-practices",
+            "title": "Backend Performance"
+          },
+          {
+            "slug": "frontend-performance-best-practices",
+            "title": "Frontend Performance"
+          },
+          {
+            "slug": "code-review-best-practices",
+            "title": "Code Review"
+          }
+        ]
+      }
+    ],
+    "beginner": [
+      {
+        "heading": "Absolute Beginners",
+        "routes": [
+          {
+            "slug": "frontend-beginner",
+            "title": "Frontend Beginner"
+          },
+          {
+            "slug": "backend-beginner",
+            "title": "Backend Beginner"
+          },
+          {
+            "slug": "devops-beginner",
+            "title": "DevOps Beginner"
+          },
+          {
+            "slug": "git-github-beginner",
+            "title": "Git and GitHub Beginner"
+          },
+          {
+            "slug": "full-stack",
+            "title": "Full Stack"
+          }
+        ]
+      },
+      {
+        "heading": "Web Development",
+        "routes": [
+          {
+            "slug": "frontend",
+            "title": "Frontend"
+          },
+          {
+            "slug": "backend",
+            "title": "Backend"
+          },
+          {
+            "slug": "full-stack",
+            "title": "Full Stack"
+          },
+          {
+            "slug": "devops",
+            "title": "DevOps"
+          },
+          {
+            "slug": "qa",
+            "title": "QA"
+          },
+          {
+            "slug": "api-design",
+            "title": "API Design"
+          },
+          {
+            "slug": "graphql",
+            "title": "GraphQL"
+          },
+          {
+            "slug": "git-github",
+            "title": "Git and GitHub"
+          },
+          {
+            "slug": "wordpress",
+            "title": "WordPress"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "python-data-analysis",
+            "title": "Python for Data Analysis"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          }
+        ]
+      }
+    ],
+    "web": [
+      {
+        "heading": "Web Development",
+        "routes": [
+          {
+            "slug": "frontend",
+            "title": "Frontend"
+          },
+          {
+            "slug": "backend",
+            "title": "Backend"
+          },
+          {
+            "slug": "full-stack",
+            "title": "Full Stack"
+          },
+          {
+            "slug": "seo",
+            "title": "SEO"
+          },
+          {
+            "slug": "qa",
+            "title": "QA"
+          },
+          {
+            "slug": "api-design",
+            "title": "API Design"
+          },
+          {
+            "slug": "graphql",
+            "title": "GraphQL"
+          },
+          {
+            "slug": "git-github",
+            "title": "Git and GitHub"
+          },
+          {
+            "slug": "wordpress",
+            "title": "WordPress"
+          },
+          {
+            "slug": "forward-deployed-engineer",
+            "title": "Forward Deployed Engineer"
+          }
+        ]
+      },
+      {
+        "heading": "Absolute Beginners",
+        "routes": [
+          {
+            "slug": "frontend-beginner",
+            "title": "Frontend Beginner"
+          },
+          {
+            "slug": "backend-beginner",
+            "title": "Backend Beginner"
+          },
+          {
+            "slug": "devops-beginner",
+            "title": "DevOps Beginner"
+          },
+          {
+            "slug": "git-github-beginner",
+            "title": "Git and GitHub Beginner"
+          }
+        ]
+      },
+      {
+        "heading": "Frameworks",
+        "routes": [
+          {
+            "slug": "react",
+            "title": "React"
+          },
+          {
+            "slug": "vue",
+            "title": "Vue"
+          },
+          {
+            "slug": "angular",
+            "title": "Angular"
+          },
+          {
+            "slug": "aspnet-core",
+            "title": "ASP.NET Core"
+          },
+          {
+            "slug": "spring-boot",
+            "title": "Spring Boot"
+          },
+          {
+            "slug": "nextjs",
+            "title": "Next.js"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      },
+      {
+        "heading": "DevOps",
+        "routes": [
+          {
+            "slug": "devops-beginner",
+            "title": "DevOps Beginner"
+          },
+          {
+            "slug": "devops",
+            "title": "DevOps"
+          },
+          {
+            "slug": "devsecops",
+            "title": "DevSecOps"
+          },
+          {
+            "slug": "linux",
+            "title": "Linux"
+          },
+          {
+            "slug": "kubernetes",
+            "title": "Kubernetes"
+          },
+          {
+            "slug": "docker",
+            "title": "Docker"
+          },
+          {
+            "slug": "aws",
+            "title": "AWS"
+          },
+          {
+            "slug": "terraform",
+            "title": "Terraform"
+          },
+          {
+            "slug": "cloudflare",
+            "title": "Cloudflare"
+          }
+        ]
+      },
+      {
+        "heading": "Databases",
+        "routes": [
+          {
+            "slug": "postgresql-dba",
+            "title": "PostgreSQL"
+          },
+          {
+            "slug": "mongodb",
+            "title": "MongoDB"
+          },
+          {
+            "slug": "redis",
+            "title": "Redis"
+          },
+          {
+            "slug": "elasticsearch",
+            "title": "Elasticsearch"
+          }
+        ]
+      },
+      {
+        "heading": "Computer Science",
+        "routes": [
+          {
+            "slug": "computer-science",
+            "title": "Computer Science"
+          },
+          {
+            "slug": "system-design",
+            "title": "System Design"
+          },
+          {
+            "slug": "software-architect",
+            "title": "Software Architect"
+          },
+          {
+            "slug": "software-design-architecture",
+            "title": "Design Architecture"
+          },
+          {
+            "slug": "technical-writer",
+            "title": "Technical Writer"
+          },
+          {
+            "slug": "datastructures-and-algorithms",
+            "title": "Data Structures & Algorithms"
+          },
+          {
+            "slug": "devrel",
+            "title": "Developer Relations"
+          },
+          {
+            "slug": "code-review",
+            "title": "Code Review"
+          }
+        ]
+      },
+      {
+        "heading": "Design",
+        "routes": [
+          {
+            "slug": "product-design",
+            "title": "Product Design"
+          },
+          {
+            "slug": "ux-design",
+            "title": "UX Design"
+          },
+          {
+            "slug": "design-system",
+            "title": "Design System"
+          }
+        ]
+      },
+      {
+        "heading": "Best Practices",
+        "routes": [
+          {
+            "slug": "aws-best-practices",
+            "title": "AWS"
+          },
+          {
+            "slug": "api-security-best-practices",
+            "title": "API Security"
+          },
+          {
+            "slug": "backend-performance-best-practices",
+            "title": "Backend Performance"
+          },
+          {
+            "slug": "frontend-performance-best-practices",
+            "title": "Frontend Performance"
+          },
+          {
+            "slug": "code-review-best-practices",
+            "title": "Code Review"
+          }
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "heading": "Frameworks",
+        "routes": [
+          {
+            "slug": "react",
+            "title": "React"
+          },
+          {
+            "slug": "vue",
+            "title": "Vue"
+          },
+          {
+            "slug": "angular",
+            "title": "Angular"
+          },
+          {
+            "slug": "aspnet-core",
+            "title": "ASP.NET Core"
+          },
+          {
+            "slug": "spring-boot",
+            "title": "Spring Boot"
+          },
+          {
+            "slug": "nextjs",
+            "title": "Next.js"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          }
+        ]
+      }
+    ],
+    "languages": [
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "python-data-analysis",
+            "title": "Python for Data Analysis"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      }
+    ],
+    "ai": [
+      {
+        "heading": "AI & Machine Learning",
+        "routes": [
+          {
+            "slug": "claude-code",
+            "title": "Claude Code"
+          },
+          {
+            "slug": "vibe-coding",
+            "title": "Vibe Coding"
+          },
+          {
+            "slug": "openclaw",
+            "title": "OpenClaw"
+          },
+          {
+            "slug": "inference-engineering",
+            "title": "Inference Engineering"
+          },
+          {
+            "slug": "ai-engineer",
+            "title": "AI Engineer"
+          },
+          {
+            "slug": "data-engineer",
+            "title": "Data Engineer"
+          },
+          {
+            "slug": "machine-learning",
+            "title": "Machine Learning"
+          },
+          {
+            "slug": "ai-product-builder",
+            "title": "AI Product Builders"
+          },
+          {
+            "slug": "prompt-engineering",
+            "title": "Prompt Engineering"
+          },
+          {
+            "slug": "mlops",
+            "title": "MLOps"
+          },
+          {
+            "slug": "ai-red-teaming",
+            "title": "AI Red Teaming"
+          },
+          {
+            "slug": "ai-agents",
+            "title": "AI Agents"
+          },
+          {
+            "slug": "forward-deployed-engineer",
+            "title": "Forward Deployed Engineer"
+          }
+        ]
+      },
+      {
+        "heading": "Data Analysis",
+        "routes": [
+          {
+            "slug": "python-data-analysis",
+            "title": "Python for Data Analysis"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "data-analyst",
+            "title": "Data Analyst"
+          },
+          {
+            "slug": "ai-data-scientist",
+            "title": "AI and Data Scientist"
+          },
+          {
+            "slug": "power-bi",
+            "title": "Power BI"
+          },
+          {
+            "slug": "bi-analyst",
+            "title": "BI Analyst"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "python-data-analysis",
+            "title": "Python for Data Analysis"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      }
+    ],
+    "devops": [
+      {
+        "heading": "DevOps",
+        "routes": [
+          {
+            "slug": "devops",
+            "title": "DevOps"
+          },
+          {
+            "slug": "devsecops",
+            "title": "DevSecOps"
+          },
+          {
+            "slug": "inference-engineering",
+            "title": "Inference Engineering"
+          },
+          {
+            "slug": "linux",
+            "title": "Linux"
+          },
+          {
+            "slug": "kubernetes",
+            "title": "Kubernetes"
+          },
+          {
+            "slug": "docker",
+            "title": "Docker"
+          },
+          {
+            "slug": "aws",
+            "title": "AWS"
+          },
+          {
+            "slug": "terraform",
+            "title": "Terraform"
+          },
+          {
+            "slug": "cloudflare",
+            "title": "Cloudflare"
+          },
+          {
+            "slug": "network-engineer",
+            "title": "Network Engineer"
+          },
+          {
+            "slug": "forward-deployed-engineer",
+            "title": "Forward Deployed Engineer"
+          }
+        ]
+      },
+      {
+        "heading": "Web Development",
+        "routes": [
+          {
+            "slug": "frontend",
+            "title": "Frontend"
+          },
+          {
+            "slug": "backend",
+            "title": "Backend"
+          },
+          {
+            "slug": "full-stack",
+            "title": "Full Stack"
+          },
+          {
+            "slug": "qa",
+            "title": "QA"
+          },
+          {
+            "slug": "api-design",
+            "title": "API Design"
+          },
+          {
+            "slug": "graphql",
+            "title": "GraphQL"
+          },
+          {
+            "slug": "git-github",
+            "title": "Git and GitHub"
+          },
+          {
+            "slug": "wordpress",
+            "title": "WordPress"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      },
+      {
+        "heading": "Databases",
+        "routes": [
+          {
+            "slug": "postgresql-dba",
+            "title": "PostgreSQL"
+          },
+          {
+            "slug": "mongodb",
+            "title": "MongoDB"
+          },
+          {
+            "slug": "redis",
+            "title": "Redis"
+          },
+          {
+            "slug": "elasticsearch",
+            "title": "Elasticsearch"
+          }
+        ]
+      },
+      {
+        "heading": "Best Practices",
+        "routes": [
+          {
+            "slug": "aws-best-practices",
+            "title": "AWS"
+          },
+          {
+            "slug": "api-security-best-practices",
+            "title": "API Security"
+          },
+          {
+            "slug": "backend-performance-best-practices",
+            "title": "Backend Performance"
+          },
+          {
+            "slug": "frontend-performance-best-practices",
+            "title": "Frontend Performance"
+          },
+          {
+            "slug": "code-review-best-practices",
+            "title": "Code Review"
+          }
+        ]
+      }
+    ],
+    "mobile": [
+      {
+        "heading": "Mobile Development",
+        "routes": [
+          {
+            "slug": "android",
+            "title": "Android"
+          },
+          {
+            "slug": "ios",
+            "title": "iOS"
+          },
+          {
+            "slug": "flutter",
+            "title": "Flutter"
+          },
+          {
+            "slug": "react-native",
+            "title": "React Native"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          }
+        ]
+      }
+    ],
+    "databases": [
+      {
+        "heading": "Databases",
+        "routes": [
+          {
+            "slug": "postgresql-dba",
+            "title": "PostgreSQL"
+          },
+          {
+            "slug": "mongodb",
+            "title": "MongoDB"
+          },
+          {
+            "slug": "redis",
+            "title": "Redis"
+          },
+          {
+            "slug": "elasticsearch",
+            "title": "Elasticsearch"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "python-data-analysis",
+            "title": "Python for Data Analysis"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      }
+    ],
+    "cs": [
+      {
+        "heading": "Computer Science",
+        "routes": [
+          {
+            "slug": "computer-science",
+            "title": "Computer Science"
+          },
+          {
+            "slug": "system-design",
+            "title": "System Design"
+          },
+          {
+            "slug": "software-architect",
+            "title": "Software Architect"
+          },
+          {
+            "slug": "leetcode",
+            "title": "LeetCode"
+          },
+          {
+            "slug": "software-design-architecture",
+            "title": "Design Architecture"
+          },
+          {
+            "slug": "technical-writer",
+            "title": "Technical Writer"
+          },
+          {
+            "slug": "datastructures-and-algorithms",
+            "title": "Data Structures & Algorithms"
+          },
+          {
+            "slug": "devrel",
+            "title": "Developer Relations"
+          },
+          {
+            "slug": "code-review-best-practices",
+            "title": "Code Review"
+          },
+          {
+            "slug": "network-engineer",
+            "title": "Network Engineer"
+          }
+        ]
+      },
+      {
+        "heading": "Languages / Platforms",
+        "routes": [
+          {
+            "slug": "python",
+            "title": "Python"
+          },
+          {
+            "slug": "r-programming",
+            "title": "R Programming"
+          },
+          {
+            "slug": "sql",
+            "title": "SQL"
+          },
+          {
+            "slug": "javascript",
+            "title": "JavaScript"
+          },
+          {
+            "slug": "typescript",
+            "title": "TypeScript"
+          },
+          {
+            "slug": "nodejs",
+            "title": "Node.js"
+          },
+          {
+            "slug": "java",
+            "title": "Java"
+          },
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          },
+          {
+            "slug": "php",
+            "title": "PHP"
+          },
+          {
+            "slug": "kotlin",
+            "title": "Kotlin"
+          },
+          {
+            "slug": "html",
+            "title": "HTML"
+          },
+          {
+            "slug": "css",
+            "title": "CSS"
+          },
+          {
+            "slug": "swift-ui",
+            "title": "Swift & Swift UI"
+          },
+          {
+            "slug": "shell-bash",
+            "title": "Shell / Bash"
+          },
+          {
+            "slug": "laravel",
+            "title": "Laravel"
+          },
+          {
+            "slug": "django",
+            "title": "Django"
+          },
+          {
+            "slug": "ruby",
+            "title": "Ruby"
+          },
+          {
+            "slug": "ruby-on-rails",
+            "title": "Ruby on Rails"
+          }
+        ]
+      }
+    ],
+    "management": [
+      {
+        "heading": "Management",
+        "routes": [
+          {
+            "slug": "seo",
+            "title": "SEO"
+          },
+          {
+            "slug": "product-design",
+            "title": "Product Design"
+          },
+          {
+            "slug": "software-architect",
+            "title": "Software Architect"
+          },
+          {
+            "slug": "power-bi",
+            "title": "Power BI"
+          },
+          {
+            "slug": "technical-writer",
+            "title": "Technical Writer"
+          },
+          {
+            "slug": "product-manager",
+            "title": "Product Manager"
+          },
+          {
+            "slug": "engineering-manager",
+            "title": "Engineering Manager"
+          },
+          {
+            "slug": "devrel",
+            "title": "Developer Relations"
+          },
+          {
+            "slug": "network-engineer",
+            "title": "Network Engineer"
+          },
+          {
+            "slug": "forward-deployed-engineer",
+            "title": "Forward Deployed Engineer"
+          }
+        ]
+      }
+    ],
+    "game": [
+      {
+        "heading": "Game Development",
+        "routes": [
+          {
+            "slug": "backend",
+            "title": "Backend"
+          },
+          {
+            "slug": "game-developer",
+            "title": "Game Developer"
+          },
+          {
+            "slug": "server-side-game-developer",
+            "title": "Server Side Game Developer"
+          }
+        ]
+      },
+      {
+        "heading": "Languages",
+        "routes": [
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "cpp",
+            "title": "C++"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "scala",
+            "title": "Scala"
+          }
+        ]
+      }
+    ],
+    "design": [
+      {
+        "heading": "Design",
+        "routes": [
+          {
+            "slug": "seo",
+            "title": "SEO"
+          },
+          {
+            "slug": "product-design",
+            "title": "Product Design"
+          },
+          {
+            "slug": "ux-design",
+            "title": "UX Design"
+          },
+          {
+            "slug": "design-system",
+            "title": "Design System"
+          }
+        ]
+      }
+    ],
+    "blockchain": [
+      {
+        "heading": "Blockchain",
+        "routes": [
+          {
+            "slug": "blockchain",
+            "title": "Blockchain"
+          }
+        ]
+      },
+      {
+        "heading": "Languages",
+        "routes": [
+          {
+            "slug": "c",
+            "title": "C Programming"
+          },
+          {
+            "slug": "rust",
+            "title": "Rust"
+          },
+          {
+            "slug": "golang",
+            "title": "Go"
+          }
+        ]
+      }
+    ],
+    "security": [
+      {
+        "heading": "Cyber Security",
+        "routes": [
+          {
+            "slug": "cyber-security",
+            "title": "Cyber Security"
+          },
+          {
+            "slug": "ai-red-teaming",
+            "title": "AI Red Teaming"
+          }
+        ]
+      },
+      {
+        "heading": "DevOps",
+        "routes": [
+          {
+            "slug": "devops",
+            "title": "DevOps"
+          },
+          {
+            "slug": "devsecops",
+            "title": "DevSecOps"
+          },
+          {
+            "slug": "linux",
+            "title": "Linux"
+          },
+          {
+            "slug": "kubernetes",
+            "title": "Kubernetes"
+          },
+          {
+            "slug": "docker",
+            "title": "Docker"
+          },
+          {
+            "slug": "aws",
+            "title": "AWS"
+          },
+          {
+            "slug": "terraform",
+            "title": "Terraform"
+          },
+          {
+            "slug": "cloudflare",
+            "title": "Cloudflare"
+          },
+          {
+            "slug": "network-engineer",
+            "title": "Network Engineer"
+          }
+        ]
+      }
+    ],
+    "best": [
+      {
+        "heading": "Best Practices",
+        "routes": [
+          {
+            "slug": "aws",
+            "title": "AWS"
+          },
+          {
+            "slug": "api-security-best-practices",
+            "title": "API Security"
+          },
+          {
+            "slug": "backend-performance-best-practices",
+            "title": "Backend Performance"
+          },
+          {
+            "slug": "frontend-performance-best-practices",
+            "title": "Frontend Performance"
+          },
+          {
+            "slug": "code-review-best-practices",
+            "title": "Code Review"
+          }
+        ]
+      }
+    ]
+  },
+  "routes": [
+    {
+      "slug": "ai-agents",
+      "title": "AI Agents",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ai-data-scientist",
+      "title": "AI and Data Scientist",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ai-engineer",
+      "title": "AI Engineer",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ai-product-builder",
+      "title": "AI Product Builders",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ai-red-teaming",
+      "title": "AI Red Teaming",
+      "categories": [
+        "ai",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "android",
+      "title": "Android",
+      "categories": [
+        "mobile"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "angular",
+      "title": "Angular",
+      "categories": [
+        "web",
+        "frameworks"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "api-design",
+      "title": "API Design",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "api-security-best-practices",
+      "title": "API Security",
+      "categories": [
+        "web",
+        "devops",
+        "best"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "aspnet-core",
+      "title": "ASP.NET Core",
+      "categories": [
+        "web",
+        "frameworks"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "aws",
+      "title": "AWS",
+      "categories": [
+        "web",
+        "devops",
+        "security",
+        "best"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "aws-best-practices",
+      "title": "AWS",
+      "categories": [
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "backend",
+      "title": "Backend",
+      "categories": [
+        "beginner",
+        "web",
+        "devops",
+        "game"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "backend-beginner",
+      "title": "Backend Beginner",
+      "categories": [
+        "beginner",
+        "web"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "backend-performance-best-practices",
+      "title": "Backend Performance",
+      "categories": [
+        "web",
+        "devops",
+        "best"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "bi-analyst",
+      "title": "BI Analyst",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "blockchain",
+      "title": "Blockchain",
+      "categories": [
+        "blockchain"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "c",
+      "title": "C Programming",
+      "categories": [
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "cs",
+        "game",
+        "blockchain"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "claude-code",
+      "title": "Claude Code",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "cloudflare",
+      "title": "Cloudflare",
+      "categories": [
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "code-review",
+      "title": "Code Review",
+      "categories": [
+        "web"
+      ],
+      "inDirectory": false
+    },
+    {
+      "slug": "code-review-best-practices",
+      "title": "Code Review",
+      "categories": [
+        "web",
+        "devops",
+        "cs",
+        "best"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "computer-science",
+      "title": "Computer Science",
+      "categories": [
+        "web",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "cpp",
+      "title": "C++",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "cs",
+        "game"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "css",
+      "title": "CSS",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "mobile",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "cyber-security",
+      "title": "Cyber Security",
+      "categories": [
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "data-analyst",
+      "title": "Data Analyst",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "data-engineer",
+      "title": "Data Engineer",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "datastructures-and-algorithms",
+      "title": "Data Structures & Algorithms",
+      "categories": [
+        "web",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "design-system",
+      "title": "Design System",
+      "categories": [
+        "web",
+        "design"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "devops",
+      "title": "DevOps",
+      "categories": [
+        "beginner",
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "devops-beginner",
+      "title": "DevOps Beginner",
+      "categories": [
+        "beginner",
+        "web"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "devrel",
+      "title": "Developer Relations",
+      "categories": [
+        "web",
+        "cs",
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "devsecops",
+      "title": "DevSecOps",
+      "categories": [
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "django",
+      "title": "Django",
+      "categories": [
+        "beginner",
+        "web",
+        "frameworks",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "docker",
+      "title": "Docker",
+      "categories": [
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "elasticsearch",
+      "title": "Elasticsearch",
+      "categories": [
+        "web",
+        "devops",
+        "databases"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "engineering-manager",
+      "title": "Engineering Manager",
+      "categories": [
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "flutter",
+      "title": "Flutter",
+      "categories": [
+        "mobile"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "forward-deployed-engineer",
+      "title": "Forward Deployed Engineer",
+      "categories": [
+        "web",
+        "ai",
+        "devops",
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "frontend",
+      "title": "Frontend",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "frontend-beginner",
+      "title": "Frontend Beginner",
+      "categories": [
+        "beginner",
+        "web"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "frontend-performance-best-practices",
+      "title": "Frontend Performance",
+      "categories": [
+        "web",
+        "devops",
+        "best"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "full-stack",
+      "title": "Full Stack",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "game-developer",
+      "title": "Game Developer",
+      "categories": [
+        "game"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "git-github",
+      "title": "Git and GitHub",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "git-github-beginner",
+      "title": "Git and GitHub Beginner",
+      "categories": [
+        "beginner",
+        "web"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "golang",
+      "title": "Go",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "databases",
+        "cs",
+        "blockchain"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "graphql",
+      "title": "GraphQL",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": false
+    },
+    {
+      "slug": "html",
+      "title": "HTML",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "mobile",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "inference-engineering",
+      "title": "Inference Engineering",
+      "categories": [
+        "ai",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ios",
+      "title": "iOS",
+      "categories": [
+        "mobile"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "java",
+      "title": "Java",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "javascript",
+      "title": "JavaScript",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "mobile",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "kotlin",
+      "title": "Kotlin",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "mobile",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "kubernetes",
+      "title": "Kubernetes",
+      "categories": [
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "laravel",
+      "title": "Laravel",
+      "categories": [
+        "beginner",
+        "web",
+        "frameworks",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "leetcode",
+      "title": "LeetCode",
+      "categories": [
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "linux",
+      "title": "Linux",
+      "categories": [
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "machine-learning",
+      "title": "Machine Learning",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "mlops",
+      "title": "MLOps",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "mongodb",
+      "title": "MongoDB",
+      "categories": [
+        "web",
+        "devops",
+        "databases"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "network-engineer",
+      "title": "Network Engineer",
+      "categories": [
+        "devops",
+        "cs",
+        "management",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "nextjs",
+      "title": "Next.js",
+      "categories": [
+        "web",
+        "frameworks"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "nodejs",
+      "title": "Node.js",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "openclaw",
+      "title": "OpenClaw",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "php",
+      "title": "PHP",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "postgresql-dba",
+      "title": "PostgreSQL",
+      "categories": [
+        "web",
+        "devops",
+        "databases"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "power-bi",
+      "title": "Power BI",
+      "categories": [
+        "ai",
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "product-design",
+      "title": "Product Design",
+      "categories": [
+        "web",
+        "management",
+        "design"
+      ],
+      "inDirectory": false
+    },
+    {
+      "slug": "product-manager",
+      "title": "Product Manager",
+      "categories": [
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "prompt-engineering",
+      "title": "Prompt Engineering",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "python",
+      "title": "Python",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "python-data-analysis",
+      "title": "Python for Data Analysis",
+      "categories": [
+        "beginner",
+        "languages",
+        "ai",
+        "databases"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "qa",
+      "title": "QA",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "r-programming",
+      "title": "R Programming",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "react",
+      "title": "React",
+      "categories": [
+        "web",
+        "frameworks"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "react-native",
+      "title": "React Native",
+      "categories": [
+        "mobile"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "redis",
+      "title": "Redis",
+      "categories": [
+        "web",
+        "devops",
+        "databases"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ruby",
+      "title": "Ruby",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ruby-on-rails",
+      "title": "Ruby on Rails",
+      "categories": [
+        "beginner",
+        "web",
+        "frameworks",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "rust",
+      "title": "Rust",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "cs",
+        "game",
+        "blockchain"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "scala",
+      "title": "Scala",
+      "categories": [
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "game"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "seo",
+      "title": "SEO",
+      "categories": [
+        "web",
+        "management",
+        "design"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "server-side-game-developer",
+      "title": "Server Side Game Developer",
+      "categories": [
+        "game"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "shell-bash",
+      "title": "Shell / Bash",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "software-architect",
+      "title": "Software Architect",
+      "categories": [
+        "web",
+        "cs",
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "software-design-architecture",
+      "title": "Design Architecture",
+      "categories": [
+        "web",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "spring-boot",
+      "title": "Spring Boot",
+      "categories": [
+        "web",
+        "frameworks"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "sql",
+      "title": "SQL",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "ai",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "swift-ui",
+      "title": "Swift & Swift UI",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "mobile",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "system-design",
+      "title": "System Design",
+      "categories": [
+        "web",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "technical-writer",
+      "title": "Technical Writer",
+      "categories": [
+        "web",
+        "cs",
+        "management"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "terraform",
+      "title": "Terraform",
+      "categories": [
+        "web",
+        "devops",
+        "security"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "typescript",
+      "title": "TypeScript",
+      "categories": [
+        "beginner",
+        "web",
+        "languages",
+        "devops",
+        "databases",
+        "cs"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "ux-design",
+      "title": "UX Design",
+      "categories": [
+        "web",
+        "design"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "vibe-coding",
+      "title": "Vibe Coding",
+      "categories": [
+        "ai"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "vue",
+      "title": "Vue",
+      "categories": [
+        "web",
+        "frameworks"
+      ],
+      "inDirectory": true
+    },
+    {
+      "slug": "wordpress",
+      "title": "WordPress",
+      "categories": [
+        "beginner",
+        "web",
+        "devops"
+      ],
+      "inDirectory": true
+    }
+  ]
+}

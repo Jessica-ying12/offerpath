@@ -15,7 +15,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { ROADMAPS, ROADMAP_MAP, ROADMAP_CATEGORIES } from "../data/roadmaps";
+import { ROADMAPS, ROADMAP_MAP, ROADMAP_PLAN_GROUPS } from "../data/roadmaps";
 import {
   buildPlan,
   defaultStageIds,
@@ -364,10 +364,12 @@ export function PlanPage() {
                   {templateId === "interview" || templateId === "jd" ? "目标路线（用于补基础范围）" : "目标路线"}
                 </label>
                 <select value={roadmapId} onChange={(event) => changeRoadmap(event.target.value)} className="input">
-                  {ROADMAP_CATEGORIES.map((category) => (
-                    <optgroup key={category.id} label={category.label}>
-                      {ROADMAPS.filter((item) => item.category === category.id).map((item) => (
-                        <option key={item.id} value={item.id}>{item.name} · {item.audience}</option>
+                  {ROADMAP_PLAN_GROUPS.map((group) => (
+                    <optgroup key={group.id} label={`${group.label} · ${group.routes.length}`}>
+                      {group.routes.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.name}{item.nameZh ? ` · ${item.nameZh}` : ""}
+                        </option>
                       ))}
                     </optgroup>
                   ))}
