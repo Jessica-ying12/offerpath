@@ -70,7 +70,7 @@ export const OFFICIAL_NODE_TOTAL = Object.values(OFFICIAL_NODE_MAP).reduce((sum,
 const CATEGORY_ZH: Record<string, string> = {
   beginner: "零基础入门",
   web: "Web 开发",
-  frameworks: "框架专项",
+  frameworks: "框架",
   languages: "语言与平台",
   ai: "AI 与机器学习",
   devops: "DevOps",
@@ -84,6 +84,121 @@ const CATEGORY_ZH: Record<string, string> = {
   security: "网络安全",
   best: "最佳实践",
 };
+
+const ROADMAP_TITLE_ZH: Record<string, string> = {
+  "frontend-beginner": "前端入门",
+  "backend-beginner": "后端入门",
+  "devops-beginner": "DevOps 入门",
+  "git-github-beginner": "Git 与 GitHub 入门",
+  frontend: "前端工程师",
+  backend: "后端工程师",
+  "full-stack": "全栈工程师",
+  android: "Android 开发",
+  devops: "DevOps 工程师",
+  devsecops: "DevSecOps 工程师",
+  "data-analyst": "数据分析师",
+  "inference-engineering": "推理工程",
+  "ai-engineer": "AI 工程师",
+  "ai-data-scientist": "AI 与数据科学家",
+  "data-engineer": "数据工程师",
+  "machine-learning": "机器学习",
+  "postgresql-dba": "PostgreSQL DBA",
+  ios: "iOS 开发",
+  blockchain: "区块链",
+  qa: "QA 测试工程师",
+  "software-architect": "软件架构师",
+  "api-design": "API 设计",
+  "cyber-security": "网络安全",
+  "ux-design": "UX 设计",
+  "technical-writer": "技术写作",
+  "game-developer": "游戏开发者",
+  "server-side-game-developer": "服务端游戏开发者",
+  mlops: "MLOps 工程师",
+  "product-manager": "产品经理",
+  "engineering-manager": "工程经理",
+  devrel: "开发者关系",
+  "bi-analyst": "BI 分析师",
+  "ai-red-teaming": "AI 红队",
+  "network-engineer": "网络工程师",
+  "forward-deployed-engineer": "交付工程师",
+  "python-data-analysis": "Python 数据分析",
+  "r-programming": "R 语言",
+  "computer-science": "计算机科学",
+  "system-design": "系统设计",
+  c: "C 语言",
+  cpp: "C++",
+  golang: "Go",
+  "ai-product-builder": "AI 产品构建",
+  "software-design-architecture": "软件设计架构",
+  "design-system": "设计系统",
+  "prompt-engineering": "提示词工程",
+  "datastructures-and-algorithms": "数据结构与算法",
+  "git-github": "Git 与 GitHub",
+  "ai-agents": "AI Agents",
+  "swift-ui": "Swift 与 SwiftUI",
+  "code-review": "代码评审",
+  "product-design": "产品设计",
+  "aws-best-practices": "AWS 最佳实践",
+  "api-security-best-practices": "API 安全最佳实践",
+  "backend-performance-best-practices": "后端性能最佳实践",
+  "frontend-performance-best-practices": "前端性能最佳实践",
+  "code-review-best-practices": "代码评审最佳实践",
+};
+
+const CATEGORY_LABELS_ZH: Record<string, string> = {
+  all: "全部路线",
+  beginner: "零基础入门",
+  web: "Web 开发",
+  frameworks: "框架",
+  languages: "语言与平台",
+  ai: "AI 与机器学习",
+  devops: "DevOps",
+  mobile: "移动开发",
+  databases: "数据库",
+  cs: "计算机科学",
+  management: "管理",
+  game: "游戏开发",
+  design: "设计",
+  blockchain: "区块链",
+  security: "网络安全",
+  best: "最佳实践",
+};
+
+const GROUP_LABELS_ZH: Record<string, string> = {
+  "New Roadmaps": "最新路线",
+  "Role Based Roadmaps": "角色路线",
+  "Skill Based Roadmaps": "技术路线",
+  "Absolute Beginners": "零基础入门",
+  "Best Practices": "最佳实践",
+  "Web Development": "Web 开发",
+  "Frameworks": "框架",
+  "Languages / Platforms": "语言与平台",
+  "Languages": "语言",
+  "AI & Machine Learning": "AI 与机器学习",
+  "Data Analysis": "数据分析",
+  "Mobile Development": "移动开发",
+  "Databases": "数据库",
+  "Computer Science": "计算机科学",
+  "Management": "管理",
+  "Game Development": "游戏开发",
+  "Design": "设计",
+  "Blockchain": "区块链",
+  "Cyber Security": "网络安全",
+  "DevOps": "DevOps",
+  "平台精编补充": "平台精编补充",
+};
+
+export function categoryLabelZh(id: string): string {
+  return CATEGORY_LABELS_ZH[id] ?? id;
+}
+
+export function groupLabelZh(label: string): string {
+  return GROUP_LABELS_ZH[label] ?? label;
+}
+
+export function roadmapDisplayName(roadmap: { name: string; nameZh?: string }): string {
+  return roadmap.nameZh || roadmap.name;
+}
 
 const PLAN_GROUP_LABELS: Record<string, string> = {
   "New Roadmaps": "最新路线",
@@ -1105,7 +1220,7 @@ const OFFICIAL_ROADMAPS: Roadmap[] = ROADMAP_CATALOG.routes.map((route) => {
       ...curated,
       id: route.slug,
       name: route.title,
-      nameZh: curated.name,
+      nameZh: ROADMAP_TITLE_ZH[route.slug] ?? (curated.name !== route.title ? curated.name : undefined),
       category: categoryForGroup(group),
       officialUrl,
       curated: true,
@@ -1117,6 +1232,7 @@ const OFFICIAL_ROADMAPS: Roadmap[] = ROADMAP_CATALOG.routes.map((route) => {
   return {
     id: route.slug,
     name: route.title,
+    nameZh: ROADMAP_TITLE_ZH[route.slug],
     category: categoryForGroup(group),
     audience: `官方路线 · ${topics.length} 个主题节点`,
     description,

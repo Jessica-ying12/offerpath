@@ -17,7 +17,7 @@ import {
 import { DOCS, TOTAL_QA } from "../lib/content";
 import { formatDate } from "../lib/srs";
 import { useStore } from "../lib/store";
-import { ROADMAP_MAP } from "../data/roadmaps";
+import { ROADMAP_MAP, roadmapDisplayName } from "../data/roadmaps";
 import { buildPlan, templateById, type PlanTask } from "../lib/plan";
 import { analyzeJd } from "../lib/jd";
 import { Breadcrumbs, EmptyState, PageContainer, PageHeader, ProgressRing, StatCard } from "../components/ui";
@@ -204,7 +204,7 @@ export function ProgressPage() {
                   <span className="chip">{built.modules.length} 个模块</span>
                 </div>
                 <h2 className="mt-1 font-display text-[22px] font-bold text-ink sm:text-[26px]">{plan.goal.name || plan.goal.title}</h2>
-                <p className="mt-1 text-[10.5px] text-muted">{planRoadmap.name} · 第 {currentDay + 1} / {plan.goal.days} 天 · 从 {plan.goal.startDate} 开始</p>
+                <p className="mt-1 text-[10.5px] text-muted">{roadmapDisplayName(planRoadmap)} · 第 {currentDay + 1} / {plan.goal.days} 天 · 从 {plan.goal.startDate} 开始</p>
                 <div className="mt-2 flex flex-wrap gap-1">
                   {planAnalysis?.matched.slice(0, 8).map((item) => <span key={item.label} className="chip bg-raised/50 text-[8.5px] text-accent">{item.label}</span>)}
                 </div>
@@ -313,7 +313,7 @@ export function ProgressPage() {
                   <Link to={`/roadmap/${plan.goal.roadmapId}`} className="text-[10px] text-accent">路线 →</Link>
                 </div>
                 <div className="flex flex-wrap gap-1.5 text-[9.5px]">
-                  <span className="chip">路线 · {planRoadmap.name}</span>
+                  <span className="chip">路线 · {roadmapDisplayName(planRoadmap)}</span>
                   <span className="chip">{plan.goal.includedStageIds.length}/{planRoadmap.stages.length} 阶段</span>
                   <span className="chip">{plan.goal.days} 天</span>
                   <span className="chip">每天 {plan.goal.dailyMinutes} 分钟</span>

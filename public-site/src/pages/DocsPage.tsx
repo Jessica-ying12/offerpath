@@ -16,7 +16,7 @@ import { DOCS, QA_MAP, ROLES, TOTAL_LINES, TOTAL_QA } from "../lib/content";
 import { docsForRole } from "../lib/jd";
 import { useStore } from "../lib/store";
 import { DOC_MODULES, DOC_MODULE_MAP, type DocModule } from "../lib/taxonomy";
-import { ROADMAP_MAP } from "../data/roadmaps";
+import { ROADMAP_MAP, roadmapDisplayName } from "../data/roadmaps";
 import questionMeta from "../data/question-meta.json";
 import { Breadcrumbs, PageContainer, PageHeader } from "../components/ui";
 import type { DocMeta } from "../lib/types";
@@ -271,7 +271,7 @@ export function DocsPage() {
               <div className="mt-2 flex flex-wrap gap-1">
                 {selectedMeta.roadmapIds.map((id) => {
                   const roadmap = ROADMAP_MAP.get(id);
-                  return roadmap ? <Link key={id} to={`/roadmap/${id}`} className="chip hover:border-accent/30 hover:text-accent">{roadmap.name} →</Link> : null;
+                  return roadmap ? <Link key={id} to={`/roadmap/${id}`} className="chip hover:border-accent/30 hover:text-accent">{roadmapDisplayName(roadmap)} →</Link> : null;
                 })}
               </div>
             </section>

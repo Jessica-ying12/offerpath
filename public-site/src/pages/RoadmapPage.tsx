@@ -26,7 +26,10 @@ import {
   ROADMAP_SOURCE,
   ROADMAP_SCRAPED_AT,
   ROADMAP_TOTAL,
+  categoryLabelZh,
+  groupLabelZh,
   roadmapCatalogCategory,
+  roadmapDisplayName,
   roadmapStats,
   type Roadmap,
   type RoadmapNode,
@@ -107,11 +110,11 @@ function RouteCard({ route }: { route: Roadmap }) {
     >
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1.5">
-          <p className="truncate text-[12px] font-semibold text-ink group-hover:text-accent">{route.name}</p>
+          <p className="truncate text-[12px] font-semibold text-ink group-hover:text-accent">{roadmapDisplayName(route)}</p>
           {route.curated ? <span className="shrink-0 rounded bg-accent/[0.08] px-1 py-0.5 text-[7.5px] font-semibold text-accent">精编</span> : null}
         </div>
         <p className="mt-0.5 truncate text-[8.5px] text-muted/70">
-          {route.nameZh ? `${route.nameZh} · ` : ""}
+          {route.nameZh ? `${route.name} · ` : ""}
           {stats.docs > 0 ? `${stats.docs} 篇精读 · ${stats.officialTopics || stats.nodes} 官方主题` : `${stats.officialTopics || stats.nodes} 个官方主题`}
         </p>
       </div>
@@ -163,7 +166,7 @@ export function RoadmapIndexPage() {
       <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "路线图库" }]} className="mb-4" />
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="eyebrow mb-1.5">DEVELOPER ROADMAPS · {ROADMAP_TOTAL} PATHS</p>
+          <p className="eyebrow mb-1.5">开发者路线图 · {ROADMAP_TOTAL} 条</p>
           <h1 className="font-display text-[30px] font-bold leading-tight tracking-tight text-ink sm:text-[38px]">路线图库</h1>
           <p className="mt-2 max-w-2xl text-[12px] leading-6 text-muted">
             按 roadmap.sh 公开目录同步：{ROADMAP_TOTAL} 条路线、完整分类与节点清单。左侧选分类，右侧按分类分组浏览；每条路线都有站内详情页。
@@ -190,7 +193,7 @@ export function RoadmapIndexPage() {
           <div className="card min-w-0 p-2">
             <div className="mb-1 flex items-center justify-between px-2.5 pt-1.5">
               <p className="eyebrow">分类</p>
-              <span className="font-mono text-[8px] text-muted/50">sync {ROADMAP_SCRAPED_AT.slice(5)}</span>
+              <span className="font-mono text-[8px] text-muted/50">同步 {ROADMAP_SCRAPED_AT.slice(5)}</span>
             </div>
             <div className="flex w-full min-w-0 gap-1 overflow-x-auto pb-1 lg:block lg:space-y-0.5 lg:overflow-visible">
               {ROADMAP_CATALOG_CATEGORIES.map((item) => {
@@ -203,7 +206,7 @@ export function RoadmapIndexPage() {
                       active ? "bg-accent/[0.09] font-semibold text-accent" : "text-muted hover:bg-raised/60 hover:text-ink"
                     }`}
                   >
-                    <span className="whitespace-nowrap">{item.label}</span>
+                    <span className="whitespace-nowrap">{categoryLabelZh(item.id)}</span>
                     <span className={`font-mono text-[8.5px] ${active ? "text-accent/70" : "text-muted/50"}`}>{item.count}</span>
                   </button>
                 );
@@ -230,7 +233,7 @@ export function RoadmapIndexPage() {
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <div>
               <p className="text-[11px] font-semibold text-ink">
-                {category === "all" ? "全部路线" : categoryMeta.label}
+                {category === "all" ? "全部路线" : categoryLabelZh(categoryMeta.id)}
                 <span className="ml-2 font-mono text-[9px] font-normal text-muted/60">{categoryMeta.count}</span>
               </p>
               <p className="mt-0.5 text-[8.5px] text-muted/60">
@@ -246,7 +249,7 @@ export function RoadmapIndexPage() {
             ) : (
               groups.map((group) => (
                 <section key={`${category}-${group.heading}`}>
-                  <h2 className="mb-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted/60">{group.heading}</h2>
+                  <h2 className="mb-2 text-[11px] font-semibold tracking-[0.06em] text-muted/70">{groupLabelZh(group.heading)}</h2>
                   <div className="grid gap-1.5 sm:grid-cols-2">
                     {group.routes.map((item) => {
                       const roadmap = ROADMAP_MAP.get(item.slug);
@@ -261,7 +264,7 @@ export function RoadmapIndexPage() {
           {extras.length > 0 ? (
             <section className="mt-7 rounded-2xl border border-line/10 bg-surface p-4">
               <div className="mb-2">
-                <p className="eyebrow mb-1">PLATFORM EDITION</p>
+                <p className="eyebrow mb-1">平台扩展</p>
                 <h2 className="text-[13px] font-bold text-ink">平台精编补充 · {extras.length} 条</h2>
                 <p className="mt-0.5 text-[9px] text-muted">这些是平台针对移动端求职增加的精编路线，不混入上方 {ROADMAP_TOTAL} 条官方目录计数。</p>
               </div>
@@ -305,11 +308,13 @@ export function RoadmapDetailPage() {
     coverageQuery.trim() ? name.toLowerCase().includes(coverageQuery.trim().toLowerCase()) : true,
   );
   const currentPlan = state.plan?.goal.roadmapId === roadmap.id;
+  const groupName = groupLabelZh(roadmap.groupLabel);
   const categoryLabels = [...new Set(
     roadmap.catalogCategories
-      .map((id) => ROADMAP_CATALOG_CATEGORIES.find((item) => item.id === id)?.label)
-      .filter((label): label is string => Boolean(label)),
-  )].filter((label) => label !== roadmap.groupLabel);
+      .map((id) => ROADMAP_CATALOG_CATEGORIES.find((item) => item.id === id))
+      .filter((item): item is NonNullable<typeof item> => Boolean(item))
+      .map((item) => categoryLabelZh(item.id)),
+  )].filter((label) => label !== groupName);
 
   return (
     <PageContainer>
@@ -317,8 +322,8 @@ export function RoadmapDetailPage() {
         items={[
           { label: "总览", to: "/" },
           { label: "路线图库", to: "/roadmap" },
-          ...(roadmap.catalogCategories.length > 0 ? [{ label: category.label, to: `/roadmap?category=${category.id}` }] : []),
-          { label: roadmap.name },
+          ...(roadmap.catalogCategories.length > 0 ? [{ label: categoryLabelZh(category.id), to: `/roadmap?category=${category.id}` }] : []),
+          { label: roadmapDisplayName(roadmap) },
         ]}
         className="mb-4"
       />
@@ -334,10 +339,10 @@ export function RoadmapDetailPage() {
             </div>
           )}
           <div className="min-w-0">
-            <p className="eyebrow mb-1">{[roadmap.groupLabel, ...categoryLabels].slice(0, 4).join(" · ")}</p>
+            <p className="eyebrow mb-1">{[groupName, ...categoryLabels].slice(0, 4).join(" · ")}</p>
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="font-display text-[26px] font-bold leading-tight text-ink sm:text-[34px]">{roadmap.name}</h1>
-              {roadmap.nameZh ? <span className="chip border-accent/20 text-accent">{roadmap.nameZh}</span> : null}
+              <h1 className="font-display text-[26px] font-bold leading-tight text-ink sm:text-[34px]">{roadmapDisplayName(roadmap)}</h1>
+              {roadmap.nameZh ? <span className="chip border-line/15">{roadmap.name}</span> : null}
               {currentPlan ? <span className="chip border-accent/25 text-accent">当前计划路线</span> : null}
             </div>
             <p className="mt-1 text-[11px] leading-5 text-muted">{roadmap.description}</p>
@@ -489,7 +494,7 @@ export function RoadmapDetailPage() {
               <div className="mt-2 flex flex-wrap gap-1">
                 {roadmap.catalogCategories.map((id) => {
                   const item = ROADMAP_CATALOG_CATEGORIES.find((categoryItem) => categoryItem.id === id);
-                  return item ? <Link key={id} to={`/roadmap?category=${id}`} className="chip py-0.5 text-[8px] hover:border-accent/30 hover:text-accent">{item.label}</Link> : null;
+                  return item ? <Link key={id} to={`/roadmap?category=${id}`} className="chip py-0.5 text-[8px] hover:border-accent/30 hover:text-accent">{categoryLabelZh(item.id)}</Link> : null;
                 })}
               </div>
             ) : null}

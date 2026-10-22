@@ -15,7 +15,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { ROADMAPS, ROADMAP_MAP, ROADMAP_PLAN_GROUPS } from "../data/roadmaps";
+import { ROADMAPS, ROADMAP_MAP, ROADMAP_PLAN_GROUPS, roadmapDisplayName } from "../data/roadmaps";
 import {
   buildPlan,
   defaultStageIds,
@@ -123,7 +123,7 @@ export function PlanPage() {
   const [jdText, setJdText] = useState(existing?.goal.jdText ?? "");
   const [resumeText, setResumeText] = useState(existing?.goal.resumeText ?? "");
   const [planName, setPlanName] = useState(
-    existing?.goal.name ?? existing?.goal.title ?? `${templateById(initialTemplate).name} · ${initialRoadmap.name}`,
+    existing?.goal.name ?? existing?.goal.title ?? `${templateById(initialTemplate).name} · ${roadmapDisplayName(initialRoadmap)}`,
   );
   const [nameTouched, setNameTouched] = useState(Boolean(existing));
   const [error, setError] = useState("");
@@ -151,8 +151,8 @@ export function PlanPage() {
     const goal: LearningPlanState["goal"] = {
       roadmapId: roadmap.id,
       templateId,
-      name: planName.trim() || `${templateById(templateId).name} · ${roadmap.name}`,
-      title: `${templateById(templateId).name} · ${roadmap.name}`,
+      name: planName.trim() || `${templateById(templateId).name} · ${roadmapDisplayName(roadmap)}`,
+      title: `${templateById(templateId).name} · ${roadmapDisplayName(roadmap)}`,
       days: templateId === "ten-week" ? 70 : days,
       dailyMinutes,
       startDate,
@@ -176,7 +176,7 @@ export function PlanPage() {
     setRoadmapId(queryRoadmap);
     setEditing(true);
     setStageIds(defaultStageIds(next, templateId));
-    setPlanName(`${templateById(templateId).name} · ${next.name}`);
+    setPlanName(`${templateById(templateId).name} · ${roadmapDisplayName(next)}`);
     setNameTouched(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryRoadmap]);
@@ -188,7 +188,7 @@ export function PlanPage() {
     setDailyMinutes(template.dailyMinutes);
     setIncludeOptional(template.includeOptional);
     setStageIds(defaultStageIds(roadmap, id));
-    if (!nameTouched) setPlanName(`${template.name} · ${roadmap.name}`);
+    if (!nameTouched) setPlanName(`${template.name} · ${roadmapDisplayName(roadmap)}`);
     setEditing(true);
     setError("");
   };
@@ -198,7 +198,7 @@ export function PlanPage() {
     if (!next) return;
     setRoadmapId(id);
     setStageIds(defaultStageIds(next, templateId));
-    if (!nameTouched) setPlanName(`${templateById(templateId).name} · ${next.name}`);
+    if (!nameTouched) setPlanName(`${templateById(templateId).name} · ${roadmapDisplayName(next)}`);
   };
 
   const toggleStage = (id: string) => {
@@ -229,8 +229,8 @@ export function PlanPage() {
       {
         roadmapId,
         templateId,
-        name: planName.trim() || `${template.name} · ${roadmap.name}`,
-        title: `${template.name} · ${roadmap.name}`,
+        name: planName.trim() || `${template.name} · ${roadmapDisplayName(roadmap)}`,
+        title: `${template.name} · ${roadmapDisplayName(roadmap)}`,
         days: templateId === "ten-week" ? 70 : days,
         dailyMinutes,
         startDate,
@@ -368,7 +368,7 @@ export function PlanPage() {
                     <optgroup key={group.id} label={`${group.label} · ${group.routes.length}`}>
                       {group.routes.map((item) => (
                         <option key={item.id} value={item.id}>
-                          {item.name}{item.nameZh ? ` · ${item.nameZh}` : ""}
+                          {item.nameZh ? `${item.nameZh} · ${item.name}` : item.name}
                         </option>
                       ))}
                     </optgroup>
@@ -576,7 +576,7 @@ export function PlanPage() {
                 </div>
                 <h2 className="mt-1 font-display text-[24px] font-bold text-ink">{plan.goal.name || plan.goal.title}</h2>
                 <p className="mt-1 text-[10.5px] text-muted">
-                  {planRoadmap?.name} · 从 {plan.goal.startDate} 开始 · 当前第 {currentDay + 1} 天
+                  {planRoadmap ? roadmapDisplayName(planRoadmap) : ""} · 从 {plan.goal.startDate} 开始 · 当前第 {currentDay + 1} 天
                 </p>
                 {planAnalysis && planAnalysis.matched.length > 0 ? (
                   <div className="mt-2 flex flex-wrap items-center gap-1">
