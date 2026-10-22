@@ -705,29 +705,34 @@ export function BankPage() {
       {tab === "type" ? (
         <div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-            {TYPE_ORDER.map((type) => (
-              <button
-                key={type}
-                onClick={() => {
-                  setTypes([type]);
-                  setDocId("all");
-                }}
-                className="card group p-4 text-left transition hover:border-accent/30"
-              >
-                <span className={`inline-flex h-8 w-8 items-center justify-center rounded-lg border ${TYPE_COLOR[type]}`}>
-                  <ListChecks className="h-4 w-4" />
-                </span>
-                <p className="mt-3 text-[13px] font-semibold text-ink">{TYPE_LABEL[type]}</p>
-                <p className="mt-0.5 font-display text-[22px] font-bold text-ink">{meta.counts[type]}</p>
-                <p className="mt-1 text-[9.5px] leading-4 text-muted">{TYPE_DESC[type]}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-[9.5px] text-accent opacity-0 transition group-hover:opacity-100">
-                  选择题型 <ChevronRight className="h-3 w-3" />
-                </span>
-              </button>
-            ))}
+            {TYPE_ORDER.map((type) => {
+              const courseSingles = bank.questions.filter((question) => question.stage === "course").length;
+              const typeTotal = type === "single" ? meta.counts.single - courseSingles : meta.counts[type];
+              return (
+                <button
+                  key={type}
+                  onClick={() => {
+                    setTypes([type]);
+                    setDocId("all");
+                  }}
+                  className="card group p-4 text-left transition hover:border-accent/30"
+                >
+                  <span className={`inline-flex h-8 w-8 items-center justify-center rounded-lg border ${TYPE_COLOR[type]}`}>
+                    <ListChecks className="h-4 w-4" />
+                  </span>
+                  <p className="mt-3 text-[13px] font-semibold text-ink">{TYPE_LABEL[type]}</p>
+                  <p className="mt-0.5 font-display text-[22px] font-bold text-ink">{typeTotal}</p>
+                  <p className="mt-1 text-[9.5px] leading-4 text-muted">{TYPE_DESC[type]}</p>
+                  {type === "single" ? <p className="mt-1 text-[8.5px] text-muted/60">知识点单选；另有 {courseSingles} 道课程单选</p> : null}
+                  <span className="mt-3 inline-flex items-center gap-1 text-[9.5px] text-accent opacity-0 transition group-hover:opacity-100">
+                    选择题型 <ChevronRight className="h-3 w-3" />
+                  </span>
+                </button>
+              );
+            })}
           </div>
           <div className="mt-4 rounded-xl border border-line/10 bg-surface p-4 text-[10.5px] leading-5 text-muted">
-            题型说明：简答用于练表达；填空用于记术语；判断用于识别错误说法；多选用于辨析边界；单选来自五门课程的 210 道原有题库。所有题型提交后都显示纠正与对应知识点。
+            题型说明：简答用于练表达；填空用于记术语；判断用于识别错误说法；多选用于辨析边界；知识点单选由问答生成；课程单选来自五门课程的 210 道原有题库。所有题型提交后都显示纠正与对应知识点。
           </div>
           <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-accent/20 bg-accent/[0.045] p-4">
             <span className="text-[10.5px] text-muted">已选题型：<strong className="text-ink">{types.map((type) => TYPE_LABEL[type]).join(" / ")}</strong></span>

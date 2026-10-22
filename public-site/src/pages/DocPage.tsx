@@ -308,6 +308,15 @@ export function DocPage() {
           </div>
 
           <DocSwitcher currentId={doc.id} />
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-[10px] text-muted">
+            <Link to="/docs" className="inline-flex items-center gap-1 hover:text-accent">
+              <ArrowLeft className="h-3 w-3" /> 返回文档库
+            </Link>
+            <span className="text-line/30">/</span>
+            <Link to="/roadmap" className="hover:text-accent">返回完整路线图</Link>
+            <span className="text-line/30">/</span>
+            <Link to="/qa" className="hover:text-accent">去做面试自测</Link>
+          </div>
         </article>
 
         {!focus ? (
