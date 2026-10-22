@@ -152,7 +152,7 @@ type Store = {
   savePlan: (goal: Omit<LearningGoal, "createdAt" | "updatedAt">, resetProgress?: boolean) => void;
   togglePlanTask: (taskId: string) => void;
   excludePlanTask: (taskId: string) => void;
-  addCustomPlanTask: (dayIndex: number, title: string) => void;
+  addCustomPlanTask: (dayIndex: number, title: string, module?: string) => void;
   removeCustomPlanTask: (taskId: string) => void;
   clearPlan: () => void;
   recordQuiz: (
@@ -412,7 +412,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const addCustomPlanTask = useCallback((dayIndex: number, title: string) => {
+  const addCustomPlanTask = useCallback((dayIndex: number, title: string, module?: string) => {
     const clean = title.trim().slice(0, 80);
     if (!clean) return;
     setState((current) => {
@@ -421,6 +421,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         id: `custom-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
         dayIndex: Math.max(0, Math.floor(dayIndex)),
         title: clean,
+        module,
         createdAt: new Date().toISOString(),
       };
       return {

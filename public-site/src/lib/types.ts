@@ -35,6 +35,7 @@ export type PlanCustomTask = {
   id: string;
   dayIndex: number;
   title: string;
+  module?: string;
   createdAt: string;
 };
 

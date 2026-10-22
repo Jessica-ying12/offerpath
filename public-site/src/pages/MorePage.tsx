@@ -12,13 +12,14 @@ import {
   Sun,
 } from "lucide-react";
 import { DOCS, TOTAL_QA } from "../lib/content";
+import questionMeta from "../data/question-meta.json";
 import { useStore } from "../lib/store";
 import { PageContainer, PageHeader } from "../components/ui";
 import meta from "../data/question-meta.json";
 
 const LINKS = [
-  { href: "/roadmap", label: "完整路线图", desc: "从准备到面试的全部知识节点", icon: Route },
-  { href: "/plan", label: "10 周计划", desc: "按岗位和 JD 重排学习计划", icon: Route },
+  { href: "/roadmap", label: "路线图库", desc: "入门 / 职业 / 技术路线与完整节点", icon: Route },
+  { href: "/plan", label: "学习计划", desc: "按目标生成模块、任务与进度", icon: Route },
   { href: "/review", label: "周期复习", desc: "D+1 / D+3 / D+7 到期问答", icon: RotateCcw },
   { href: "/progress", label: "学习进度与备份", desc: "掌握度、记录、导出 JSON", icon: BarChart3 },
   { href: "/docs", label: "深度文档", desc: "21 篇精读与全文检索", icon: BookOpen },
@@ -32,7 +33,6 @@ export function MorePage() {
   return (
     <PageContainer>
       <PageHeader
-        back={{ to: "/", label: "返回总览" }}
         eyebrow="MORE · SETTINGS"
         title="更多"
         description="学习入口、阅读设置与本机数据。平台不登录、不收集阅读记录。"
@@ -147,7 +147,7 @@ export function MorePage() {
           <div>
             <p className="text-[12px] font-semibold text-ink">职跃 · 深度学习站</p>
             <p className="mt-1 text-[10px] leading-5 text-muted">
-              21 篇精读、{TOTAL_QA} 道面试问答、210 道练习题。内容来自你的移动前端学习包，平台增加检索、
+              21 篇精读、{TOTAL_QA} 道面试问答、{questionMeta.total} 道练习题。内容来自你的移动前端学习包，平台增加检索、
               目录、清单、笔记、自测与周期复习。所有学习记录保存在本机浏览器。
             </p>
             <p className="mt-2 rounded-lg bg-surface/70 px-2.5 py-2 text-[9px] leading-5 text-muted/70">

@@ -5,7 +5,6 @@ import {
   BarChart3,
   BookOpen,
   ChevronRight,
-  Command,
   Compass,
   Flame,
   Home,
@@ -24,6 +23,8 @@ import {
 } from "lucide-react";
 import { DOCS, ROLES, TOTAL_QA } from "../lib/content";
 import { useStore } from "../lib/store";
+import { ROADMAP_MAP } from "../data/roadmaps";
+import { buildPlan } from "../lib/plan";
 import { SearchDialog } from "./SearchDialog";
 import { ProfileMenu } from "./ProfileMenu";
 
@@ -42,7 +43,7 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
     label: "学习",
     items: [
       { href: "/", label: "总览", icon: Home, exact: true },
-      { href: "/roadmap", label: "完整路线图", icon: MapIcon },
+      { href: "/roadmap", label: "路线图库", icon: MapIcon },
       { href: "/docs", label: "深度文档", icon: BookOpen, badge: `${DOCS.length}` },
       { href: "/qa", label: "面试自测", icon: MessageSquareQuote, badge: `${TOTAL_QA}` },
     ],
@@ -57,7 +58,7 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
   {
     label: "成长",
     items: [
-      { href: "/plan", label: "10 周计划", icon: Route },
+      { href: "/plan", label: "学习计划", icon: Route },
       { href: "/progress", label: "学习进度", icon: BarChart3 },
       { href: "/more", label: "更多", icon: MoreHorizontal, hideDesktop: true },
     ],
@@ -74,8 +75,8 @@ const MOBILE_NAV = [
 
 const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/$/, "总览"],
-  [/^\/plan/, "10 周计划"],
-  [/^\/roadmap/, "完整路线图"],
+  [/^\/plan/, "学习计划"],
+  [/^\/roadmap/, "路线图库"],
   [/^\/docs/, "深度文档"],
   [/^\/doc\//, "精读"],
   [/^\/qa/, "面试自测"],
@@ -108,8 +109,11 @@ function Brand() {
 }
 
 function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
-  const { dueQa, completedDocs } = useStore();
+  const { state, dueQa } = useStore();
   const pathname = useLocation().pathname;
+  const planRoadmap = state.plan ? ROADMAP_MAP.get(state.plan.goal.roadmapId) : null;
+  const built = state.plan && planRoadmap ? buildPlan(state.plan, planRoadmap) : null;
+  const percent = built?.total ? Math.round((built.done / built.total) * 100) : 0;
   return (
     <nav className="space-y-5" aria-label="主导航">
       {NAV_GROUPS.map((group) => (
@@ -145,19 +149,19 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
       <div className="px-3 pt-1">
         <div className="rounded-xl border border-line/10 bg-surface/70 p-3">
           <div className="flex items-center justify-between">
-            <span className="eyebrow">精读进度</span>
+            <span className="eyebrow">{state.plan ? "当前计划" : "学习计划"}</span>
             <span className="font-mono text-[10px] text-muted">
-              {completedDocs}/{DOCS.length}
+              {built ? `${built.done}/${built.total}` : "未设置"}
             </span>
           </div>
+          <p className="mt-1.5 line-clamp-1 text-[10.5px] font-medium text-ink">
+            {state.plan?.goal.name || state.plan?.goal.title || "还没有计划"}
+          </p>
           <div className="progress-track mt-2">
-            <div
-              className="progress-fill"
-              style={{ width: `${Math.round((completedDocs / DOCS.length) * 100)}%` }}
-            />
+            <div className="progress-fill" style={{ width: `${percent}%` }} />
           </div>
           <p className="mt-2 text-[10px] leading-4 text-muted/70">
-            完成精读后，用问答自测确认掌握。
+            {state.plan ? "计划进度只统计这个计划里的任务。" : "设置计划后，这里会显示计划进度。"}
           </p>
         </div>
       </div>
@@ -166,7 +170,7 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
-  const { state, completedDocs } = useStore();
+  const { state } = useStore();
   const lastDoc = useMemo(
     () =>
       DOCS.filter((doc) => state.docs[doc.id]?.lastReadAt).sort(
@@ -214,7 +218,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           className="flex items-center gap-2 rounded-xl border border-line/10 bg-surface px-3 py-2.5 text-[11px] text-muted transition hover:border-accent/30 hover:text-ink"
         >
           <Compass className="h-3.5 w-3.5 text-accent" />
-          <span className="min-w-0 flex-1 truncate">目标：{role?.label}</span>
+          <span className="min-w-0 flex-1 truncate">目标：{state.plan?.goal.name || role?.label}</span>
           <ArrowUpRight className="h-3 w-3" />
         </Link>
         <p className="mt-2 px-1 text-[9px] leading-4 text-muted/50">
@@ -229,7 +233,10 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
-  const { state, setTheme, dueQa, completedDocs } = useStore();
+  const { state, setTheme, dueQa } = useStore();
+  const overviewRoadmap = state.plan ? ROADMAP_MAP.get(state.plan.goal.roadmapId) : null;
+  const overviewPlan = state.plan && overviewRoadmap ? buildPlan(state.plan, overviewRoadmap) : null;
+  const overviewPercent = overviewPlan?.total ? Math.round((overviewPlan.done / overviewPlan.total) * 100) : 0;
 
   useEffect(() => {
     setDrawerOpen(false);
@@ -325,7 +332,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="h-0.5 bg-line/5">
           <div
             className="h-full bg-accent/40 transition-all"
-            style={{ width: `${Math.round((completedDocs / DOCS.length) * 100)}%` }}
+            style={{ width: `${overviewPercent}%` }}
           />
         </div>
       </header>
