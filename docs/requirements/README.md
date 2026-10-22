@@ -24,6 +24,7 @@
 | [REQ-017](REQ-017-deep-content-and-public-site.md) | 深度内容、阅读器与公网学习站 | done | 21 篇精读、380 问答、公开站与 UI 重构 |
 | [REQ-018](REQ-018-multi-type-bank-roadmap-and-profiles.md) | 多题型题库、完整路线图与本机用户 | done | 2276 题、纠错、21 条路线、本机用户 |
 | [REQ-019](REQ-019-goal-driven-plans-and-history.md) | 目标驱动计划、历史返回与路线覆盖 | done | 计划模板、增删任务、返回上一页、官方覆盖清单 |
+| [REQ-020](REQ-020-information-architecture-and-plan-progress.md) | 信息架构、计划差异化与计划驱动进度 | done | 路线分类、文档知识树、计划模块、删除与进度 |
 
 > 公开仓库：[Jessica-ying12/offerpath](https://github.com/Jessica-ying12/offerpath)；`main` 分支已推送并通过远程一致性校验。
 
@@ -33,7 +34,7 @@
 REQ-000 → REQ-001 → REQ-002 → REQ-003 → REQ-004
                                      └→ REQ-005 → REQ-006
 REQ-004/005 → REQ-007 → REQ-008 → REQ-009 → REQ-010
-REQ-003/004 → REQ-011 → REQ-012 → REQ-013 → REQ-014 → REQ-015 → REQ-016 → REQ-017 → REQ-018 → REQ-019
+REQ-003/004 → REQ-011 → REQ-012 → REQ-013 → REQ-014 → REQ-015 → REQ-016 → REQ-017 → REQ-018 → REQ-019 → REQ-020
 ```
 
 ## 约定
