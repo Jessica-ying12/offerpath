@@ -13,7 +13,9 @@ import type {
   ActivityItem,
   AppState,
   DocProgress,
+  LearningGoal,
   LocalProfile,
+  PlanCustomTask,
   QaProgress,
   QuizAttempt,
   RoleId,
@@ -37,6 +39,7 @@ const DEFAULT_STATE: AppState = {
   quizAttempts: [],
   quizMistakes: {},
   activity: [],
+  plan: null,
 };
 
 function normalizeState(parsed: Partial<AppState>): AppState {
@@ -146,6 +149,12 @@ type Store = {
   toggleChecklist: (key: string, checked: boolean) => void;
   saveNote: (docId: string, note: string) => void;
   reviewQa: (qaId: string, good: boolean) => QaProgress;
+  savePlan: (goal: Omit<LearningGoal, "createdAt" | "updatedAt">, resetProgress?: boolean) => void;
+  togglePlanTask: (taskId: string) => void;
+  excludePlanTask: (taskId: string) => void;
+  addCustomPlanTask: (dayIndex: number, title: string) => void;
+  removeCustomPlanTask: (taskId: string) => void;
+  clearPlan: () => void;
   recordQuiz: (
     attempt: Omit<QuizAttempt, "id" | "at">,
     wrongIds: string[],
@@ -343,6 +352,111 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     [state.qa],
   );
 
+  const savePlan = useCallback(
+    (goal: Omit<LearningGoal, "createdAt" | "updatedAt">, resetProgress = true) => {
+      const now = new Date().toISOString();
+      setState((current) => ({
+        ...current,
+        plan: {
+          goal: {
+            ...goal,
+            createdAt: current.plan?.goal.createdAt ?? now,
+            updatedAt: now,
+          },
+          progress:
+            !resetProgress && current.plan
+              ? current.plan.progress
+              : { completedTaskIds: [], excludedTaskIds: [], customTasks: [] },
+        },
+      }));
+    },
+    [],
+  );
+
+  const togglePlanTask = useCallback((taskId: string) => {
+    setState((current) => {
+      if (!current.plan) return current;
+      const completed = current.plan.progress.completedTaskIds;
+      const has = completed.includes(taskId);
+      return {
+        ...current,
+        plan: {
+          ...current.plan,
+          progress: {
+            ...current.plan.progress,
+            completedTaskIds: has
+              ? completed.filter((id) => id !== taskId)
+              : [...completed, taskId],
+          },
+        },
+      };
+    });
+  }, []);
+
+  const excludePlanTask = useCallback((taskId: string) => {
+    setState((current) => {
+      if (!current.plan) return current;
+      const progress = current.plan.progress;
+      return {
+        ...current,
+        plan: {
+          ...current.plan,
+          progress: {
+            ...progress,
+            excludedTaskIds: [...new Set([...progress.excludedTaskIds, taskId])],
+            completedTaskIds: progress.completedTaskIds.filter((id) => id !== taskId),
+            customTasks: progress.customTasks.filter((task) => task.id !== taskId),
+          },
+        },
+      };
+    });
+  }, []);
+
+  const addCustomPlanTask = useCallback((dayIndex: number, title: string) => {
+    const clean = title.trim().slice(0, 80);
+    if (!clean) return;
+    setState((current) => {
+      if (!current.plan) return current;
+      const task: PlanCustomTask = {
+        id: `custom-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        dayIndex: Math.max(0, Math.floor(dayIndex)),
+        title: clean,
+        createdAt: new Date().toISOString(),
+      };
+      return {
+        ...current,
+        plan: {
+          ...current.plan,
+          progress: {
+            ...current.plan.progress,
+            customTasks: [...current.plan.progress.customTasks, task],
+          },
+        },
+      };
+    });
+  }, []);
+
+  const removeCustomPlanTask = useCallback((taskId: string) => {
+    setState((current) => {
+      if (!current.plan) return current;
+      return {
+        ...current,
+        plan: {
+          ...current.plan,
+          progress: {
+            ...current.plan.progress,
+            customTasks: current.plan.progress.customTasks.filter((task) => task.id !== taskId),
+            completedTaskIds: current.plan.progress.completedTaskIds.filter((id) => id !== taskId),
+          },
+        },
+      };
+    });
+  }, []);
+
+  const clearPlan = useCallback(() => {
+    setState((current) => ({ ...current, plan: null }));
+  }, []);
+
   const recordQuiz = useCallback(
     (attempt: Omit<QuizAttempt, "id" | "at">, wrongIds: string[], correctIds: string[]) => {
       setState((current) => {
@@ -435,6 +549,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     toggleChecklist,
     saveNote,
     reviewQa,
+    savePlan,
+    togglePlanTask,
+    excludePlanTask,
+    addCustomPlanTask,
+    removeCustomPlanTask,
+    clearPlan,
     recordQuiz,
     exportState,
     importState,

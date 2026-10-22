@@ -13,13 +13,13 @@ import {
   Sparkles,
   Target,
 } from "lucide-react";
-import { ALL_QA, DOCS, ROLES, TOTAL_QA } from "../lib/content";
-import { analyzeJd, prioritizedDocs } from "../lib/jd";
+import { ALL_QA, DOCS, TOTAL_QA } from "../lib/content";
 import { isDue } from "../lib/srs";
 import { useStore } from "../lib/store";
 import { DocCard, PageContainer, ProgressRing } from "../components/ui";
 import { plainInline } from "../lib/text";
-import { ROADMAPS, ROADMAP_MAP, roadmapForRole } from "../data/roadmaps";
+import { ROADMAP_MAP } from "../data/roadmaps";
+import { buildPlan } from "../lib/plan";
 import meta from "../data/question-meta.json";
 import type { ActivityItem } from "../lib/types";
 
@@ -45,30 +45,43 @@ function ActivityIcon({ type }: { type: ActivityItem["type"] }) {
   return <Icon className="h-3.5 w-3.5" />;
 }
 
+function TaskLink({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
+  if (/^https?:\/\//.test(href)) {
+    return <a href={href} target="_blank" rel="noreferrer noopener" className={className}>{children}</a>;
+  }
+  return <Link to={href} className={className}>{children}</Link>;
+}
+
 export function HomePage() {
   const { state, activeProfile, completedDocs, masteredQa, dueQa, streak } = useStore();
-  const role = ROLES.find((item) => item.id === state.role) ?? ROLES[0];
+  const plan = state.plan;
+  const planRoadmap = plan ? ROADMAP_MAP.get(plan.goal.roadmapId) : null;
+  const planBuilt = plan && planRoadmap ? buildPlan(plan, planRoadmap) : null;
+  const completedTaskIds = new Set(plan?.progress.completedTaskIds ?? []);
+  const nextPlanTask = planBuilt?.allTasks.find((task) => !completedTaskIds.has(task.id));
+  const plannedDocId =
+    nextPlanTask?.docIds?.[0] ??
+    (nextPlanTask?.href?.startsWith("/doc/") ? nextPlanTask.href.split("/")[2] : null);
   const lastDoc = DOCS.filter((doc) => state.docs[doc.id]?.lastReadAt).sort(
     (a, b) =>
       new Date(state.docs[b.id]?.lastReadAt ?? 0).getTime() -
       new Date(state.docs[a.id]?.lastReadAt ?? 0).getTime(),
   )[0];
-  const recommendedAll = prioritizedDocs(state.role, state.jd);
-  const nextDoc = lastDoc && !state.docs[lastDoc.id]?.completed ? lastDoc : recommendedAll[0];
+  const nextDoc =
+    (lastDoc && !state.docs[lastDoc.id]?.completed ? lastDoc : null) ??
+    (plannedDocId ? DOCS.find((doc) => doc.id === plannedDocId) : null) ??
+    lastDoc ??
+    DOCS[0];
   const nextHeading = nextDoc ? state.docs[nextDoc.id]?.lastHeading : null;
   const continueHref = nextDoc
     ? `/doc/${nextDoc.id}${nextHeading ? `?h=${encodeURIComponent(nextHeading)}` : ""}`
     : "/docs";
-  const recommended = recommendedAll.filter((doc) => doc.id !== nextDoc?.id).slice(0, 3);
-  const dueQuestions = ALL_QA.filter(
-    (item) => state.qa[item.id] && isDue(state.qa[item.id]),
-  ).slice(0, 4);
-  const readingMinutes = Math.round(
-    DOCS.reduce((sum, doc) => sum + (doc.minutes * (state.docs[doc.id]?.percent ?? 0)) / 100, 0),
-  );
-  const jdAnalysis = state.jd ? analyzeJd(state.jd) : null;
-  const roadmap = ROADMAP_MAP.get(roadmapForRole(state.role)) ?? ROADMAPS[0];
-  const stages = roadmap.stages.map((stage) => {
+  const selectedStages = planRoadmap
+    ? planRoadmap.stages.filter(
+        (stage) => plan!.goal.includedStageIds.length === 0 || plan!.goal.includedStageIds.includes(stage.id),
+      )
+    : [];
+  const stages = selectedStages.map((stage) => {
     const docs = [...new Set(stage.nodes.flatMap((node) => node.docs ?? []))]
       .map((id) => DOCS.find((doc) => doc.id === id))
       .filter((doc): doc is NonNullable<typeof doc> => Boolean(doc));
@@ -76,6 +89,19 @@ export function HomePage() {
     return { ...stage, total: docs.length, done };
   });
   const currentStage = stages.find((stage) => stage.done < stage.total) ?? stages[stages.length - 1];
+  const dueQuestions = ALL_QA.filter(
+    (item) => state.qa[item.id] && isDue(state.qa[item.id]),
+  ).slice(0, 4);
+  const readingMinutes = Math.round(
+    DOCS.reduce((sum, doc) => sum + (doc.minutes * (state.docs[doc.id]?.percent ?? 0)) / 100, 0),
+  );
+  const plannedNextDocs = planRoadmap
+    ? [...new Set(selectedStages.flatMap((stage) => stage.nodes.flatMap((node) => node.docs ?? [])))]
+        .filter((id) => !state.docs[id]?.completed)
+        .map((id) => DOCS.find((doc) => doc.id === id))
+        .filter((doc): doc is NonNullable<typeof doc> => Boolean(doc))
+        .slice(0, 3)
+    : [];
 
   return (
     <PageContainer>
@@ -88,7 +114,7 @@ export function HomePage() {
             {greeting()}，{activeProfile.name}
           </h1>
           <p className="mt-1 text-[11px] text-muted">
-            当前目标：{role.label} · {completedDocs}/{DOCS.length} 篇精读 · {masteredQa}/{TOTAL_QA} 问答掌握
+            {plan ? `当前目标：${plan.goal.title}` : "还没有确定学习目标"} · {completedDocs}/{DOCS.length} 篇精读 · {masteredQa}/{TOTAL_QA} 问答掌握
           </p>
         </div>
         <div className="flex items-center gap-2 text-[10px] text-muted">
@@ -102,10 +128,11 @@ export function HomePage() {
           <section className="relative overflow-hidden rounded-3xl border border-accent/20 bg-surface p-5 shadow-card sm:p-6">
             <div className="absolute inset-0 paper-grid opacity-35" />
             <div className="relative">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="eyebrow text-accent/80">继续学习</span>
                 {nextDoc ? <span className="chip">{nextDoc.layer}</span> : null}
                 {nextDoc ? <span className="chip">{nextDoc.week}</span> : null}
+                {plan ? <span className="chip border-accent/20 text-accent">计划中</span> : null}
               </div>
               <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div className="min-w-0">
@@ -133,7 +160,7 @@ export function HomePage() {
                     <BookOpen className="h-4 w-4" /> {nextDoc ? "继续精读" : "开始"}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
-                  <Link to={`/roadmap/${roadmap.id}`} className="btn-ghost">
+                  <Link to={planRoadmap ? `/roadmap/${planRoadmap.id}` : "/roadmap"} className="btn-ghost">
                     <Route className="h-4 w-4" /> 看路线
                   </Link>
                 </div>
@@ -155,7 +182,7 @@ export function HomePage() {
                   <span className="eyebrow">01</span>
                 </div>
                 <p className="mt-3 text-[12px] font-semibold text-ink">精读一个知识点</p>
-                <p className="mt-1 text-[9.5px] leading-4 text-muted">{nextDoc ? nextDoc.shortTitle : "打开深度文档库"}</p>
+                <p className="mt-1 text-[9.5px] leading-4 text-muted">{nextDoc?.shortTitle ?? "打开深度文档库"}</p>
               </Link>
               <Link to="/quiz" className="rounded-2xl border border-line/10 bg-surface p-4 transition hover:border-accent/30">
                 <div className="flex items-center justify-between">
@@ -179,48 +206,78 @@ export function HomePage() {
           <section className="card p-4 sm:p-5">
             <div className="mb-3 flex items-center justify-between">
               <div>
-                <p className="eyebrow mb-1">YOUR ROADMAP</p>
-                <h2 className="text-[15px] font-bold text-ink">路线位置</h2>
+                <p className="eyebrow mb-1">MY GOAL</p>
+                <h2 className="text-[15px] font-bold text-ink">我的目标与路线</h2>
               </div>
-              <Link to={`/roadmap/${roadmap.id}`} className="text-[10px] text-accent">{roadmap.name} →</Link>
+              <Link to="/plan" className="text-[10px] text-accent">学习计划 →</Link>
             </div>
-            <div className="grid gap-2 sm:grid-cols-3">
-              {stages.map((stage, index) => {
-                const active = stage.id === currentStage?.id;
-                return (
-                  <Link
-                    key={stage.id}
-                    to={`/roadmap/${roadmap.id}`}
-                    className={`rounded-xl border p-2.5 transition ${active ? "border-accent/35 bg-accent/[0.045]" : "border-line/10 hover:border-accent/25"}`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`font-mono text-[9px] ${active ? "text-accent" : "text-muted/60"}`}>{String(index + 1).padStart(2, "0")}</span>
-                      <span className="font-mono text-[8.5px] text-muted/60">{stage.done}/{stage.total}</span>
+            {plan && planBuilt && planRoadmap ? (
+              <>
+                <div className="flex flex-col gap-3 rounded-xl border border-accent/20 bg-accent/[0.045] p-3.5 sm:flex-row sm:items-center">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[12px] font-semibold text-ink">{plan.goal.title}</p>
+                    <p className="mt-0.5 text-[9.5px] text-muted">{plan.goal.days} 天 · 每天 {plan.goal.dailyMinutes} 分钟 · 已完成 {planBuilt.done}/{planBuilt.total} 任务</p>
+                  </div>
+                  <div className="w-full sm:w-32">
+                    <div className="progress-track h-1.5">
+                      <div className="progress-fill" style={{ width: `${planBuilt.total ? (planBuilt.done / planBuilt.total) * 100 : 0}%` }} />
                     </div>
-                    <p className={`mt-1 text-[10.5px] font-semibold ${active ? "text-accent" : "text-ink/80"}`}>{stage.title}</p>
-                    <div className="progress-track mt-1.5 h-1">
-                      <div className="progress-fill" style={{ width: `${stage.total ? (stage.done / stage.total) * 100 : 0}%` }} />
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+                  </div>
+                  {nextPlanTask?.href ? (
+                    <TaskLink href={nextPlanTask.href} className="btn-primary shrink-0 py-1.5 text-[10px]">
+                      下一步 <ArrowRight className="h-3 w-3" />
+                    </TaskLink>
+                  ) : null}
+                </div>
+                <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                  {stages.map((stage, index) => {
+                    const active = stage.id === currentStage?.id;
+                    return (
+                      <Link
+                        key={stage.id}
+                        to={`/roadmap/${planRoadmap.id}`}
+                        className={`rounded-xl border p-2.5 transition ${active ? "border-accent/35 bg-accent/[0.045]" : "border-line/10 hover:border-accent/25"}`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`font-mono text-[9px] ${active ? "text-accent" : "text-muted/60"}`}>{String(index + 1).padStart(2, "0")}</span>
+                          <span className="font-mono text-[8.5px] text-muted/60">{stage.done}/{stage.total}</span>
+                        </div>
+                        <p className={`mt-1 text-[10.5px] font-semibold ${active ? "text-accent" : "text-ink/80"}`}>{stage.title}</p>
+                        <div className="progress-track mt-1.5 h-1">
+                          <div className="progress-fill" style={{ width: `${stage.total ? (stage.done / stage.total) * 100 : 0}%` }} />
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col gap-3 rounded-xl border border-dashed border-line/20 bg-raised/25 p-4 sm:flex-row sm:items-center">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-surface text-accent"><Target className="h-4 w-4" /></span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[12px] font-semibold text-ink">还没有确定目标路线</p>
+                  <p className="mt-0.5 text-[9.5px] leading-4 text-muted">先选一条路线和计划类型，系统才会按目标生成任务，不再靠“猜你喜欢”。</p>
+                </div>
+                <Link to="/plan" className="btn-primary shrink-0 py-1.5 text-[10px]">设置目标</Link>
+                <Link to="/roadmap" className="btn-ghost shrink-0 py-1.5 text-[10px]">浏览路线</Link>
+              </div>
+            )}
           </section>
 
-          <section>
-            <div className="mb-2.5 flex items-end justify-between">
-              <div>
-                <p className="eyebrow mb-1">NEXT UP</p>
-                <h2 className="text-[15px] font-bold text-ink">推荐下一步</h2>
+          {plannedNextDocs.length > 0 ? (
+            <section>
+              <div className="mb-2.5 flex items-end justify-between">
+                <div>
+                  <p className="eyebrow mb-1">FROM YOUR GOAL</p>
+                  <h2 className="text-[15px] font-bold text-ink">目标路线的下一步</h2>
+                </div>
+                <Link to={planRoadmap ? `/roadmap/${planRoadmap.id}` : "/roadmap"} className="text-[10px] text-muted hover:text-accent">打开路线 →</Link>
               </div>
-              <Link to="/docs" className="text-[10px] text-muted hover:text-accent">全部 21 篇 →</Link>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {recommended.map((doc) => (
-                <DocCard key={doc.id} doc={doc} showMatch compact />
-              ))}
-            </div>
-          </section>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {plannedNextDocs.map((doc) => <DocCard key={doc.id} doc={doc} compact />)}
+              </div>
+            </section>
+          ) : null}
         </div>
 
         <aside className="space-y-4">
@@ -246,9 +303,7 @@ export function HomePage() {
               <Link to="/review" className="text-[9px] text-accent">全部 →</Link>
             </div>
             {dueQuestions.length === 0 ? (
-              <p className="rounded-xl bg-raised/50 p-3 text-[10px] leading-5 text-muted">
-                没有到期问答。先做一组自测，首次自测后会在 D+1 回到队列。
-              </p>
+              <p className="rounded-xl bg-raised/50 p-3 text-[10px] leading-5 text-muted">没有到期问答。先做一组自测，首次自测后会在 D+1 回到队列。</p>
             ) : (
               <div className="space-y-0.5">
                 {dueQuestions.map((item) => (
@@ -284,20 +339,9 @@ export function HomePage() {
           </section>
 
           <section className="rounded-2xl border border-line/10 bg-raised/30 p-4">
-            <p className="eyebrow mb-2">按需求学习</p>
-            {jdAnalysis ? (
-              <>
-                <div className="flex flex-wrap gap-1">
-                  {jdAnalysis.matched.slice(0, 4).map((item) => <span key={item.label} className="chip bg-surface text-accent">{item.label}</span>)}
-                </div>
-                <Link to="/plan" className="mt-2 inline-flex items-center gap-1 text-[10px] text-accent">调整 JD <ArrowUpRight className="h-2.5 w-2.5" /></Link>
-              </>
-            ) : (
-              <>
-                <p className="text-[10px] leading-5 text-muted">粘贴目标 JD，路线和精读会按命中技术重排。</p>
-                <Link to="/plan" className="mt-2 inline-flex items-center gap-1 text-[10px] text-accent"><Target className="h-3 w-3" /> 设置目标</Link>
-              </>
-            )}
+            <p className="eyebrow mb-2">计划规则</p>
+            <p className="text-[10px] leading-5 text-muted">目标由你手动选择；任务按路线和阶段生成。可以删任务、加自定义任务，也可以调整天数、阶段和每日时间。</p>
+            <Link to="/plan" className="mt-2 inline-flex items-center gap-1 text-[10px] text-accent">打开学习计划 <ArrowUpRight className="h-2.5 w-2.5" /></Link>
           </section>
         </aside>
       </div>

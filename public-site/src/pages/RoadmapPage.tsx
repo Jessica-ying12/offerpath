@@ -13,6 +13,7 @@ import {
   Layers3,
   MessageSquareQuote,
   Play,
+  Route,
   Search,
   Sparkles,
 } from "lucide-react";
@@ -20,10 +21,12 @@ import { DOC_MAP, QA_MAP } from "../lib/content";
 import { plainInline } from "../lib/text";
 import { useStore } from "../lib/store";
 import questionMeta from "../data/question-meta.json";
+import officialCoverage from "../data/official-coverage.json";
 import {
   ROADMAPS,
   ROADMAP_CATEGORIES,
   ROADMAP_MAP,
+  OFFICIAL_SLUGS,
   ROADMAP_OFFICIAL,
   roadmapForRole,
   roadmapStats,
@@ -31,7 +34,7 @@ import {
   type RoadmapCategory,
   type RoadmapNode,
 } from "../data/roadmaps";
-import { PageContainer, PageHeader, ProgressRing } from "../components/ui";
+import { HistoryBack, PageContainer, PageHeader, ProgressRing } from "../components/ui";
 
 function completedDocSet(docs: ReturnType<typeof useStore>["state"]["docs"]): Set<string> {
   return new Set(Object.entries(docs).filter(([, value]) => value.completed).map(([id]) => id));
@@ -129,6 +132,7 @@ export function RoadmapIndexPage() {
 
   return (
     <PageContainer>
+      <HistoryBack fallback="/" className="mb-3" />
       <div className="mb-4 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
         <Link to="/" className="inline-flex items-center gap-1 hover:text-ink">
           <ArrowLeft className="h-3 w-3" /> 总览
@@ -281,6 +285,7 @@ export function RoadmapDetailPage() {
   const roadmap = ROADMAP_MAP.get(roadmapId);
   const { state } = useStore();
   const completed = completedDocSet(state.docs);
+  const [coverageQuery, setCoverageQuery] = useState("");
 
   if (!roadmap) {
     return (
@@ -298,9 +303,25 @@ export function RoadmapDetailPage() {
   });
   const currentDoc = currentStage?.nodes.flatMap((node) => node.docs ?? []).find((id) => !state.docs[id]?.completed);
   const currentDocMeta = currentDoc ? DOC_MAP.get(currentDoc) : null;
+  const officialSlug = OFFICIAL_SLUGS[roadmap.id];
+  const officialNames = officialSlug
+    ? (officialCoverage as Record<string, string[]>)[officialSlug] ?? []
+    : [];
+  const ownText = roadmap.stages
+    .flatMap((stage) => stage.nodes.flatMap((node) => [node.title, ...topicList(node)]))
+    .map((text) => text.toLowerCase());
+  const coveredSet = new Set(
+    officialNames.filter((name) =>
+      ownText.some((text) => text.includes(name.toLowerCase()) || name.toLowerCase().includes(text)),
+    ),
+  );
+  const filteredOfficialNames = officialNames.filter((name) =>
+    coverageQuery.trim() ? name.toLowerCase().includes(coverageQuery.trim().toLowerCase()) : true,
+  );
 
   return (
     <PageContainer>
+      <HistoryBack fallback="/roadmap" className="mb-3" />
       <div className="mb-4 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
         <Link to="/roadmap" className="inline-flex items-center gap-1 hover:text-ink">
           <ArrowLeft className="h-3 w-3" /> 所有路线图
@@ -327,6 +348,9 @@ export function RoadmapDetailPage() {
           </div>
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
+          <Link to={`/plan?roadmap=${roadmap.id}`} className="btn-primary">
+            <Route className="h-3.5 w-3.5" /> {state.plan?.goal.roadmapId === roadmap.id ? "当前目标 · 打开计划" : "设为目标"}
+          </Link>
           {currentDoc ? (
             <Link to={`/doc/${currentDoc}`} className="btn-primary">
               <Play className="h-3.5 w-3.5" /> 继续 {currentDocMeta?.shortTitle ?? currentDoc}
@@ -414,6 +438,39 @@ export function RoadmapDetailPage() {
               </section>
             );
           })}
+          {officialNames.length > 0 ? (
+            <details className="card overflow-hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3">
+                <div>
+                  <p className="eyebrow mb-0.5">OFFICIAL COVERAGE</p>
+                  <p className="text-[12px] font-semibold text-ink">官方完整节点清单 · {officialNames.length}</p>
+                </div>
+                <span className="text-[9px] text-muted">已对应 {coveredSet.size} 个 · 点击展开</span>
+              </summary>
+              <div className="border-t border-line/10 p-4">
+                <p className="text-[9.5px] leading-5 text-muted">
+                  这里列出 roadmap.sh 官方路线的全部节点名称，保证范围完整；绿色代表平台已有对应节点/精读，灰色节点可直接打开官方资料。节点说明与学习顺序由本平台编写。
+                </p>
+                <input value={coverageQuery} onChange={(event) => setCoverageQuery(event.target.value)} placeholder="在官方节点清单里搜索…" className="input mt-2 py-1.5 text-[10.5px]" />
+                <div className="mt-2 flex max-h-72 flex-wrap gap-1 overflow-y-auto">
+                  {filteredOfficialNames.map((name) => {
+                    const covered = coveredSet.has(name);
+                    return (
+                      <a
+                        key={name}
+                        href={roadmap.officialUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className={`rounded-md border px-1.5 py-1 text-[8.5px] transition ${covered ? "border-accent/25 bg-accent/[0.05] text-accent" : "border-line/10 bg-surface text-muted hover:border-accent/30 hover:text-ink"}`}
+                      >
+                        {name} {covered ? "✓" : "↗"}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </details>
+          ) : null}
         </div>
 
         <aside className="space-y-3 lg:sticky lg:top-[80px] lg:self-start">

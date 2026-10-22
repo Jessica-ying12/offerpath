@@ -36,7 +36,7 @@ import {
 } from "../lib/question-bank";
 import { useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
-import { EmptyState, PageContainer, PageHeader, StatCard } from "../components/ui";
+import { EmptyState, HistoryBack, PageContainer, PageHeader, StatCard } from "../components/ui";
 import meta from "../data/question-meta.json";
 
 type Tab = "doc" | "type" | "course" | "mistake";
@@ -285,6 +285,7 @@ export function BankPage() {
     return (
       <PageContainer className="max-w-3xl">
         <div ref={topRef} />
+        <HistoryBack fallback="/quiz" className="mb-3" />
         <div className="mb-5 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
           <button onClick={leavePractice} className="inline-flex items-center gap-1 hover:text-ink">
             <ArrowLeft className="h-3 w-3" /> 返回题库

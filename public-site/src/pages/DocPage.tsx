@@ -19,7 +19,7 @@ import {
 import { DOC_MAP, DOCS, QA_MAP } from "../lib/content";
 import { getQaBankProgress, useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
-import { DocSwitcher, MasteryBadge, NotesPanel, Toc } from "../components/ui";
+import { DocSwitcher, HistoryBack, MasteryBadge, NotesPanel, Toc } from "../components/ui";
 import { formatDate } from "../lib/srs";
 
 export function DocPage() {
@@ -132,6 +132,7 @@ export function DocPage() {
 
   return (
     <div className="mx-auto w-full max-w-[1230px] px-4 py-6 sm:px-6 lg:px-8">
+      <HistoryBack fallback="/docs" className="mb-3" />
       <div className="mb-5 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
         <Link to="/docs" className="inline-flex items-center gap-1 hover:text-ink">
           <ArrowLeft className="h-3 w-3" /> 深度文档

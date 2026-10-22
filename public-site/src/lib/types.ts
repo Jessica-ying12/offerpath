@@ -6,6 +6,45 @@ export type LocalProfile = {
   createdAt: string;
 };
 
+export type PlanTemplateId =
+  | "normal"
+  | "ten-week"
+  | "interview"
+  | "foundation"
+  | "project"
+  | "jd"
+  | "daily";
+
+export type LearningGoal = {
+  roadmapId: string;
+  templateId: PlanTemplateId;
+  title: string;
+  days: number;
+  dailyMinutes: number;
+  startDate: string;
+  includedStageIds: string[];
+  includeOptional: boolean;
+  jdText: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PlanCustomTask = {
+  id: string;
+  dayIndex: number;
+  title: string;
+  createdAt: string;
+};
+
+export type LearningPlanState = {
+  goal: LearningGoal;
+  progress: {
+    completedTaskIds: string[];
+    excludedTaskIds: string[];
+    customTasks: PlanCustomTask[];
+  };
+};
+
 export type DocHeading = {
   depth: 2 | 3;
   text: string;
@@ -107,4 +146,5 @@ export type AppState = {
   quizAttempts: QuizAttempt[];
   quizMistakes: Record<string, { wrongCount: number; lastWrongAt: string }>;
   activity: ActivityItem[];
+  plan: LearningPlanState | null;
 };

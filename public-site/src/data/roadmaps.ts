@@ -104,6 +104,28 @@ function s(
   return { id, title, subtitle, nodes };
 }
 
+export const OFFICIAL_SLUGS: Record<string, string> = {
+  "frontend-beginner": "frontend-beginner",
+  "backend-beginner": "backend-beginner",
+  "git-github-beginner": "git-github-beginner",
+  "devops-beginner": "devops-beginner",
+  frontend: "frontend",
+  "backend-java": "backend",
+  "full-stack": "full-stack",
+  "react-native": "react-native",
+  flutter: "flutter",
+  javascript: "javascript",
+  typescript: "typescript",
+  react: "react",
+  nodejs: "nodejs",
+  sql: "sql",
+  git: "git-github",
+  "computer-science": "computer-science",
+  "system-design": "system-design",
+  testing: "qa",
+  devops: "devops",
+};
+
 export const ROADMAPS: Roadmap[] = [
   {
     id: "frontend-beginner",

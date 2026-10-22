@@ -14,7 +14,7 @@ import { DOC_MAP, QA_MAP } from "../lib/content";
 import { formatDate, isDue, relativeDay } from "../lib/srs";
 import { useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
-import { EmptyState, PageContainer } from "../components/ui";
+import { EmptyState, HistoryBack, PageContainer } from "../components/ui";
 import { plainInline } from "../lib/text";
 import type { QaItem } from "../lib/types";
 
@@ -167,6 +167,7 @@ export function QaSessionPage() {
 
   return (
     <PageContainer className="max-w-3xl">
+      <HistoryBack fallback={`/qa/${doc.id}`} className="mb-3" />
       <div className="mb-5 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
         <Link to={`/qa/${doc.id}`} className="inline-flex items-center gap-1 hover:text-ink">
           <ArrowLeft className="h-3 w-3" /> {bank.title}

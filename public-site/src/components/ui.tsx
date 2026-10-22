@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import {
   ArrowUpRight,
@@ -15,6 +15,31 @@ import { DOCS, QA_MAP } from "../lib/content";
 import { analyzeJd } from "../lib/jd";
 import type { DocHeading, DocMeta } from "../lib/types";
 import { useStore } from "../lib/store";
+
+export function HistoryBack({
+  fallback,
+  label = "返回上一页",
+  className = "",
+}: {
+  fallback: string;
+  label?: string;
+  className?: string;
+}) {
+  const navigate = useNavigate();
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        const index = window.history.state?.idx ?? 0;
+        if (index > 0) navigate(-1);
+        else navigate(fallback);
+      }}
+      className={`inline-flex items-center gap-1 text-[10.5px] text-muted transition hover:text-ink ${className}`}
+    >
+      <ArrowLeft className="h-3 w-3" /> {label}
+    </button>
+  );
+}
 
 export function PageContainer({
   children,
@@ -45,11 +70,7 @@ export function PageHeader({
 }) {
   return (
     <div className="mb-7">
-      {back ? (
-        <Link to={back.to} className="mb-3 inline-flex items-center gap-1 text-[10.5px] text-muted transition hover:text-ink">
-          <ArrowLeft className="h-3 w-3" /> {back.label}
-        </Link>
-      ) : null}
+      {back ? <div className="mb-3"><HistoryBack fallback={back.to} label={back.label} /></div> : null}
     <div className="flex flex-col gap-4 sm:mb-0 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
         <p className="eyebrow mb-2">{eyebrow}</p>
