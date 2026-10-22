@@ -2,7 +2,7 @@
 
 公网地址：**https://offerpath-deep-q1f1nhycwc5.qoder.website/**
 
-这是平台的公开内容层：21 篇移动前端深度精读、21 份问答原稿（380 道带追问的题）、2276 道多题型练习题（简答/填空/判断/多选/单选），以及按 roadmap.sh 公开目录同步的 96 条路线、16 个分类、12,254 个官方主题节点（顶部路线类型 + 方向筛选，下方分组双列展示），和按阶段/周/简历/JD/项目等真实差异生成模块的普通/10 周系统/面试/基础/项目/JD/日常计划。无登录、无后端依赖；支持本机多用户，每个用户独立保存进度，可导出 JSON 备份。
+这是平台的公开内容层：21 篇移动前端深度精读、21 份问答原稿（380 道带追问的题）、2276 道多题型练习题（简答/填空/判断/多选/单选），以及 96 条路线、完整主题节点与全站关键词搜索（先选路线类型，下方分组展示；无精编路线的主题可打开学习指引），和按阶段/周/简历/JD/项目等真实差异生成模块的普通/10 周系统/面试/基础/项目/JD/日常计划。无登录、无后端依赖；支持本机多用户，每个用户独立保存进度，可导出 JSON 备份。
 
 ## 开发
 
@@ -17,7 +17,8 @@ npm run preview
 
 - 内容：`content/docs/`（21 篇）与 `content/qa/`（21 份）。
 - 题库：`scripts/generate-questions.mjs` 从问答与课程题库生成 `src/data/question-bank.json`（2276 题，5 种题型）。
-- 路线图：`src/data/roadmap-catalog.json`（96 条官方目录路线、16 个分类与分组关系）、`src/data/official-roadmap-nodes.json`（12,254 个官方主题名称）与 `src/data/roadmaps.ts`（精编阶段与生成路线）。
+- 路线图：`src/data/roadmap-catalog.json`（96 条路线与分类关系）、`src/data/official-roadmap-nodes.json`（12,254 个主题节点）与 `src/data/roadmaps.ts`（精编阶段与生成路线）。
+- 主题学习：`src/pages/TopicPage.tsx`、`src/lib/topic-guide.ts`（学习目标、示例、练习、自测与相关专项路线）。
 - 文档知识树：`src/lib/taxonomy.ts`（六个有序模块 → 文档 → 章节）。
 - 计划：`src/lib/plan.ts`（普通/10 周系统/面试/基础/项目/JD/日常模板，按模板生成不同模块与任务）。
 - 元数据与解析：`src/lib/content.ts`。
