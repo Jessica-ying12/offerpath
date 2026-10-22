@@ -19,7 +19,7 @@ import { isDue } from "../lib/srs";
 import { useStore } from "../lib/store";
 import { DocCard, PageContainer, ProgressRing } from "../components/ui";
 import { plainInline } from "../lib/text";
-import { FRONTEND_STAGES } from "../data/roadmap";
+import { ROADMAPS, ROADMAP_MAP, roadmapForRole } from "../data/roadmaps";
 import meta from "../data/question-meta.json";
 import type { ActivityItem } from "../lib/types";
 
@@ -67,7 +67,8 @@ export function HomePage() {
     DOCS.reduce((sum, doc) => sum + (doc.minutes * (state.docs[doc.id]?.percent ?? 0)) / 100, 0),
   );
   const jdAnalysis = state.jd ? analyzeJd(state.jd) : null;
-  const stages = FRONTEND_STAGES.map((stage) => {
+  const roadmap = ROADMAP_MAP.get(roadmapForRole(state.role)) ?? ROADMAPS[0];
+  const stages = roadmap.stages.map((stage) => {
     const docs = [...new Set(stage.nodes.flatMap((node) => node.docs ?? []))]
       .map((id) => DOCS.find((doc) => doc.id === id))
       .filter((doc): doc is NonNullable<typeof doc> => Boolean(doc));
@@ -132,7 +133,7 @@ export function HomePage() {
                     <BookOpen className="h-4 w-4" /> {nextDoc ? "继续精读" : "开始"}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
-                  <Link to="/roadmap" className="btn-ghost">
+                  <Link to={`/roadmap/${roadmap.id}`} className="btn-ghost">
                     <Route className="h-4 w-4" /> 看路线
                   </Link>
                 </div>
@@ -181,7 +182,7 @@ export function HomePage() {
                 <p className="eyebrow mb-1">YOUR ROADMAP</p>
                 <h2 className="text-[15px] font-bold text-ink">路线位置</h2>
               </div>
-              <Link to="/roadmap" className="text-[10px] text-accent">完整路线图 →</Link>
+              <Link to={`/roadmap/${roadmap.id}`} className="text-[10px] text-accent">{roadmap.name} →</Link>
             </div>
             <div className="grid gap-2 sm:grid-cols-3">
               {stages.map((stage, index) => {
@@ -189,7 +190,7 @@ export function HomePage() {
                 return (
                   <Link
                     key={stage.id}
-                    to="/roadmap"
+                    to={`/roadmap/${roadmap.id}`}
                     className={`rounded-xl border p-2.5 transition ${active ? "border-accent/35 bg-accent/[0.045]" : "border-line/10 hover:border-accent/25"}`}
                   >
                     <div className="flex items-center justify-between">
