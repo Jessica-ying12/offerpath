@@ -17,6 +17,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { DOCS, DOC_MAP } from "../lib/content";
+import { moduleForDoc } from "../lib/taxonomy";
 import { plainInline } from "../lib/text";
 import {
   TYPE_COLOR,
@@ -27,7 +28,6 @@ import {
   checkMultiple,
   checkSingle,
   displayQuestionType,
-  extractTerms,
   gradeShort,
   loadBank,
   type BankData,
@@ -36,7 +36,7 @@ import {
 } from "../lib/question-bank";
 import { useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
-import { EmptyState, HistoryBack, PageContainer, PageHeader, StatCard } from "../components/ui";
+import { EmptyState, PageContainer, PageHeader, StatCard } from "../components/ui";
 import meta from "../data/question-meta.json";
 
 type Tab = "doc" | "type" | "course" | "mistake";
@@ -285,10 +285,9 @@ export function BankPage() {
     return (
       <PageContainer className="max-w-3xl">
         <div ref={topRef} />
-        <HistoryBack fallback="/quiz" className="mb-3" />
         <div className="mb-5 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
           <button onClick={leavePractice} className="inline-flex items-center gap-1 hover:text-ink">
-            <ArrowLeft className="h-3 w-3" /> 返回题库
+            <ArrowLeft className="h-3 w-3" /> 退出本次练习
           </button>
           <span className="text-line/30">/</span>
           <span>{docId === "all" ? "混合知识点" : selectedDoc?.title}</span>
@@ -544,7 +543,6 @@ export function BankPage() {
   return (
     <PageContainer>
       <PageHeader
-        back={{ to: "/", label: "返回总览" }}
         eyebrow="QUESTION BANK · MULTI-TYPE"
         title="题库"
         description={`${meta.total} 道题，按 21 个知识点组织：简答、填空、判断、多选、单选。提交后立刻显示你的答案、正确答案、原因和对应知识点。`}
@@ -635,7 +633,7 @@ export function BankPage() {
             <div className="card p-4 sm:p-5">
               <div className="flex flex-wrap items-start gap-2">
                 <div className="min-w-0 flex-1">
-                  <p className="eyebrow mb-1">{selectedDoc ? `${selectedDoc.id} · ${selectedDoc.layer}` : "ALL KNOWLEDGE POINTS"}</p>
+                  <p className="eyebrow mb-1">{selectedDoc ? `${selectedDoc.id} · ${moduleForDoc(selectedDoc.id)?.title ?? selectedDoc.layer}` : "ALL KNOWLEDGE POINTS"}</p>
                   <h2 className="text-[18px] font-bold text-ink">{selectedDoc?.title ?? "全部知识点混合练习"}</h2>
                   <p className="mt-1 text-[11px] leading-5 text-muted">
                     {selectedDoc?.description ?? "按题型随机抽题；先作答，再看逐题纠正。"}

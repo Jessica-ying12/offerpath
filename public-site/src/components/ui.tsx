@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   BookOpen,
   CheckCircle2,
+  ChevronRight,
   Circle,
   Clock3,
   MessageSquareQuote,
@@ -13,31 +13,29 @@ import {
 } from "lucide-react";
 import { DOCS, QA_MAP } from "../lib/content";
 import { analyzeJd } from "../lib/jd";
+import { moduleForDoc } from "../lib/taxonomy";
 import type { DocHeading, DocMeta } from "../lib/types";
 import { useStore } from "../lib/store";
 
-export function HistoryBack({
-  fallback,
-  label = "返回上一页",
-  className = "",
-}: {
-  fallback: string;
-  label?: string;
-  className?: string;
-}) {
-  const navigate = useNavigate();
+export type Crumb = { label: string; to?: string };
+
+export function Breadcrumbs({ items, className = "" }: { items: Crumb[]; className?: string }) {
   return (
-    <button
-      type="button"
-      onClick={() => {
-        const index = window.history.state?.idx ?? 0;
-        if (index > 0) navigate(-1);
-        else navigate(fallback);
-      }}
-      className={`inline-flex items-center gap-1 text-[10.5px] text-muted transition hover:text-ink ${className}`}
-    >
-      <ArrowLeft className="h-3 w-3" /> {label}
-    </button>
+    <nav aria-label="面包屑" className={`flex flex-wrap items-center gap-1.5 text-[10.5px] text-muted ${className}`}>
+      {items.map((item, index) => {
+        const last = index === items.length - 1;
+        return (
+          <span key={`${item.label}-${index}`} className="inline-flex items-center gap-1.5">
+            {index > 0 ? <ChevronRight className="h-2.5 w-2.5 text-line/30" /> : null}
+            {item.to && !last ? (
+              <Link to={item.to} className="rounded-sm transition hover:text-accent">{item.label}</Link>
+            ) : (
+              <span className={last ? "text-ink/70" : ""}>{item.label}</span>
+            )}
+          </span>
+        );
+      })}
+    </nav>
   );
 }
 
@@ -60,17 +58,14 @@ export function PageHeader({
   title,
   description,
   actions,
-  back,
 }: {
   eyebrow: string;
   title: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
-  back?: { to: string; label: string };
 }) {
   return (
     <div className="mb-7">
-      {back ? <div className="mb-3"><HistoryBack fallback={back.to} label={back.label} /></div> : null}
     <div className="flex flex-col gap-4 sm:mb-0 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
         <p className="eyebrow mb-2">{eyebrow}</p>
@@ -211,9 +206,8 @@ export function DocCard({
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
-        <span className="chip">{doc.layer}</span>
+        <span className="chip">{moduleForDoc(doc.id)?.title ?? doc.layer}</span>
         <span className="chip">{doc.priority}</span>
-        <span className="chip">{doc.week}</span>
       </div>
 
       <div className="mt-auto pt-3">

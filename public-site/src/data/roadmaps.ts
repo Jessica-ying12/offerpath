@@ -30,11 +30,52 @@ export type Roadmap = {
   stages: RoadmapStage[];
 };
 
-export const ROADMAP_CATEGORIES: Array<{ id: RoadmapCategory; label: string; description: string }> = [
-  { id: "beginner", label: "入门路线", description: "零基础先按这些顺序建立完整闭环" },
-  { id: "career", label: "职业路线", description: "按岗位组织能力，不等于单一技术" },
-  { id: "skill", label: "技术路线", description: "选一门技术纵向深挖，不混入岗位杂项" },
+export const ROADMAP_CATEGORIES: Array<{
+  id: RoadmapCategory;
+  label: string;
+  shortLabel: string;
+  description: string;
+}> = [
+  { id: "beginner", label: "入门路线", shortLabel: "入门", description: "零基础先按这些顺序建立完整闭环" },
+  { id: "career", label: "职业路线", shortLabel: "职业", description: "按岗位组织能力，不等于单一技术" },
+  { id: "skill", label: "技术路线", shortLabel: "技术", description: "选一门技术纵向深挖，不混入岗位杂项" },
 ];
+
+export const ROADMAP_TRACKS = ["前端", "后端", "移动端", "全栈", "语言", "数据与系统", "DevOps", "通用"] as const;
+export type RoadmapTrack = (typeof ROADMAP_TRACKS)[number];
+
+const ROADMAP_TRACK_MAP: Record<string, RoadmapTrack> = {
+  "frontend-beginner": "前端",
+  "backend-beginner": "后端",
+  "git-github-beginner": "通用",
+  "devops-beginner": "DevOps",
+  frontend: "前端",
+  backend: "后端",
+  "backend-java": "后端",
+  "full-stack": "全栈",
+  "react-native": "移动端",
+  "mini-program": "移动端",
+  flutter: "移动端",
+  javascript: "语言",
+  typescript: "语言",
+  react: "前端",
+  java: "语言",
+  golang: "语言",
+  python: "语言",
+  "api-design": "后端",
+  nodejs: "后端",
+  sql: "数据与系统",
+  git: "通用",
+  "computer-science": "数据与系统",
+  "system-design": "数据与系统",
+  testing: "通用",
+  hybrid: "移动端",
+  devops: "DevOps",
+};
+
+export function roadmapTrack(id: string): RoadmapTrack {
+  return ROADMAP_TRACK_MAP[id] ?? "通用";
+}
 
 export const ROADMAP_OFFICIAL = {
   frontend: "https://roadmap.sh/frontend",

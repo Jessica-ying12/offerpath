@@ -1,13 +1,9 @@
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   BookOpen,
-  CheckCircle2,
-  Circle,
-  Clock3,
   ExternalLink,
   GitBranch,
   Layers3,
@@ -15,7 +11,8 @@ import {
   Play,
   Route,
   Search,
-  Sparkles,
+  SlidersHorizontal,
+  X,
 } from "lucide-react";
 import { DOC_MAP, QA_MAP } from "../lib/content";
 import { plainInline } from "../lib/text";
@@ -26,15 +23,18 @@ import {
   ROADMAPS,
   ROADMAP_CATEGORIES,
   ROADMAP_MAP,
+  ROADMAP_TRACKS,
   OFFICIAL_SLUGS,
   ROADMAP_OFFICIAL,
   roadmapForRole,
   roadmapStats,
+  roadmapTrack,
   type Roadmap,
   type RoadmapCategory,
   type RoadmapNode,
+  type RoadmapTrack,
 } from "../data/roadmaps";
-import { HistoryBack, PageContainer, PageHeader, ProgressRing } from "../components/ui";
+import { Breadcrumbs, PageContainer, PageHeader, ProgressRing } from "../components/ui";
 
 function completedDocSet(docs: ReturnType<typeof useStore>["state"]["docs"]): Set<string> {
   return new Set(Object.entries(docs).filter(([, value]) => value.completed).map(([id]) => id));
@@ -58,7 +58,7 @@ function cleanTopic(text: string): string {
 
 function topicList(node: RoadmapNode): string[] {
   const keywords = [node.title, ...node.title.split(/[、，,/与和及\s]+/)]
-    .map((part) => part.replace(/[A-Za-z]+/g, (match) => match).trim())
+    .map((part) => part.trim())
     .filter((part) => part.length >= 2);
   const matched = (node.docs ?? []).flatMap((id) =>
     (DOC_MAP.get(id)?.headings ?? [])
@@ -69,8 +69,8 @@ function topicList(node: RoadmapNode): string[] {
   return [...new Set([...(node.topics ?? []).map(cleanTopic), ...matched])].slice(0, 9);
 }
 
-function categoryLabel(category: RoadmapCategory): string {
-  return ROADMAP_CATEGORIES.find((item) => item.id === category)?.label ?? category;
+function categoryMeta(category: RoadmapCategory) {
+  return ROADMAP_CATEGORIES.find((item) => item.id === category) ?? ROADMAP_CATEGORIES[0];
 }
 
 function ResourceLinks({ node, roadmap }: { node: RoadmapNode; roadmap: Roadmap }) {
@@ -107,22 +107,52 @@ function ResourceLinks({ node, roadmap }: { node: RoadmapNode; roadmap: Roadmap 
 
 export function RoadmapIndexPage() {
   const { state } = useStore();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<RoadmapCategory | "all">("all");
   const completed = completedDocSet(state.docs);
-  const roleRoadmapId = roadmapForRole(state.role);
-  const roleRoadmap = ROADMAP_MAP.get(roleRoadmapId);
+  const currentGoalRoadmap = state.plan ? ROADMAP_MAP.get(state.plan.goal.roadmapId) : null;
+
+  const rawCategory = searchParams.get("category");
+  const category: RoadmapCategory | "all" =
+    rawCategory && ROADMAP_CATEGORIES.some((item) => item.id === rawCategory)
+      ? (rawCategory as RoadmapCategory)
+      : "all";
+  const rawTrack = searchParams.get("track");
+  const track: RoadmapTrack | "all" =
+    rawTrack && (ROADMAP_TRACKS as readonly string[]).includes(rawTrack) ? (rawTrack as RoadmapTrack) : "all";
+
+  const setFilter = (nextCategory: RoadmapCategory | "all", nextTrack: RoadmapTrack | "all") => {
+    const params = new URLSearchParams();
+    if (nextCategory !== "all") params.set("category", nextCategory);
+    if (nextTrack !== "all") params.set("track", nextTrack);
+    setSearchParams(params, { replace: true });
+  };
+
+  const categoryCounts = useMemo(
+    () =>
+      Object.fromEntries(
+        ROADMAP_CATEGORIES.map((item) => [item.id, ROADMAPS.filter((roadmap) => roadmap.category === item.id).length]),
+      ) as Record<RoadmapCategory, number>,
+    [],
+  );
+
+  const trackCounts = useMemo(() => {
+    const base = ROADMAPS.filter((roadmap) => category === "all" || roadmap.category === category);
+    return Object.fromEntries(
+      ROADMAP_TRACKS.map((item) => [item, base.filter((roadmap) => roadmapTrack(roadmap.id) === item).length]),
+    ) as Record<RoadmapTrack, number>;
+  }, [category]);
 
   const roadmaps = useMemo(
     () =>
       ROADMAPS.filter((roadmap) => {
         if (category !== "all" && roadmap.category !== category) return false;
+        if (track !== "all" && roadmapTrack(roadmap.id) !== track) return false;
         if (!query.trim()) return true;
-        return `${roadmap.name} ${roadmap.audience} ${roadmap.description}`
-          .toLowerCase()
-          .includes(query.toLowerCase());
+        const haystack = `${roadmap.name} ${roadmap.audience} ${roadmap.description} ${roadmapTrack(roadmap.id)} ${categoryMeta(roadmap.category).label}`;
+        return haystack.toLowerCase().includes(query.trim().toLowerCase());
       }),
-    [category, query],
+    [category, track, query],
   );
 
   const groups = ROADMAP_CATEGORIES.map((item) => ({
@@ -130,126 +160,156 @@ export function RoadmapIndexPage() {
     roadmaps: roadmaps.filter((roadmap) => roadmap.category === item.id),
   })).filter((group) => group.roadmaps.length > 0);
 
+  const hasFilters = category !== "all" || track !== "all" || query.trim().length > 0;
+
   return (
     <PageContainer>
-      <HistoryBack fallback="/" className="mb-3" />
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
-        <Link to="/" className="inline-flex items-center gap-1 hover:text-ink">
-          <ArrowLeft className="h-3 w-3" /> 总览
-        </Link>
-        <span className="text-line/30">/</span>
-        <span>所有路线图</span>
-        <span className="ml-auto inline-flex items-center gap-1 text-muted/60">
-          <GitBranch className="h-3 w-3" /> 分类参考 roadmap.sh，节点说明由本平台编写
-        </span>
-      </div>
-
+      <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "路线图库" }]} className="mb-4" />
       <PageHeader
         eyebrow="ROADMAP LIBRARY · ROLE + SKILL"
-        title="所有路线图"
-        description="入门、职业、技术分开选。每条路线有独立的阶段和节点，不会选了不同岗位却看到同一套内容。"
+        title="路线图库"
+        description={`${ROADMAPS.length} 条路线，按入门 / 职业 / 技术分组，再按前端、后端、移动端等方向筛选。每条路线有独立阶段和节点。`}
         actions={
           <a href="https://roadmap.sh/roadmaps/?g=Absolute+Beginners" target="_blank" rel="noreferrer noopener" className="btn-ghost">
-            打开 roadmap.sh <ExternalLink className="h-3.5 w-3.5" />
+            官方目录 <ExternalLink className="h-3.5 w-3.5" />
           </a>
         }
       />
 
-      {roleRoadmap ? (
-        <Link to={`/roadmap/${roleRoadmap.id}`} className="mb-6 flex flex-col gap-3 rounded-2xl border border-accent/20 bg-accent/[0.045] p-4 transition hover:border-accent/40 sm:flex-row sm:items-center">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-            <Sparkles className="h-4 w-4" />
+      {currentGoalRoadmap ? (
+        <Link
+          to="/plan"
+          className="mb-5 flex flex-col gap-2 rounded-2xl border border-accent/20 bg-accent/[0.045] px-4 py-3 transition hover:border-accent/40 sm:flex-row sm:items-center"
+        >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+            <Route className="h-4 w-4" />
           </span>
           <div className="min-w-0 flex-1">
-            <p className="eyebrow text-accent/70">按你的目标推荐</p>
-            <p className="mt-0.5 text-[13px] font-semibold text-ink">{roleRoadmap.name}</p>
-            <p className="mt-0.5 text-[10px] text-muted">{roleRoadmap.description}</p>
+            <p className="text-[11.5px] font-semibold text-ink">当前计划：{state.plan?.goal.name || state.plan?.goal.title}</p>
+            <p className="text-[9.5px] text-muted">目标路线 {currentGoalRoadmap.name} · {state.plan?.goal.days} 天</p>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[9px] text-muted">{roadmapStats(roleRoadmap, completed).nodes} 节点</span>
-            <ArrowRight className="h-4 w-4 text-accent" />
-          </div>
+          <span className="inline-flex items-center gap-1 text-[10px] text-accent">打开计划 <ArrowRight className="h-3 w-3" /></span>
         </Link>
       ) : null}
 
-      <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-line/10 bg-surface p-3.5 sm:flex-row sm:items-center">
-        <div className="relative min-w-0 flex-1">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
-          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索路线名称或岗位…" className="input py-2 pl-9 text-[11.5px]" />
-        </div>
-        <div className="flex flex-wrap gap-1">
-          <button onClick={() => setCategory("all")} className={`chip ${category === "all" ? "chip-active" : ""}`}>全部</button>
-          {ROADMAP_CATEGORIES.map((item) => (
-            <button key={item.id} onClick={() => setCategory(item.id)} className={`chip ${category === item.id ? "chip-active" : ""}`}>
-              {item.label} · {ROADMAPS.filter((roadmap) => roadmap.category === item.id).length}
+      <section className="mb-5 overflow-hidden rounded-2xl border border-line/10 bg-surface shadow-card">
+        <div className="border-b border-line/10 p-3 sm:p-4">
+          <div className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold text-muted">
+            <SlidersHorizontal className="h-3 w-3" /> 先选分类
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+            <button
+              onClick={() => setFilter("all", "all")}
+              className={`rounded-xl border p-3 text-left transition ${category === "all" ? "border-accent/40 bg-accent/[0.06]" : "border-line/10 bg-paper/40 hover:border-accent/25"}`}
+            >
+              <div className="flex items-center justify-between">
+                <span className={`text-[12px] font-semibold ${category === "all" ? "text-accent" : "text-ink"}`}>全部路线</span>
+                <span className="font-mono text-[10px] text-muted">{ROADMAPS.length}</span>
+              </div>
+              <p className="mt-1 text-[9px] leading-4 text-muted">完整目录，按三类分组展示</p>
             </button>
-          ))}
+            {ROADMAP_CATEGORIES.map((item) => {
+              const selected = category === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setFilter(item.id, "all")}
+                  className={`rounded-xl border p-3 text-left transition ${selected ? "border-accent/40 bg-accent/[0.06]" : "border-line/10 bg-paper/40 hover:border-accent/25"}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[12px] font-semibold ${selected ? "text-accent" : "text-ink"}`}>{item.label}</span>
+                    <span className="font-mono text-[10px] text-muted">{categoryCounts[item.id]}</span>
+                  </div>
+                  <p className="mt-1 text-[9px] leading-4 text-muted">{item.description}</p>
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        <div className="flex flex-col gap-3 p-3 sm:p-4 lg:flex-row lg:items-center">
+          <div className="relative min-w-0 flex-1">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="搜索路线、岗位或方向…"
+              className="input py-2 pl-9 text-[11.5px]"
+            />
+          </div>
+          <div className="flex flex-wrap items-center gap-1">
+            <span className="mr-1 text-[9.5px] text-muted/70">方向</span>
+            <button onClick={() => setFilter(category, "all")} className={`chip ${track === "all" ? "chip-active" : ""}`}>全部</button>
+            {ROADMAP_TRACKS.map((item) => {
+              const count = trackCounts[item];
+              if (count === 0) return null;
+              return (
+                <button key={item} onClick={() => setFilter(category, item)} className={`chip ${track === item ? "chip-active" : ""}`}>
+                  {item} <span className="font-mono text-[8px] opacity-60">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <p className="text-[11px] text-muted">
+          找到 <span className="font-semibold text-ink">{roadmaps.length}</span> 条路线
+          {category !== "all" ? ` · ${categoryMeta(category).label}` : ""}
+          {track !== "all" ? ` · ${track}` : ""}
+          {query.trim() ? ` · 搜索“${query.trim()}”` : ""}
+        </p>
+        {hasFilters ? (
+          <button
+            onClick={() => {
+              setQuery("");
+              setFilter("all", "all");
+            }}
+            className="inline-flex items-center gap-1 text-[10px] text-muted hover:text-coral"
+          >
+            <X className="h-3 w-3" /> 清除筛选
+          </button>
+        ) : null}
       </div>
 
-      <div className="space-y-7">
+      <div className="space-y-8">
         {groups.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-line/20 py-12 text-center text-[12px] text-muted">没有匹配的路线。</div>
+          <div className="rounded-2xl border border-dashed border-line/20 py-14 text-center">
+            <p className="text-[12px] text-muted">这个分类下没有匹配的路线。</p>
+            <button onClick={() => { setQuery(""); setFilter("all", "all"); }} className="btn-ghost mt-3">查看全部路线</button>
+          </div>
         ) : (
           groups.map((group) => (
             <section key={group.id} id={`roadmaps-${group.id}`} className="scroll-mt-24">
-              <div className="mb-3 border-b border-line/10 pb-2">
-                <h2 className="text-[15px] font-bold text-ink">{group.label}</h2>
-                <p className="mt-0.5 text-[9.5px] text-muted">{group.description}</p>
+              <div className="mb-3 flex flex-wrap items-end justify-between gap-2 border-b border-line/10 pb-2">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-[16px] font-bold text-ink">{group.label}</h2>
+                    <span className="font-mono text-[9px] text-muted/60">{group.roadmaps.length} 条</span>
+                  </div>
+                  <p className="mt-0.5 text-[9.5px] text-muted">{group.description}</p>
+                </div>
+                {category === "all" ? (
+                  <button onClick={() => setFilter(group.id, "all")} className="text-[9.5px] text-accent hover:underline">
+                    只看{group.shortLabel}路线 →
+                  </button>
+                ) : null}
               </div>
               <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-                {group.roadmaps.map((roadmap) => {
-                  const stats = roadmapStats(roadmap, completed);
-                  const isRole = roadmap.id === roleRoadmapId;
-                  return (
-                    <Link
-                      key={roadmap.id}
-                      to={`/roadmap/${roadmap.id}`}
-                      className={`card group flex flex-col p-4 transition hover:-translate-y-0.5 hover:border-accent/30 ${isRole ? "border-accent/30" : ""}`}
-                    >
-                      <div className="flex items-start gap-2">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-raised text-accent">
-                          <Layers3 className="h-4 w-4" />
-                        </span>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-1.5">
-                            <h3 className="text-[13px] font-semibold text-ink">{roadmap.name}</h3>
-                            {isRole ? <span className="chip border-accent/20 text-accent">目标</span> : null}
-                          </div>
-                          <p className="mt-0.5 text-[9px] text-muted">{roadmap.audience}</p>
-                        </div>
-                        <span className={`chip ${group.id === "career" ? "border-accent/20 text-accent" : group.id === "beginner" ? "border-coral/15 text-coral" : ""}`}>{group.label.slice(0, 2)}</span>
-                      </div>
-                      <p className="mt-2 line-clamp-2 text-[10px] leading-5 text-muted">{roadmap.description}</p>
-                      <div className="mt-3 flex items-center gap-3 text-[9px] text-muted/70">
-                        <span>{stats.stages} 阶段</span>
-                        <span>{stats.nodes} 节点</span>
-                        {stats.docs > 0 ? <span>{stats.completed}/{stats.docs} 精读</span> : <span>外部资料 + 题库</span>}
-                      </div>
-                      <div className="progress-track mt-2 h-1">
-                        <div className="progress-fill" style={{ width: `${stats.docs ? (stats.completed / stats.docs) * 100 : 0}%` }} />
-                      </div>
-                      <div className="mt-3 flex items-center justify-between">
-                        <span className="font-mono text-[8.5px] text-muted/50">{roadmap.stages.length} stages · {stats.nodes} nodes</span>
-                        <span className="inline-flex items-center gap-1 text-[9.5px] text-accent">
-                          打开路线 <ArrowRight className="h-3 w-3" />
-                        </span>
-                      </div>
-                    </Link>
-                  );
-                })}
+                {group.roadmaps.map((roadmap) => <RoadmapCard key={roadmap.id} roadmap={roadmap} completed={completed} current={state.plan?.goal.roadmapId === roadmap.id} />)}
               </div>
             </section>
           ))
         )}
       </div>
 
-      <section className="mt-8 rounded-2xl border border-line/10 bg-surface p-5">
+      <section className="mt-9 rounded-2xl border border-line/10 bg-surface p-5">
         <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
           <div>
             <p className="eyebrow mb-1">OFFICIAL DIRECTORY</p>
             <h2 className="text-[16px] font-bold text-ink">官方完整路线目录</h2>
-            <p className="mt-1 text-[10px] text-muted">本平台精编 21 条；以下是 roadmap.sh 官方目录中更多可打开的路线，避免把“平台没精编”误认为“路线不存在”。</p>
+            <p className="mt-1 text-[10px] text-muted">平台精编 {ROADMAPS.length} 条；这里保留 roadmap.sh 官方目录入口，避免把“平台没精编”误认为“路线不存在”。</p>
           </div>
           <a href="https://roadmap.sh/roadmaps/?g=Absolute+Beginners" target="_blank" rel="noreferrer noopener" className="text-[10px] text-accent">打开完整目录 ↗</a>
         </div>
@@ -274,9 +334,59 @@ export function RoadmapIndexPage() {
       </section>
 
       <div className="mt-5 rounded-2xl border border-line/10 bg-raised/30 px-4 py-3 text-[10px] leading-5 text-muted">
-        说明：路线分类参考 roadmap.sh 的 Role-Based / Skill-Based / Absolute Beginners 结构；本页节点说明、资源映射和学习顺序由本平台独立编写。官方完整交互图请通过各路线或上方目录打开。
+        说明：分类与方向是平台自己的导航结构，路线节点和阶段由平台独立编排；roadmap.sh 官方完整图可能包含更多工具与分支，可通过每条路线的“官方完整图”打开。
       </div>
     </PageContainer>
+  );
+}
+
+function RoadmapCard({
+  roadmap,
+  completed,
+  current,
+}: {
+  roadmap: Roadmap;
+  completed: Set<string>;
+  current: boolean;
+}) {
+  const stats = roadmapStats(roadmap, completed);
+  const track = roadmapTrack(roadmap.id);
+  return (
+    <div className={`card flex flex-col p-4 transition hover:border-accent/30 ${current ? "border-accent/35" : ""}`}>
+      <div className="flex items-start gap-2.5">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-raised text-accent">
+          <Layers3 className="h-4 w-4" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <Link to={`/roadmap/${roadmap.id}`} className="text-[13.5px] font-semibold text-ink hover:text-accent">{roadmap.name}</Link>
+            {current ? <span className="chip border-accent/25 text-accent">当前计划</span> : null}
+          </div>
+          <p className="mt-0.5 text-[9px] text-muted">{roadmap.audience}</p>
+        </div>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-1">
+        <span className="chip py-0.5 text-[8px]">{categoryMeta(roadmap.category).shortLabel}</span>
+        <span className="chip py-0.5 text-[8px]">{track}</span>
+      </div>
+      <p className="mt-2 line-clamp-2 text-[10px] leading-5 text-muted">{roadmap.description}</p>
+      <div className="mt-3 flex items-center gap-3 text-[9px] text-muted/70">
+        <span>{stats.stages} 阶段</span>
+        <span>{stats.nodes} 节点</span>
+        {stats.docs > 0 ? <span>{stats.completed}/{stats.docs} 精读</span> : <span>外部资料 + 题库</span>}
+      </div>
+      <div className="progress-track mt-2 h-1">
+        <div className="progress-fill" style={{ width: `${stats.docs ? (stats.completed / stats.docs) * 100 : 0}%` }} />
+      </div>
+      <div className="mt-3 flex items-center justify-between border-t border-line/10 pt-2.5">
+        <Link to={`/roadmap/${roadmap.id}`} className="inline-flex items-center gap-1 text-[9.5px] text-accent">
+          打开路线 <ArrowRight className="h-3 w-3" />
+        </Link>
+        <Link to={`/plan?roadmap=${roadmap.id}`} className="inline-flex items-center gap-1 text-[9px] text-muted hover:text-accent">
+          <Route className="h-2.5 w-2.5" /> 用此路线做计划
+        </Link>
+      </div>
+    </div>
   );
 }
 
@@ -290,13 +400,15 @@ export function RoadmapDetailPage() {
   if (!roadmap) {
     return (
       <PageContainer>
-        <PageHeader back={{ to: "/roadmap", label: "返回所有路线图" }} eyebrow="404" title="没有这条路线" description="请从路线目录重新选择。" />
+        <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "路线图库", to: "/roadmap" }, { label: "未找到" }]} className="mb-4" />
+        <PageHeader eyebrow="404" title="没有这条路线" description="请从路线目录重新选择。" />
       </PageContainer>
     );
   }
 
   const stats = roadmapStats(roadmap, completed);
   const roleRoadmapId = roadmapForRole(state.role);
+  const currentPlanRoadmap = state.plan?.goal.roadmapId === roadmap.id;
   const currentStage = roadmap.stages.find((stage) => {
     const docs = [...new Set(stage.nodes.flatMap((node) => node.docs ?? []))];
     return docs.some((id) => !state.docs[id]?.completed);
@@ -321,42 +433,46 @@ export function RoadmapDetailPage() {
 
   return (
     <PageContainer>
-      <HistoryBack fallback="/roadmap" className="mb-3" />
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
-        <Link to="/roadmap" className="inline-flex items-center gap-1 hover:text-ink">
-          <ArrowLeft className="h-3 w-3" /> 所有路线图
-        </Link>
-        <span className="text-line/30">/</span>
-        <span>{categoryLabel(roadmap.category)}</span>
-        <span className="text-line/30">/</span>
-        <span className="text-ink/70">{roadmap.name}</span>
-        {roadmap.id === roleRoadmapId ? <span className="chip border-accent/20 text-accent">目标路线</span> : null}
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: "总览", to: "/" },
+          { label: "路线图库", to: "/roadmap" },
+          { label: categoryMeta(roadmap.category).label, to: `/roadmap?category=${roadmap.category}` },
+          { label: roadmap.name },
+        ]}
+        className="mb-4"
+      />
 
       <div className="mb-5 flex flex-col gap-4 rounded-2xl border border-line/10 bg-surface p-5 shadow-card lg:flex-row lg:items-center">
         <div className="flex min-w-0 flex-1 items-center gap-4">
           <ProgressRing percent={stats.docs ? (stats.completed / stats.docs) * 100 : 0} size={70} label={stats.docs ? `${stats.completed}/${stats.docs}` : "—"} />
           <div className="min-w-0">
-            <p className="eyebrow mb-1">{categoryLabel(roadmap.category)} · {roadmap.audience}</p>
-            <h1 className="font-display text-[26px] font-bold leading-tight text-ink sm:text-[34px]">{roadmap.name}</h1>
+            <p className="eyebrow mb-1">{categoryMeta(roadmap.category).label} · {roadmapTrack(roadmap.id)} · {roadmap.audience}</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="font-display text-[26px] font-bold leading-tight text-ink sm:text-[34px]">{roadmap.name}</h1>
+              {currentPlanRoadmap ? <span className="chip border-accent/25 text-accent">当前计划路线</span> : null}
+            </div>
             <p className="mt-1 text-[11px] leading-5 text-muted">{roadmap.description}</p>
             <div className="mt-2 flex flex-wrap gap-1.5 text-[9px]">
               <span className="chip">{stats.stages} 个阶段</span>
               <span className="chip">{stats.nodes} 个节点</span>
               <span className="chip">{stats.docs} 篇关联精读</span>
+              <Link to={`/roadmap?category=${roadmap.category}&track=${encodeURIComponent(roadmapTrack(roadmap.id))}`} className="chip hover:border-accent/30 hover:text-accent">
+                同类路线
+              </Link>
             </div>
           </div>
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
           <Link to={`/plan?roadmap=${roadmap.id}`} className="btn-primary">
-            <Route className="h-3.5 w-3.5" /> {state.plan?.goal.roadmapId === roadmap.id ? "当前目标 · 打开计划" : "用此路线做计划"}
+            <Route className="h-3.5 w-3.5" /> {currentPlanRoadmap ? "当前计划 · 打开计划" : "用此路线做计划"}
           </Link>
           {currentDoc ? (
-            <Link to={`/doc/${currentDoc}`} className="btn-primary">
+            <Link to={`/doc/${currentDoc}`} className="btn-ghost">
               <Play className="h-3.5 w-3.5" /> 继续 {currentDocMeta?.shortTitle ?? currentDoc}
             </Link>
           ) : (
-            <Link to={`/quiz?tab=course&course=${roadmap.category === "skill" ? "cs-ai-foundations" : "backend-java"}`} className="btn-primary">
+            <Link to="/quiz" className="btn-ghost">
               <Play className="h-3.5 w-3.5" /> 去题库
             </Link>
           )}
@@ -483,8 +599,19 @@ export function RoadmapDetailPage() {
               <li>4. 每个阶段至少产出一个项目/复盘证据。</li>
             </ol>
           </div>
-          <div className="rounded-xl border border-line/10 bg-raised/30 p-3.5 text-[9px] leading-5 text-muted/70">
-            本路线为平台独立编排，节点命名参考行业通用知识。roadmap.sh 的官方完整图可能包含更多工具与分支；点击“官方完整图”查看。
+          <div className="card p-4">
+            <p className="eyebrow mb-2">这条路线包含</p>
+            <div className="grid grid-cols-2 gap-2 text-center">
+              <div className="rounded-lg bg-raised/60 py-2"><p className="font-display text-[18px] font-bold text-ink">{stats.stages}</p><p className="text-[8.5px] text-muted">阶段</p></div>
+              <div className="rounded-lg bg-raised/60 py-2"><p className="font-display text-[18px] font-bold text-ink">{stats.nodes}</p><p className="text-[8.5px] text-muted">节点</p></div>
+              <div className="rounded-lg bg-raised/60 py-2"><p className="font-display text-[18px] font-bold text-ink">{stats.docs}</p><p className="text-[8.5px] text-muted">精读</p></div>
+              <div className="rounded-lg bg-raised/60 py-2"><p className="font-display text-[18px] font-bold text-ink">{officialNames.length || "—"}</p><p className="text-[8.5px] text-muted">官方节点</p></div>
+            </div>
+            {roleRoadmapId === roadmap.id ? (
+              <p className="mt-3 rounded-lg bg-accent/[0.05] px-2.5 py-2 text-[9px] leading-4 text-accent">
+                这条路线与你的本机角色匹配；是否作为目标由你在计划里确认。
+              </p>
+            ) : null}
           </div>
           <a href={ROADMAP_OFFICIAL.frontend} target="_blank" rel="noreferrer noopener" className="flex items-center justify-between rounded-xl border border-line/10 bg-surface px-3 py-2.5 text-[10px] text-muted hover:text-accent">
             <span className="inline-flex items-center gap-1"><GitBranch className="h-3 w-3" /> roadmap.sh 路线索引</span>

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen, MessageSquareQuote, Search, X } from "lucide-react";
 import { DOCS, TOTAL_QA } from "../lib/content";
+import { moduleForDoc } from "../lib/taxonomy";
 import { search, type SearchHit } from "../lib/search";
 import { useStore } from "../lib/store";
 
@@ -122,7 +123,7 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
                     <BookOpen className="h-4 w-4 text-accent" />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[13px] font-medium">{doc.title}</span>
-                      <span className="block text-[11px] text-muted">{doc.layer} · {doc.week}</span>
+                      <span className="block text-[11px] text-muted">{moduleForDoc(doc.id)?.title ?? doc.layer}</span>
                     </span>
                     <ArrowRight className="h-3.5 w-3.5 text-muted" />
                   </button>

@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
-  ArrowLeft,
   ArrowRight,
-  BookOpen,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -14,13 +12,13 @@ import {
   Minus,
   Plus,
   Printer,
-  Sparkles,
 } from "lucide-react";
-import { DOC_MAP, DOCS, QA_MAP } from "../lib/content";
+import { DOC_MAP, QA_MAP } from "../lib/content";
 import { getQaBankProgress, useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
-import { DocSwitcher, HistoryBack, MasteryBadge, NotesPanel, Toc } from "../components/ui";
+import { Breadcrumbs, DocSwitcher, MasteryBadge, NotesPanel, Toc } from "../components/ui";
 import { formatDate } from "../lib/srs";
+import { docsModuleHref, moduleForDoc } from "../lib/taxonomy";
 
 export function DocPage() {
   const { docId = "" } = useParams();
@@ -39,6 +37,8 @@ export function DocPage() {
   const bank = doc ? QA_MAP.get(doc.id) : null;
   const qaProgress = getQaBankProgress(state, docId);
   const progress = state.docs[docId];
+  const module = doc ? moduleForDoc(doc.id) : null;
+  const siblingDocs = module ? module.docs.map((id) => DOC_MAP.get(id)).filter((item): item is NonNullable<typeof item> => Boolean(item)) : [];
 
   useEffect(() => {
     document.body.classList.toggle("reader-focus", focus);
@@ -132,16 +132,16 @@ export function DocPage() {
 
   return (
     <div className="mx-auto w-full max-w-[1230px] px-4 py-6 sm:px-6 lg:px-8">
-      <HistoryBack fallback="/docs" className="mb-3" />
-      <div className="mb-5 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
-        <Link to="/docs" className="inline-flex items-center gap-1 hover:text-ink">
-          <ArrowLeft className="h-3 w-3" /> 深度文档
-        </Link>
-        <span className="text-line/30">/</span>
-        <span>{doc.layer}</span>
-        <span className="text-line/30">/</span>
-        <span className="text-ink/70">{doc.id}</span>
-        <div className="ml-auto flex items-center gap-1.5">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <Breadcrumbs
+          items={[
+            { label: "总览", to: "/" },
+            { label: "深度文档", to: "/docs" },
+            ...(module ? [{ label: module.title, to: docsModuleHref(module.id) }] : []),
+            { label: `${doc.id} · ${doc.title}` },
+          ]}
+        />
+        <div className="flex items-center gap-1.5">
           <button
             onClick={() => setFocus((value) => !value)}
             className={`btn-quiet hidden xl:inline-flex ${focus ? "text-accent" : ""}`}
@@ -165,10 +165,11 @@ export function DocPage() {
         <article ref={articleRef} className="min-w-0">
           <header className="border-b border-line/10 pb-6">
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="chip border-accent/20 bg-accent/[0.06] text-accent">{doc.layer}</span>
+              {module ? (
+                <Link to={docsModuleHref(module.id)} className="chip border-accent/20 bg-accent/[0.06] text-accent">{module.title} →</Link>
+              ) : null}
               <span className="chip">{doc.category}</span>
               <span className="chip">{doc.priority}</span>
-              <span className="chip">{doc.week}</span>
               {progress?.completed ? (
                 <span className="inline-flex items-center gap-1 rounded-full border border-accent/25 bg-accent/10 px-2.5 py-1 text-[10px] font-semibold text-accent">
                   <CheckCircle2 className="h-3 w-3" /> 已精读
@@ -309,19 +310,34 @@ export function DocPage() {
           </div>
 
           <DocSwitcher currentId={doc.id} />
-          <div className="mt-5 flex flex-wrap items-center gap-3 text-[10px] text-muted">
-            <Link to="/docs" className="inline-flex items-center gap-1 hover:text-accent">
-              <ArrowLeft className="h-3 w-3" /> 返回文档库
-            </Link>
-            <span className="text-line/30">/</span>
-            <Link to="/roadmap" className="hover:text-accent">返回完整路线图</Link>
-            <span className="text-line/30">/</span>
-            <Link to="/qa" className="hover:text-accent">去做面试自测</Link>
-          </div>
         </article>
 
         {!focus ? (
           <aside className="hidden space-y-4 xl:sticky xl:top-[80px] xl:block">
+            {module ? (
+              <div className="card p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="eyebrow mb-0.5">所属模块</p>
+                    <Link to={docsModuleHref(module.id)} className="text-[11.5px] font-semibold text-ink hover:text-accent">{module.title}</Link>
+                  </div>
+                  <Link to={docsModuleHref(module.id)} className="text-[9px] text-accent">全部 →</Link>
+                </div>
+                <div className="mt-2.5 space-y-0.5 border-t border-line/10 pt-2">
+                  {siblingDocs.map((item) => (
+                    <Link
+                      key={item.id}
+                      to={`/doc/${item.id}`}
+                      className={`flex items-center gap-2 rounded-md px-1.5 py-1 text-[10px] transition ${item.id === doc.id ? "bg-accent/[0.06] font-semibold text-accent" : "text-muted hover:bg-raised/60 hover:text-ink"}`}
+                    >
+                      <span className="font-mono text-[8px] opacity-60">{item.id}</span>
+                      <span className="min-w-0 flex-1 truncate">{item.shortTitle}</span>
+                      {state.docs[item.id]?.completed ? <CheckCircle2 className="h-2.5 w-2.5 text-accent" /> : null}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             <div className="card p-4">
               <Toc headings={doc.headings} active={active} />
             </div>

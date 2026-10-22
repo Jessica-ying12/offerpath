@@ -4,9 +4,7 @@ import {
   ArrowLeft,
   ArrowRight,
   ChevronDown,
-  Circle,
   Flame,
-  MessageSquareQuote,
   Play,
   Search,
   Sparkles,
@@ -15,7 +13,7 @@ import { DOC_MAP, QA_MAP } from "../lib/content";
 import { formatDate, isDue } from "../lib/srs";
 import { getQaBankProgress, useStore } from "../lib/store";
 import { MarkdownView } from "../components/MarkdownView";
-import { EmptyState, HistoryBack, MasteryBadge, PageContainer } from "../components/ui";
+import { EmptyState, MasteryBadge, PageContainer } from "../components/ui";
 import { plainInline } from "../lib/text";
 
 type Filter = "all" | "new" | "learning" | "due" | "mastered";
@@ -67,7 +65,6 @@ export function QaBankPage() {
 
   return (
     <PageContainer>
-      <HistoryBack fallback="/qa" className="mb-3" />
       <div className="mb-5 flex flex-wrap items-center gap-2 text-[10.5px] text-muted">
         <Link to="/qa" className="inline-flex items-center gap-1 hover:text-ink">
           <ArrowLeft className="h-3 w-3" /> 面试自测

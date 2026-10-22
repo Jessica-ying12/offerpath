@@ -6,9 +6,9 @@ import {
   CheckCircle2,
   Flame,
   RotateCcw,
-  Sparkles,
 } from "lucide-react";
 import { ALL_QA, DOC_MAP, DOCS } from "../lib/content";
+import { moduleForDoc } from "../lib/taxonomy";
 import { DAY_MS, formatDate, isDue } from "../lib/srs";
 import { useStore } from "../lib/store";
 import { EmptyState, PageContainer, PageHeader, StatCard } from "../components/ui";
@@ -45,7 +45,6 @@ export function ReviewPage() {
   return (
     <PageContainer>
       <PageHeader
-        back={{ to: "/", label: "返回总览" }}
         eyebrow="SPACED REVIEW · D+1 / D+3 / D+7"
         title="周期复习"
         description="先遮住答案，用自己的话回答。答上来进入下一轮，答错回到 D+1；三次通过才标记「已掌握」。"
@@ -109,7 +108,7 @@ export function ReviewPage() {
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-1 text-[13px] font-semibold text-ink">{doc.title}</p>
                     <p className="mt-0.5 text-[10px] text-muted">
-                      {count} 道问答到期 · {doc.layer}
+                      {count} 道问答到期 · {moduleForDoc(doc.id)?.title ?? doc.layer}
                     </p>
                   </div>
                   <span className="rounded-full bg-coral/10 px-2 py-0.5 font-mono text-[9px] text-coral">
