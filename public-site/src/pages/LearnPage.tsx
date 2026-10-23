@@ -32,10 +32,10 @@ export function LearnPage() {
   if (!doc || !point) {
     return (
       <PageContainer>
-        <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "知识库", to: "/docs" }, { label: "未找到" }]} className="mb-4" />
+        <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "深度文档", to: "/docs" }, { label: "未找到" }]} className="mb-4" />
         <div className="rounded-2xl border border-dashed border-line/20 py-16 text-center">
           <p className="font-display text-[22px] font-bold text-ink">没有找到这个知识点</p>
-          <Link to="/docs" className="btn-primary mt-4">返回知识库</Link>
+          <Link to="/docs" className="btn-primary mt-4">返回深度文档</Link>
         </div>
       </PageContainer>
     );
@@ -56,7 +56,7 @@ export function LearnPage() {
       <Breadcrumbs
         items={[
           { label: "总览", to: "/" },
-          { label: "知识库", to: "/docs" },
+          { label: "深度文档", to: "/docs" },
           ...(category ? [{ label: category.label, to: `/docs?category=${category.id}` }] : []),
           { label: doc.title, to: `/learn/${doc.id}` },
           { label: point.title },
@@ -68,7 +68,7 @@ export function LearnPage() {
         <article className="min-w-0">
           <header className="rounded-2xl border border-line/10 bg-surface p-5 shadow-card sm:p-6">
             <div className="flex flex-wrap items-center gap-1.5">
-              <span className="chip border-accent/20 text-accent">{category?.label ?? "知识库"}</span>
+              <span className="chip border-accent/20 text-accent">{category?.label ?? "深度文档"}</span>
               <span className="chip">{doc.id} · {doc.shortTitle}</span>
               <span className="chip">知识点 {index + 1} / {points.length}</span>
               {completed ? <span className="chip border-accent/25 text-accent"><CheckCircle2 className="h-2.5 w-2.5" /> 已学完</span> : null}

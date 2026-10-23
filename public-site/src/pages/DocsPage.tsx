@@ -142,10 +142,10 @@ export function DocsPage() {
 
   return (
     <PageContainer>
-      <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "知识库" }]} className="mb-4" />
+      <Breadcrumbs items={[{ label: "总览", to: "/" }, { label: "深度文档" }]} className="mb-4" />
       <div className="mb-5">
-        <p className="eyebrow mb-1.5">知识库 · {DOCS.length} 篇精编 · {totalPoints} 个知识点</p>
-        <h1 className="font-display text-[30px] font-bold leading-tight tracking-tight text-ink sm:text-[38px]">知识库</h1>
+        <p className="eyebrow mb-1.5">深度文档 · {DOCS.length} 篇精编 · {totalPoints} 个知识点</p>
+        <h1 className="font-display text-[30px] font-bold leading-tight tracking-tight text-ink sm:text-[38px]">深度文档</h1>
         <p className="mt-2 max-w-2xl text-[12px] leading-6 text-muted">
           分类和路线技术保持一致。{DOCS.length} 篇精编拆成 {totalPoints} 个知识点，每个知识点单独学习；其他技术路线提供主题学习页。搜索会跨路线、文档、知识点和主题关键词。
         </p>

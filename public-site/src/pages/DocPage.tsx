@@ -136,7 +136,7 @@ export function DocPage() {
         <Breadcrumbs
           items={[
             { label: "总览", to: "/" },
-            { label: "知识库", to: "/docs" },
+            { label: "深度文档", to: "/docs" },
             ...(module ? [{ label: module.title, to: docsModuleHref(module.id) }] : []),
             { label: `${doc.id} · ${doc.title}` },
           ]}

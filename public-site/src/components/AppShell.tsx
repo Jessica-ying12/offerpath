@@ -44,7 +44,7 @@ const NAV_GROUPS: Array<{ label: string; items: NavItem[] }> = [
     items: [
       { href: "/", label: "总览", icon: Home, exact: true },
       { href: "/roadmap", label: "路线图库", icon: MapIcon },
-      { href: "/docs", label: "知识库", icon: BookOpen, badge: `${DOCS.length}` },
+      { href: "/docs", label: "深度文档", icon: BookOpen, badge: `${DOCS.length}` },
       { href: "/qa", label: "面试自测", icon: MessageSquareQuote, badge: `${TOTAL_QA}` },
     ],
   },
@@ -77,7 +77,7 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/$/, "总览"],
   [/^\/plan/, "学习计划"],
   [/^\/roadmap/, "路线图库"],
-  [/^\/docs/, "知识库"],
+  [/^\/docs/, "深度文档"],
   [/^\/learn\//, "知识点"],
   [/^\/doc\//, "整篇参考"],
   [/^\/qa/, "面试自测"],

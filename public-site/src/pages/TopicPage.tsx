@@ -75,12 +75,12 @@ export function TopicPage() {
             <h1 className="mt-3 font-display text-[28px] font-bold leading-tight text-ink sm:text-[36px]">{topic}</h1>
             <p className="mt-2 text-[12px] leading-6 text-muted">{guide.intro}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Link to={`/plan?roadmap=${roadmap.id}`} className="btn-primary">
+              <a href="#topic-goals" className="btn-primary">
+                <BookOpen className="h-3.5 w-3.5" /> 立即去学习
+              </a>
+              <Link to={`/plan?roadmap=${roadmap.id}`} className="btn-ghost">
                 <Route className="h-3.5 w-3.5" /> 加入学习计划
               </Link>
-              <a href="#topic-example" className="btn-ghost">
-                <BookOpen className="h-3.5 w-3.5" /> 开始学习
-              </a>
             </div>
           </header>
 

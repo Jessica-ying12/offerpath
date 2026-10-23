@@ -199,7 +199,7 @@ export function HomePage() {
                       <span className="eyebrow">01</span>
                     </div>
                     <p className="mt-3 text-[12px] font-semibold text-ink">精读一个知识点</p>
-                    <p className="mt-1 text-[9.5px] leading-4 text-muted">{nextDoc?.shortTitle ?? "打开知识库"}</p>
+                    <p className="mt-1 text-[9.5px] leading-4 text-muted">{nextDoc?.shortTitle ?? "打开深度文档"}</p>
                   </Link>
                   <Link to="/quiz" className="rounded-2xl border border-line/10 bg-surface p-4 transition hover:border-accent/30">
                     <div className="flex items-center justify-between">
